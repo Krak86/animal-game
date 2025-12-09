@@ -30,6 +30,7 @@ import { useGameLogic } from "./src/hooks/useGameLogic";
 
 export default function App() {
   const [language, setLanguage] = useState("uk");
+  const t = TRANSLATIONS[language];
 
   const {
     shuffledAnimals,
@@ -48,9 +49,7 @@ export default function App() {
     startGame,
     toggleSound,
     resetGame,
-  } = useGameLogic();
-
-  const t = TRANSLATIONS[language];
+  } = useGameLogic(language, t);
 
   return (
     <View style={appStyles.container}>

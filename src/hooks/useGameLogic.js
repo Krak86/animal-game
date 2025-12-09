@@ -19,11 +19,14 @@ import {
   animateQuestionHide,
   animateCardsEntrance,
 } from '../utils/animations';
+import { speakQuestion, stopSpeech, logAvailableVoices } from '../utils/speech';
 
 /**
  * Custom hook to manage game logic and state
+ * @param {string} language - Current language ('en' or 'uk')
+ * @param {Object} translations - Translation object for current language
  */
-export const useGameLogic = () => {
+export const useGameLogic = (language, translations) => {
   const [shuffledAnimals, setShuffledAnimals] = useState([]);
   const [currentAnimal, setCurrentAnimal] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -66,6 +69,9 @@ export const useGameLogic = () => {
     if (!gameStarted) {
       setGameStarted(true);
 
+      // Debug: Log available voices for troubleshooting
+      logAvailableVoices();
+
       // Start background music (requires user interaction)
       backgroundMusic.current = await loadBackgroundMusic();
 
@@ -93,10 +99,22 @@ export const useGameLogic = () => {
     animateQuestionHide(questionAnimation, () => {
       animateCardsEntrance(cardAnimations);
       animateQuestionShow(questionAnimation);
+
+      // Speak the question after animations start (if sound is enabled)
+      if (isSoundEnabled && backgroundMusic.current && translations && randomAnimal) {
+        const animalName = translations.animals[randomAnimal.name];
+        speakQuestion(translations.findThe, animalName, language, backgroundMusic.current);
+      }
     });
   };
 
   const handleAnimalPress = (animal) => {
+    // Speak the animal name when clicked (if sound is enabled)
+    if (isSoundEnabled && backgroundMusic.current && translations) {
+      const animalName = translations.animals[animal.name];
+      speakQuestion('', animalName, language, backgroundMusic.current);
+    }
+
     if (animal.id === currentAnimal.id) {
       handleCorrectAnswer();
     } else {
@@ -135,6 +153,9 @@ export const useGameLogic = () => {
   };
 
   const resetGame = async () => {
+    // Stop any ongoing speech
+    await stopSpeech();
+
     // Stop background music
     if (backgroundMusic.current) {
       await backgroundMusic.current.stopAsync();
