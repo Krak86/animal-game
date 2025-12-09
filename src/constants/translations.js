@@ -1,0 +1,51 @@
+// Translations for English and Ukrainian
+export const TRANSLATIONS = {
+  en: {
+    startScreen: {
+      title: "Animal Game",
+      subtitle: "Find the animals!",
+      start: "START GAME",
+    },
+    score: "Score",
+    findThe: "Find the:",
+    greatJob: "Great Job!",
+    youFoundIt: "You found it!",
+    startFromBeginning: "Start from Beginning",
+    animals: {
+      Dog: "Dog",
+      Cat: "Cat",
+      Lion: "Lion",
+      Elephant: "Elephant",
+      Giraffe: "Giraffe",
+      Monkey: "Monkey",
+      Penguin: "Penguin",
+      Zebra: "Zebra",
+      Tiger: "Tiger",
+      Rabbit: "Rabbit",
+    },
+  },
+  uk: {
+    startScreen: {
+      title: "Гра Тварини",
+      subtitle: "Знайди тварин!",
+      start: "ПОЧАТИ ГРУ",
+    },
+    score: "Рахунок",
+    findThe: "Знайди:",
+    greatJob: "Чудова робота!",
+    youFoundIt: "Ти знайшов!",
+    startFromBeginning: "Почати спочатку",
+    animals: {
+      Dog: "Пес",
+      Cat: "Кіт",
+      Lion: "Лев",
+      Elephant: "Слон",
+      Giraffe: "Жирафа",
+      Monkey: "Мавпа",
+      Penguin: "Пінгвін",
+      Zebra: "Зебра",
+      Tiger: "Тигр",
+      Rabbit: "Кролик",
+    },
+  },
+};

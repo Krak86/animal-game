@@ -1,0 +1,66 @@
+import { TouchableOpacity, View, Image, Animated } from 'react-native';
+import { animalCardStyles as styles } from '../styles/componentStyles';
+
+export const AnimalCard = ({
+  animal,
+  isWrong,
+  wiggleAnimation,
+  cardAnimation,
+  translations,
+  onPress,
+}) => {
+  return (
+    <Animated.View
+      style={[
+        styles.wrapper,
+        {
+          opacity: cardAnimation,
+          transform: [
+            {
+              scale: cardAnimation.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0.3, 1],
+              }),
+            },
+          ],
+        },
+      ]}
+    >
+      <TouchableOpacity
+        style={[styles.card, isWrong && styles.cardWrong]}
+        onPress={onPress}
+        activeOpacity={0.7}
+      >
+        <View style={styles.imageContainer}>
+          <Animated.Text
+            style={[
+              styles.emojiImage,
+              {
+                transform: [
+                  {
+                    rotate: wiggleAnimation.interpolate({
+                      inputRange: [-1, 1],
+                      outputRange: ['-8deg', '8deg'],
+                    }),
+                  },
+                  {
+                    translateY: wiggleAnimation.interpolate({
+                      inputRange: [-1, 0, 1],
+                      outputRange: [-3, 0, -3],
+                    }),
+                  },
+                ],
+              },
+            ]}
+          >
+            {animal.emoji}
+          </Animated.Text>
+          <Image source={{ uri: animal.image }} style={styles.backgroundImage} />
+        </View>
+        <Animated.Text style={styles.label}>
+          {translations.animals[animal.name]}
+        </Animated.Text>
+      </TouchableOpacity>
+    </Animated.View>
+  );
+};
