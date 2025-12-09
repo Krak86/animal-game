@@ -1,15 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
-import { Animated } from 'react-native';
-import { ANIMALS } from '../constants/animals';
-import { shuffleArray, getRandomItem } from '../utils/helpers';
+import { useState, useEffect, useRef } from "react";
+import { Animated } from "react-native";
+import { Audio } from "expo-av";
+
+import { ANIMALS } from "@/constants/animals";
+import { shuffleArray, getRandomItem } from "@/utils/helpers";
 import {
   loadSounds,
   playSound,
   unloadSounds,
   loadBackgroundMusic,
   pauseBackgroundMusic,
-  resumeBackgroundMusic
-} from '../utils/audio';
+  resumeBackgroundMusic,
+} from "@/utils/audio";
 import {
   createWiggleAnimation,
   shakeCard,
@@ -18,54 +20,66 @@ import {
   animateQuestionShow,
   animateQuestionHide,
   animateCardsEntrance,
-} from '../utils/animations';
-import { speakQuestion, stopSpeech, logAvailableVoices } from '../utils/speech';
+} from "@/utils/animations";
+import { speakQuestion, stopSpeech, logAvailableVoices } from "@/utils/speech";
+import { Animal, Language, Translations, UseGameLogicReturn } from "@/types";
 
 /**
  * Custom hook to manage game logic and state
- * @param {string} language - Current language ('en' or 'uk')
- * @param {Object} translations - Translation object for current language
+ * @param language - Current language ('en' or 'uk')
+ * @param translations - Translation object for current language
  */
-export const useGameLogic = (language, translations) => {
-  const [shuffledAnimals, setShuffledAnimals] = useState([]);
-  const [currentAnimal, setCurrentAnimal] = useState(null);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [score, setScore] = useState(0);
-  const [wrongTileId, setWrongTileId] = useState(null);
-  const [gameStarted, setGameStarted] = useState(false);
-  const [isSoundEnabled, setIsSoundEnabled] = useState(true);
+export const useGameLogic = (
+  language: Language,
+  translations: Translations
+): UseGameLogicReturn => {
+  const [shuffledAnimals, setShuffledAnimals] = useState<Animal[]>([]);
+  const [currentAnimal, setCurrentAnimal] = useState<Animal | null>(null);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [score, setScore] = useState<number>(0);
+  const [wrongTileId, setWrongTileId] = useState<number | null>(null);
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
+  const [isSoundEnabled, setIsSoundEnabled] = useState<boolean>(true);
 
   // Animation values
   const successScale = useRef(new Animated.Value(0)).current;
   const successOpacity = useRef(new Animated.Value(0)).current;
-  const cardAnimations = useRef(ANIMALS.map(() => new Animated.Value(1))).current;
+  const cardAnimations = useRef(
+    ANIMALS.map(() => new Animated.Value(1))
+  ).current;
   const questionAnimation = useRef(new Animated.Value(1)).current;
-  const animalWiggles = useRef(ANIMALS.map(() => new Animated.Value(0))).current;
+  const animalWiggles = useRef(
+    ANIMALS.map(() => new Animated.Value(0))
+  ).current;
 
   // Sound objects
-  const successSound = useRef(null);
-  const wrongSound = useRef(null);
-  const backgroundMusic = useRef(null);
+  const successSound = useRef<Audio.Sound | null>(null);
+  const wrongSound = useRef<Audio.Sound | null>(null);
+  const backgroundMusic = useRef<Audio.Sound | null>(null);
 
   useEffect(() => {
     loadGameSounds();
 
     return () => {
-      const soundsToUnload = [successSound.current, wrongSound.current, backgroundMusic.current].filter(Boolean);
+      const soundsToUnload = [
+        successSound.current,
+        wrongSound.current,
+        backgroundMusic.current,
+      ].filter(Boolean) as Audio.Sound[];
       if (soundsToUnload.length > 0) {
         unloadSounds(soundsToUnload);
       }
     };
   }, []);
 
-  const loadGameSounds = async () => {
+  const loadGameSounds = async (): Promise<void> => {
     // Preload sound effects (but don't play them yet)
     const sounds = await loadSounds();
     successSound.current = sounds.successSound;
     wrongSound.current = sounds.wrongSound;
   };
 
-  const startGame = async () => {
+  const startGame = async (): Promise<void> => {
     if (!gameStarted) {
       setGameStarted(true);
 
@@ -80,13 +94,13 @@ export const useGameLogic = (language, translations) => {
     }
   };
 
-  const startAnimalAnimations = () => {
+  const startAnimalAnimations = (): void => {
     animalWiggles.forEach((wiggle, index) => {
       createWiggleAnimation(wiggle, index);
     });
   };
 
-  const startNewRound = () => {
+  const startNewRound = (): void => {
     setWrongTileId(null);
 
     // Set animals immediately so they render
@@ -101,28 +115,38 @@ export const useGameLogic = (language, translations) => {
       animateQuestionShow(questionAnimation);
 
       // Speak the question after animations start (if sound is enabled)
-      if (isSoundEnabled && backgroundMusic.current && translations && randomAnimal) {
+      if (
+        isSoundEnabled &&
+        backgroundMusic.current &&
+        translations &&
+        randomAnimal
+      ) {
         const animalName = translations.animals[randomAnimal.name];
-        speakQuestion(translations.findThe, animalName, language, backgroundMusic.current);
+        speakQuestion(
+          translations.findThe,
+          animalName,
+          language,
+          backgroundMusic.current
+        );
       }
     });
   };
 
-  const handleAnimalPress = (animal) => {
+  const handleAnimalPress = (animal: Animal): void => {
     // Speak the animal name when clicked (if sound is enabled)
     if (isSoundEnabled && backgroundMusic.current && translations) {
       const animalName = translations.animals[animal.name];
-      speakQuestion('', animalName, language, backgroundMusic.current);
+      speakQuestion("", animalName, language, backgroundMusic.current);
     }
 
-    if (animal.id === currentAnimal.id) {
+    if (animal.id === currentAnimal?.id) {
       handleCorrectAnswer();
     } else {
       handleWrongAnswer(animal);
     }
   };
 
-  const handleCorrectAnswer = () => {
+  const handleCorrectAnswer = (): void => {
     setScore(score + 1);
     if (isSoundEnabled) {
       playSound(successSound.current, backgroundMusic.current);
@@ -130,7 +154,7 @@ export const useGameLogic = (language, translations) => {
     showSuccessAnimation();
   };
 
-  const handleWrongAnswer = (animal) => {
+  const handleWrongAnswer = (animal: Animal): void => {
     const cardIndex = shuffledAnimals.findIndex((a) => a.id === animal.id);
     shakeCard(cardAnimations[cardIndex]);
     if (isSoundEnabled) {
@@ -143,7 +167,7 @@ export const useGameLogic = (language, translations) => {
     }, 2000);
   };
 
-  const toggleSound = () => {
+  const toggleSound = (): void => {
     setIsSoundEnabled(!isSoundEnabled);
     if (isSoundEnabled && backgroundMusic.current) {
       pauseBackgroundMusic(backgroundMusic.current);
@@ -152,7 +176,7 @@ export const useGameLogic = (language, translations) => {
     }
   };
 
-  const resetGame = async () => {
+  const resetGame = async (): Promise<void> => {
     // Stop any ongoing speech
     await stopSpeech();
 
@@ -174,12 +198,12 @@ export const useGameLogic = (language, translations) => {
     // Reset animation values
     successScale.setValue(0);
     successOpacity.setValue(0);
-    cardAnimations.forEach(anim => anim.setValue(1));
+    cardAnimations.forEach((anim) => anim.setValue(1));
     questionAnimation.setValue(1);
-    animalWiggles.forEach(anim => anim.setValue(0));
+    animalWiggles.forEach((anim) => anim.setValue(0));
   };
 
-  const showSuccessAnimation = () => {
+  const showSuccessAnimation = (): void => {
     setShowSuccess(true);
 
     // Pause background music during success animation

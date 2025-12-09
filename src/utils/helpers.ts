@@ -2,10 +2,10 @@
 
 /**
  * Shuffles an array using Fisher-Yates algorithm
- * @param {Array} array - Array to shuffle
- * @returns {Array} - Shuffled array
+ * @param array - Array to shuffle
+ * @returns Shuffled array
  */
-export const shuffleArray = (array) => {
+export const shuffleArray = <T,>(array: T[]): T[] => {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -16,9 +16,9 @@ export const shuffleArray = (array) => {
 
 /**
  * Gets a random item from an array
- * @param {Array} array - Array to pick from
- * @returns {*} - Random item from array
+ * @param array - Array to pick from
+ * @returns Random item from array
  */
-export const getRandomItem = (array) => {
+export const getRandomItem = <T,>(array: T[]): T => {
   return array[Math.floor(Math.random() * array.length)];
 };

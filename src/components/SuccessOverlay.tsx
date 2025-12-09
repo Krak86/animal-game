@@ -1,7 +1,21 @@
-import { Animated, Text } from 'react-native';
-import { successOverlayStyles as styles } from '../styles/componentStyles';
+import { Animated, Text } from "react-native";
 
-export const SuccessOverlay = ({ visible, translations, successScale, successOpacity }) => {
+import { successOverlayStyles as styles } from "@/styles/componentStyles";
+import { Translations } from "@/types";
+
+interface Props {
+  visible: boolean;
+  translations: Translations;
+  successScale: Animated.Value;
+  successOpacity: Animated.Value;
+}
+
+export const SuccessOverlay: React.FC<Props> = ({
+  visible,
+  translations,
+  successScale,
+  successOpacity,
+}) => {
   if (!visible) return null;
 
   return (

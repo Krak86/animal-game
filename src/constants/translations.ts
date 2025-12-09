@@ -1,5 +1,7 @@
+import { TranslationMap } from "@/types";
+
 // Translations for English and Ukrainian
-export const TRANSLATIONS = {
+export const TRANSLATIONS: TranslationMap = {
   en: {
     startScreen: {
       title: "Animal Game",

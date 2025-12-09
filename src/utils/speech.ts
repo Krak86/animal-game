@@ -1,4 +1,7 @@
-import * as Speech from 'expo-speech';
+import * as Speech from "expo-speech";
+import { Audio } from "expo-av";
+
+import { Language } from "@/types";
 
 /**
  * Speech utility for text-to-speech with background music ducking
@@ -8,91 +11,100 @@ import * as Speech from 'expo-speech';
 let isSpeaking = false;
 
 // Cache available voices
-let availableVoices = null;
+let availableVoices: Speech.Voice[] | null = null;
 
 /**
  * Get available voices on the device
  */
-const getAvailableVoices = async () => {
+const getAvailableVoices = async (): Promise<Speech.Voice[]> => {
   if (availableVoices) {
     return availableVoices;
   }
 
   try {
     availableVoices = await Speech.getAvailableVoicesAsync();
-    console.log('Available TTS voices:', availableVoices.length);
+    console.log("Available TTS voices:", availableVoices.length);
     return availableVoices;
   } catch (error) {
-    console.warn('Could not get available voices:', error);
+    console.warn("Could not get available voices:", error);
     return [];
   }
 };
 
 /**
  * Check if a specific language is available
- * @param {string} languageCode - Language code to check (e.g., 'uk-UA', 'uk')
+ * @param languageCode - Language code to check (e.g., 'uk-UA', 'uk')
  */
-const isLanguageAvailable = async (languageCode) => {
+const isLanguageAvailable = async (languageCode: string): Promise<boolean> => {
   const voices = await getAvailableVoices();
-  const shortCode = languageCode.split('-')[0]; // Get 'uk' from 'uk-UA'
+  const shortCode = languageCode.split("-")[0]; // Get 'uk' from 'uk-UA'
 
-  return voices.some(voice =>
+  return voices.some((voice) =>
     voice.language.toLowerCase().startsWith(shortCode.toLowerCase())
   );
 };
 
 /**
  * Get the appropriate voice language code based on current language
- * @param {string} language - Current language ('en' or 'uk')
- * @returns {Promise<string>} Voice language code
+ * @param language - Current language ('en' or 'uk')
+ * @returns Voice language code
  */
-export const getVoiceLanguage = async (language) => {
-  if (language === 'uk') {
+export const getVoiceLanguage = async (
+  language: Language
+): Promise<string | undefined> => {
+  if (language === "uk") {
     // Try Ukrainian first
-    const hasUkrainian = await isLanguageAvailable('uk-UA');
+    const hasUkrainian = await isLanguageAvailable("uk-UA");
     if (hasUkrainian) {
-      console.log('Using Ukrainian voice (uk-UA)');
-      return 'uk-UA';
+      console.log("Using Ukrainian voice (uk-UA)");
+      return "uk-UA";
     }
 
     // Try alternative Ukrainian codes
-    const hasUkAlt = await isLanguageAvailable('uk');
+    const hasUkAlt = await isLanguageAvailable("uk");
     if (hasUkAlt) {
-      console.log('Using Ukrainian voice (uk)');
-      return 'uk';
+      console.log("Using Ukrainian voice (uk)");
+      return "uk";
     }
 
     // Fallback: Try Russian (similar Cyrillic language)
-    const hasRussian = await isLanguageAvailable('ru-RU');
+    const hasRussian = await isLanguageAvailable("ru-RU");
     if (hasRussian) {
-      console.log('Ukrainian not available, using Russian voice as fallback (ru-RU)');
-      return 'ru-RU';
+      console.log(
+        "Ukrainian not available, using Russian voice as fallback (ru-RU)"
+      );
+      return "ru-RU";
     }
 
     // Last resort: use default voice (device language)
-    console.warn('No Ukrainian or Russian voice found, using device default');
+    console.warn("No Ukrainian or Russian voice found, using device default");
     return undefined; // undefined uses device default
   }
 
   // For English, prefer GB but fall back to US
-  return 'en-GB';
+  return "en-GB";
 };
 
 /**
  * Speaks text with background music ducking
- * @param {string} text - Text to speak
- * @param {string} language - Current language ('en' or 'uk')
- * @param {Object} backgroundMusic - Background music sound object from expo-av
- * @param {Function} onDone - Optional callback when speech finishes
+ * @param text - Text to speak
+ * @param language - Current language ('en' or 'uk')
+ * @param backgroundMusic - Background music sound object from expo-av
+ * @param onDone - Optional callback when speech finishes
  */
-export const speakText = async (text, language, backgroundMusic, onDone) => {
+export const speakText = async (
+  text: string,
+  language: Language,
+  backgroundMusic: Audio.Sound | null,
+  onDone?: () => void
+): Promise<void> => {
   if (isSpeaking) {
     // Stop any ongoing speech first
     await Speech.stop();
   }
 
-  if (!text || text.trim() === '') {
-    console.warn('No text to speak');
+  if (!text || text.trim() === "") {
+    console.warn("No text to speak");
     return;
   }
 
@@ -107,7 +119,9 @@ export const speakText = async (text, language, backgroundMusic, onDone) => {
     // Get the appropriate voice language (now async)
     const voiceLanguage = await getVoiceLanguage(language);
 
-    console.log(`Speaking: "${text}" in language: ${voiceLanguage || 'default'}`);
+    console.log(
+      `Speaking: "${text}" in language: ${voiceLanguage || "default"}`
+    );
 
     // Speak with appropriate language
     Speech.speak(text, {
@@ -115,7 +129,7 @@ export const speakText = async (text, language, backgroundMusic, onDone) => {
       pitch: 1.0, // Normal pitch
       rate: 0.85, // Slightly slower for clarity (especially for kids)
       onDone: () => {
-        console.log('Speech completed');
+        console.log("Speech completed");
         isSpeaking = false;
         // Restore background music volume
         if (backgroundMusic) {
@@ -126,15 +140,15 @@ export const speakText = async (text, language, backgroundMusic, onDone) => {
         }
       },
       onStopped: () => {
-        console.log('Speech stopped');
+        console.log("Speech stopped");
         isSpeaking = false;
         // Restore background music volume
         if (backgroundMusic) {
           backgroundMusic.setVolumeAsync(0.2);
         }
       },
-      onError: (error) => {
-        console.error('Speech error:', error);
+      onError: (error: Error) => {
+        console.error("Speech error:", error);
         isSpeaking = false;
         // Restore background music volume even on error
         if (backgroundMusic) {
@@ -143,7 +157,7 @@ export const speakText = async (text, language, backgroundMusic, onDone) => {
       },
     });
   } catch (error) {
-    console.error('Failed to speak:', error);
+    console.error("Failed to speak:", error);
     isSpeaking = false;
     // Restore background music volume
     if (backgroundMusic) {
@@ -154,12 +168,17 @@ export const speakText = async (text, language, backgroundMusic, onDone) => {
 
 /**
  * Speaks the question phrase "Find the: [animal name]"
- * @param {string} findTheText - "Find the:" translation
- * @param {string} animalName - Animal name translation
- * @param {string} language - Current language
- * @param {Object} backgroundMusic - Background music sound object
+ * @param findTheText - "Find the:" translation
+ * @param animalName - Animal name translation
+ * @param language - Current language
+ * @param backgroundMusic - Background music sound object
  */
-export const speakQuestion = (findTheText, animalName, language, backgroundMusic) => {
+export const speakQuestion = (
+  findTheText: string,
+  animalName: string,
+  language: Language,
+  backgroundMusic: Audio.Sound | null
+): void => {
   const questionText = `${findTheText} ${animalName}`;
   speakText(questionText, language, backgroundMusic);
 };
@@ -167,7 +186,7 @@ export const speakQuestion = (findTheText, animalName, language, backgroundMusic
 /**
  * Stops any ongoing speech
  */
-export const stopSpeech = async () => {
+export const stopSpeech = async (): Promise<void> => {
   if (isSpeaking) {
     await Speech.stop();
     isSpeaking = false;
@@ -177,20 +196,20 @@ export const stopSpeech = async () => {
 /**
  * Check if speech is currently active
  */
-export const getIsSpeaking = () => isSpeaking;
+export const getIsSpeaking = (): boolean => isSpeaking;
 
 /**
  * Debug utility: Log all available voices on the device
  * Call this from your app to see what voices are available
  */
-export const logAvailableVoices = async () => {
+export const logAvailableVoices = async (): Promise<void> => {
   const voices = await getAvailableVoices();
-  console.log('=== Available TTS Voices ===');
+  console.log("=== Available TTS Voices ===");
   console.log(`Total voices: ${voices.length}`);
 
   // Group by language
-  const byLanguage = {};
-  voices.forEach(voice => {
+  const byLanguage: Record<string, string[]> = {};
+  voices.forEach((voice) => {
     const lang = voice.language;
     if (!byLanguage[lang]) {
       byLanguage[lang] = [];
@@ -198,15 +217,21 @@ export const logAvailableVoices = async () => {
     byLanguage[lang].push(voice.name || voice.identifier);
   });
 
-  Object.keys(byLanguage).sort().forEach(lang => {
-    console.log(`${lang}: ${byLanguage[lang].join(', ')}`);
-  });
+  Object.keys(byLanguage)
+    .sort()
+    .forEach((lang) => {
+      console.log(`${lang}: ${byLanguage[lang].join(", ")}`);
+    });
 
   // Check for Ukrainian and Russian specifically
-  const hasUkrainian = voices.some(v => v.language.toLowerCase().startsWith('uk'));
-  const hasRussian = voices.some(v => v.language.toLowerCase().startsWith('ru'));
+  const hasUkrainian = voices.some((v) =>
+    v.language.toLowerCase().startsWith("uk")
+  );
+  const hasRussian = voices.some((v) =>
+    v.language.toLowerCase().startsWith("ru")
+  );
 
   console.log(`\nUkrainian available: ${hasUkrainian}`);
   console.log(`Russian available: ${hasRussian}`);
-  console.log('===========================');
+  console.log("===========================");
 };

@@ -1,10 +1,17 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-import { COLORS } from "../styles/colors";
-import { TRANSLATIONS } from "../constants/translations";
-import { LanguageSwitcher } from "../components";
+import { COLORS } from "@/styles/colors";
+import { TRANSLATIONS } from "@/constants/translations";
+import { LanguageSwitcher } from "@/components";
+import { Language } from "@/types";
 
-export const StartScreen = ({ onStart, language, onLanguageChange }) => {
+interface Props {
+  onStart: () => void;
+  language: Language;
+  onLanguageChange: (lang: Language) => void;
+}
+
+export const StartScreen: React.FC<Props> = ({ onStart, language, onLanguageChange }) => {
   const t = TRANSLATIONS[language]?.startScreen || TRANSLATIONS.uk.startScreen;
 
   return (

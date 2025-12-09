@@ -1,7 +1,7 @@
 // Sound effect URLs
-export const SUCCESS_SOUND_URL =
+export const SUCCESS_SOUND_URL: string =
   "https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3";
-export const WRONG_SOUND_URL =
+export const WRONG_SOUND_URL: string =
   "https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3";
 
 // Background music - local file (cheerful, funny melody for kids)

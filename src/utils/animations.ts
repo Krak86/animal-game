@@ -2,9 +2,9 @@ import { Animated } from 'react-native';
 
 /**
  * Creates a shake animation for a card
- * @param {Animated.Value} animation - Animation value to use
+ * @param animation - Animation value to use
  */
-export const shakeCard = (animation) => {
+export const shakeCard = (animation: Animated.Value): void => {
   Animated.sequence([
     Animated.timing(animation, {
       toValue: 1.1,
@@ -31,10 +31,10 @@ export const shakeCard = (animation) => {
 
 /**
  * Creates a continuous wiggle animation for animals
- * @param {Animated.Value} wiggle - Animation value
- * @param {number} index - Index for stagger delay
+ * @param wiggle - Animation value
+ * @param index - Index for stagger delay
  */
-export const createWiggleAnimation = (wiggle, index) => {
+export const createWiggleAnimation = (wiggle: Animated.Value, index: number): void => {
   const duration = 1000 + Math.random() * 1000;
   const delay = index * 100;
 
@@ -64,11 +64,15 @@ export const createWiggleAnimation = (wiggle, index) => {
 
 /**
  * Animates success overlay appearance
- * @param {Animated.Value} scale - Scale animation value
- * @param {Animated.Value} opacity - Opacity animation value
- * @param {Function} onComplete - Callback when animation completes
+ * @param scale - Scale animation value
+ * @param opacity - Opacity animation value
+ * @param onComplete - Callback when animation completes
  */
-export const animateSuccessShow = (scale, opacity, onComplete) => {
+export const animateSuccessShow = (
+  scale: Animated.Value,
+  opacity: Animated.Value,
+  onComplete?: () => void
+): void => {
   Animated.parallel([
     Animated.spring(scale, {
       toValue: 1,
@@ -86,11 +90,15 @@ export const animateSuccessShow = (scale, opacity, onComplete) => {
 
 /**
  * Animates success overlay disappearance
- * @param {Animated.Value} scale - Scale animation value
- * @param {Animated.Value} opacity - Opacity animation value
- * @param {Function} onComplete - Callback when animation completes
+ * @param scale - Scale animation value
+ * @param opacity - Opacity animation value
+ * @param onComplete - Callback when animation completes
  */
-export const animateSuccessHide = (scale, opacity, onComplete) => {
+export const animateSuccessHide = (
+  scale: Animated.Value,
+  opacity: Animated.Value,
+  onComplete?: () => void
+): void => {
   Animated.parallel([
     Animated.timing(scale, {
       toValue: 0,
@@ -107,9 +115,9 @@ export const animateSuccessHide = (scale, opacity, onComplete) => {
 
 /**
  * Animates question text appearance
- * @param {Animated.Value} animation - Animation value
+ * @param animation - Animation value
  */
-export const animateQuestionShow = (animation) => {
+export const animateQuestionShow = (animation: Animated.Value): void => {
   Animated.timing(animation, {
     toValue: 1,
     duration: 500,
@@ -119,10 +127,10 @@ export const animateQuestionShow = (animation) => {
 
 /**
  * Animates question text disappearance
- * @param {Animated.Value} animation - Animation value
- * @param {Function} onComplete - Callback when animation completes
+ * @param animation - Animation value
+ * @param onComplete - Callback when animation completes
  */
-export const animateQuestionHide = (animation, onComplete) => {
+export const animateQuestionHide = (animation: Animated.Value, onComplete?: () => void): void => {
   Animated.timing(animation, {
     toValue: 0,
     duration: 300,
@@ -132,9 +140,9 @@ export const animateQuestionHide = (animation, onComplete) => {
 
 /**
  * Animates cards entrance with stagger effect
- * @param {Array<Animated.Value>} cardAnimations - Array of card animation values
+ * @param cardAnimations - Array of card animation values
  */
-export const animateCardsEntrance = (cardAnimations) => {
+export const animateCardsEntrance = (cardAnimations: Animated.Value[]): void => {
   cardAnimations.forEach((anim) => anim.setValue(0));
 
   Animated.stagger(

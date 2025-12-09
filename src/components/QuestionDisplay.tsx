@@ -1,7 +1,19 @@
-import { Animated, Text } from 'react-native';
-import { appStyles } from '../styles/appStyles';
+import { Animated, Text } from "react-native";
 
-export const QuestionDisplay = ({ currentAnimal, translations, questionAnimation }) => {
+import { appStyles } from "@/styles/appStyles";
+import { Animal, Translations } from "@/types";
+
+interface Props {
+  currentAnimal: Animal | null;
+  translations: Translations;
+  questionAnimation: Animated.Value;
+}
+
+export const QuestionDisplay: React.FC<Props> = ({
+  currentAnimal,
+  translations,
+  questionAnimation,
+}) => {
   return (
     <Animated.View
       style={[
@@ -21,7 +33,7 @@ export const QuestionDisplay = ({ currentAnimal, translations, questionAnimation
     >
       <Text style={appStyles.questionText}>{translations.findThe}</Text>
       <Text style={appStyles.animalNameText}>
-        {currentAnimal ? translations.animals[currentAnimal.name] : ''}
+        {currentAnimal ? translations.animals[currentAnimal.name] : ""}
       </Text>
     </Animated.View>
   );

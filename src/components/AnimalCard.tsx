@@ -1,7 +1,18 @@
-import { TouchableOpacity, View, Image, Animated } from 'react-native';
-import { animalCardStyles as styles } from '../styles/componentStyles';
+import { TouchableOpacity, View, Image, Animated } from "react-native";
 
-export const AnimalCard = ({
+import { animalCardStyles as styles } from "@/styles/componentStyles";
+import { Animal, Translations } from "@/types";
+
+interface Props {
+  animal: Animal;
+  isWrong: boolean;
+  wiggleAnimation: Animated.Value;
+  cardAnimation: Animated.Value;
+  translations: Translations;
+  onPress: () => void;
+}
+
+export const AnimalCard: React.FC<Props> = ({
   animal,
   isWrong,
   wiggleAnimation,
@@ -40,7 +51,7 @@ export const AnimalCard = ({
                   {
                     rotate: wiggleAnimation.interpolate({
                       inputRange: [-1, 1],
-                      outputRange: ['-8deg', '8deg'],
+                      outputRange: ["-8deg", "8deg"],
                     }),
                   },
                   {
@@ -55,7 +66,10 @@ export const AnimalCard = ({
           >
             {animal.emoji}
           </Animated.Text>
-          <Image source={{ uri: animal.image }} style={styles.backgroundImage} />
+          <Image
+            source={{ uri: animal.image }}
+            style={styles.backgroundImage}
+          />
         </View>
         <Animated.Text style={styles.label}>
           {translations.animals[animal.name]}

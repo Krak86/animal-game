@@ -1,7 +1,17 @@
 import { View, TouchableOpacity, Text } from "react-native";
-import { languageSwitcherStyles as styles } from "../styles/componentStyles";
 
-export const LanguageSwitcher = ({ language, onLanguageChange }) => {
+import { languageSwitcherStyles as styles } from "@/styles/componentStyles";
+import { Language } from "@/types";
+
+interface Props {
+  language: Language;
+  onLanguageChange: (lang: Language) => void;
+}
+
+export const LanguageSwitcher: React.FC<Props> = ({
+  language,
+  onLanguageChange,
+}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity

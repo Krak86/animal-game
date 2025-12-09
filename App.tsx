@@ -16,20 +16,23 @@ import {
   SuccessOverlay,
   StartScreen,
   SoundToggle,
-} from "./src/components";
+} from "@/components";
 
 // Constants
-import { ANIMALS } from "./src/constants/animals";
-import { TRANSLATIONS } from "./src/constants/translations";
+import { ANIMALS } from "@/constants/animals";
+import { TRANSLATIONS } from "@/constants/translations";
 
 // Styles
-import { appStyles } from "./src/styles/appStyles";
+import { appStyles } from "@/styles/appStyles";
 
 // Custom hook
-import { useGameLogic } from "./src/hooks/useGameLogic";
+import { useGameLogic } from "@/hooks/useGameLogic";
+
+// Types
+import { Language } from "@/types";
 
 export default function App() {
-  const [language, setLanguage] = useState("uk");
+  const [language, setLanguage] = useState<Language>("uk");
   const t = TRANSLATIONS[language];
 
   const {
