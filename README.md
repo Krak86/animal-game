@@ -70,25 +70,30 @@ npm run ios
 ## Code Organization
 
 ### Components (`src/components/`)
+
 - **AnimalCard**: Displays individual animal with wiggle animation
 - **LanguageSwitcher**: Toggle between EN/UK languages
 - **QuestionDisplay**: Shows the animal name to find
 - **SuccessOverlay**: Celebration overlay on correct answer
 
 ### Constants (`src/constants/`)
+
 - **animals.js**: Animal data (name, emoji, image URL)
 - **sounds.js**: Sound effect URLs
 - **translations.js**: English and Ukrainian translations
 
 ### Hooks (`src/hooks/`)
+
 - **useGameLogic**: Custom hook managing all game state and logic
 
 ### Styles (`src/styles/`)
+
 - **appStyles.js**: Main app container styles
 - **colors.js**: Color palette definitions
 - **componentStyles.js**: Component-specific styles
 
 ### Utils (`src/utils/`)
+
 - **animations.js**: Animation helper functions
 - **audio.js**: Sound loading and playback functions
 - **helpers.js**: General utility functions (shuffle, random, etc.)
@@ -102,7 +107,7 @@ Edit `src/constants/animals.js`:
 ```javascript
 export const ANIMALS = [
   // Add your animal here
-  { id: 11, name: 'Bear', emoji: '🐻', image: 'your-image-url' },
+  { id: 11, name: "Bear", emoji: "🐻", image: "your-image-url" },
 ];
 ```
 
@@ -126,3 +131,12 @@ Replace URLs in `src/constants/sounds.js` with your own sound files.
 ## License
 
 ISC
+
+## Deploying to Expo
+
+```javascript
+// For testing (APK)
+eas build --platform android --profile preview
+// For production (AAB - required for Play Store)
+eas build --platform android --profile production
+```
