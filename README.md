@@ -135,8 +135,14 @@ ISC
 ## Deploying to Expo
 
 ```javascript
+// Install EAS CLI
+npm install -g eas-cli
+// Login to EAS
+eas login
 // For testing (APK)
 eas build --platform android --profile preview
 // For production (AAB - required for Play Store)
 eas build --platform android --profile production
+// Publish to Play Store
+eas submit -p android --profile production
 ```
