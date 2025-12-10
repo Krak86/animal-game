@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useEffect, useRef } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Animated,
+} from "react-native";
 
 import { COLORS } from "@/styles/colors";
 import { TRANSLATIONS } from "@/constants/translations";
@@ -11,8 +18,51 @@ interface Props {
   onLanguageChange: (lang: Language) => void;
 }
 
-export const StartScreen: React.FC<Props> = ({ onStart, language, onLanguageChange }) => {
+export const StartScreen: React.FC<Props> = ({
+  onStart,
+  language,
+  onLanguageChange,
+}) => {
   const t = TRANSLATIONS[language]?.startScreen || TRANSLATIONS.uk.startScreen;
+
+  // Animation values for individual emoji wiggles
+  const wiggle1 = useRef(new Animated.Value(0)).current;
+  const wiggle2 = useRef(new Animated.Value(0)).current;
+  const wiggle3 = useRef(new Animated.Value(0)).current;
+  const wiggle4 = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // Create wiggle animation for each emoji
+    const createWiggle = (anim: Animated.Value, delay: number) => {
+      return Animated.loop(
+        Animated.sequence([
+          Animated.delay(delay),
+          Animated.timing(anim, {
+            toValue: 1,
+            duration: 200,
+            useNativeDriver: true,
+          }),
+          Animated.timing(anim, {
+            toValue: -1,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+          Animated.timing(anim, {
+            toValue: 0,
+            duration: 200,
+            useNativeDriver: true,
+          }),
+          Animated.delay(1000),
+        ])
+      );
+    };
+
+    // Start wiggle animations with staggered delays
+    createWiggle(wiggle1, 0).start();
+    createWiggle(wiggle2, 200).start();
+    createWiggle(wiggle3, 400).start();
+    createWiggle(wiggle4, 600).start();
+  }, [wiggle1, wiggle2, wiggle3, wiggle4]);
 
   return (
     <View style={styles.container}>
@@ -21,27 +71,120 @@ export const StartScreen: React.FC<Props> = ({ onStart, language, onLanguageChan
         onLanguageChange={onLanguageChange}
       />
 
-      <Text style={styles.emoji}>🐕🐈🦁🐘</Text>
+      <View style={styles.emojiContainer}>
+        <Animated.Text
+          style={[
+            styles.emoji,
+            {
+              transform: [
+                {
+                  rotate: wiggle1.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggle1.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          🐕
+        </Animated.Text>
+        <Animated.Text
+          style={[
+            styles.emoji,
+            {
+              transform: [
+                {
+                  rotate: wiggle2.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggle2.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          🐈
+        </Animated.Text>
+        <Animated.Text
+          style={[
+            styles.emoji,
+            {
+              transform: [
+                {
+                  rotate: wiggle3.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggle3.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          🦁
+        </Animated.Text>
+        <Animated.Text
+          style={[
+            styles.emoji,
+            {
+              transform: [
+                {
+                  rotate: wiggle4.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggle4.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          🐘
+        </Animated.Text>
+      </View>
       <Text style={styles.title}>{t.title}</Text>
       <Text style={styles.subtitle}>{t.subtitle}</Text>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.modeButton, styles.byNameButton]}
-          onPress={() => onStart('byName')}
+          onPress={() => onStart("byName")}
           activeOpacity={0.8}
         >
+          <Text style={styles.buttonEmoji}>📝</Text>
           <Text style={styles.modeButtonText}>{t.byName}</Text>
-          <Text style={styles.modeDescription}>Find by name</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.modeButton, styles.bySoundButton]}
-          onPress={() => onStart('bySound')}
+          onPress={() => onStart("bySound")}
           activeOpacity={0.8}
         >
+          <Text style={styles.buttonEmoji}>🔊</Text>
           <Text style={styles.modeButtonText}>{t.bySound}</Text>
-          <Text style={styles.modeDescription}>Find by sound</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -56,9 +199,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.background,
     padding: 20,
   },
+  emojiContainer: {
+    flexDirection: "row",
+    gap: 10,
+    marginBottom: 20,
+  },
   emoji: {
     fontSize: 60,
-    marginBottom: 20,
   },
   title: {
     fontSize: 48,
@@ -96,12 +243,15 @@ const styles = StyleSheet.create({
   bySoundButton: {
     backgroundColor: "#FF6B6B",
   },
+  buttonEmoji: {
+    fontSize: 50,
+    marginBottom: 8,
+  },
   modeButtonText: {
     fontSize: 22,
     fontWeight: "bold",
     color: COLORS.white,
     textAlign: "center",
-    marginBottom: 5,
   },
   modeDescription: {
     fontSize: 12,
