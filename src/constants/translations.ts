@@ -74,6 +74,9 @@ export const TRANSLATIONS: TranslationMap = {
       Bull: "Bull",
       Duck: "Duck",
       Lamb: "Lamb",
+      Snake: "Snake",
+      Raven: "Raven",
+      Owl: "Owl",
     },
   },
   uk: {
@@ -148,6 +151,9 @@ export const TRANSLATIONS: TranslationMap = {
       Bull: "Бик",
       Duck: "Качка",
       Lamb: "Ягня",
+      Snake: "Змія",
+      Raven: "Ворона",
+      Owl: "Сова",
     },
   },
 };
