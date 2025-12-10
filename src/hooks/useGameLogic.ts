@@ -197,11 +197,18 @@ export const useGameLogic = (
   };
 
   const toggleSound = (): void => {
-    setIsSoundEnabled(!isSoundEnabled);
-    if (isSoundEnabled && backgroundMusic.current) {
-      pauseBackgroundMusic(backgroundMusic.current);
-    } else if (!isSoundEnabled && backgroundMusic.current) {
-      resumeBackgroundMusic(backgroundMusic.current);
+    const newSoundState = !isSoundEnabled;
+    setIsSoundEnabled(newSoundState);
+
+    if (backgroundMusic.current) {
+      if (newSoundState) {
+        // Sound is now enabled, resume music
+        resumeBackgroundMusic(backgroundMusic.current);
+      } else {
+        // Sound is now disabled, pause music and stop any speech
+        pauseBackgroundMusic(backgroundMusic.current);
+        stopSpeech();
+      }
     }
   };
 
@@ -255,7 +262,7 @@ export const useGameLogic = (
   };
 
   const replaySound = (): void => {
-    if (gameMode === 'bySound' && currentAnimal?.soundUrl && backgroundMusic.current) {
+    if (isSoundEnabled && gameMode === 'bySound' && currentAnimal?.soundUrl && backgroundMusic.current) {
       playAnimalSound(currentAnimal.soundUrl, backgroundMusic.current);
     }
   };

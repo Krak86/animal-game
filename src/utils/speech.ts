@@ -51,37 +51,28 @@ const isLanguageAvailable = async (languageCode: string): Promise<boolean> => {
  */
 export const getVoiceLanguage = async (
   language: Language
-): Promise<string | undefined> => {
+): Promise<string> => {
   if (language === "uk") {
-    // Try Ukrainian first
+    // Use Ukrainian voice
     const hasUkrainian = await isLanguageAvailable("uk-UA");
     if (hasUkrainian) {
       console.log("Using Ukrainian voice (uk-UA)");
       return "uk-UA";
     }
 
-    // Try alternative Ukrainian codes
+    // Try alternative Ukrainian code
     const hasUkAlt = await isLanguageAvailable("uk");
     if (hasUkAlt) {
       console.log("Using Ukrainian voice (uk)");
       return "uk";
     }
 
-    // Fallback: Try Russian (similar Cyrillic language)
-    const hasRussian = await isLanguageAvailable("ru-RU");
-    if (hasRussian) {
-      console.log(
-        "Ukrainian not available, using Russian voice as fallback (ru-RU)"
-      );
-      return "ru-RU";
-    }
-
-    // Last resort: use default voice (device language)
-    console.warn("No Ukrainian or Russian voice found, using device default");
-    return undefined; // undefined uses device default
+    // If not available, still request Ukrainian (TTS will handle gracefully)
+    console.log("Ukrainian voice not available, requesting uk-UA anyway");
+    return "uk-UA";
   }
 
-  // For English, prefer GB but fall back to US
+  // For English
   return "en-GB";
 };
 
