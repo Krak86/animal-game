@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   View,
   ScrollView,
@@ -19,7 +19,6 @@ import {
 } from "@/components";
 
 // Constants
-import { ANIMALS } from "@/constants/animals";
 import { TRANSLATIONS } from "@/constants/translations";
 
 // Styles
@@ -29,10 +28,12 @@ import { appStyles } from "@/styles/appStyles";
 import { useGameLogic } from "@/hooks/useGameLogic";
 
 // Types
-import { Language } from "@/types";
+import { Language, GameMode } from "@/types";
 
 export default function App() {
   const [language, setLanguage] = useState<Language>("uk");
+  const [gameMode, setGameMode] = useState<GameMode | null>(null);
+  const shouldStartGame = useRef<boolean>(false);
   const t = TRANSLATIONS[language];
 
   const {
@@ -52,7 +53,26 @@ export default function App() {
     startGame,
     toggleSound,
     resetGame,
-  } = useGameLogic(language, t);
+    replaySound,
+  } = useGameLogic(language, t, gameMode || 'byName');
+
+  // Start game when mode is selected
+  useEffect(() => {
+    if (gameMode !== null && shouldStartGame.current) {
+      shouldStartGame.current = false;
+      startGame();
+    }
+  }, [gameMode, startGame]);
+
+  const handleStartGame = (mode: GameMode): void => {
+    shouldStartGame.current = true;
+    setGameMode(mode);
+  };
+
+  const handleResetGame = async (): Promise<void> => {
+    await resetGame();
+    setGameMode(null);
+  };
 
   return (
     <View style={appStyles.container}>
@@ -62,7 +82,7 @@ export default function App() {
 
       {!gameStarted ? (
         <StartScreen
-          onStart={startGame}
+          onStart={handleStartGame}
           language={language}
           onLanguageChange={setLanguage}
         />
@@ -75,7 +95,7 @@ export default function App() {
             <View style={styles.topBar}>
               <TouchableOpacity
                 style={styles.resetButton}
-                onPress={resetGame}
+                onPress={handleResetGame}
                 activeOpacity={0.7}
               >
                 <Text style={styles.resetButtonText}>
@@ -99,21 +119,20 @@ export default function App() {
               currentAnimal={currentAnimal}
               translations={t}
               questionAnimation={questionAnimation}
+              gameMode={gameMode || 'byName'}
+              onReplaySound={gameMode === 'bySound' ? replaySound : undefined}
             />
 
             <View style={appStyles.gridContainer}>
               {shuffledAnimals.map((animal, index) => {
                 const isWrong = wrongTileId === animal.id;
-                const wiggleIndex = ANIMALS.findIndex(
-                  (a) => a.id === animal.id
-                );
 
                 return (
                   <AnimalCard
                     key={animal.id}
                     animal={animal}
                     isWrong={isWrong}
-                    wiggleAnimation={animalWiggles[wiggleIndex]}
+                    wiggleAnimation={animalWiggles[index]}
                     cardAnimation={cardAnimations[index]}
                     translations={t}
                     onPress={() => handleAnimalPress(animal)}

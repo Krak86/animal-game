@@ -56,7 +56,10 @@ const duckBackgroundMusic = async (
 ): Promise<void> => {
   try {
     if (music) {
-      await music.setVolumeAsync(BACKGROUND_VOLUME_DUCKED);
+      const status = await music.getStatusAsync();
+      if (status.isLoaded) {
+        await music.setVolumeAsync(BACKGROUND_VOLUME_DUCKED);
+      }
     }
   } catch (error) {
     console.log("Error ducking background music:", error);
@@ -72,7 +75,10 @@ const restoreBackgroundMusic = async (
 ): Promise<void> => {
   try {
     if (music) {
-      await music.setVolumeAsync(BACKGROUND_VOLUME_NORMAL);
+      const status = await music.getStatusAsync();
+      if (status.isLoaded) {
+        await music.setVolumeAsync(BACKGROUND_VOLUME_NORMAL);
+      }
     }
   } catch (error) {
     console.log("Error restoring background music:", error);
@@ -180,5 +186,46 @@ export const resumeBackgroundMusic = async (
     }
   } catch (error) {
     console.log("Error resuming background music:", error);
+  }
+};
+
+/**
+ * Plays an animal sound from a URL with background music ducking
+ * @param soundUrl - URL of the animal sound to play
+ * @param backgroundMusic - Background music to duck during playback
+ */
+export const playAnimalSound = async (
+  soundUrl: string,
+  backgroundMusic: Audio.Sound | null
+): Promise<void> => {
+  try {
+    // Duck background music
+    if (backgroundMusic) {
+      await duckBackgroundMusic(backgroundMusic);
+    }
+
+    // Load and play animal sound
+    const { sound } = await Audio.Sound.createAsync(
+      { uri: soundUrl },
+      { volume: SOUND_EFFECT_VOLUME }
+    );
+
+    await sound.playAsync();
+
+    // Wait for sound to finish, then restore background music
+    sound.setOnPlaybackStatusUpdate((status) => {
+      if (status.isLoaded && status.didJustFinish) {
+        sound.unloadAsync();
+        if (backgroundMusic) {
+          restoreBackgroundMusic(backgroundMusic);
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error playing animal sound:', error);
+    // Restore background music even on error
+    if (backgroundMusic) {
+      await restoreBackgroundMusic(backgroundMusic);
+    }
   }
 };

@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Animated } from "react-native";
 import { Audio } from "expo-av";
 
-import { ANIMALS } from "@/constants/animals";
+import { getAnimalsByMode } from "@/constants/animals";
+import { ANIMALS_PER_SCREEN } from "@/constants/gameSettings";
 import { shuffleArray, getRandomItem } from "@/utils/helpers";
 import {
   loadSounds,
@@ -11,6 +12,7 @@ import {
   loadBackgroundMusic,
   pauseBackgroundMusic,
   resumeBackgroundMusic,
+  playAnimalSound,
 } from "@/utils/audio";
 import {
   createWiggleAnimation,
@@ -21,18 +23,23 @@ import {
   animateQuestionHide,
   animateCardsEntrance,
 } from "@/utils/animations";
-import { speakQuestion, stopSpeech, logAvailableVoices } from "@/utils/speech";
-import { Animal, Language, Translations, UseGameLogicReturn } from "@/types";
+import { speakQuestion, speakText, stopSpeech, logAvailableVoices } from "@/utils/speech";
+import { Animal, Language, Translations, UseGameLogicReturn, GameMode } from "@/types";
 
 /**
  * Custom hook to manage game logic and state
  * @param language - Current language ('en' or 'uk')
  * @param translations - Translation object for current language
+ * @param gameMode - Game mode ('byName' or 'bySound')
  */
 export const useGameLogic = (
   language: Language,
-  translations: Translations
+  translations: Translations,
+  gameMode: GameMode
 ): UseGameLogicReturn => {
+  // Filter animals based on game mode
+  const modeAnimals = useMemo(() => getAnimalsByMode(gameMode), [gameMode]);
+
   const [shuffledAnimals, setShuffledAnimals] = useState<Animal[]>([]);
   const [currentAnimal, setCurrentAnimal] = useState<Animal | null>(null);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
@@ -44,13 +51,17 @@ export const useGameLogic = (
   // Animation values
   const successScale = useRef(new Animated.Value(0)).current;
   const successOpacity = useRef(new Animated.Value(0)).current;
-  const cardAnimations = useRef(
-    ANIMALS.map(() => new Animated.Value(1))
-  ).current;
   const questionAnimation = useRef(new Animated.Value(1)).current;
-  const animalWiggles = useRef(
-    ANIMALS.map(() => new Animated.Value(0))
-  ).current;
+
+  // Animation arrays for fixed number of animals per screen
+  const cardAnimations = useMemo(
+    () => Array.from({ length: ANIMALS_PER_SCREEN }, () => new Animated.Value(1)),
+    []
+  );
+  const animalWiggles = useMemo(
+    () => Array.from({ length: ANIMALS_PER_SCREEN }, () => new Animated.Value(0)),
+    []
+  );
 
   // Sound objects
   const successSound = useRef<Audio.Sound | null>(null);
@@ -103,31 +114,49 @@ export const useGameLogic = (
   const startNewRound = (): void => {
     setWrongTileId(null);
 
-    // Set animals immediately so they render
-    const shuffled = shuffleArray(ANIMALS);
-    setShuffledAnimals(shuffled);
-    const randomAnimal = getRandomItem(shuffled);
-    setCurrentAnimal(randomAnimal);
+    // Pick target animal first
+    const targetAnimal = getRandomItem(modeAnimals);
+    setCurrentAnimal(targetAnimal);
+
+    // Pick remaining animals (exclude target)
+    const remainingAnimals = modeAnimals.filter(a => a.id !== targetAnimal.id);
+    const shuffledRemaining = shuffleArray(remainingAnimals);
+    const otherAnimals = shuffledRemaining.slice(0, ANIMALS_PER_SCREEN - 1);
+
+    // Combine target with other animals and shuffle
+    const animalsToShow = shuffleArray([targetAnimal, ...otherAnimals]);
+    setShuffledAnimals(animalsToShow);
 
     // Then do animations
     animateQuestionHide(questionAnimation, () => {
       animateCardsEntrance(cardAnimations);
       animateQuestionShow(questionAnimation);
 
-      // Speak the question after animations start (if sound is enabled)
-      if (
-        isSoundEnabled &&
-        backgroundMusic.current &&
-        translations &&
-        randomAnimal
-      ) {
-        const animalName = translations.animals[randomAnimal.name];
-        speakQuestion(
-          translations.findThe,
-          animalName,
-          language,
-          backgroundMusic.current
-        );
+      // Mode-specific behavior after animations start (if sound is enabled)
+      if (isSoundEnabled && backgroundMusic.current && translations && targetAnimal) {
+        if (gameMode === 'byName') {
+          // Speak "Find the [animal name]"
+          const animalName = translations.animals[targetAnimal.name];
+          speakQuestion(
+            translations.findThe,
+            animalName,
+            language,
+            backgroundMusic.current
+          );
+        } else if (gameMode === 'bySound') {
+          // First speak "Who says so?", then play animal sound
+          speakText(
+            translations.whoSaysThis,
+            language,
+            backgroundMusic.current,
+            () => {
+              // After speaking, play the animal sound
+              if (targetAnimal.soundUrl) {
+                playAnimalSound(targetAnimal.soundUrl, backgroundMusic.current);
+              }
+            }
+          );
+        }
       }
     });
   };
@@ -225,6 +254,12 @@ export const useGameLogic = (
     });
   };
 
+  const replaySound = (): void => {
+    if (gameMode === 'bySound' && currentAnimal?.soundUrl && backgroundMusic.current) {
+      playAnimalSound(currentAnimal.soundUrl, backgroundMusic.current);
+    }
+  };
+
   return {
     // State
     shuffledAnimals,
@@ -234,6 +269,7 @@ export const useGameLogic = (
     wrongTileId,
     gameStarted,
     isSoundEnabled,
+    gameMode,
     // Animation values
     successScale,
     successOpacity,
@@ -245,5 +281,6 @@ export const useGameLogic = (
     startGame,
     toggleSound,
     resetGame,
+    replaySound,
   };
 };

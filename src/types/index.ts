@@ -8,12 +8,17 @@ import { Audio } from 'expo-av';
 // Language type
 export type Language = 'en' | 'uk';
 
+// Game mode type
+export type GameMode = 'byName' | 'bySound';
+
 // Animal definition
 export interface Animal {
   id: number;
   name: string;
   emoji: string;
   image: string;
+  soundUrl?: string;        // Optional: animal sound URL
+  modes: GameMode[];        // Which modes this animal appears in
 }
 
 // Translation structure
@@ -24,7 +29,8 @@ export interface AnimalTranslations {
 export interface ScreenTranslations {
   title: string;
   subtitle: string;
-  start: string;
+  byName: string;           // "By Name" button
+  bySound: string;          // "By Sound" button
 }
 
 export interface Translations {
@@ -34,6 +40,8 @@ export interface Translations {
   greatJob: string;
   youFoundIt: string;
   startFromBeginning: string;
+  whoSaysThis: string;      // "Who says so?" for By Sound mode
+  replaySound: string;      // "Play Again" button text
   animals: AnimalTranslations;
 }
 
@@ -58,6 +66,7 @@ export interface UseGameLogicReturn {
   wrongTileId: number | null;
   gameStarted: boolean;
   isSoundEnabled: boolean;
+  gameMode: GameMode;
   // Animation values
   successScale: Animated.Value;
   successOpacity: Animated.Value;
@@ -69,4 +78,5 @@ export interface UseGameLogicReturn {
   startGame: () => Promise<void>;
   toggleSound: () => void;
   resetGame: () => Promise<void>;
+  replaySound: () => void;  // New function for By Sound mode
 }

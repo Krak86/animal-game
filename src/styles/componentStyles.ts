@@ -66,8 +66,8 @@ export const animalCardStyles = StyleSheet.create({
     borderWidth: 4,
   },
   imageContainer: {
-    width: 70,
-    height: 70,
+    width: 100,
+    height: 100,
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
