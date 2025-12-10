@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
   View,
   ScrollView,
@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 
 // Components
 import {
@@ -20,6 +22,7 @@ import {
 
 // Constants
 import { TRANSLATIONS } from "@/constants/translations";
+import { FONTS } from "@/constants/fonts";
 
 // Styles
 import { appStyles } from "@/styles/appStyles";
@@ -30,11 +33,22 @@ import { useGameLogic } from "@/hooks/useGameLogic";
 // Types
 import { Language, GameMode } from "@/types";
 
+// Keep splash screen visible while loading fonts
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
   const [language, setLanguage] = useState<Language>("uk");
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const shouldStartGame = useRef<boolean>(false);
   const t = TRANSLATIONS[language];
+
+  // Load Montserrat fonts
+  const [fontsLoaded, fontError] = useFonts({
+    'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
+    'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
+    'Montserrat-SemiBold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
+    'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+  });
 
   const {
     shuffledAnimals,
@@ -64,6 +78,13 @@ export default function App() {
     }
   }, [gameMode, startGame]);
 
+  // Hide splash screen when fonts are loaded
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
   const handleStartGame = (mode: GameMode): void => {
     shouldStartGame.current = true;
     setGameMode(mode);
@@ -74,8 +95,13 @@ export default function App() {
     setGameMode(null);
   };
 
+  // Don't render app until fonts are loaded
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
-    <View style={appStyles.container}>
+    <View style={appStyles.container} onLayout={onLayoutRootView}>
       <StatusBar style="auto" />
 
       <SoundToggle isSoundEnabled={isSoundEnabled} onToggle={toggleSound} />
@@ -175,7 +201,7 @@ const styles = StyleSheet.create({
   },
   resetButtonText: {
     fontSize: 14,
-    fontWeight: "600",
+    fontFamily: FONTS.semiBold,
     color: "#333",
   },
 });

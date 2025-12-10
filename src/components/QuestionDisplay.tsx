@@ -2,6 +2,7 @@ import { Animated, Text, View, TouchableOpacity, StyleSheet } from "react-native
 
 import { appStyles } from "@/styles/appStyles";
 import { COLORS } from "@/styles/colors";
+import { FONTS } from "@/constants/fonts";
 import { Animal, Translations, GameMode } from "@/types";
 
 interface Props {
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
   },
   replayButtonText: {
     fontSize: 16,
-    fontWeight: "600",
+    fontFamily: FONTS.semiBold,
     color: COLORS.white,
   },
 });

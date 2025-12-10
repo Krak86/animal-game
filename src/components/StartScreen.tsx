@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import { COLORS } from "@/styles/colors";
+import { FONTS } from "@/constants/fonts";
 import { TRANSLATIONS } from "@/constants/translations";
 import { LanguageSwitcher } from "@/components";
 import { Language, GameMode } from "@/types";
@@ -209,13 +210,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 48,
-    fontWeight: "bold",
+    fontFamily: FONTS.bold,
     color: COLORS.accent,
     marginBottom: 10,
     textAlign: "center",
   },
   subtitle: {
     fontSize: 24,
+    fontFamily: FONTS.medium,
     color: COLORS.dark,
     marginBottom: 50,
     textAlign: "center",
@@ -249,12 +251,13 @@ const styles = StyleSheet.create({
   },
   modeButtonText: {
     fontSize: 22,
-    fontWeight: "bold",
+    fontFamily: FONTS.bold,
     color: COLORS.white,
     textAlign: "center",
   },
   modeDescription: {
     fontSize: 12,
+    fontFamily: FONTS.regular,
     color: COLORS.white,
     textAlign: "center",
     opacity: 0.9,

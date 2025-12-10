@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 import { COLORS } from "@/styles/colors";
+import { FONTS } from "@/constants/fonts";
 
 const { width } = Dimensions.get("window");
 
@@ -35,7 +36,7 @@ export const languageSwitcherStyles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    fontWeight: "600",
+    fontFamily: FONTS.semiBold,
     color: COLORS.gray,
   },
   textActive: {
@@ -87,7 +88,7 @@ export const animalCardStyles = StyleSheet.create({
   label: {
     marginTop: 8,
     fontSize: 14,
-    fontWeight: "600",
+    fontFamily: FONTS.semiBold,
     color: COLORS.dark,
     textAlign: "center",
   },
@@ -122,13 +123,13 @@ export const successOverlayStyles = StyleSheet.create({
   },
   text: {
     fontSize: 36,
-    fontWeight: "bold",
+    fontFamily: FONTS.bold,
     color: COLORS.white,
     marginBottom: 10,
   },
   subtext: {
     fontSize: 20,
     color: COLORS.white,
-    fontWeight: "600",
+    fontFamily: FONTS.semiBold,
   },
 });

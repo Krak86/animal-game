@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 import { COLORS } from "@/styles/colors";
+import { FONTS } from "@/constants/fonts";
 
 export const appStyles = StyleSheet.create({
   container: {
@@ -19,7 +20,7 @@ export const appStyles = StyleSheet.create({
   },
   scoreText: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontFamily: FONTS.bold,
     color: COLORS.accent,
   },
   questionContainer: {
@@ -37,12 +38,12 @@ export const appStyles = StyleSheet.create({
   },
   questionText: {
     fontSize: 24,
-    fontWeight: "600",
+    fontFamily: FONTS.semiBold,
     color: COLORS.dark,
   },
   animalNameText: {
     fontSize: 36,
-    fontWeight: "bold",
+    fontFamily: FONTS.bold,
     color: COLORS.accent,
     marginTop: 5,
   },
