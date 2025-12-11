@@ -1,49 +1,78 @@
 # Animals Game 🐕🐈🦁
 
-A fun, interactive React Native game for children to learn animal names in English and Ukrainian.
+An interactive React Native educational game for children to learn animal names and sounds in English and Ukrainian. Built with TypeScript, Expo, and featuring custom fonts, background music, and engaging animations.
 
 ## Features
 
-- 🎮 **Interactive Gameplay**: Tap the correct animal that matches the displayed name
-- 🌍 **Bilingual**: Switch between English and Ukrainian
-- 🎨 **Animated**: Living animal animations with wiggle effects
-- 🔊 **Sound Effects**: Success and error sounds for feedback
-- 📱 **Responsive**: Works on all screen sizes with vertical scrolling
-- ✅ **Visual Feedback**: Red border for wrong answers, celebration overlay for correct ones
+- 🎮 **Two Game Modes**:
+  - **By Name**: Match animal names to images
+  - **By Sound**: Identify animals by their sounds
+- 🌍 **Fully Bilingual**: Complete English and Ukrainian translations
+- 🗣️ **Text-to-Speech**: Pronounces animal names in selected language
+- 🎵 **Background Music**: Optional music with toggle control
+- 🎨 **Smooth Animations**: Wiggle effects, entrance animations, and transitions
+- 🔊 **Animal Sounds**: Authentic audio for select animals
+- 📱 **Responsive Design**: Works on all screen sizes with vertical scrolling
+- ✅ **Visual Feedback**: Red borders for wrong answers, celebration overlay for correct ones
 - 📊 **Score Tracking**: Keep track of your progress
+- 🔤 **Custom Fonts**: Professional Montserrat typography
+- 🏠 **Reset Functionality**: Return to start screen anytime
 
 ## Project Structure
 
 ```
 /
-├── src/
-│   ├── components/          # Reusable UI components
-│   │   ├── AnimalCard.js
-│   │   ├── LanguageSwitcher.js
-│   │   ├── QuestionDisplay.js
-│   │   ├── SuccessOverlay.js
-│   │   └── index.js
-│   ├── constants/           # App constants and data
-│   │   ├── animals.js
-│   │   ├── sounds.js
-│   │   └── translations.js
-│   ├── hooks/               # Custom React hooks
-│   │   └── useGameLogic.js
-│   ├── styles/              # Style definitions
-│   │   ├── appStyles.js
-│   │   ├── colors.js
-│   │   └── componentStyles.js
-│   └── utils/               # Utility functions
-│       ├── animations.js
-│       ├── audio.js
-│       └── helpers.js
-├── App.js                   # Main app component
+├── App.tsx                  # Main app component
+├── index.ts                 # Application entry point
 ├── package.json
-└── app.json
-
+├── app.json
+├── tsconfig.json            # TypeScript configuration
+├── assets/
+│   ├── fonts/               # Montserrat font family (.ttf)
+│   ├── music/               # Background music files
+│   │   └── kid-366901.mp3
+│   ├── icon.png
+│   ├── splash-icon.png
+│   └── adaptive-icon.png
+└── src/
+    ├── components/          # React components (TypeScript)
+    │   ├── AnimalCard.tsx
+    │   ├── LanguageSwitcher.tsx
+    │   ├── QuestionDisplay.tsx
+    │   ├── StartScreen.tsx
+    │   ├── SuccessOverlay.tsx
+    │   ├── SoundToggle.tsx
+    │   └── index.ts
+    ├── constants/           # App constants and data
+    │   ├── animals.ts
+    │   ├── sounds.ts
+    │   ├── translations.ts
+    │   ├── fonts.ts
+    │   └── gameSettings.ts
+    ├── hooks/               # Custom React hooks
+    │   └── useGameLogic.ts
+    ├── styles/              # Style definitions
+    │   ├── appStyles.ts
+    │   ├── colors.ts
+    │   └── componentStyles.ts
+    ├── types/               # TypeScript type definitions
+    │   └── index.ts
+    └── utils/               # Utility functions
+        ├── animations.ts
+        ├── audio.ts
+        ├── speech.ts
+        └── helpers.ts
 ```
 
 ## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+- Expo CLI
+- For iOS: macOS with Xcode
+- For Android: Android Studio with emulator or physical device
 
 ### Installation
 
@@ -67,82 +96,203 @@ npm run android
 npm run ios
 ```
 
+The app will load fonts on first launch before displaying the splash screen.
+
 ## Code Organization
 
 ### Components (`src/components/`)
 
-- **AnimalCard**: Displays individual animal with wiggle animation
-- **LanguageSwitcher**: Toggle between EN/UK languages
-- **QuestionDisplay**: Shows the animal name to find
-- **SuccessOverlay**: Celebration overlay on correct answer
+- **AnimalCard.tsx**: Displays individual animal with wiggle animation and emoji
+- **LanguageSwitcher.tsx**: Toggle between EN/UK languages
+- **QuestionDisplay.tsx**: Shows animal name or sound replay button
+- **StartScreen.tsx**: Game mode selection screen with animations
+- **SuccessOverlay.tsx**: Full-screen celebration overlay on correct answer
+- **SoundToggle.tsx**: Toggle background music on/off
 
 ### Constants (`src/constants/`)
 
-- **animals.js**: Animal data (name, emoji, image URL)
-- **sounds.js**: Sound effect URLs
-- **translations.js**: English and Ukrainian translations
+- **animals.ts**: Animal data with name, emoji, image URL, sound URL, and game modes
+- **sounds.ts**: Sound effect URLs for success and error feedback
+- **translations.ts**: Complete English and Ukrainian translations
+- **fonts.ts**: Montserrat font family constants
+- **gameSettings.ts**: Game configuration (grid size, animation timings)
 
 ### Hooks (`src/hooks/`)
 
-- **useGameLogic**: Custom hook managing all game state and logic
+- **useGameLogic.ts**: Core custom hook managing all game state, logic, animations, and audio
 
 ### Styles (`src/styles/`)
 
-- **appStyles.js**: Main app container styles
-- **colors.js**: Color palette definitions
-- **componentStyles.js**: Component-specific styles
+- **appStyles.ts**: Main app container styles
+- **colors.ts**: Color palette definitions
+- **componentStyles.ts**: Component-specific styles with Montserrat fonts
+
+### Types (`src/types/`)
+
+- **index.ts**: TypeScript interfaces and types (Animal, Language, GameMode, Translations)
 
 ### Utils (`src/utils/`)
 
-- **animations.js**: Animation helper functions
-- **audio.js**: Sound loading and playback functions
-- **helpers.js**: General utility functions (shuffle, random, etc.)
+- **animations.ts**: Animation helper functions for React Native Animated API
+- **audio.ts**: Sound loading, playback, and background music functions
+- **speech.ts**: Text-to-speech utilities using expo-speech
+- **helpers.ts**: General utility functions (shuffle, random selection, etc.)
 
 ## Customization
 
 ### Adding More Animals
 
-Edit `src/constants/animals.js`:
+Edit `src/constants/animals.ts`:
 
-```javascript
-export const ANIMALS = [
+```typescript
+export const ANIMALS: Animal[] = [
   // Add your animal here
-  { id: 11, name: "Bear", emoji: "🐻", image: "your-image-url" },
+  {
+    id: 100,
+    name: "Bear",
+    emoji: "🐻",
+    image: "https://example.com/bear.jpg",
+    soundUrl: "https://example.com/bear-sound.mp3", // Optional
+    modes: ["byName", "bySound"], // Or just ["byName"]
+  },
 ];
 ```
 
-Don't forget to add translations in `src/constants/translations.js`.
+Then add translations in `src/constants/translations.ts`:
+
+```typescript
+export const TRANSLATIONS = {
+  en: {
+    animals: {
+      // ... other animals
+      Bear: "Bear",
+    },
+  },
+  uk: {
+    animals: {
+      // ... other animals
+      Bear: "Ведмідь",
+    },
+  },
+};
+```
 
 ### Changing Colors
 
-Edit `src/styles/colors.js` to customize the color scheme.
+Edit `src/styles/colors.ts` to customize the color scheme.
 
 ### Custom Sounds
 
-Replace URLs in `src/constants/sounds.js` with your own sound files.
+Replace URLs in `src/constants/sounds.ts` with your own sound files for success/error feedback.
+
+### Adding New Fonts
+
+1. Place `.ttf` files in `assets/fonts/`
+2. Update `src/constants/fonts.ts`
+3. Load fonts in [App.tsx:46-51](App.tsx#L46-L51) using `useFonts` hook
+4. Use font families in styles
+
+## Game Modes Explained
+
+### By Name Mode
+1. Animal name appears at top of screen
+2. Text-to-speech pronounces the name
+3. Player taps the matching animal from 6 options
+4. Red border flashes on wrong answer
+5. Celebration overlay on correct answer
+6. Score increases, new question appears
+
+### By Sound Mode
+1. Animal sound plays automatically
+2. Player taps the animal that makes that sound
+3. Replay button available to hear sound again
+4. Same visual feedback as "By Name" mode
+5. Only includes animals with sound files
 
 ## Technologies
 
-- **React Native** with **Expo**
-- **expo-av** for audio playback
-- Native **Animated** API for smooth animations
-- Custom hooks for state management
+- **React Native 0.81.5** with **Expo ~54.0**
+- **TypeScript 5.9.3** for type safety
+- **expo-av** for audio playback and background music
+- **expo-speech** for text-to-speech
+- **expo-font** for custom Montserrat typography
+- **React Native Animated API** for smooth animations
+- **Custom hooks** for centralized state management
+- **Path aliases** (`@/`) for clean imports
 
 ## License
 
 ISC
 
-## Deploying to Expo
+## Building and Deployment
 
-```javascript
-// Install EAS CLI
+### Development Build
+
+```bash
+# Install EAS CLI
 npm install -g eas-cli
-// Login to EAS
+
+# Login to Expo
 eas login
-// For testing (APK)
+
+# Configure project (first time)
+eas build:configure
+```
+
+### Android
+
+```bash
+# For testing (APK)
 eas build --platform android --profile preview
-// For production (AAB - required for Play Store)
+
+# For production (AAB - required for Play Store)
 eas build --platform android --profile production
-// Publish to Play Store
+
+# Publish to Play Store
 eas submit -p android --profile production
 ```
+
+### iOS
+
+```bash
+# For testing
+eas build --platform ios --profile preview
+
+# For production (App Store)
+eas build --platform ios --profile production
+
+# Publish to App Store
+eas submit -p ios --profile production
+```
+
+## Key Implementation Details
+
+### Font Loading Flow
+The app uses expo-splash-screen to keep the splash screen visible until Montserrat fonts are fully loaded, ensuring a smooth visual experience.
+
+### Audio Management
+- Background music loops with adjustable volume
+- Animal sounds loaded on-demand from external URLs
+- Global sound toggle affects all audio simultaneously
+- Fallback handling for failed audio loads
+
+### Animation System
+- Staggered card entrance animations for visual appeal
+- Bounce effect on question display
+- Continuous subtle wiggle on animal cards
+- Smooth success overlay with scale and fade effects
+
+### State Management Pattern
+All game logic centralized in `useGameLogic` custom hook:
+- Game state (score, current animal, animations)
+- Audio control (music, sounds, text-to-speech)
+- User interactions (animal selection, mode switching)
+- Visual feedback (success overlay, error borders)
+
+## Contributing
+
+Contributions are welcome! Please ensure:
+- TypeScript types are properly defined
+- Both English and Ukrainian translations are provided
+- Code follows existing patterns and structure
+- Components are properly typed with interfaces
