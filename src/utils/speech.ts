@@ -94,6 +94,10 @@ export const speakText = async (
 
   if (!text || text.trim() === "") {
     console.warn("No text to speak");
+    // Call onDone callback even if there's no text to speak
+    if (onDone) {
+      onDone();
+    }
     return;
   }
 
@@ -137,11 +141,15 @@ export const speakText = async (
         }
       },
       onError: (error: Error) => {
-        console.error("Speech error:", error);
+        console.warn("Speech error:", error);
         isSpeaking = false;
         // Restore background music volume even on error
         if (backgroundMusic) {
           backgroundMusic.setVolumeAsync(0.2);
+        }
+        // Call onDone callback even when TTS fails
+        if (onDone) {
+          onDone();
         }
       },
     });
@@ -151,6 +159,10 @@ export const speakText = async (
     // Restore background music volume
     if (backgroundMusic) {
       await backgroundMusic.setVolumeAsync(0.2);
+    }
+    // Call onDone callback even when exception occurs
+    if (onDone) {
+      onDone();
     }
   }
 };
