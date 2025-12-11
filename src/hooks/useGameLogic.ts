@@ -24,8 +24,19 @@ import {
   animateQuestionHide,
   animateCardsEntrance,
 } from "@/utils/animations";
-import { speakQuestion, speakText, stopSpeech, logAvailableVoices } from "@/utils/speech";
-import { Animal, Language, Translations, UseGameLogicReturn, GameMode } from "@/types";
+import {
+  speakQuestion,
+  speakText,
+  stopSpeech,
+  logAvailableVoices,
+} from "@/utils/speech";
+import {
+  Animal,
+  Language,
+  Translations,
+  UseGameLogicReturn,
+  GameMode,
+} from "@/types";
 
 /**
  * Custom hook to manage game logic and state
@@ -56,11 +67,13 @@ export const useGameLogic = (
 
   // Animation arrays for fixed number of animals per screen
   const cardAnimations = useMemo(
-    () => Array.from({ length: ANIMALS_PER_SCREEN }, () => new Animated.Value(1)),
+    () =>
+      Array.from({ length: ANIMALS_PER_SCREEN }, () => new Animated.Value(1)),
     []
   );
   const animalWiggles = useMemo(
-    () => Array.from({ length: ANIMALS_PER_SCREEN }, () => new Animated.Value(0)),
+    () =>
+      Array.from({ length: ANIMALS_PER_SCREEN }, () => new Animated.Value(0)),
     []
   );
 
@@ -98,8 +111,13 @@ export const useGameLogic = (
       // Debug: Log available voices for troubleshooting
       logAvailableVoices();
 
-      // Start background music (requires user interaction)
-      backgroundMusic.current = await loadBackgroundMusic();
+      // Load background music
+      backgroundMusic.current = await loadBackgroundMusic(isSoundEnabled);
+
+      // If sound is disabled, pause music immediately
+      if (!isSoundEnabled && backgroundMusic.current) {
+        await pauseBackgroundMusic(backgroundMusic.current);
+      }
 
       startNewRound();
       startAnimalAnimations();
@@ -123,7 +141,9 @@ export const useGameLogic = (
     setCurrentAnimal(targetAnimal);
 
     // Pick remaining animals (exclude target)
-    const remainingAnimals = modeAnimals.filter(a => a.id !== targetAnimal.id);
+    const remainingAnimals = modeAnimals.filter(
+      (a) => a.id !== targetAnimal.id
+    );
     const shuffledRemaining = shuffleArray(remainingAnimals);
     const otherAnimals = shuffledRemaining.slice(0, ANIMALS_PER_SCREEN - 1);
 
@@ -137,8 +157,13 @@ export const useGameLogic = (
       animateQuestionShow(questionAnimation);
 
       // Mode-specific behavior after animations start (if sound is enabled)
-      if (isSoundEnabled && backgroundMusic.current && translations && targetAnimal) {
-        if (gameMode === 'byName') {
+      if (
+        isSoundEnabled &&
+        backgroundMusic.current &&
+        translations &&
+        targetAnimal
+      ) {
+        if (gameMode === "byName") {
           // Speak "Find the [animal name]"
           const animalName = translations.animals[targetAnimal.name];
           speakQuestion(
@@ -147,7 +172,7 @@ export const useGameLogic = (
             language,
             backgroundMusic.current
           );
-        } else if (gameMode === 'bySound') {
+        } else if (gameMode === "bySound") {
           // First speak "Who says so?", then play animal sound
           speakText(
             translations.whoSaysThis,
@@ -212,9 +237,10 @@ export const useGameLogic = (
         // Sound is now enabled, resume music
         resumeBackgroundMusic(backgroundMusic.current);
       } else {
-        // Sound is now disabled, pause music and stop any speech
+        // Sound is now disabled, stop all sounds
         pauseBackgroundMusic(backgroundMusic.current);
         stopSpeech();
+        stopAnimalSound(backgroundMusic.current);
       }
     }
   };
@@ -222,6 +248,9 @@ export const useGameLogic = (
   const resetGame = async (): Promise<void> => {
     // Stop any ongoing speech
     await stopSpeech();
+
+    // Stop any playing animal sound
+    await stopAnimalSound();
 
     // Stop background music
     if (backgroundMusic.current) {
@@ -259,8 +288,10 @@ export const useGameLogic = (
           successScale.setValue(0);
           successOpacity.setValue(0);
 
-          // Resume background music after success animation
-          resumeBackgroundMusic(backgroundMusic.current);
+          // Resume background music after success animation (only if sound is enabled)
+          if (isSoundEnabled) {
+            resumeBackgroundMusic(backgroundMusic.current);
+          }
 
           startNewRound();
         });
@@ -269,7 +300,12 @@ export const useGameLogic = (
   };
 
   const replaySound = (): void => {
-    if (isSoundEnabled && gameMode === 'bySound' && currentAnimal?.soundUrl && backgroundMusic.current) {
+    if (
+      isSoundEnabled &&
+      gameMode === "bySound" &&
+      currentAnimal?.soundUrl &&
+      backgroundMusic.current
+    ) {
       playAnimalSound(currentAnimal.soundUrl, backgroundMusic.current);
     }
   };

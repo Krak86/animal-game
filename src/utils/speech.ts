@@ -49,9 +49,7 @@ const isLanguageAvailable = async (languageCode: string): Promise<boolean> => {
  * @param language - Current language ('en' or 'uk')
  * @returns Voice language code
  */
-export const getVoiceLanguage = async (
-  language: Language
-): Promise<string> => {
+export const getVoiceLanguage = async (language: Language): Promise<string> => {
   if (language === "uk") {
     // Use Ukrainian voice
     const hasUkrainian = await isLanguageAvailable("uk-UA");

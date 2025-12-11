@@ -72,6 +72,7 @@ const duckBackgroundMusic = async (
 
 /**
  * Restores background music to normal volume
+ * Only restores if music is currently playing (respects paused state)
  * @param music - Background music to restore
  */
 const restoreBackgroundMusic = async (
@@ -80,7 +81,9 @@ const restoreBackgroundMusic = async (
   try {
     if (music) {
       const status = await music.getStatusAsync();
-      if (status.isLoaded) {
+      // Only restore volume if music is currently playing
+      // If it's paused (user disabled sound), respect that state
+      if (status.isLoaded && status.isPlaying) {
         await music.setVolumeAsync(BACKGROUND_VOLUME_NORMAL);
       }
     }
@@ -139,12 +142,15 @@ export const unloadSounds = async (
 
 /**
  * Loads and starts background music
+ * @param shouldPlay - Whether to start playing immediately
  * @returns Background music sound object
  */
-export const loadBackgroundMusic = async (): Promise<Audio.Sound | null> => {
+export const loadBackgroundMusic = async (
+  shouldPlay: boolean = true
+): Promise<Audio.Sound | null> => {
   try {
     const { sound } = await Audio.Sound.createAsync(BACKGROUND_MUSIC, {
-      shouldPlay: true,
+      shouldPlay,
       isLooping: true,
       volume: BACKGROUND_VOLUME_NORMAL,
     });
@@ -215,7 +221,7 @@ export const stopAnimalSound = async (
       }
     }
   } catch (error) {
-    console.error('Error stopping animal sound:', error);
+    console.error("Error stopping animal sound:", error);
     currentAnimalSound = null;
   }
 };
@@ -260,7 +266,7 @@ export const playAnimalSound = async (
       }
     });
   } catch (error) {
-    console.error('Error playing animal sound:', error);
+    console.error("Error playing animal sound:", error);
     currentAnimalSound = null;
     // Restore background music even on error
     if (backgroundMusic) {

@@ -44,10 +44,10 @@ export default function App() {
 
   // Load Montserrat fonts
   const [fontsLoaded, fontError] = useFonts({
-    'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
-    'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
-    'Montserrat-SemiBold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
-    'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+    "Montserrat-Regular": require("./assets/fonts/Montserrat-Regular.ttf"),
+    "Montserrat-Medium": require("./assets/fonts/Montserrat-Medium.ttf"),
+    "Montserrat-SemiBold": require("./assets/fonts/Montserrat-SemiBold.ttf"),
+    "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
   });
 
   const {
@@ -68,7 +68,7 @@ export default function App() {
     toggleSound,
     resetGame,
     replaySound,
-  } = useGameLogic(language, t, gameMode || 'byName');
+  } = useGameLogic(language, t, gameMode || "byName");
 
   // Start game when mode is selected
   useEffect(() => {
@@ -145,8 +145,8 @@ export default function App() {
               currentAnimal={currentAnimal}
               translations={t}
               questionAnimation={questionAnimation}
-              gameMode={gameMode || 'byName'}
-              onReplaySound={gameMode === 'bySound' ? replaySound : undefined}
+              gameMode={gameMode || "byName"}
+              onReplaySound={gameMode === "bySound" ? replaySound : undefined}
             />
 
             <View style={appStyles.gridContainer}>
