@@ -295,7 +295,7 @@ export const useGameLogic = (
 
           startNewRound();
         });
-      }, 1500);
+      }, 500);
     });
   };
 
