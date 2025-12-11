@@ -67,14 +67,17 @@ export const animalCardStyles = StyleSheet.create({
     borderWidth: 4,
   },
   imageContainer: {
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 110,
     justifyContent: "center",
-    alignItems: "center",
     position: "relative",
   },
   emojiImage: {
-    fontSize: 50,
+    fontSize: 52,
+    lineHeight: 65,
+    textAlign: "center",
+    textAlignVertical: "center",
+    includeFontPadding: false,
     zIndex: 2,
   },
   backgroundImage: {
