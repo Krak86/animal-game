@@ -13,6 +13,7 @@ import {
   pauseBackgroundMusic,
   resumeBackgroundMusic,
   playAnimalSound,
+  stopAnimalSound,
 } from "@/utils/audio";
 import {
   createWiggleAnimation,
@@ -111,7 +112,10 @@ export const useGameLogic = (
     });
   };
 
-  const startNewRound = (): void => {
+  const startNewRound = async (): Promise<void> => {
+    // Stop any playing animal sound from previous round
+    await stopAnimalSound(backgroundMusic.current);
+
     setWrongTileId(null);
 
     // Pick target animal first
@@ -175,7 +179,10 @@ export const useGameLogic = (
     }
   };
 
-  const handleCorrectAnswer = (): void => {
+  const handleCorrectAnswer = async (): Promise<void> => {
+    // Stop any playing animal sound
+    await stopAnimalSound(backgroundMusic.current);
+
     setScore(score + 1);
     if (isSoundEnabled) {
       playSound(successSound.current, backgroundMusic.current);

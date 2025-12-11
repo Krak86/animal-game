@@ -10,6 +10,10 @@ import {
 const BACKGROUND_VOLUME_NORMAL = 0.2; // Quieter background music
 const BACKGROUND_VOLUME_DUCKED = 0.05; // Very quiet when sound effects play
 const SOUND_EFFECT_VOLUME = 0.8; // Loud sound effects
+const ANIMAL_SOUND_VOLUME = 1.0; // Maximum volume for animal sounds
+
+// Track currently playing animal sound to prevent overlaps
+let currentAnimalSound: Audio.Sound | null = null;
 
 /**
  * Return type for loadSounds function
@@ -190,6 +194,33 @@ export const resumeBackgroundMusic = async (
 };
 
 /**
+ * Stops the currently playing animal sound if any
+ * @param backgroundMusic - Background music to restore volume
+ */
+export const stopAnimalSound = async (
+  backgroundMusic: Audio.Sound | null = null
+): Promise<void> => {
+  try {
+    if (currentAnimalSound) {
+      const status = await currentAnimalSound.getStatusAsync();
+      if (status.isLoaded) {
+        await currentAnimalSound.stopAsync();
+        await currentAnimalSound.unloadAsync();
+      }
+      currentAnimalSound = null;
+
+      // Restore background music volume
+      if (backgroundMusic) {
+        await restoreBackgroundMusic(backgroundMusic);
+      }
+    }
+  } catch (error) {
+    console.error('Error stopping animal sound:', error);
+    currentAnimalSound = null;
+  }
+};
+
+/**
  * Plays an animal sound from a URL with background music ducking
  * @param soundUrl - URL of the animal sound to play
  * @param backgroundMusic - Background music to duck during playback
@@ -199,16 +230,22 @@ export const playAnimalSound = async (
   backgroundMusic: Audio.Sound | null
 ): Promise<void> => {
   try {
+    // Stop any currently playing animal sound first
+    await stopAnimalSound(backgroundMusic);
+
     // Duck background music
     if (backgroundMusic) {
       await duckBackgroundMusic(backgroundMusic);
     }
 
-    // Load and play animal sound
+    // Load and play animal sound at maximum volume
     const { sound } = await Audio.Sound.createAsync(
       { uri: soundUrl },
-      { volume: SOUND_EFFECT_VOLUME }
+      { volume: ANIMAL_SOUND_VOLUME }
     );
+
+    // Store reference to current sound
+    currentAnimalSound = sound;
 
     await sound.playAsync();
 
@@ -216,6 +253,7 @@ export const playAnimalSound = async (
     sound.setOnPlaybackStatusUpdate((status) => {
       if (status.isLoaded && status.didJustFinish) {
         sound.unloadAsync();
+        currentAnimalSound = null;
         if (backgroundMusic) {
           restoreBackgroundMusic(backgroundMusic);
         }
@@ -223,6 +261,7 @@ export const playAnimalSound = async (
     });
   } catch (error) {
     console.error('Error playing animal sound:', error);
+    currentAnimalSound = null;
     // Restore background music even on error
     if (backgroundMusic) {
       await restoreBackgroundMusic(backgroundMusic);
