@@ -132,7 +132,7 @@ export const ANIMALS: Animal[] = [
   {
     id: 16,
     name: "Goose",
-    emoji: "🦢",
+    emoji: "🪿",
     image: "https://picsum.photos/seed/goose/200/200",
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/20/20-preview.mp3",
     modes: ["byName", "bySound"],
