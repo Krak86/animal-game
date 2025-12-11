@@ -271,10 +271,27 @@ eas submit -p ios --profile production
 The app uses expo-splash-screen to keep the splash screen visible until Montserrat fonts are fully loaded, ensuring a smooth visual experience.
 
 ### Audio Management
-- Background music loops with adjustable volume
-- Animal sounds loaded on-demand from external URLs
-- Global sound toggle affects all audio simultaneously
-- Fallback handling for failed audio loads
+- **Background music**: Loops with adjustable volume (0.2 normal, 0.05 ducked)
+- **Animal sounds**: Loaded on-demand from external URLs at maximum volume (1.0)
+- **Sound effects**: Success/error sounds at 0.8 volume
+- **Sound tracking**: Prevents overlapping animal sounds with reference tracking
+- **Global sound toggle**: Affects all audio simultaneously with state persistence
+- **Smart ducking**: Auto-reduces background music during TTS and sound effects
+- **Cleanup**: Proper audio cleanup when returning to start screen or toggling sound off
+
+### TTS (Text-to-Speech) System
+- **Language support**: English (en-GB) and Ukrainian (uk-UA)
+- **Voice detection**: Checks for available TTS voices on device
+- **Error handling**: Gracefully handles unsupported languages (critical for Android)
+- **Callback reliability**: Ensures game flow continues even when TTS fails
+- **bySound mode**: Animal sounds play regardless of TTS availability on device
+
+### Emoji Rendering (Android Optimization)
+- **Container sizing**: 110x110px containers to accommodate larger Unicode emojis
+- **Android-specific properties**: Uses `textAlignVertical`, `includeFontPadding: false`
+- **Line height**: Proper vertical spacing (65px) for emoji baseline handling
+- **Unicode 15.0+ support**: Fixes display issues with newer emojis (Goose 🪿, Donkey 🫏)
+- **Cross-platform**: iOS compatibility maintained while fixing Android clipping
 
 ### Animation System
 - Staggered card entrance animations for visual appeal

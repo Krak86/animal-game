@@ -189,3 +189,23 @@ When adding new UI text:
 - Sound replay functionality for "By Sound" mode
 - Enhanced visual feedback and animations
 - Reset to start screen functionality
+
+### Audio System Improvements
+- **Animal sound tracking**: Prevents overlapping sounds when replay button clicked multiple times
+- **Sound volume hierarchy**: Animal sounds at maximum volume (1.0), sound effects at 0.8, background music at 0.2
+- **Sound toggle persistence**: Sound state persists across game resets and mode changes
+- **Proper cleanup**: All sounds (TTS, animal sounds, music) stop when returning to start screen
+- **Background music ducking**: Automatically reduces volume during TTS and sound effects
+- **Smart restoration**: Background music only restores if currently playing (respects pause state)
+
+### TTS Error Handling (Android Fix)
+- **Callback reliability**: `onDone` callback now fires even when TTS fails or language unsupported
+- **bySound mode fix**: Animal sounds play on Android tablets regardless of TTS language support
+- **Graceful degradation**: Game continues normally when TTS encounters errors
+- **Error paths covered**: Empty text, TTS errors, and exceptions all trigger callback
+
+### Emoji Display Fix (Android Tablets)
+- **Larger container**: Increased from 100x100 to 110x110 pixels for newer emojis
+- **Android-specific properties**: Added `textAlignVertical`, `includeFontPadding: false`, `lineHeight`
+- **Font size adjustment**: Increased from 50 to 52 with proper line height (65)
+- **Fixes Unicode 15.0+ emojis**: Goose 🪿 and Donkey 🫏 now display completely without clipping
