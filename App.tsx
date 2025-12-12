@@ -33,6 +33,7 @@ import {
   useResponsiveDimensions,
   ResponsiveDimensions,
 } from "@/hooks/useResponsiveDimensions";
+import { useLanguageInitialization } from "@/hooks/useLanguageInitialization";
 
 // Types
 import { Language, GameMode } from "@/types";
@@ -41,7 +42,7 @@ import { Language, GameMode } from "@/types";
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [language, setLanguage] = useState<Language>("uk");
+  const { language, isLoading: isLanguageLoading, setLanguage } = useLanguageInitialization();
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const shouldStartGame = useRef<boolean>(false);
   const t = TRANSLATIONS[language];
@@ -104,8 +105,8 @@ export default function App() {
     setGameMode(null);
   };
 
-  // Don't render app until fonts are loaded
-  if (!fontsLoaded && !fontError) {
+  // Don't render app until fonts and language are loaded
+  if ((!fontsLoaded && !fontError) || isLanguageLoading) {
     return null;
   }
 
