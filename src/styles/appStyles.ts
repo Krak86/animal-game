@@ -11,24 +11,34 @@ export const getAppStyles = (responsive: ResponsiveDimensions) =>
       backgroundColor: COLORS.background,
     },
     scrollContent: {
-      paddingTop: responsive.spacing.lg,
+      paddingTop: responsive.isLandscape
+        ? responsive.spacing.sm
+        : responsive.spacing.lg,
       paddingHorizontal: responsive.spacing.sm,
       paddingBottom: responsive.spacing.lg,
       flexGrow: 1,
     },
     scoreContainer: {
       alignItems: "center",
-      marginBottom: responsive.spacing.sm,
+      marginBottom: responsive.isLandscape
+        ? responsive.spacing.xs
+        : responsive.spacing.sm,
     },
     scoreText: {
-      fontSize: 24 * responsive.fontScale,
+      fontSize: responsive.isLandscape
+        ? 18 * responsive.fontScale
+        : 24 * responsive.fontScale,
       fontFamily: FONTS.bold,
       color: COLORS.accent,
     },
     questionContainer: {
       alignItems: "center",
-      marginBottom: responsive.spacing.lg,
-      padding: responsive.spacing.lg,
+      marginBottom: responsive.isLandscape
+        ? responsive.spacing.sm
+        : responsive.spacing.lg,
+      padding: responsive.isLandscape
+        ? responsive.spacing.md
+        : responsive.spacing.lg,
       backgroundColor: COLORS.secondary,
       borderRadius: 20,
       marginHorizontal: responsive.spacing.lg,
@@ -39,15 +49,19 @@ export const getAppStyles = (responsive: ResponsiveDimensions) =>
       elevation: 5,
     },
     questionText: {
-      fontSize: 24 * responsive.fontScale,
+      fontSize: responsive.isLandscape
+        ? 18 * responsive.fontScale
+        : 24 * responsive.fontScale,
       fontFamily: FONTS.semiBold,
       color: COLORS.dark,
     },
     animalNameText: {
-      fontSize: 36 * responsive.fontScale,
+      fontSize: responsive.isLandscape
+        ? 24 * responsive.fontScale
+        : 36 * responsive.fontScale,
       fontFamily: FONTS.bold,
       color: COLORS.accent,
-      marginTop: 5,
+      marginTop: responsive.isLandscape ? 0 : 5,
     },
     gridContainer: {
       flexDirection: "row",

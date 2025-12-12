@@ -42,7 +42,11 @@ import { Language, GameMode } from "@/types";
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const { language, isLoading: isLanguageLoading, setLanguage } = useLanguageInitialization();
+  const {
+    language,
+    isLoading: isLanguageLoading,
+    setLanguage,
+  } = useLanguageInitialization();
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const shouldStartGame = useRef<boolean>(false);
   const t = TRANSLATIONS[language];
@@ -133,6 +137,7 @@ export default function App() {
                 style={styles.resetButton}
                 onPress={handleResetGame}
                 activeOpacity={0.7}
+                id="return-to-home-page"
               >
                 <Text style={styles.resetButtonText}>
                   🏠 {t.startFromBeginning}
@@ -193,10 +198,10 @@ export default function App() {
 const getLocalStyles = (responsive: ResponsiveDimensions) =>
   StyleSheet.create({
     topBar: {
-      flexDirection: "row",
+      flexDirection: responsive.isLandscape ? "row" : "column",
       justifyContent: "flex-start",
       gap: responsive.spacing.sm,
-      alignItems: "center",
+      alignItems: responsive.isLandscape ? "center" : "stretch",
       paddingHorizontal: responsive.spacing.sm,
     },
     resetButton: {

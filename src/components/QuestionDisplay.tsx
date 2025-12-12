@@ -1,4 +1,10 @@
-import { Animated, Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  Animated,
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 
 import { getAppStyles } from "@/styles/appStyles";
 import { COLORS } from "@/styles/colors";
@@ -46,11 +52,11 @@ export const QuestionDisplay: React.FC<Props> = ({
         },
       ]}
     >
-      {gameMode === 'byName' ? (
-        <>
-          <Text style={appStyles.questionText}>{translations.findThe}</Text>
+      {gameMode === "byName" ? (
+        <View style={styles.byNameContainer}>
+          <Text style={appStyles.questionText}>{translations.findThe} </Text>
           <Text style={appStyles.animalNameText}>{animalName}</Text>
-        </>
+        </View>
       ) : (
         <View style={styles.soundModeContainer}>
           <Text style={appStyles.questionText}>{translations.whoSaysThis}</Text>
@@ -60,7 +66,9 @@ export const QuestionDisplay: React.FC<Props> = ({
               onPress={onReplaySound}
               activeOpacity={0.7}
             >
-              <Text style={styles.replayButtonText}>{translations.replaySound}</Text>
+              <Text style={styles.replayButtonText}>
+                {translations.replaySound}
+              </Text>
             </TouchableOpacity>
           )}
         </View>
@@ -71,14 +79,26 @@ export const QuestionDisplay: React.FC<Props> = ({
 
 const getQuestionDisplayStyles = (responsive: any) =>
   StyleSheet.create({
+    byNameContainer: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      alignItems: "center",
+    },
     soundModeContainer: {
       alignItems: "center",
-      gap: responsive.spacing.md,
+      gap: responsive.isLandscape
+        ? responsive.spacing.sm
+        : responsive.spacing.md,
     },
     replayButton: {
       backgroundColor: COLORS.accent,
-      paddingHorizontal: 20 * responsive.fontScale,
-      paddingVertical: 10 * responsive.fontScale,
+      paddingHorizontal: responsive.isLandscape
+        ? 15 * responsive.fontScale
+        : 20 * responsive.fontScale,
+      paddingVertical: responsive.isLandscape
+        ? 8 * responsive.fontScale
+        : 10 * responsive.fontScale,
       borderRadius: 15,
       shadowColor: COLORS.black,
       shadowOffset: { width: 0, height: 2 },
@@ -87,7 +107,9 @@ const getQuestionDisplayStyles = (responsive: any) =>
       elevation: 3,
     },
     replayButtonText: {
-      fontSize: 16 * responsive.fontScale,
+      fontSize: responsive.isLandscape
+        ? 14 * responsive.fontScale
+        : 16 * responsive.fontScale,
       fontFamily: FONTS.semiBold,
       color: COLORS.white,
     },
