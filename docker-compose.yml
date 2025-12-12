@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  animals-game-builder:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: animals-game-builder
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    tty: true
+    environment:
+      - NODE_ENV=development
+      - EAS_LOCAL_BUILD=true
+    ports:
+      - "8081:8081" # Metro bundler (якщо потрібно)
+    stdin_open: true

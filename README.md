@@ -195,6 +195,7 @@ Replace URLs in `src/constants/sounds.ts` with your own sound files for success/
 ## Game Modes Explained
 
 ### By Name Mode
+
 1. Animal name appears at top of screen
 2. Text-to-speech pronounces the name
 3. Player taps the matching animal from 6 options
@@ -203,6 +204,7 @@ Replace URLs in `src/constants/sounds.ts` with your own sound files for success/
 6. Score increases, new question appears
 
 ### By Sound Mode
+
 1. Animal sound plays automatically
 2. Player taps the animal that makes that sound
 3. Replay button available to hear sound again
@@ -239,6 +241,34 @@ eas login
 eas build:configure
 ```
 
+### Development Build (Docker)
+
+```bash
+# Rebuild the Docker image
+docker-compose build
+docker-compose build --no-cache
+
+# Start the container
+docker-compose up -d
+
+# Enter the container
+docker-compose exec animals-game-builder bash
+
+# Inside the container, install dependencies and build:
+yarn install
+# Build android folder (gradle, jar etc.)
+npx expo run:android --variant release
+# Or use EAS build locally (AAB)
+eas build --platform android --local
+# Or use EAS build locally (AAB)
+eas build --platform android --profile preview --local
+
+# Build with Gradle
+"build:android:debug": "cd android && ./gradlew assembleDebug",
+"build:android:release": "cd android && ./gradlew assembleRelease",
+"build:android:clean": "cd android && ./gradlew clean"
+```
+
 ### Android
 
 ```bash
@@ -268,9 +298,11 @@ eas submit -p ios --profile production
 ## Key Implementation Details
 
 ### Font Loading Flow
+
 The app uses expo-splash-screen to keep the splash screen visible until Montserrat fonts are fully loaded, ensuring a smooth visual experience.
 
 ### Audio Management
+
 - **Background music**: Loops with adjustable volume (0.2 normal, 0.05 ducked)
 - **Animal sounds**: Loaded on-demand from external URLs at maximum volume (1.0)
 - **Sound effects**: Success/error sounds at 0.8 volume
@@ -280,6 +312,7 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
 - **Cleanup**: Proper audio cleanup when returning to start screen or toggling sound off
 
 ### TTS (Text-to-Speech) System
+
 - **Language support**: English (en-GB) and Ukrainian (uk-UA)
 - **Voice detection**: Checks for available TTS voices on device
 - **Error handling**: Gracefully handles unsupported languages (critical for Android)
@@ -287,6 +320,7 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
 - **bySound mode**: Animal sounds play regardless of TTS availability on device
 
 ### Emoji Rendering (Android Optimization)
+
 - **Container sizing**: 110x110px containers to accommodate larger Unicode emojis
 - **Android-specific properties**: Uses `textAlignVertical`, `includeFontPadding: false`
 - **Line height**: Proper vertical spacing (65px) for emoji baseline handling
@@ -294,13 +328,16 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
 - **Cross-platform**: iOS compatibility maintained while fixing Android clipping
 
 ### Animation System
+
 - Staggered card entrance animations for visual appeal
 - Bounce effect on question display
 - Continuous subtle wiggle on animal cards
 - Smooth success overlay with scale and fade effects
 
 ### State Management Pattern
+
 All game logic centralized in `useGameLogic` custom hook:
+
 - Game state (score, current animal, animations)
 - Audio control (music, sounds, text-to-speech)
 - User interactions (animal selection, mode switching)
@@ -309,6 +346,7 @@ All game logic centralized in `useGameLogic` custom hook:
 ## Contributing
 
 Contributions are welcome! Please ensure:
+
 - TypeScript types are properly defined
 - Both English and Ukrainian translations are provided
 - Code follows existing patterns and structure
