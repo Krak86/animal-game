@@ -46,7 +46,7 @@ const isLanguageAvailable = async (languageCode: string): Promise<boolean> => {
 
 /**
  * Get the appropriate voice language code based on current language
- * @param language - Current language ('en' or 'uk')
+ * @param language - Current language ('en', 'uk', or 'ru')
  * @returns Voice language code
  */
 export const getVoiceLanguage = async (language: Language): Promise<string> => {
@@ -56,6 +56,12 @@ export const getVoiceLanguage = async (language: Language): Promise<string> => {
     if (hasUkrainian) {
       console.log("Using Ukrainian voice (uk-UA)");
       return "uk-UA";
+    }
+
+    const hasUkrainianAlt = await isLanguageAvailable("ua");
+    if (hasUkrainianAlt) {
+      console.log("Using Ukrainian voice (ua)");
+      return "ua";
     }
 
     // Try alternative Ukrainian code
@@ -70,6 +76,26 @@ export const getVoiceLanguage = async (language: Language): Promise<string> => {
     return "uk-UA";
   }
 
+  if (language === "ru") {
+    // Use Russian voice
+    const hasRussian = await isLanguageAvailable("ru-RU");
+    if (hasRussian) {
+      console.log("Using Russian voice (ru-RU)");
+      return "ru-RU";
+    }
+
+    // Try alternative Russian code
+    const hasRuAlt = await isLanguageAvailable("ru");
+    if (hasRuAlt) {
+      console.log("Using Russian voice (ru)");
+      return "ru";
+    }
+
+    // If not available, still request Russian (TTS will handle gracefully)
+    console.log("Russian voice not available, requesting ru-RU anyway");
+    return "ru-RU";
+  }
+
   // For English
   return "en-GB";
 };
@@ -77,7 +103,7 @@ export const getVoiceLanguage = async (language: Language): Promise<string> => {
 /**
  * Speaks text with background music ducking
  * @param text - Text to speak
- * @param language - Current language ('en' or 'uk')
+ * @param language - Current language ('en', 'uk', or 'ru')
  * @param backgroundMusic - Background music sound object from expo-av
  * @param onDone - Optional callback when speech finishes
  */

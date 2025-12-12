@@ -6,7 +6,7 @@ import { Audio } from 'expo-av';
  */
 
 // Language type
-export type Language = 'en' | 'uk';
+export type Language = 'en' | 'uk' | 'ru';
 
 // Game mode type
 export type GameMode = 'byName' | 'bySound';
@@ -48,6 +48,7 @@ export interface Translations {
 export interface TranslationMap {
   en: Translations;
   uk: Translations;
+  ru: Translations;
 }
 
 // Sound objects

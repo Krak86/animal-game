@@ -31,8 +31,10 @@ export const getLanguageSwitcherStyles = (responsive: ResponsiveDimensions) =>
       borderColor: COLORS.primary,
       backgroundColor: COLORS.primaryLight,
     },
-    flagEmoji: {
-      fontSize: 14 * responsive.fontScale,
+    languageText: {
+      fontSize: 13 * responsive.fontScale,
+      fontFamily: FONTS.bold,
+      color: COLORS.dark,
     },
     text: {
       fontSize: 14 * responsive.fontScale,

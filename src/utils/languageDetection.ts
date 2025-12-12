@@ -9,6 +9,7 @@ const DEFAULT_LANGUAGE: Language = "uk";
 const LOCALE_MAP: Record<string, Language> = {
   en: "en",
   uk: "uk",
+  ru: "ru",
 };
 
 /**
@@ -67,7 +68,7 @@ export function detectDeviceLocale(): Language | null {
 export async function getSavedLanguage(): Promise<Language | null> {
   try {
     const saved = await AsyncStorage.getItem(LANGUAGE_STORAGE_KEY);
-    if (saved && (saved === "en" || saved === "uk")) {
+    if (saved && (saved === "en" || saved === "uk" || saved === "ru")) {
       return saved as Language;
     }
     return null;

@@ -22,14 +22,21 @@ export const LanguageSwitcher: React.FC<Props> = ({
         style={[styles.button, language === "en" && styles.buttonActive]}
         onPress={() => onLanguageChange("en")}
       >
-        <Text style={styles.flagEmoji}>🇬🇧</Text>
+        <Text style={styles.languageText}>EN</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={[styles.button, language === "uk" && styles.buttonActive]}
         onPress={() => onLanguageChange("uk")}
       >
-        <Text style={styles.flagEmoji}>🇺🇦</Text>
+        <Text style={styles.languageText}>УКР</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, language === "ru" && styles.buttonActive]}
+        onPress={() => onLanguageChange("ru")}
+      >
+        <Text style={styles.languageText}>РУ</Text>
       </TouchableOpacity>
     </View>
   );
