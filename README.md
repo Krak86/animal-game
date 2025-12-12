@@ -250,17 +250,19 @@ docker-compose build --no-cache
 
 # Start the container
 docker-compose up -d
+#
+npm run docker:install
 
 # Enter the container
 docker-compose exec animals-game-builder bash
 
 # Inside the container, install dependencies and build:
-yarn install
+yarn install (or npm run docker:install)
 # Build android folder (gradle, jar etc.)
 npx expo run:android --variant release
 # Or use EAS build locally (AAB)
 eas build --platform android --local
-# Or use EAS build locally (AAB)
+# Or use EAS build locally (APK)
 eas build --platform android --profile preview --local
 
 # Build with Gradle

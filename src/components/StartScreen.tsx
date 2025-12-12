@@ -11,6 +11,7 @@ import { COLORS } from "@/styles/colors";
 import { FONTS } from "@/constants/fonts";
 import { TRANSLATIONS } from "@/constants/translations";
 import { LanguageSwitcher } from "@/components";
+import { useResponsiveDimensions, ResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Language, GameMode } from "@/types";
 
 interface Props {
@@ -25,6 +26,8 @@ export const StartScreen: React.FC<Props> = ({
   onLanguageChange,
 }) => {
   const t = TRANSLATIONS[language]?.startScreen || TRANSLATIONS.uk.startScreen;
+  const responsive = useResponsiveDimensions();
+  const styles = getStartScreenStyles(responsive);
 
   // Animation values for individual emoji wiggles
   const wiggle1 = useRef(new Animated.Value(0)).current;
@@ -192,74 +195,75 @@ export const StartScreen: React.FC<Props> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: COLORS.background,
-    padding: 20,
-  },
-  emojiContainer: {
-    flexDirection: "row",
-    gap: 10,
-    marginBottom: 20,
-  },
-  emoji: {
-    fontSize: 60,
-  },
-  title: {
-    fontSize: 48,
-    fontFamily: FONTS.bold,
-    color: COLORS.accent,
-    marginBottom: 10,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 24,
-    fontFamily: FONTS.medium,
-    color: COLORS.dark,
-    marginBottom: 50,
-    textAlign: "center",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    gap: 20,
-    marginTop: 20,
-  },
-  modeButton: {
-    paddingHorizontal: 30,
-    paddingVertical: 25,
-    borderRadius: 20,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    elevation: 5,
-    minWidth: 150,
-    alignItems: "center",
-  },
-  byNameButton: {
-    backgroundColor: COLORS.primary,
-  },
-  bySoundButton: {
-    backgroundColor: "#FF6B6B",
-  },
-  buttonEmoji: {
-    fontSize: 50,
-    marginBottom: 8,
-  },
-  modeButtonText: {
-    fontSize: 22,
-    fontFamily: FONTS.bold,
-    color: COLORS.white,
-    textAlign: "center",
-  },
-  modeDescription: {
-    fontSize: 12,
-    fontFamily: FONTS.regular,
-    color: COLORS.white,
-    textAlign: "center",
-    opacity: 0.9,
-  },
-});
+const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: COLORS.background,
+      padding: responsive.spacing.lg,
+    },
+    emojiContainer: {
+      flexDirection: "row",
+      gap: responsive.spacing.sm,
+      marginBottom: responsive.spacing.lg,
+    },
+    emoji: {
+      fontSize: 60 * responsive.fontScale,
+    },
+    title: {
+      fontSize: 48 * responsive.fontScale,
+      fontFamily: FONTS.bold,
+      color: COLORS.accent,
+      marginBottom: responsive.spacing.sm,
+      textAlign: "center",
+    },
+    subtitle: {
+      fontSize: 24 * responsive.fontScale,
+      fontFamily: FONTS.medium,
+      color: COLORS.dark,
+      marginBottom: responsive.spacing.xl * 1.5,
+      textAlign: "center",
+    },
+    buttonContainer: {
+      flexDirection: responsive.isPortrait || responsive.width > 500 ? "row" : "column",
+      gap: responsive.spacing.lg,
+      marginTop: responsive.spacing.lg,
+    },
+    modeButton: {
+      paddingHorizontal: 30,
+      paddingVertical: 25,
+      borderRadius: 20,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 5 },
+      shadowOpacity: 0.3,
+      shadowRadius: 10,
+      elevation: 5,
+      minWidth: 150,
+      alignItems: "center",
+    },
+    byNameButton: {
+      backgroundColor: COLORS.primary,
+    },
+    bySoundButton: {
+      backgroundColor: "#FF6B6B",
+    },
+    buttonEmoji: {
+      fontSize: 50 * responsive.fontScale,
+      marginBottom: responsive.spacing.xs,
+    },
+    modeButtonText: {
+      fontSize: 22 * responsive.fontScale,
+      fontFamily: FONTS.bold,
+      color: COLORS.white,
+      textAlign: "center",
+    },
+    modeDescription: {
+      fontSize: 12 * responsive.fontScale,
+      fontFamily: FONTS.regular,
+      color: COLORS.white,
+      textAlign: "center",
+      opacity: 0.9,
+    },
+  });

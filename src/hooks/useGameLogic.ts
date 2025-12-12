@@ -119,6 +119,20 @@ export const useGameLogic = (
         await pauseBackgroundMusic(backgroundMusic.current);
       }
 
+      // Ensure background music is fully loaded before proceeding
+      if (backgroundMusic.current) {
+        try {
+          const status = await backgroundMusic.current.getStatusAsync();
+          if (!status.isLoaded) {
+            console.warn("Background music not fully loaded, waiting...");
+            // Small delay to ensure audio is ready
+            await new Promise((resolve) => setTimeout(resolve, 100));
+          }
+        } catch (error) {
+          console.warn("Error checking background music status:", error);
+        }
+      }
+
       startNewRound();
       startAnimalAnimations();
     }

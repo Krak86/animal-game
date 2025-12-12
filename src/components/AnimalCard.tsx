@@ -1,6 +1,7 @@
 import { TouchableOpacity, View, Image, Animated } from "react-native";
 
-import { animalCardStyles as styles } from "@/styles/componentStyles";
+import { getAnimalCardStyles } from "@/styles/componentStyles";
+import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Animal, Translations } from "@/types";
 
 interface Props {
@@ -20,6 +21,9 @@ export const AnimalCard: React.FC<Props> = ({
   translations,
   onPress,
 }) => {
+  const responsive = useResponsiveDimensions();
+  const styles = getAnimalCardStyles(responsive);
+
   return (
     <Animated.View
       style={[

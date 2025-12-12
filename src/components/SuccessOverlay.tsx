@@ -1,6 +1,7 @@
 import { Animated, Text } from "react-native";
 
-import { successOverlayStyles as styles } from "@/styles/componentStyles";
+import { getSuccessOverlayStyles } from "@/styles/componentStyles";
+import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Translations } from "@/types";
 
 interface Props {
@@ -16,6 +17,9 @@ export const SuccessOverlay: React.FC<Props> = ({
   successScale,
   successOpacity,
 }) => {
+  const responsive = useResponsiveDimensions();
+  const styles = getSuccessOverlayStyles(responsive);
+
   if (!visible) return null;
 
   return (

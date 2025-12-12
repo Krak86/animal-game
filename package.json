@@ -10,7 +10,10 @@
     "docker:build": "docker-compose build",
     "docker:build:no-cache": "docker-compose build --no-cache",
     "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
     "docker:exec": "docker-compose exec animals-game-builder bash",
+    "docker:install": "docker-compose exec animals-game-builder yarn install",
+    "docker:clean": "docker-compose down -v",
     "build:android:debug": "cd android && ./gradlew assembleDebug",
     "build:android:release": "cd android && ./gradlew assembleRelease",
     "build:android:clean": "cd android && ./gradlew clean"

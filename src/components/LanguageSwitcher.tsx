@@ -1,6 +1,7 @@
 import { View, TouchableOpacity, Text } from "react-native";
 
-import { languageSwitcherStyles as styles } from "@/styles/componentStyles";
+import { getLanguageSwitcherStyles } from "@/styles/componentStyles";
+import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Language } from "@/types";
 
 interface Props {
@@ -12,6 +13,9 @@ export const LanguageSwitcher: React.FC<Props> = ({
   language,
   onLanguageChange,
 }) => {
+  const responsive = useResponsiveDimensions();
+  const styles = getLanguageSwitcherStyles(responsive);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity

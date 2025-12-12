@@ -1,9 +1,10 @@
 import { Animated, Text, View, TouchableOpacity, StyleSheet } from "react-native";
 
-import { appStyles } from "@/styles/appStyles";
+import { getAppStyles } from "@/styles/appStyles";
 import { COLORS } from "@/styles/colors";
 import { FONTS } from "@/constants/fonts";
 import { Animal, Translations, GameMode } from "@/types";
+import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 
 interface Props {
   currentAnimal: Animal | null;
@@ -20,6 +21,10 @@ export const QuestionDisplay: React.FC<Props> = ({
   gameMode,
   onReplaySound,
 }) => {
+  const responsive = useResponsiveDimensions();
+  const appStyles = getAppStyles(responsive);
+  const styles = getQuestionDisplayStyles(responsive);
+
   if (!currentAnimal) return null;
 
   const animalName = translations.animals[currentAnimal.name];
@@ -64,25 +69,26 @@ export const QuestionDisplay: React.FC<Props> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  soundModeContainer: {
-    alignItems: "center",
-    gap: 15,
-  },
-  replayButton: {
-    backgroundColor: COLORS.accent,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 15,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  replayButtonText: {
-    fontSize: 16,
-    fontFamily: FONTS.semiBold,
-    color: COLORS.white,
-  },
-});
+const getQuestionDisplayStyles = (responsive: any) =>
+  StyleSheet.create({
+    soundModeContainer: {
+      alignItems: "center",
+      gap: responsive.spacing.md,
+    },
+    replayButton: {
+      backgroundColor: COLORS.accent,
+      paddingHorizontal: 20 * responsive.fontScale,
+      paddingVertical: 10 * responsive.fontScale,
+      borderRadius: 15,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.2,
+      shadowRadius: 4,
+      elevation: 3,
+    },
+    replayButtonText: {
+      fontSize: 16 * responsive.fontScale,
+      fontFamily: FONTS.semiBold,
+      color: COLORS.white,
+    },
+  });

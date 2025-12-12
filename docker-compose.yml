@@ -8,11 +8,17 @@ services:
     container_name: animals-game-builder
     volumes:
       - ./:/workspace
+      - node_modules:/workspace/node_modules  # Separate volume for Linux node_modules
+      - gradle_cache:/root/.gradle  # Cache Gradle dependencies
     working_dir: /workspace
     tty: true
     environment:
       - NODE_ENV=development
       - EAS_LOCAL_BUILD=true
     ports:
-      - "8081:8081" # Metro bundler (якщо потрібно)
+      - "8081:8081" # Metro bundler
     stdin_open: true
+
+volumes:
+  node_modules:  # Docker-managed volume for node_modules
+  gradle_cache:  # Docker-managed volume for Gradle cache

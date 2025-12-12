@@ -104,7 +104,10 @@ export const speakText = async (
   try {
     // Duck (reduce) background music volume
     if (backgroundMusic) {
-      await backgroundMusic.setVolumeAsync(0.05); // Very quiet during speech
+      const status = await backgroundMusic.getStatusAsync();
+      if (status.isLoaded) {
+        await backgroundMusic.setVolumeAsync(0.05); // Very quiet during speech
+      }
     }
 
     isSpeaking = true;
@@ -126,7 +129,11 @@ export const speakText = async (
         isSpeaking = false;
         // Restore background music volume
         if (backgroundMusic) {
-          backgroundMusic.setVolumeAsync(0.2); // Normal background volume
+          backgroundMusic.getStatusAsync().then((status) => {
+            if (status.isLoaded) {
+              backgroundMusic.setVolumeAsync(0.2); // Normal background volume
+            }
+          });
         }
         if (onDone) {
           onDone();
@@ -137,7 +144,11 @@ export const speakText = async (
         isSpeaking = false;
         // Restore background music volume
         if (backgroundMusic) {
-          backgroundMusic.setVolumeAsync(0.2);
+          backgroundMusic.getStatusAsync().then((status) => {
+            if (status.isLoaded) {
+              backgroundMusic.setVolumeAsync(0.2);
+            }
+          });
         }
       },
       onError: (error: Error) => {
@@ -145,7 +156,11 @@ export const speakText = async (
         isSpeaking = false;
         // Restore background music volume even on error
         if (backgroundMusic) {
-          backgroundMusic.setVolumeAsync(0.2);
+          backgroundMusic.getStatusAsync().then((status) => {
+            if (status.isLoaded) {
+              backgroundMusic.setVolumeAsync(0.2);
+            }
+          });
         }
         // Call onDone callback even when TTS fails
         if (onDone) {
@@ -158,7 +173,10 @@ export const speakText = async (
     isSpeaking = false;
     // Restore background music volume
     if (backgroundMusic) {
-      await backgroundMusic.setVolumeAsync(0.2);
+      const status = await backgroundMusic.getStatusAsync();
+      if (status.isLoaded) {
+        await backgroundMusic.setVolumeAsync(0.2);
+      }
     }
     // Call onDone callback even when exception occurs
     if (onDone) {

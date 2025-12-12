@@ -25,10 +25,14 @@ import { TRANSLATIONS } from "@/constants/translations";
 import { FONTS } from "@/constants/fonts";
 
 // Styles
-import { appStyles } from "@/styles/appStyles";
+import { getAppStyles } from "@/styles/appStyles";
 
-// Custom hook
+// Custom hooks
 import { useGameLogic } from "@/hooks/useGameLogic";
+import {
+  useResponsiveDimensions,
+  ResponsiveDimensions,
+} from "@/hooks/useResponsiveDimensions";
 
 // Types
 import { Language, GameMode } from "@/types";
@@ -41,6 +45,11 @@ export default function App() {
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const shouldStartGame = useRef<boolean>(false);
   const t = TRANSLATIONS[language];
+
+  // Responsive dimensions
+  const responsive = useResponsiveDimensions();
+  const appStyles = getAppStyles(responsive);
+  const styles = getLocalStyles(responsive);
 
   // Load Montserrat fonts
   const [fontsLoaded, fontError] = useFonts({
@@ -180,28 +189,29 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  topBar: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    gap: 10,
-    alignItems: "center",
-    paddingHorizontal: 10,
-  },
-  resetButton: {
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    backgroundColor: "#FFE66D",
-    borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
-  },
-  resetButtonText: {
-    fontSize: 14,
-    fontFamily: FONTS.semiBold,
-    color: "#333",
-  },
-});
+const getLocalStyles = (responsive: ResponsiveDimensions) =>
+  StyleSheet.create({
+    topBar: {
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      gap: responsive.spacing.sm,
+      alignItems: "center",
+      paddingHorizontal: responsive.spacing.sm,
+    },
+    resetButton: {
+      paddingHorizontal: 15,
+      paddingVertical: 8,
+      backgroundColor: "#FFE66D",
+      borderRadius: 20,
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3,
+      elevation: 2,
+    },
+    resetButtonText: {
+      fontSize: 14 * responsive.fontScale,
+      fontFamily: FONTS.semiBold,
+      color: "#333",
+    },
+  });
