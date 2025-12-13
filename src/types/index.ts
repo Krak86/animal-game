@@ -9,7 +9,7 @@ import { Audio } from 'expo-av';
 export type Language = 'en' | 'uk' | 'ru';
 
 // Game mode type
-export type GameMode = 'byName' | 'bySound';
+export type GameMode = 'byName' | 'bySound' | 'showAll';
 
 // Animal definition
 export interface Animal {
@@ -19,6 +19,13 @@ export interface Animal {
   image: string;
   soundUrl?: string;        // Optional: animal sound URL
   modes: GameMode[];        // Which modes this animal appears in
+  // Optional fields for future exhibition features
+  images?: string[];        // Multiple images for gallery
+  videos?: string[];        // Video URLs
+  extraSounds?: string[];   // Additional sounds
+  description?: string;     // Animal description/facts
+  wikipediaUrls?: string[]; // Links to Wikipedia
+  otherUrls?: string[];     // Other reference URLs
 }
 
 // Translation structure
@@ -31,6 +38,7 @@ export interface ScreenTranslations {
   subtitle: string;
   byName: string;           // "By Name" button
   bySound: string;          // "By Sound" button
+  showAll: string;          // "Show All" button
 }
 
 export interface Translations {
@@ -42,6 +50,10 @@ export interface Translations {
   startFromBeginning: string;
   whoSaysThis: string;      // "Who says so?" for By Sound mode
   replaySound: string;      // "Play Again" button text
+  showAllTitle: string;     // "All Animals" title
+  backToList: string;       // "Back to all animals" button
+  speakName: string;        // "Speak Name" TTS button
+  playSound: string;        // "Play Sound" button
   animals: AnimalTranslations;
 }
 

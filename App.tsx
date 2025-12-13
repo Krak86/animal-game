@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 // Components
 import {
@@ -19,11 +20,14 @@ import {
   SuccessOverlay,
   StartScreen,
   SoundToggle,
+  AnimalsListView,
+  AnimalDetailView,
 } from "@/components";
 
 // Constants
 import { TRANSLATIONS } from "@/constants/translations";
 import { FONTS } from "@/constants/fonts";
+import { ANIMALS } from "@/constants/animals";
 
 // Styles
 import { getAppStyles } from "@/styles/appStyles";
@@ -36,8 +40,12 @@ import {
 } from "@/hooks/useResponsiveDimensions";
 import { useLanguageInitialization } from "@/hooks/useLanguageInitialization";
 
+// Audio utilities
+import { loadBackgroundMusic, pauseBackgroundMusic, resumeBackgroundMusic } from "@/utils/audio";
+import { Audio } from "expo-av";
+
 // Types
-import { Language, GameMode } from "@/types";
+import { Language, GameMode, Animal } from "@/types";
 
 // Keep splash screen visible while loading fonts
 SplashScreen.preventAutoHideAsync();
@@ -50,7 +58,12 @@ export default function App() {
   } = useLanguageInitialization();
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const shouldStartGame = useRef<boolean>(false);
+  const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
+  const [showAnimalDetail, setShowAnimalDetail] = useState<boolean>(false);
   const t = TRANSLATIONS[language];
+
+  // Background music for exhibition mode
+  const exhibitionBackgroundMusic = useRef<Audio.Sound | null>(null);
 
   // Responsive dimensions
   const responsive = useResponsiveDimensions();
@@ -93,6 +106,43 @@ export default function App() {
     }
   }, [gameMode, startGame]);
 
+  // Manage exhibition mode background music
+  useEffect(() => {
+    const loadExhibitionMusic = async () => {
+      if (gameMode === 'showAll') {
+        // Load and start background music for exhibition mode
+        const music = await loadBackgroundMusic(isSoundEnabled);
+        exhibitionBackgroundMusic.current = music;
+      } else {
+        // Stop and unload music when leaving exhibition mode
+        if (exhibitionBackgroundMusic.current) {
+          await exhibitionBackgroundMusic.current.unloadAsync();
+          exhibitionBackgroundMusic.current = null;
+        }
+      }
+    };
+
+    loadExhibitionMusic();
+
+    // Cleanup on unmount
+    return () => {
+      if (exhibitionBackgroundMusic.current) {
+        exhibitionBackgroundMusic.current.unloadAsync();
+      }
+    };
+  }, [gameMode, isSoundEnabled]);
+
+  // Handle sound toggle for exhibition mode
+  useEffect(() => {
+    if (gameMode === 'showAll') {
+      if (isSoundEnabled) {
+        resumeBackgroundMusic(exhibitionBackgroundMusic.current);
+      } else {
+        pauseBackgroundMusic(exhibitionBackgroundMusic.current);
+      }
+    }
+  }, [isSoundEnabled, gameMode]);
+
   // Hide splash screen when fonts are loaded
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {
@@ -101,13 +151,42 @@ export default function App() {
   }, [fontsLoaded, fontError]);
 
   const handleStartGame = (mode: GameMode): void => {
-    shouldStartGame.current = true;
-    setGameMode(mode);
+    if (mode === 'showAll') {
+      // Exhibition mode: just set mode, skip game logic
+      setGameMode(mode);
+    } else {
+      // Game modes: use existing logic
+      shouldStartGame.current = true;
+      setGameMode(mode);
+    }
   };
 
   const handleResetGame = async (): Promise<void> => {
-    await resetGame();
+    if (gameMode === 'showAll') {
+      // Exhibition mode: simple reset, no game cleanup
+      handleBackToStart();
+    } else {
+      // Game modes: use existing cleanup
+      await resetGame();
+      setGameMode(null);
+    }
+  };
+
+  // Exhibition mode event handlers
+  const handleAnimalSelect = (animal: Animal): void => {
+    setSelectedAnimal(animal);
+    setShowAnimalDetail(true);
+  };
+
+  const handleBackToList = (): void => {
+    setShowAnimalDetail(false);
+    setSelectedAnimal(null);
+  };
+
+  const handleBackToStart = (): void => {
     setGameMode(null);
+    setShowAnimalDetail(false);
+    setSelectedAnimal(null);
   };
 
   // Don't render app until fonts and language are loaded
@@ -116,17 +195,43 @@ export default function App() {
   }
 
   return (
-    <View style={appStyles.container} onLayout={onLayoutRootView}>
-      <StatusBar style="auto" />
+    <SafeAreaProvider>
+      <View style={appStyles.container} onLayout={onLayoutRootView}>
+        <StatusBar style="auto" />
 
-      <SoundToggle isSoundEnabled={isSoundEnabled} onToggle={toggleSound} />
+      {/* Show SoundToggle for all modes except start screen */}
+      {(gameStarted || gameMode === 'showAll') && (
+        <SoundToggle isSoundEnabled={isSoundEnabled} onToggle={toggleSound} />
+      )}
 
-      {!gameStarted ? (
+      {!gameStarted && gameMode !== 'showAll' ? (
         <StartScreen
           onStart={handleStartGame}
           language={language}
           onLanguageChange={setLanguage}
         />
+      ) : gameMode === 'showAll' ? (
+        showAnimalDetail ? (
+          <AnimalDetailView
+            animal={selectedAnimal!}
+            translations={t}
+            language={language}
+            onLanguageChange={setLanguage}
+            onBackPress={handleBackToList}
+            isSoundEnabled={isSoundEnabled}
+            backgroundMusic={exhibitionBackgroundMusic.current}
+          />
+        ) : (
+          <AnimalsListView
+            animals={ANIMALS}
+            translations={t}
+            language={language}
+            onLanguageChange={setLanguage}
+            onAnimalPress={handleAnimalSelect}
+            onBackPress={handleBackToStart}
+            isSoundEnabled={isSoundEnabled}
+          />
+        )
       ) : (
         <>
           <ScrollView
@@ -192,7 +297,8 @@ export default function App() {
           />
         </>
       )}
-    </View>
+      </View>
+    </SafeAreaProvider>
   );
 }
 

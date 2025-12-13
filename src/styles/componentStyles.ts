@@ -219,3 +219,135 @@ export const getSuccessOverlayStyles = (responsive: ResponsiveDimensions) =>
       fontFamily: FONTS.semiBold,
     },
   });
+
+export const getAnimalsListViewStyles = (responsive: ResponsiveDimensions) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: COLORS.background,
+    },
+    header: {
+      flexDirection: responsive.isLandscape ? "row" : "column",
+      justifyContent: "space-between",
+      alignItems: responsive.isLandscape ? "center" : "stretch",
+      paddingHorizontal: responsive.spacing.sm,
+      paddingVertical: responsive.spacing.sm,
+      gap: responsive.spacing.sm,
+    },
+    backButton: {
+      paddingHorizontal: 15,
+      paddingVertical: 8,
+      backgroundColor: COLORS.secondary,
+      borderRadius: 20,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3,
+      elevation: 2,
+    },
+    backButtonText: {
+      fontSize: 14 * responsive.fontScale,
+      fontFamily: FONTS.semiBold,
+      color: COLORS.dark,
+    },
+    titleContainer: {
+      alignItems: "center",
+      paddingVertical: responsive.spacing.md,
+    },
+    title: {
+      fontSize: responsive.isLandscape
+        ? 24 * responsive.fontScale
+        : 32 * responsive.fontScale,
+      fontFamily: FONTS.bold,
+      color: COLORS.accent,
+    },
+    gridContainer: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+      paddingHorizontal: responsive.spacing.sm,
+      paddingBottom: responsive.spacing.lg,
+    },
+    scrollContent: {
+      flexGrow: 1,
+    },
+  });
+
+export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: COLORS.background,
+    },
+    header: {
+      flexDirection: responsive.isLandscape ? "row" : "column",
+      justifyContent: "space-between",
+      alignItems: responsive.isLandscape ? "center" : "stretch",
+      paddingHorizontal: responsive.spacing.sm,
+      paddingVertical: responsive.spacing.sm,
+      gap: responsive.spacing.sm,
+    },
+    backButton: {
+      paddingHorizontal: 15,
+      paddingVertical: 8,
+      backgroundColor: COLORS.secondary,
+      borderRadius: 20,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3,
+      elevation: 2,
+    },
+    backButtonText: {
+      fontSize: 14 * responsive.fontScale,
+      fontFamily: FONTS.semiBold,
+      color: COLORS.dark,
+    },
+    contentContainer: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      paddingHorizontal: responsive.spacing.lg,
+    },
+    emoji: {
+      fontSize: responsive.isLandscape
+        ? 100 * responsive.fontScale
+        : 140 * responsive.fontScale,
+      marginBottom: responsive.spacing.lg,
+    },
+    animalName: {
+      fontSize: responsive.isLandscape
+        ? 32 * responsive.fontScale
+        : 42 * responsive.fontScale,
+      fontFamily: FONTS.bold,
+      color: COLORS.accent,
+      marginBottom: responsive.spacing.xl,
+      textAlign: "center",
+    },
+    buttonContainer: {
+      flexDirection: "row",
+      gap: responsive.spacing.md,
+      marginTop: responsive.spacing.lg,
+      flexWrap: "wrap",
+      justifyContent: "center",
+    },
+    actionButton: {
+      paddingHorizontal: 25,
+      paddingVertical: 15,
+      borderRadius: 20,
+      backgroundColor: COLORS.primary,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 3 },
+      shadowOpacity: 0.2,
+      shadowRadius: 5,
+      elevation: 3,
+      minWidth: 130,
+      alignItems: "center",
+    },
+    actionButtonText: {
+      fontSize: 16 * responsive.fontScale,
+      fontFamily: FONTS.semiBold,
+      color: COLORS.white,
+      textAlign: "center",
+    },
+  });

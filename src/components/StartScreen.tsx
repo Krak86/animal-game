@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Animated,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { COLORS } from "@/styles/colors";
 import { FONTS } from "@/constants/fonts";
@@ -31,6 +32,7 @@ export const StartScreen: React.FC<Props> = ({
   const t = TRANSLATIONS[language]?.startScreen || TRANSLATIONS.uk.startScreen;
   const responsive = useResponsiveDimensions();
   const styles = getStartScreenStyles(responsive);
+  const insets = useSafeAreaInsets();
 
   // Animation values for individual emoji wiggles
   const wiggle1 = useRef(new Animated.Value(0)).current;
@@ -72,7 +74,7 @@ export const StartScreen: React.FC<Props> = ({
   }, [wiggle1, wiggle2, wiggle3, wiggle4]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
       <LanguageSwitcher
         language={language}
         onLanguageChange={onLanguageChange}
@@ -176,23 +178,38 @@ export const StartScreen: React.FC<Props> = ({
       <Text style={styles.subtitle}>{t.subtitle}</Text>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.modeButton, styles.byNameButton]}
-          onPress={() => onStart("byName")}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.buttonEmoji}>📝</Text>
-          <Text style={styles.modeButtonText}>{t.byName}</Text>
-        </TouchableOpacity>
+        {/* First row: By Name and By Sound buttons */}
+        <View style={styles.buttonRow}>
+          <TouchableOpacity
+            style={[styles.modeButton, styles.byNameButton]}
+            onPress={() => onStart("byName")}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.buttonEmoji}>📝</Text>
+            <Text style={styles.modeButtonText}>{t.byName}</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[styles.modeButton, styles.bySoundButton]}
-          onPress={() => onStart("bySound")}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.buttonEmoji}>🔊</Text>
-          <Text style={styles.modeButtonText}>{t.bySound}</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.modeButton, styles.bySoundButton]}
+            onPress={() => onStart("bySound")}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.buttonEmoji}>🔊</Text>
+            <Text style={styles.modeButtonText}>{t.bySound}</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Second row: Show All button */}
+        <View style={styles.buttonRow}>
+          <TouchableOpacity
+            style={[styles.modeButton, styles.showAllButton]}
+            onPress={() => onStart("showAll")}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.buttonEmoji}>🖼️</Text>
+            <Text style={styles.modeButtonText}>{t.showAll}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -242,11 +259,17 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
       textAlign: "center",
     },
     buttonContainer: {
-      flexDirection: "row",
-      gap: responsive.spacing.lg,
+      flexDirection: "column",
+      gap: responsive.spacing.md,
       marginTop: responsive.isLandscape
         ? responsive.spacing.sm
         : responsive.spacing.lg,
+      alignItems: "center",
+    },
+    buttonRow: {
+      flexDirection: "row",
+      gap: responsive.spacing.lg,
+      justifyContent: "center",
     },
     modeButton: {
       paddingHorizontal: responsive.isLandscape ? 20 : 30,
@@ -265,6 +288,9 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
     },
     bySoundButton: {
       backgroundColor: "#FF6B6B",
+    },
+    showAllButton: {
+      backgroundColor: "#9B59B6",
     },
     buttonEmoji: {
       fontSize: responsive.isLandscape

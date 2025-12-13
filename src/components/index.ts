@@ -6,3 +6,5 @@ export { AnimalCard } from './AnimalCard';
 export { SuccessOverlay } from './SuccessOverlay';
 export { StartScreen } from './StartScreen';
 export { SoundToggle } from './SoundToggle';
+export { AnimalsListView } from './AnimalsListView';
+export { AnimalDetailView } from './AnimalDetailView';

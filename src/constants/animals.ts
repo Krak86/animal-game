@@ -14,7 +14,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐕",
     image: "https://picsum.photos/seed/dog/200/200",
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/1/1-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐈",
     image: "https://picsum.photos/seed/cat/200/200",
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/93/93-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦁",
     image: "https://picsum.photos/seed/lion/200/200",
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/6/6-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 4,
@@ -39,14 +39,14 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/elephant/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Elefant.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 5,
     name: "Giraffe",
     emoji: "🦒",
     image: "https://picsum.photos/seed/giraffe/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 6,
@@ -54,21 +54,21 @@ export const ANIMALS: Animal[] = [
     emoji: "🐒",
     image: "https://picsum.photos/seed/monkey/200/200",
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/108/108-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 7,
     name: "Penguin",
     emoji: "🐧",
     image: "https://picsum.photos/seed/penguin/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 8,
     name: "Zebra",
     emoji: "🦓",
     image: "https://picsum.photos/seed/zebra/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 9,
@@ -77,14 +77,14 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/tiger/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Tiger.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 10,
     name: "Rabbit",
     emoji: "🐰",
     image: "https://picsum.photos/seed/rabbit/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 11,
@@ -93,7 +93,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/rooster/200/200",
     soundUrl:
       "https://assets.mixkit.co/active_storage/sfx/2462/2462-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 12,
@@ -102,7 +102,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/cow/200/200",
     soundUrl:
       "https://assets.mixkit.co/active_storage/sfx/1751/1751-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 13,
@@ -110,7 +110,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐴",
     image: "https://picsum.photos/seed/horse/200/200",
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/85/85-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 14,
@@ -118,7 +118,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐦",
     image: "https://picsum.photos/seed/bird/200/200",
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/17/17-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 15,
@@ -127,7 +127,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/wolf/200/200",
     soundUrl:
       "https://assets.mixkit.co/active_storage/sfx/1775/1775-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 16,
@@ -135,7 +135,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🪿",
     image: "https://picsum.photos/seed/goose/200/200",
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/20/20-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 17,
@@ -144,7 +144,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/donkey/200/200",
     soundUrl:
       "https://assets.mixkit.co/active_storage/sfx/1770/1770-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 18,
@@ -152,84 +152,84 @@ export const ANIMALS: Animal[] = [
     emoji: "🐻",
     image: "https://picsum.photos/seed/bear/200/200",
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/309/309-preview.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 19,
     name: "Shark",
     emoji: "🦈",
     image: "https://picsum.photos/seed/shark/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 20,
     name: "Turtle",
     emoji: "🐢",
     image: "https://picsum.photos/seed/turtle/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 21,
     name: "Octopus",
     emoji: "🐙",
     image: "https://picsum.photos/seed/octopus/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 22,
     name: "Crab",
     emoji: "🦀",
     image: "https://picsum.photos/seed/crab/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 23,
     name: "Whale",
     emoji: "🐋",
     image: "https://picsum.photos/seed/whale/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 24,
     name: "Dolphin",
     emoji: "🐬",
     image: "https://picsum.photos/seed/dolphin/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 25,
     name: "Snail",
     emoji: "🐌",
     image: "https://picsum.photos/seed/snail/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 26,
     name: "Ant",
     emoji: "🐜",
     image: "https://picsum.photos/seed/ant/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 27,
     name: "Ladybug",
     emoji: "🐞",
     image: "https://picsum.photos/seed/ladybug/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 28,
     name: "Crocodile",
     emoji: "🐊",
     image: "https://picsum.photos/seed/crocodile/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 29,
     name: "Bat",
     emoji: "🦇",
     image: "https://picsum.photos/seed/bat/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 30,
@@ -238,21 +238,21 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/parrot/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/RedParot.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 31,
     name: "Moose",
     emoji: "🦌",
     image: "https://picsum.photos/seed/moose/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 32,
     name: "Llama",
     emoji: "🦙",
     image: "https://picsum.photos/seed/llama/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 33,
@@ -261,7 +261,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/buffalo/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/bison.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 34,
@@ -270,7 +270,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/turkey/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/truthahn.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 35,
@@ -279,14 +279,14 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/peacock/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/08/peacock.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 36,
     name: "Swan",
     emoji: "🦢",
     image: "https://picsum.photos/seed/swan/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 37,
@@ -294,77 +294,77 @@ export const ANIMALS: Animal[] = [
     emoji: "🐝",
     image: "https://picsum.photos/seed/bee/200/200",
     soundUrl: "https://freeanimalsounds.org/wp-content/uploads/2017/07/bee.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 38,
     name: "Caterpillar",
     emoji: "🐛",
     image: "https://picsum.photos/seed/caterpillar/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 39,
     name: "Scorpion",
     emoji: "🦂",
     image: "https://picsum.photos/seed/scorpion/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 40,
     name: "Lobster",
     emoji: "🦞",
     image: "https://picsum.photos/seed/lobster/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 41,
     name: "Seal",
     emoji: "🦭",
     image: "https://picsum.photos/seed/seal/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 42,
     name: "Raccoon",
     emoji: "🦝",
     image: "https://picsum.photos/seed/raccoon/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 43,
     name: "Badger",
     emoji: "🦡",
     image: "https://picsum.photos/seed/badger/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 44,
     name: "Boar",
     emoji: "🐗",
     image: "https://picsum.photos/seed/boar/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 45,
     name: "Camel",
     emoji: "🐪",
     image: "https://picsum.photos/seed/camel2/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 46,
     name: "Chameleon",
     emoji: "🦎",
     image: "https://picsum.photos/seed/chameleon/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 47,
     name: "Flamingo",
     emoji: "🦩",
     image: "https://picsum.photos/seed/flamingo/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 48,
@@ -373,14 +373,14 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/gorilla/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Gorilla.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 49,
     name: "Kangaroo",
     emoji: "🦘",
     image: "https://picsum.photos/seed/kangaroo/200/200",
-    modes: ["byName"],
+    modes: ["byName", "showAll"],
   },
   {
     id: 50,
@@ -389,7 +389,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/leopard/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Leopard.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 51,
@@ -398,7 +398,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/sheep/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/schafe.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 52,
@@ -407,7 +407,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/chicken/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/huehner.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 53,
@@ -416,7 +416,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/pig/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/schwein.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 54,
@@ -425,7 +425,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/goat/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Ziege.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 55,
@@ -434,7 +434,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/bull/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/ochse.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 56,
@@ -443,7 +443,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/duck/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Ente_quackt.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 57,
@@ -452,7 +452,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/lamb/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/schaf.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 58,
@@ -461,7 +461,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/snake/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/rattlesnake.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 59,
@@ -470,7 +470,7 @@ export const ANIMALS: Animal[] = [
     image: "https://picsum.photos/seed/raven/200/200",
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/rabe.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
   {
     id: 60,
@@ -478,7 +478,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦉",
     image: "https://picsum.photos/seed/owl/200/200",
     soundUrl: "https://freeanimalsounds.org/wp-content/uploads/2017/07/owl.mp3",
-    modes: ["byName", "bySound"],
+    modes: ["byName", "bySound", "showAll"],
   },
 ];
 
