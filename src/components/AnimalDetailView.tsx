@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Animated } from "react-native";
 import { Audio } from "expo-av";
 import * as Speech from "expo-speech";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -36,6 +36,9 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
 
   const [ttsAvailable, setTtsAvailable] = useState(false);
 
+  // Animation value for emoji wiggle
+  const wiggleAnim = useRef(new Animated.Value(0)).current;
+
   // Check TTS availability on mount
   useEffect(() => {
     const checkTTSAvailability = async () => {
@@ -49,6 +52,36 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
 
     checkTTSAvailability();
   }, []);
+
+  // Continuous wiggle animation for emoji
+  useEffect(() => {
+    const wiggle = Animated.loop(
+      Animated.sequence([
+        Animated.timing(wiggleAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(wiggleAnim, {
+          toValue: -1,
+          duration: 400,
+          useNativeDriver: true,
+        }),
+        Animated.timing(wiggleAnim, {
+          toValue: 0,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.delay(1200),
+      ])
+    );
+
+    wiggle.start();
+
+    return () => {
+      wiggle.stop();
+    };
+  }, [wiggleAnim]);
 
   const handleSpeakName = async () => {
     if (!isSoundEnabled || !ttsAvailable) return;
@@ -86,7 +119,29 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
       </View>
 
       <View style={styles.contentContainer}>
-        <Text style={styles.emoji}>{animal.emoji}</Text>
+        <Animated.Text
+          style={[
+            styles.emoji,
+            {
+              transform: [
+                {
+                  rotate: wiggleAnim.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggleAnim.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          {animal.emoji}
+        </Animated.Text>
         <Text style={styles.animalName}>{animalName}</Text>
 
         <View style={styles.buttonContainer} id="animal-detail-view">

@@ -62,6 +62,45 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
     Animated.parallel(animations).start();
   }, [cardAnimations]);
 
+  // Continuous wiggle animations for cards
+  useEffect(() => {
+    const createWiggle = (anim: Animated.Value, delay: number) => {
+      return Animated.loop(
+        Animated.sequence([
+          Animated.delay(delay),
+          Animated.timing(anim, {
+            toValue: 1,
+            duration: 200,
+            useNativeDriver: true,
+          }),
+          Animated.timing(anim, {
+            toValue: -1,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+          Animated.timing(anim, {
+            toValue: 0,
+            duration: 200,
+            useNativeDriver: true,
+          }),
+          Animated.delay(1500),
+        ])
+      );
+    };
+
+    // Start wiggle animations with staggered delays for each card
+    const wiggleAnimations = cardWiggles.map((wiggle, index) => {
+      return createWiggle(wiggle, index * 100);
+    });
+
+    wiggleAnimations.forEach((anim) => anim.start());
+
+    // Cleanup
+    return () => {
+      wiggleAnimations.forEach((anim) => anim.stop());
+    };
+  }, [cardWiggles]);
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.header}>
