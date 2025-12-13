@@ -21,6 +21,8 @@ export const TRANSLATIONS: TranslationMap = {
     backToList: "Back to all animals",
     speakName: "Speak Name",
     playSound: "Play Sound",
+    searchPlaceholder: "Search animals...",
+    noResults: "No animals found",
     animals: {
       Dog: "Dog",
       Cat: "Cat",
@@ -103,6 +105,8 @@ export const TRANSLATIONS: TranslationMap = {
     backToList: "Повернутися до всіх тварин",
     speakName: "Промовити назву",
     playSound: "Відтворити звук",
+    searchPlaceholder: "Пошук тварин...",
+    noResults: "Тварин не знайдено",
     animals: {
       Dog: "Пес",
       Cat: "Кіт",
@@ -185,6 +189,8 @@ export const TRANSLATIONS: TranslationMap = {
     backToList: "Вернуться ко всем животным",
     speakName: "Произнести название",
     playSound: "Воспроизвести звук",
+    searchPlaceholder: "Поиск животных...",
+    noResults: "Животные не найдены",
     animals: {
       Dog: "Собака",
       Cat: "Кот",

@@ -22,3 +22,34 @@ export const shuffleArray = <T,>(array: T[]): T[] => {
 export const getRandomItem = <T,>(array: T[]): T => {
   return array[Math.floor(Math.random() * array.length)];
 };
+
+/**
+ * Creates a debounced function that delays invoking func until after wait milliseconds
+ * @param func - Function to debounce
+ * @param wait - Milliseconds to wait
+ * @returns Debounced function with cancel method
+ */
+export const debounce = <T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): T & { cancel: () => void } => {
+  let timeoutId: NodeJS.Timeout | null = null;
+
+  const debounced = (...args: Parameters<T>) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, wait);
+  };
+
+  debounced.cancel = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      timeoutId = null;
+    }
+  };
+
+  return debounced as T & { cancel: () => void };
+};

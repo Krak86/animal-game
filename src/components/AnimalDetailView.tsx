@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAnimalDetailViewStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Animal, Language, Translations } from "@/types";
-import { LanguageDropdown } from "./LanguageDropdown";
+import { LanguageDropdown } from "@/components/LanguageDropdown";
 import { speakText } from "@/utils/speech";
 import { playAnimalSound } from "@/utils/audio";
 

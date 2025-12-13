@@ -1,18 +1,20 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import {
   View,
   ScrollView,
   Text,
   TouchableOpacity,
   Animated,
+  TextInput,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { getAnimalsListViewStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Animal, Language, Translations } from "@/types";
-import { LanguageDropdown } from "./LanguageDropdown";
-import { AnimalCard } from "./AnimalCard";
+import { LanguageDropdown } from "@/components/LanguageDropdown";
+import { debounce } from "@/utils/helpers";
+import { AnimalCard } from "@/components/AnimalCard";
 
 interface AnimalsListViewProps {
   animals: Animal[];
@@ -31,19 +33,62 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
   onLanguageChange,
   onAnimalPress,
   onBackPress,
-  isSoundEnabled,
 }) => {
   const responsive = useResponsiveDimensions();
   const styles = getAnimalsListViewStyles(responsive);
   const insets = useSafeAreaInsets();
 
-  // Create static animation values for cards (no wiggle in exhibition mode)
-  const cardAnimations = useRef<Animated.Value[]>(
-    animals.map(() => new Animated.Value(1))
-  ).current;
-  const cardWiggles = useRef<Animated.Value[]>(
-    animals.map(() => new Animated.Value(0))
-  ).current;
+  // Search state
+  const [searchText, setSearchText] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+
+  // Debounce search input
+  const debouncedSetSearch = useMemo(
+    () =>
+      debounce((text: string) => {
+        setDebouncedSearch(text);
+      }, 300),
+    []
+  );
+
+  // Handle search text change
+  const handleSearchChange = (text: string) => {
+    setSearchText(text);
+    debouncedSetSearch(text);
+  };
+
+  // Clear search when component unmounts or when going back
+  useEffect(() => {
+    return () => {
+      setSearchText("");
+      setDebouncedSearch("");
+      debouncedSetSearch.cancel();
+    };
+  }, [debouncedSetSearch]);
+
+  // Filter animals based on debounced search
+  const filteredAnimals = useMemo(() => {
+    if (!debouncedSearch.trim()) {
+      return animals;
+    }
+
+    const searchLower = debouncedSearch.toLowerCase();
+    return animals.filter((animal) => {
+      const animalName = translations.animals[animal.name].toLowerCase();
+      return animalName.includes(searchLower);
+    });
+  }, [animals, debouncedSearch, translations]);
+
+  // Create animation values for cards - memoized to recreate when filtered list changes
+  const cardAnimations = useMemo(
+    () => filteredAnimals.map(() => new Animated.Value(0)),
+    [filteredAnimals.length]
+  );
+
+  const cardWiggles = useMemo(
+    () => filteredAnimals.map(() => new Animated.Value(0)),
+    [filteredAnimals.length]
+  );
 
   // Entrance animations for cards
   useEffect(() => {
@@ -124,22 +169,51 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
         <Text style={styles.title}>{translations.showAllTitle}</Text>
       </View>
 
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder={translations.searchPlaceholder || "Search animals..."}
+          placeholderTextColor="#999"
+          value={searchText}
+          onChangeText={handleSearchChange}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        {searchText.length > 0 && (
+          <TouchableOpacity
+            style={styles.clearButton}
+            onPress={() => handleSearchChange("")}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.clearButtonText}>✕</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.gridContainer}>
-          {animals.map((animal, index) => (
-            <AnimalCard
-              key={animal.id}
-              animal={animal}
-              isWrong={false}
-              wiggleAnimation={cardWiggles[index]}
-              cardAnimation={cardAnimations[index]}
-              translations={translations}
-              onPress={() => onAnimalPress(animal)}
-            />
-          ))}
+          {filteredAnimals.length > 0 ? (
+            filteredAnimals.map((animal, index) => (
+              <AnimalCard
+                key={animal.id}
+                animal={animal}
+                isWrong={false}
+                wiggleAnimation={cardWiggles[index]}
+                cardAnimation={cardAnimations[index]}
+                translations={translations}
+                onPress={() => onAnimalPress(animal)}
+              />
+            ))
+          ) : (
+            <View style={styles.noResultsContainer}>
+              <Text style={styles.noResultsText}>
+                {translations.noResults || "No animals found"}
+              </Text>
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>

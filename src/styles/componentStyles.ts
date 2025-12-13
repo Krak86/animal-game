@@ -271,6 +271,55 @@ export const getAnimalsListViewStyles = (responsive: ResponsiveDimensions) =>
     scrollContent: {
       flexGrow: 1,
     },
+    searchContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      paddingHorizontal: responsive.spacing.md,
+      paddingBottom: responsive.spacing.sm,
+      position: "relative",
+    },
+    searchInput: {
+      flex: 1,
+      height: 45,
+      backgroundColor: COLORS.white,
+      borderRadius: 25,
+      paddingHorizontal: 20,
+      paddingRight: 50,
+      fontSize: 16 * responsive.fontScale,
+      fontFamily: FONTS.regular,
+      color: COLORS.dark,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+      elevation: 3,
+    },
+    clearButton: {
+      position: "absolute",
+      right: responsive.spacing.md + 15,
+      width: 30,
+      height: 30,
+      borderRadius: 15,
+      backgroundColor: COLORS.lightGray,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    clearButtonText: {
+      fontSize: 18 * responsive.fontScale,
+      color: COLORS.dark,
+      fontFamily: FONTS.semiBold,
+    },
+    noResultsContainer: {
+      width: "100%",
+      paddingVertical: responsive.spacing.xl * 2,
+      alignItems: "center",
+    },
+    noResultsText: {
+      fontSize: 18 * responsive.fontScale,
+      fontFamily: FONTS.medium,
+      color: COLORS.dark,
+      opacity: 0.6,
+    },
   });
 
 export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>

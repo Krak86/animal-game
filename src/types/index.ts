@@ -1,15 +1,15 @@
-import { Animated } from 'react-native';
-import { Audio } from 'expo-av';
+import { Animated } from "react-native";
+import { Audio } from "expo-av";
 
 /**
  * Core types for the Animals Game
  */
 
 // Language type
-export type Language = 'en' | 'uk' | 'ru';
+export type Language = "en" | "uk" | "ru";
 
 // Game mode type
-export type GameMode = 'byName' | 'bySound' | 'showAll';
+export type GameMode = "byName" | "bySound" | "showAll";
 
 // Animal definition
 export interface Animal {
@@ -17,15 +17,15 @@ export interface Animal {
   name: string;
   emoji: string;
   image: string;
-  soundUrl?: string;        // Optional: animal sound URL
-  modes: GameMode[];        // Which modes this animal appears in
+  soundUrl?: string; // Optional: animal sound URL
+  modes: GameMode[]; // Which modes this animal appears in
   // Optional fields for future exhibition features
-  images?: string[];        // Multiple images for gallery
-  videos?: string[];        // Video URLs
-  extraSounds?: string[];   // Additional sounds
-  description?: string;     // Animal description/facts
+  images?: string[]; // Multiple images for gallery
+  videos?: string[]; // Video URLs
+  extraSounds?: string[]; // Additional sounds
+  description?: string; // Animal description/facts
   wikipediaUrls?: string[]; // Links to Wikipedia
-  otherUrls?: string[];     // Other reference URLs
+  otherUrls?: string[]; // Other reference URLs
 }
 
 // Translation structure
@@ -36,9 +36,9 @@ export interface AnimalTranslations {
 export interface ScreenTranslations {
   title: string;
   subtitle: string;
-  byName: string;           // "By Name" button
-  bySound: string;          // "By Sound" button
-  showAll: string;          // "Show All" button
+  byName: string; // "By Name" button
+  bySound: string; // "By Sound" button
+  showAll: string; // "Show All" button
 }
 
 export interface Translations {
@@ -48,12 +48,14 @@ export interface Translations {
   greatJob: string;
   youFoundIt: string;
   startFromBeginning: string;
-  whoSaysThis: string;      // "Who says so?" for By Sound mode
-  replaySound: string;      // "Play Again" button text
-  showAllTitle: string;     // "All Animals" title
-  backToList: string;       // "Back to all animals" button
-  speakName: string;        // "Speak Name" TTS button
-  playSound: string;        // "Play Sound" button
+  whoSaysThis: string; // "Who says so?" for By Sound mode
+  replaySound: string; // "Play Again" button text
+  showAllTitle: string; // "All Animals" title
+  backToList: string; // "Back to all animals" button
+  speakName: string; // "Speak Name" TTS button
+  playSound: string; // "Play Sound" button
+  searchPlaceholder: string; // "Search animals..." placeholder
+  noResults: string; // "No animals found" message
   animals: AnimalTranslations;
 }
 
@@ -91,5 +93,5 @@ export interface UseGameLogicReturn {
   startGame: () => Promise<void>;
   toggleSound: () => void;
   resetGame: () => Promise<void>;
-  replaySound: () => void;  // New function for By Sound mode
+  replaySound: () => void; // New function for By Sound mode
 }
