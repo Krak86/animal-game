@@ -27,8 +27,13 @@ An interactive React Native educational game built with Expo where children can 
 ## Supported Languages
 - English (`en`)
 - Ukrainian (`uk`)
+- Russian (`ru`)
 
 Language switching is available on the start screen and during gameplay. All UI text, animal names, and game instructions are fully translated.
+
+**Language Switcher UI:**
+- **Start Screen**: Horizontal 3-button layout (EN / УКР / РУ) for easy language selection
+- **Game Modes (By Name/By Sound)**: Compact dropdown menu that shows only the current language, expands when clicked to show all options, and closes on selection or outside click
 
 ## Project Structure
 ```
@@ -52,12 +57,13 @@ Language switching is available on the start screen and during gameplay. All UI 
     │   ├── QuestionDisplay.tsx     # Shows question with name or sound replay
     │   ├── StartScreen.tsx         # Mode selection screen with animations
     │   ├── SuccessOverlay.tsx      # Celebration overlay on correct answer
-    │   ├── LanguageSwitcher.tsx    # EN/UK language toggle button
+    │   ├── LanguageSwitcher.tsx    # Horizontal 3-button language toggle (start screen)
+    │   ├── LanguageDropdown.tsx    # Compact dropdown language selector (gameplay)
     │   ├── SoundToggle.tsx         # Music on/off toggle
     │   └── index.ts                # Components barrel export
     ├── constants/          # Game data and configuration
     │   ├── animals.ts      # Animal data with emojis, names, sound URLs
-    │   ├── translations.ts # Complete i18n for en/uk
+    │   ├── translations.ts # Complete i18n for en/uk/ru
     │   ├── sounds.ts       # Sound effect URLs (success, error)
     │   ├── fonts.ts        # Font family constants
     │   └── gameSettings.ts # Game configuration (grid size, timing)
@@ -209,3 +215,20 @@ When adding new UI text:
 - **Android-specific properties**: Added `textAlignVertical`, `includeFontPadding: false`, `lineHeight`
 - **Font size adjustment**: Increased from 50 to 52 with proper line height (65)
 - **Fixes Unicode 15.0+ emojis**: Goose 🪿 and Donkey 🫏 now display completely without clipping
+
+### Language Dropdown Implementation
+- **Dual UI Pattern**: Different language switcher components for different contexts
+  - `LanguageSwitcher`: Horizontal 3-button layout (EN / УКР / РУ) on start screen for maximum visibility
+  - `LanguageDropdown`: Compact dropdown menu during gameplay to conserve screen space
+- **Dropdown Features**:
+  - Shows only current language with downward arrow (▼) indicator
+  - Expands via Modal with transparent overlay for click-outside detection
+  - Smooth animations using React Native Animated API (opacity, scale, translateY, arrow rotation)
+  - Positioned absolutely below the button, responsive to portrait/landscape modes
+  - Auto-closes on language selection or outside click
+- **Styling Consistency**: Uses same color palette (COLORS.primary teal for active states), shadows, and fonts as other components
+- **Files Modified**:
+  - Created `src/components/LanguageDropdown.tsx` with Modal-based dropdown
+  - Added `getLanguageDropdownStyles()` to `src/styles/componentStyles.ts`
+  - Updated `App.tsx` to use LanguageDropdown in gameplay topBar
+  - StartScreen continues using LanguageSwitcher (no changes)

@@ -7,7 +7,8 @@ An interactive React Native educational game for children to learn animal names 
 - 🎮 **Two Game Modes**:
   - **By Name**: Match animal names to images
   - **By Sound**: Identify animals by their sounds
-- 🌍 **Fully Bilingual**: Complete English and Ukrainian translations
+- 🌍 **Trilingual Support**: Complete English, Ukrainian, and Russian translations
+- 🌐 **Smart Language Switcher**: Horizontal buttons on start screen, compact dropdown during gameplay
 - 🗣️ **Text-to-Speech**: Pronounces animal names in selected language
 - 🎵 **Background Music**: Optional music with toggle control
 - 🎨 **Smooth Animations**: Wiggle effects, entrance animations, and transitions
@@ -38,6 +39,7 @@ An interactive React Native educational game for children to learn animal names 
     ├── components/          # React components (TypeScript)
     │   ├── AnimalCard.tsx
     │   ├── LanguageSwitcher.tsx
+    │   ├── LanguageDropdown.tsx
     │   ├── QuestionDisplay.tsx
     │   ├── StartScreen.tsx
     │   ├── SuccessOverlay.tsx
@@ -103,7 +105,8 @@ The app will load fonts on first launch before displaying the splash screen.
 ### Components (`src/components/`)
 
 - **AnimalCard.tsx**: Displays individual animal with wiggle animation and emoji
-- **LanguageSwitcher.tsx**: Toggle between EN/UK languages
+- **LanguageSwitcher.tsx**: Horizontal 3-button language toggle (EN/УКР/РУ) for start screen
+- **LanguageDropdown.tsx**: Compact dropdown language selector for gameplay with modal overlay
 - **QuestionDisplay.tsx**: Shows animal name or sound replay button
 - **StartScreen.tsx**: Game mode selection screen with animations
 - **SuccessOverlay.tsx**: Full-screen celebration overlay on correct answer
@@ -344,6 +347,17 @@ All game logic centralized in `useGameLogic` custom hook:
 - Audio control (music, sounds, text-to-speech)
 - User interactions (animal selection, mode switching)
 - Visual feedback (success overlay, error borders)
+
+### Language Switching UX
+
+Two different UI patterns for language selection:
+
+- **Start Screen**: Horizontal 3-button layout (EN / УКР / РУ) for easy visibility
+- **During Gameplay**: Compact dropdown menu to save screen space
+  - Shows only current language with dropdown arrow
+  - Expands to show all options when clicked
+  - Modal overlay for click-outside-to-close functionality
+  - Smooth animations (fade, scale, arrow rotation)
 
 ## Contributing
 
