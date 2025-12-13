@@ -13,6 +13,7 @@ import * as SplashScreen from "expo-splash-screen";
 // Components
 import {
   LanguageSwitcher,
+  LanguageDropdown,
   QuestionDisplay,
   AnimalCard,
   SuccessOverlay,
@@ -144,7 +145,7 @@ export default function App() {
                 </Text>
               </TouchableOpacity>
 
-              <LanguageSwitcher
+              <LanguageDropdown
                 language={language}
                 onLanguageChange={setLanguage}
               />

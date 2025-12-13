@@ -103,6 +103,81 @@ export const getAnimalCardStyles = (responsive: ResponsiveDimensions) => {
   });
 };
 
+export const getLanguageDropdownStyles = (responsive: ResponsiveDimensions) =>
+  StyleSheet.create({
+    container: {
+      position: "relative",
+      zIndex: 1000,
+    },
+    selectedButton: {
+      flexDirection: "row",
+      alignItems: "center",
+      paddingHorizontal: 15,
+      paddingVertical: 8,
+      borderRadius: 20,
+      backgroundColor: COLORS.primaryLight,
+      borderWidth: 2,
+      borderColor: COLORS.primary,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3,
+      elevation: 2,
+      minWidth: 80,
+      justifyContent: "space-between",
+      gap: 8,
+    },
+    selectedText: {
+      fontSize: 13 * responsive.fontScale,
+      fontFamily: FONTS.bold,
+      color: COLORS.dark,
+    },
+    arrowIcon: {
+      fontSize: 10 * responsive.fontScale,
+      color: COLORS.gray,
+    },
+    modalOverlay: {
+      flex: 1,
+      backgroundColor: "rgba(0, 0, 0, 0.3)",
+    },
+    dropdownContainer: {
+      position: "absolute",
+      backgroundColor: COLORS.white,
+      borderRadius: 15,
+      borderWidth: 2,
+      borderColor: COLORS.lightGray,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.15,
+      shadowRadius: 8,
+      elevation: 5,
+      overflow: "hidden",
+      minWidth: 100,
+    },
+    optionButton: {
+      paddingHorizontal: 20,
+      paddingVertical: 12,
+      borderBottomWidth: 1,
+      borderBottomColor: COLORS.lightGray,
+    },
+    optionButtonLast: {
+      borderBottomWidth: 0,
+    },
+    optionButtonActive: {
+      backgroundColor: COLORS.primaryLight,
+    },
+    optionText: {
+      fontSize: 13 * responsive.fontScale,
+      fontFamily: FONTS.semiBold,
+      color: COLORS.dark,
+      textAlign: "center",
+    },
+    optionTextActive: {
+      fontFamily: FONTS.bold,
+      color: COLORS.primary,
+    },
+  });
+
 export const getSuccessOverlayStyles = (responsive: ResponsiveDimensions) =>
   StyleSheet.create({
     overlay: {
