@@ -34,6 +34,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   const insets = useSafeAreaInsets();
 
   const [ttsAvailable, setTtsAvailable] = useState(false);
+  const [isPlayingSound, setIsPlayingSound] = useState(false);
 
   // Animation value for emoji wiggle
   const wiggleAnim = useRef(new Animated.Value(0)).current;
@@ -101,10 +102,15 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   };
 
   const handlePlaySound = async () => {
-    if (!isSoundEnabled || !animal.soundUrl) return;
+    if (!isSoundEnabled || !animal.soundUrl || isPlayingSound) return;
 
-    // Play animal sound with background music ducking
-    await playAnimalSound(animal.soundUrl, backgroundMusic);
+    try {
+      setIsPlayingSound(true);
+      // Play animal sound with background music ducking
+      await playAnimalSound(animal.soundUrl, backgroundMusic);
+    } finally {
+      setIsPlayingSound(false);
+    }
   };
 
   const handleBackPress = async () => {
@@ -180,11 +186,20 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
 
           {showSoundButton && (
             <TouchableOpacity
-              style={styles.actionButton}
+              style={[
+                styles.actionButton,
+                isPlayingSound && styles.actionButtonDisabled,
+              ]}
               onPress={handlePlaySound}
               activeOpacity={0.7}
+              disabled={isPlayingSound}
             >
-              <Text style={styles.actionButtonText}>
+              <Text
+                style={[
+                  styles.actionButtonText,
+                  isPlayingSound && styles.actionButtonTextDisabled,
+                ]}
+              >
                 🔉 {translations.playSound}
               </Text>
             </TouchableOpacity>

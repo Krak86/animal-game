@@ -84,6 +84,7 @@ export default function App() {
     wrongTileId,
     gameStarted,
     isSoundEnabled,
+    isAnimalSoundPlaying,
     successScale,
     successOpacity,
     cardAnimations,
@@ -266,6 +267,7 @@ export default function App() {
                 questionAnimation={questionAnimation}
                 gameMode={gameMode || "byName"}
                 onReplaySound={gameMode === "bySound" ? replaySound : undefined}
+                isReplayingSound={isAnimalSoundPlaying}
               />
 
               <View style={appStyles.gridContainer}>

@@ -256,14 +256,17 @@ export const playAnimalSound = async (
     await sound.playAsync();
 
     // Wait for sound to finish, then restore background music
-    sound.setOnPlaybackStatusUpdate((status) => {
-      if (status.isLoaded && status.didJustFinish) {
-        sound.unloadAsync();
-        currentAnimalSound = null;
-        if (backgroundMusic) {
-          restoreBackgroundMusic(backgroundMusic);
+    await new Promise<void>((resolve) => {
+      sound.setOnPlaybackStatusUpdate((status) => {
+        if (status.isLoaded && status.didJustFinish) {
+          sound.unloadAsync();
+          currentAnimalSound = null;
+          if (backgroundMusic) {
+            restoreBackgroundMusic(backgroundMusic);
+          }
+          resolve();
         }
-      }
+      });
     });
   } catch (error) {
     console.error("Error playing animal sound:", error);

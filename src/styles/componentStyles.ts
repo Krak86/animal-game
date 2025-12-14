@@ -399,4 +399,11 @@ export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>
       color: COLORS.white,
       textAlign: "center",
     },
+    actionButtonDisabled: {
+      opacity: 0.5,
+      backgroundColor: COLORS.lightGray,
+    },
+    actionButtonTextDisabled: {
+      opacity: 0.5,
+    },
   });

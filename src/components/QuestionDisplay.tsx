@@ -18,6 +18,7 @@ interface Props {
   questionAnimation: Animated.Value;
   gameMode: GameMode;
   onReplaySound?: () => void;
+  isReplayingSound?: boolean;
 }
 
 export const QuestionDisplay: React.FC<Props> = ({
@@ -26,6 +27,7 @@ export const QuestionDisplay: React.FC<Props> = ({
   questionAnimation,
   gameMode,
   onReplaySound,
+  isReplayingSound,
 }) => {
   const responsive = useResponsiveDimensions();
   const appStyles = getAppStyles(responsive);
@@ -62,11 +64,20 @@ export const QuestionDisplay: React.FC<Props> = ({
           <Text style={appStyles.questionText}>{translations.whoSaysThis}</Text>
           {onReplaySound && (
             <TouchableOpacity
-              style={styles.replayButton}
+              style={[
+                styles.replayButton,
+                isReplayingSound && styles.replayButtonDisabled,
+              ]}
               onPress={onReplaySound}
               activeOpacity={0.7}
+              disabled={isReplayingSound}
             >
-              <Text style={styles.replayButtonText}>
+              <Text
+                style={[
+                  styles.replayButtonText,
+                  isReplayingSound && styles.replayButtonTextDisabled,
+                ]}
+              >
                 {translations.replaySound}
               </Text>
             </TouchableOpacity>
@@ -112,5 +123,12 @@ const getQuestionDisplayStyles = (responsive: any) =>
         : 16 * responsive.fontScale,
       fontFamily: FONTS.semiBold,
       color: COLORS.white,
+    },
+    replayButtonDisabled: {
+      opacity: 0.5,
+      backgroundColor: COLORS.lightGray,
+    },
+    replayButtonTextDisabled: {
+      opacity: 0.5,
     },
   });

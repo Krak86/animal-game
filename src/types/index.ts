@@ -81,6 +81,7 @@ export interface UseGameLogicReturn {
   wrongTileId: number | null;
   gameStarted: boolean;
   isSoundEnabled: boolean;
+  isAnimalSoundPlaying: boolean;
   gameMode: GameMode;
   // Animation values
   successScale: Animated.Value;
@@ -93,5 +94,5 @@ export interface UseGameLogicReturn {
   startGame: () => Promise<void>;
   toggleSound: () => void;
   resetGame: () => Promise<void>;
-  replaySound: () => void; // New function for By Sound mode
+  replaySound: () => Promise<void>; // New function for By Sound mode
 }

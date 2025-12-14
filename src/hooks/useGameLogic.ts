@@ -59,6 +59,7 @@ export const useGameLogic = (
   const [wrongTileId, setWrongTileId] = useState<number | null>(null);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [isSoundEnabled, setIsSoundEnabled] = useState<boolean>(true);
+  const [isAnimalSoundPlaying, setIsAnimalSoundPlaying] = useState<boolean>(false);
 
   // Animation values
   const successScale = useRef(new Animated.Value(0)).current;
@@ -149,6 +150,7 @@ export const useGameLogic = (
     await stopAnimalSound(backgroundMusic.current);
 
     setWrongTileId(null);
+    setIsAnimalSoundPlaying(false);
 
     // Pick target animal first
     const targetAnimal = getRandomItem(modeAnimals);
@@ -192,10 +194,15 @@ export const useGameLogic = (
             translations.whoSaysThis,
             language,
             backgroundMusic.current,
-            () => {
+            async () => {
               // After speaking, play the animal sound
               if (targetAnimal.soundUrl) {
-                playAnimalSound(targetAnimal.soundUrl, backgroundMusic.current);
+                try {
+                  setIsAnimalSoundPlaying(true);
+                  await playAnimalSound(targetAnimal.soundUrl, backgroundMusic.current);
+                } finally {
+                  setIsAnimalSoundPlaying(false);
+                }
               }
             }
           );
@@ -280,6 +287,7 @@ export const useGameLogic = (
     setCurrentAnimal(null);
     setShowSuccess(false);
     setWrongTileId(null);
+    setIsAnimalSoundPlaying(false);
 
     // Reset animation values
     successScale.setValue(0);
@@ -313,14 +321,22 @@ export const useGameLogic = (
     });
   };
 
-  const replaySound = (): void => {
+  const replaySound = async (): Promise<void> => {
     if (
-      isSoundEnabled &&
-      gameMode === "bySound" &&
-      currentAnimal?.soundUrl &&
-      backgroundMusic.current
+      !isSoundEnabled ||
+      gameMode !== "bySound" ||
+      !currentAnimal?.soundUrl ||
+      !backgroundMusic.current ||
+      isAnimalSoundPlaying
     ) {
-      playAnimalSound(currentAnimal.soundUrl, backgroundMusic.current);
+      return;
+    }
+
+    try {
+      setIsAnimalSoundPlaying(true);
+      await playAnimalSound(currentAnimal.soundUrl, backgroundMusic.current);
+    } finally {
+      setIsAnimalSoundPlaying(false);
     }
   };
 
@@ -333,6 +349,7 @@ export const useGameLogic = (
     wrongTileId,
     gameStarted,
     isSoundEnabled,
+    isAnimalSoundPlaying,
     gameMode,
     // Animation values
     successScale,
