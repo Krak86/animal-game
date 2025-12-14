@@ -70,10 +70,13 @@ export const AnimalCard: React.FC<Props> = ({
           >
             {animal.emoji}
           </Animated.Text>
-          <Image
-            source={{ uri: animal.image }}
-            style={styles.backgroundImage}
-          />
+
+          {animal.image?.uri && (
+            <Image
+              source={{ uri: animal.image?.uri }}
+              style={styles.backgroundImage}
+            />
+          )}
         </View>
         <Animated.Text style={styles.label}>
           {translations.animals[animal.name]}

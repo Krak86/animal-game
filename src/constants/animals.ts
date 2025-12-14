@@ -1,5 +1,20 @@
 import { Animal, GameMode } from "@/types";
 
+// Background images
+const bg1 = require("@assets/imgs/bg/bg1.jpg");
+const bg2 = require("@assets/imgs/bg/bg2.jpg");
+const bg3 = require("@assets/imgs/bg/bg3.jpg");
+const bg4 = require("@assets/imgs/bg/bg4.jpg");
+const bg5 = require("@assets/imgs/bg/bg5.jpg");
+const bg6 = require("@assets/imgs/bg/bg6.jpg");
+const bg7 = require("@assets/imgs/bg/bg7.jpg");
+const bg8 = require("@assets/imgs/bg/bg8.jpg");
+const bg9 = require("@assets/imgs/bg/bg9.jpg");
+const bg10 = require("@assets/imgs/bg/bg10.jpg");
+
+// Background images array for cycling
+const BG_IMAGES = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9, bg10];
+
 // NOTE: Sound URLs are placeholders - replace with actual working URLs from:
 // - https://mixkit.co/free-sound-effects/animals/
 // - https://freesound.org/ (check licenses)
@@ -12,7 +27,7 @@ export const ANIMALS: Animal[] = [
     id: 1,
     name: "Dog",
     emoji: "🐕",
-    image: "https://picsum.photos/seed/dog/200/200",
+    image: BG_IMAGES[0], // bg1
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/1/1-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
@@ -20,7 +35,7 @@ export const ANIMALS: Animal[] = [
     id: 2,
     name: "Cat",
     emoji: "🐈",
-    image: "https://picsum.photos/seed/cat/200/200",
+    image: BG_IMAGES[1], // bg2
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/93/93-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
@@ -28,7 +43,7 @@ export const ANIMALS: Animal[] = [
     id: 3,
     name: "Lion",
     emoji: "🦁",
-    image: "https://picsum.photos/seed/lion/200/200",
+    image: BG_IMAGES[2], // bg3
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/6/6-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
@@ -36,7 +51,7 @@ export const ANIMALS: Animal[] = [
     id: 4,
     name: "Elephant",
     emoji: "🐘",
-    image: "https://picsum.photos/seed/elephant/200/200",
+    image: BG_IMAGES[3], // bg4
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Elefant.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -45,14 +60,14 @@ export const ANIMALS: Animal[] = [
     id: 5,
     name: "Giraffe",
     emoji: "🦒",
-    image: "https://picsum.photos/seed/giraffe/200/200",
+    image: BG_IMAGES[4], // bg5
     modes: ["byName", "showAll"],
   },
   {
     id: 6,
     name: "Monkey",
     emoji: "🐒",
-    image: "https://picsum.photos/seed/monkey/200/200",
+    image: BG_IMAGES[5], // bg6
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/108/108-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
@@ -60,21 +75,21 @@ export const ANIMALS: Animal[] = [
     id: 7,
     name: "Penguin",
     emoji: "🐧",
-    image: "https://picsum.photos/seed/penguin/200/200",
+    image: BG_IMAGES[6], // bg7
     modes: ["byName", "showAll"],
   },
   {
     id: 8,
     name: "Zebra",
     emoji: "🦓",
-    image: "https://picsum.photos/seed/zebra/200/200",
+    image: BG_IMAGES[7], // bg8
     modes: ["byName", "showAll"],
   },
   {
     id: 9,
     name: "Tiger",
     emoji: "🐅",
-    image: "https://picsum.photos/seed/tiger/200/200",
+    image: BG_IMAGES[8], // bg9
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Tiger.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -83,14 +98,14 @@ export const ANIMALS: Animal[] = [
     id: 10,
     name: "Rabbit",
     emoji: "🐰",
-    image: "https://picsum.photos/seed/rabbit/200/200",
+    image: BG_IMAGES[9], // bg10
     modes: ["byName", "showAll"],
   },
   {
     id: 11,
     name: "Rooster",
     emoji: "🐓",
-    image: "https://picsum.photos/seed/rooster/200/200",
+    image: BG_IMAGES[0], // bg1
     soundUrl:
       "https://assets.mixkit.co/active_storage/sfx/2462/2462-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -99,7 +114,7 @@ export const ANIMALS: Animal[] = [
     id: 12,
     name: "Cow",
     emoji: "🐄",
-    image: "https://picsum.photos/seed/cow/200/200",
+    image: BG_IMAGES[1], // bg2
     soundUrl:
       "https://assets.mixkit.co/active_storage/sfx/1751/1751-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -108,7 +123,7 @@ export const ANIMALS: Animal[] = [
     id: 13,
     name: "Horse",
     emoji: "🐴",
-    image: "https://picsum.photos/seed/horse/200/200",
+    image: BG_IMAGES[2], // bg3
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/85/85-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
@@ -116,7 +131,7 @@ export const ANIMALS: Animal[] = [
     id: 14,
     name: "Bird",
     emoji: "🐦",
-    image: "https://picsum.photos/seed/bird/200/200",
+    image: BG_IMAGES[3], // bg4
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/17/17-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
@@ -124,7 +139,7 @@ export const ANIMALS: Animal[] = [
     id: 15,
     name: "Wolf",
     emoji: "🐺",
-    image: "https://picsum.photos/seed/wolf/200/200",
+    image: BG_IMAGES[4], // bg5
     soundUrl:
       "https://assets.mixkit.co/active_storage/sfx/1775/1775-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -133,7 +148,7 @@ export const ANIMALS: Animal[] = [
     id: 16,
     name: "Goose",
     emoji: "🪿",
-    image: "https://picsum.photos/seed/goose/200/200",
+    image: BG_IMAGES[5], // bg6
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/20/20-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
@@ -141,7 +156,7 @@ export const ANIMALS: Animal[] = [
     id: 17,
     name: "Donkey",
     emoji: "🫏",
-    image: "https://picsum.photos/seed/donkey/200/200",
+    image: BG_IMAGES[6], // bg7
     soundUrl:
       "https://assets.mixkit.co/active_storage/sfx/1770/1770-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -150,7 +165,7 @@ export const ANIMALS: Animal[] = [
     id: 18,
     name: "Bear",
     emoji: "🐻",
-    image: "https://picsum.photos/seed/bear/200/200",
+    image: BG_IMAGES[7], // bg8
     soundUrl: "https://assets.mixkit.co/active_storage/sfx/309/309-preview.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
@@ -158,84 +173,84 @@ export const ANIMALS: Animal[] = [
     id: 19,
     name: "Shark",
     emoji: "🦈",
-    image: "https://picsum.photos/seed/shark/200/200",
+    image: BG_IMAGES[8], // bg9
     modes: ["byName", "showAll"],
   },
   {
     id: 20,
     name: "Turtle",
     emoji: "🐢",
-    image: "https://picsum.photos/seed/turtle/200/200",
+    image: BG_IMAGES[9], // bg10
     modes: ["byName", "showAll"],
   },
   {
     id: 21,
     name: "Octopus",
     emoji: "🐙",
-    image: "https://picsum.photos/seed/octopus/200/200",
+    image: BG_IMAGES[0], // bg1
     modes: ["byName", "showAll"],
   },
   {
     id: 22,
     name: "Crab",
     emoji: "🦀",
-    image: "https://picsum.photos/seed/crab/200/200",
+    image: BG_IMAGES[1], // bg2
     modes: ["byName", "showAll"],
   },
   {
     id: 23,
     name: "Whale",
     emoji: "🐋",
-    image: "https://picsum.photos/seed/whale/200/200",
+    image: BG_IMAGES[2], // bg3
     modes: ["byName", "showAll"],
   },
   {
     id: 24,
     name: "Dolphin",
     emoji: "🐬",
-    image: "https://picsum.photos/seed/dolphin/200/200",
+    image: BG_IMAGES[3], // bg4
     modes: ["byName", "showAll"],
   },
   {
     id: 25,
     name: "Snail",
     emoji: "🐌",
-    image: "https://picsum.photos/seed/snail/200/200",
+    image: BG_IMAGES[4], // bg5
     modes: ["byName", "showAll"],
   },
   {
     id: 26,
     name: "Ant",
     emoji: "🐜",
-    image: "https://picsum.photos/seed/ant/200/200",
+    image: BG_IMAGES[5], // bg6
     modes: ["byName", "showAll"],
   },
   {
     id: 27,
     name: "Ladybug",
     emoji: "🐞",
-    image: "https://picsum.photos/seed/ladybug/200/200",
+    image: BG_IMAGES[6], // bg7
     modes: ["byName", "showAll"],
   },
   {
     id: 28,
     name: "Crocodile",
     emoji: "🐊",
-    image: "https://picsum.photos/seed/crocodile/200/200",
+    image: BG_IMAGES[7], // bg8
     modes: ["byName", "showAll"],
   },
   {
     id: 29,
     name: "Bat",
     emoji: "🦇",
-    image: "https://picsum.photos/seed/bat/200/200",
+    image: BG_IMAGES[8], // bg9
     modes: ["byName", "showAll"],
   },
   {
     id: 30,
     name: "Parrot",
     emoji: "🦜",
-    image: "https://picsum.photos/seed/parrot/200/200",
+    image: BG_IMAGES[9], // bg10
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/RedParot.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -244,21 +259,21 @@ export const ANIMALS: Animal[] = [
     id: 31,
     name: "Moose",
     emoji: "🦌",
-    image: "https://picsum.photos/seed/moose/200/200",
+    image: BG_IMAGES[0], // bg1
     modes: ["byName", "showAll"],
   },
   {
     id: 32,
     name: "Llama",
     emoji: "🦙",
-    image: "https://picsum.photos/seed/llama/200/200",
+    image: BG_IMAGES[1], // bg2
     modes: ["byName", "showAll"],
   },
   {
     id: 33,
     name: "Buffalo",
     emoji: "🐃",
-    image: "https://picsum.photos/seed/buffalo/200/200",
+    image: BG_IMAGES[2], // bg3
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/bison.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -267,7 +282,7 @@ export const ANIMALS: Animal[] = [
     id: 34,
     name: "Turkey",
     emoji: "🦃",
-    image: "https://picsum.photos/seed/turkey/200/200",
+    image: BG_IMAGES[3], // bg4
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/truthahn.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -276,7 +291,7 @@ export const ANIMALS: Animal[] = [
     id: 35,
     name: "Peacock",
     emoji: "🦚",
-    image: "https://picsum.photos/seed/peacock/200/200",
+    image: BG_IMAGES[4], // bg5
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/08/peacock.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -285,14 +300,14 @@ export const ANIMALS: Animal[] = [
     id: 36,
     name: "Swan",
     emoji: "🦢",
-    image: "https://picsum.photos/seed/swan/200/200",
+    image: BG_IMAGES[5], // bg6
     modes: ["byName", "showAll"],
   },
   {
     id: 37,
     name: "Bee",
     emoji: "🐝",
-    image: "https://picsum.photos/seed/bee/200/200",
+    image: BG_IMAGES[6], // bg7
     soundUrl: "https://freeanimalsounds.org/wp-content/uploads/2017/07/bee.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
@@ -300,77 +315,77 @@ export const ANIMALS: Animal[] = [
     id: 38,
     name: "Caterpillar",
     emoji: "🐛",
-    image: "https://picsum.photos/seed/caterpillar/200/200",
+    image: BG_IMAGES[7], // bg8
     modes: ["byName", "showAll"],
   },
   {
     id: 39,
     name: "Scorpion",
     emoji: "🦂",
-    image: "https://picsum.photos/seed/scorpion/200/200",
+    image: BG_IMAGES[8], // bg9
     modes: ["byName", "showAll"],
   },
   {
     id: 40,
     name: "Lobster",
     emoji: "🦞",
-    image: "https://picsum.photos/seed/lobster/200/200",
+    image: BG_IMAGES[9], // bg10
     modes: ["byName", "showAll"],
   },
   {
     id: 41,
     name: "Seal",
     emoji: "🦭",
-    image: "https://picsum.photos/seed/seal/200/200",
+    image: BG_IMAGES[0], // bg1
     modes: ["byName", "showAll"],
   },
   {
     id: 42,
     name: "Raccoon",
     emoji: "🦝",
-    image: "https://picsum.photos/seed/raccoon/200/200",
+    image: BG_IMAGES[1], // bg2
     modes: ["byName", "showAll"],
   },
   {
     id: 43,
     name: "Badger",
     emoji: "🦡",
-    image: "https://picsum.photos/seed/badger/200/200",
+    image: BG_IMAGES[2], // bg3
     modes: ["byName", "showAll"],
   },
   {
     id: 44,
     name: "Boar",
     emoji: "🐗",
-    image: "https://picsum.photos/seed/boar/200/200",
+    image: BG_IMAGES[3], // bg4
     modes: ["byName", "showAll"],
   },
   {
     id: 45,
     name: "Camel",
     emoji: "🐪",
-    image: "https://picsum.photos/seed/camel2/200/200",
+    image: BG_IMAGES[4], // bg5
     modes: ["byName", "showAll"],
   },
   {
     id: 46,
     name: "Chameleon",
     emoji: "🦎",
-    image: "https://picsum.photos/seed/chameleon/200/200",
+    image: BG_IMAGES[5], // bg6
     modes: ["byName", "showAll"],
   },
   {
     id: 47,
     name: "Flamingo",
     emoji: "🦩",
-    image: "https://picsum.photos/seed/flamingo/200/200",
+    image: BG_IMAGES[6], // bg7
     modes: ["byName", "showAll"],
   },
   {
     id: 48,
     name: "Gorilla",
     emoji: "🦍",
-    image: "https://picsum.photos/seed/gorilla/200/200",
+    image: BG_IMAGES[7], // bg8
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Gorilla.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -379,14 +394,14 @@ export const ANIMALS: Animal[] = [
     id: 49,
     name: "Kangaroo",
     emoji: "🦘",
-    image: "https://picsum.photos/seed/kangaroo/200/200",
+    image: BG_IMAGES[8], // bg9
     modes: ["byName", "showAll"],
   },
   {
     id: 50,
     name: "Leopard",
     emoji: "🐆",
-    image: "https://picsum.photos/seed/leopard/200/200",
+    image: BG_IMAGES[9], // bg10
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Leopard.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -395,7 +410,7 @@ export const ANIMALS: Animal[] = [
     id: 51,
     name: "Sheep",
     emoji: "🐑",
-    image: "https://picsum.photos/seed/sheep/200/200",
+    image: BG_IMAGES[0], // bg1
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/schafe.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -404,7 +419,7 @@ export const ANIMALS: Animal[] = [
     id: 52,
     name: "Chicken",
     emoji: "🐥",
-    image: "https://picsum.photos/seed/chicken/200/200",
+    image: BG_IMAGES[1], // bg2
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/huehner.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -413,7 +428,7 @@ export const ANIMALS: Animal[] = [
     id: 53,
     name: "Pig",
     emoji: "🐖",
-    image: "https://picsum.photos/seed/pig/200/200",
+    image: BG_IMAGES[2], // bg3
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/schwein.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -422,7 +437,7 @@ export const ANIMALS: Animal[] = [
     id: 54,
     name: "Goat",
     emoji: "🐐",
-    image: "https://picsum.photos/seed/goat/200/200",
+    image: BG_IMAGES[3], // bg4
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Ziege.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -431,7 +446,7 @@ export const ANIMALS: Animal[] = [
     id: 55,
     name: "Bull",
     emoji: "🐂",
-    image: "https://picsum.photos/seed/bull/200/200",
+    image: BG_IMAGES[4], // bg5
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/ochse.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -440,7 +455,7 @@ export const ANIMALS: Animal[] = [
     id: 56,
     name: "Duck",
     emoji: "🦆",
-    image: "https://picsum.photos/seed/duck/200/200",
+    image: BG_IMAGES[5], // bg6
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Ente_quackt.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -449,7 +464,7 @@ export const ANIMALS: Animal[] = [
     id: 57,
     name: "Lamb",
     emoji: "🐑",
-    image: "https://picsum.photos/seed/lamb/200/200",
+    image: BG_IMAGES[0], // bg1
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/schaf.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -458,7 +473,7 @@ export const ANIMALS: Animal[] = [
     id: 58,
     name: "Snake",
     emoji: "🐍",
-    image: "https://picsum.photos/seed/snake/200/200",
+    image: BG_IMAGES[1], // bg2
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/rattlesnake.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -467,7 +482,7 @@ export const ANIMALS: Animal[] = [
     id: 59,
     name: "Raven",
     emoji: "🦅",
-    image: "https://picsum.photos/seed/raven/200/200",
+    image: BG_IMAGES[2], // bg3
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/rabe.mp3",
     modes: ["byName", "bySound", "showAll"],
@@ -476,7 +491,7 @@ export const ANIMALS: Animal[] = [
     id: 60,
     name: "Owl",
     emoji: "🦉",
-    image: "https://picsum.photos/seed/owl/200/200",
+    image: BG_IMAGES[3], // bg4
     soundUrl: "https://freeanimalsounds.org/wp-content/uploads/2017/07/owl.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
