@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, Animated } from "react-native";
 import { Audio } from "expo-av";
-import * as Speech from "expo-speech";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { getAnimalDetailViewStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Animal, Language, Translations } from "@/types";
 import { LanguageDropdown } from "@/components/LanguageDropdown";
-import { speakText } from "@/utils/speech";
-import { playAnimalSound } from "@/utils/audio";
+import { speakText, stopSpeech, isLanguageAvailable } from "@/utils/speech";
+import { playAnimalSound, stopAnimalSound } from "@/utils/audio";
 
 interface AnimalDetailViewProps {
   animal: Animal;
@@ -39,19 +38,30 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   // Animation value for emoji wiggle
   const wiggleAnim = useRef(new Animated.Value(0)).current;
 
-  // Check TTS availability on mount
+  // Check TTS availability for current language
   useEffect(() => {
     const checkTTSAvailability = async () => {
       try {
-        const voices = await Speech.getAvailableVoicesAsync();
-        setTtsAvailable(voices.length > 0);
+        // Map language to language code
+        let languageCode: string;
+        if (language === "uk") {
+          languageCode = "uk-UA";
+        } else if (language === "ru") {
+          languageCode = "ru-RU";
+        } else {
+          languageCode = "en-GB";
+        }
+
+        // Check if voice is available for this specific language
+        const available = await isLanguageAvailable(languageCode);
+        setTtsAvailable(available);
       } catch (error) {
         setTtsAvailable(false);
       }
     };
 
     checkTTSAvailability();
-  }, []);
+  }, [language]); // Re-check when language changes
 
   // Continuous wiggle animation for emoji
   useEffect(() => {
@@ -97,6 +107,17 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
     await playAnimalSound(animal.soundUrl, backgroundMusic);
   };
 
+  const handleBackPress = async () => {
+    // Stop any ongoing TTS speech
+    await stopSpeech();
+
+    // Stop any playing animal sound and restore background music volume
+    await stopAnimalSound(backgroundMusic);
+
+    // Navigate back to list
+    onBackPress();
+  };
+
   const animalName = translations.animals[animal.name];
   const showTTSButton = ttsAvailable && isSoundEnabled;
   const showSoundButton = animal.soundUrl && isSoundEnabled;
@@ -106,7 +127,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
-          onPress={onBackPress}
+          onPress={handleBackPress}
           activeOpacity={0.7}
         >
           <Text style={styles.backButtonText}>← {translations.backToList}</Text>

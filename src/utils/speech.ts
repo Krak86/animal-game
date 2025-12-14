@@ -35,7 +35,7 @@ const getAvailableVoices = async (): Promise<Speech.Voice[]> => {
  * Check if a specific language is available
  * @param languageCode - Language code to check (e.g., 'uk-UA', 'uk')
  */
-const isLanguageAvailable = async (languageCode: string): Promise<boolean> => {
+export const isLanguageAvailable = async (languageCode: string): Promise<boolean> => {
   const voices = await getAvailableVoices();
   const shortCode = languageCode.split("-")[0]; // Get 'uk' from 'uk-UA'
 

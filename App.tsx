@@ -13,7 +13,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 // Components
 import {
-  LanguageSwitcher,
   LanguageDropdown,
   QuestionDisplay,
   AnimalCard,
@@ -23,15 +22,12 @@ import {
   AnimalsListView,
   AnimalDetailView,
 } from "@/components";
-
 // Constants
 import { TRANSLATIONS } from "@/constants/translations";
 import { FONTS } from "@/constants/fonts";
 import { ANIMALS } from "@/constants/animals";
-
 // Styles
 import { getAppStyles } from "@/styles/appStyles";
-
 // Custom hooks
 import { useGameLogic } from "@/hooks/useGameLogic";
 import {
@@ -39,13 +35,15 @@ import {
   ResponsiveDimensions,
 } from "@/hooks/useResponsiveDimensions";
 import { useLanguageInitialization } from "@/hooks/useLanguageInitialization";
-
 // Audio utilities
-import { loadBackgroundMusic, pauseBackgroundMusic, resumeBackgroundMusic } from "@/utils/audio";
+import {
+  loadBackgroundMusic,
+  pauseBackgroundMusic,
+  resumeBackgroundMusic,
+} from "@/utils/audio";
 import { Audio } from "expo-av";
-
 // Types
-import { Language, GameMode, Animal } from "@/types";
+import { GameMode, Animal } from "@/types";
 
 // Keep splash screen visible while loading fonts
 SplashScreen.preventAutoHideAsync();
@@ -109,7 +107,7 @@ export default function App() {
   // Manage exhibition mode background music
   useEffect(() => {
     const loadExhibitionMusic = async () => {
-      if (gameMode === 'showAll') {
+      if (gameMode === "showAll") {
         // Load and start background music for exhibition mode
         const music = await loadBackgroundMusic(isSoundEnabled);
         exhibitionBackgroundMusic.current = music;
@@ -134,7 +132,7 @@ export default function App() {
 
   // Handle sound toggle for exhibition mode
   useEffect(() => {
-    if (gameMode === 'showAll') {
+    if (gameMode === "showAll") {
       if (isSoundEnabled) {
         resumeBackgroundMusic(exhibitionBackgroundMusic.current);
       } else {
@@ -151,7 +149,7 @@ export default function App() {
   }, [fontsLoaded, fontError]);
 
   const handleStartGame = (mode: GameMode): void => {
-    if (mode === 'showAll') {
+    if (mode === "showAll") {
       // Exhibition mode: just set mode, skip game logic
       setGameMode(mode);
     } else {
@@ -162,7 +160,7 @@ export default function App() {
   };
 
   const handleResetGame = async (): Promise<void> => {
-    if (gameMode === 'showAll') {
+    if (gameMode === "showAll") {
       // Exhibition mode: simple reset, no game cleanup
       handleBackToStart();
     } else {
@@ -199,104 +197,104 @@ export default function App() {
       <View style={appStyles.container} onLayout={onLayoutRootView}>
         <StatusBar style="auto" />
 
-      {/* Show SoundToggle for all modes except start screen */}
-      {(gameStarted || gameMode === 'showAll') && (
-        <SoundToggle isSoundEnabled={isSoundEnabled} onToggle={toggleSound} />
-      )}
+        {/* Show SoundToggle for all modes except start screen */}
+        {(gameStarted || gameMode === "showAll") && (
+          <SoundToggle isSoundEnabled={isSoundEnabled} onToggle={toggleSound} />
+        )}
 
-      {!gameStarted && gameMode !== 'showAll' ? (
-        <StartScreen
-          onStart={handleStartGame}
-          language={language}
-          onLanguageChange={setLanguage}
-        />
-      ) : gameMode === 'showAll' ? (
-        showAnimalDetail ? (
-          <AnimalDetailView
-            animal={selectedAnimal!}
-            translations={t}
+        {!gameStarted && gameMode !== "showAll" ? (
+          <StartScreen
+            onStart={handleStartGame}
             language={language}
             onLanguageChange={setLanguage}
-            onBackPress={handleBackToList}
-            isSoundEnabled={isSoundEnabled}
-            backgroundMusic={exhibitionBackgroundMusic.current}
           />
-        ) : (
-          <AnimalsListView
-            animals={ANIMALS}
-            translations={t}
-            language={language}
-            onLanguageChange={setLanguage}
-            onAnimalPress={handleAnimalSelect}
-            onBackPress={handleBackToStart}
-            isSoundEnabled={isSoundEnabled}
-          />
-        )
-      ) : (
-        <>
-          <ScrollView
-            contentContainerStyle={appStyles.scrollContent}
-            showsVerticalScrollIndicator={false}
-          >
-            <View style={styles.topBar}>
-              <TouchableOpacity
-                style={styles.resetButton}
-                onPress={handleResetGame}
-                activeOpacity={0.7}
-                id="return-to-home-page"
-              >
-                <Text style={styles.resetButtonText}>
-                  🏠 {t.startFromBeginning}
-                </Text>
-              </TouchableOpacity>
-
-              <LanguageDropdown
-                language={language}
-                onLanguageChange={setLanguage}
-              />
-            </View>
-
-            <View style={appStyles.scoreContainer}>
-              <Text style={appStyles.scoreText}>
-                {t.score}: {score}
-              </Text>
-            </View>
-
-            <QuestionDisplay
-              currentAnimal={currentAnimal}
+        ) : gameMode === "showAll" ? (
+          showAnimalDetail ? (
+            <AnimalDetailView
+              animal={selectedAnimal!}
               translations={t}
-              questionAnimation={questionAnimation}
-              gameMode={gameMode || "byName"}
-              onReplaySound={gameMode === "bySound" ? replaySound : undefined}
+              language={language}
+              onLanguageChange={setLanguage}
+              onBackPress={handleBackToList}
+              isSoundEnabled={isSoundEnabled}
+              backgroundMusic={exhibitionBackgroundMusic.current}
             />
+          ) : (
+            <AnimalsListView
+              animals={ANIMALS}
+              translations={t}
+              language={language}
+              onLanguageChange={setLanguage}
+              onAnimalPress={handleAnimalSelect}
+              onBackPress={handleBackToStart}
+              isSoundEnabled={isSoundEnabled}
+            />
+          )
+        ) : (
+          <>
+            <ScrollView
+              contentContainerStyle={appStyles.scrollContent}
+              showsVerticalScrollIndicator={false}
+            >
+              <View style={styles.topBar}>
+                <TouchableOpacity
+                  style={styles.resetButton}
+                  onPress={handleResetGame}
+                  activeOpacity={0.7}
+                  id="return-to-home-page"
+                >
+                  <Text style={styles.resetButtonText}>
+                    🏠 {t.startFromBeginning}
+                  </Text>
+                </TouchableOpacity>
 
-            <View style={appStyles.gridContainer}>
-              {shuffledAnimals.map((animal, index) => {
-                const isWrong = wrongTileId === animal.id;
+                <LanguageDropdown
+                  language={language}
+                  onLanguageChange={setLanguage}
+                />
+              </View>
 
-                return (
-                  <AnimalCard
-                    key={animal.id}
-                    animal={animal}
-                    isWrong={isWrong}
-                    wiggleAnimation={animalWiggles[index]}
-                    cardAnimation={cardAnimations[index]}
-                    translations={t}
-                    onPress={() => handleAnimalPress(animal)}
-                  />
-                );
-              })}
-            </View>
-          </ScrollView>
+              <View style={appStyles.scoreContainer}>
+                <Text style={appStyles.scoreText}>
+                  {t.score}: {score}
+                </Text>
+              </View>
 
-          <SuccessOverlay
-            visible={showSuccess}
-            translations={t}
-            successScale={successScale}
-            successOpacity={successOpacity}
-          />
-        </>
-      )}
+              <QuestionDisplay
+                currentAnimal={currentAnimal}
+                translations={t}
+                questionAnimation={questionAnimation}
+                gameMode={gameMode || "byName"}
+                onReplaySound={gameMode === "bySound" ? replaySound : undefined}
+              />
+
+              <View style={appStyles.gridContainer}>
+                {shuffledAnimals.map((animal, index) => {
+                  const isWrong = wrongTileId === animal.id;
+
+                  return (
+                    <AnimalCard
+                      key={animal.id}
+                      animal={animal}
+                      isWrong={isWrong}
+                      wiggleAnimation={animalWiggles[index]}
+                      cardAnimation={cardAnimations[index]}
+                      translations={t}
+                      onPress={() => handleAnimalPress(animal)}
+                    />
+                  );
+                })}
+              </View>
+            </ScrollView>
+
+            <SuccessOverlay
+              visible={showSuccess}
+              translations={t}
+              successScale={successScale}
+              successOpacity={successOpacity}
+            />
+          </>
+        )}
       </View>
     </SafeAreaProvider>
   );
