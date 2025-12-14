@@ -8,6 +8,8 @@ export interface ResponsiveDimensions {
   columnCount: number;
   cardSize: number;
   fontScale: number;
+  heightScale: number;
+  compactnessFactor: number;
   spacing: {
     xs: number;
     sm: number;
@@ -20,6 +22,7 @@ export interface ResponsiveDimensions {
 const HORIZONTAL_PADDING = 10;
 const CARD_GAP = 10;
 const BASE_SCREEN_WIDTH = 375; // iPhone SE reference
+const BASE_SCREEN_HEIGHT = 667; // iPhone SE height reference
 
 export const useResponsiveDimensions = (): ResponsiveDimensions => {
   const { width, height } = useWindowDimensions();
@@ -48,13 +51,28 @@ export const useResponsiveDimensions = (): ResponsiveDimensions => {
   // Font scaling based on screen width (relative to base width)
   const fontScale = Math.max(0.85, Math.min(1.3, width / BASE_SCREEN_WIDTH));
 
-  // Responsive spacing values
+  // Height scaling based on vertical space (relative to base height)
+  const heightScale = Math.max(0.7, Math.min(1.2, height / BASE_SCREEN_HEIGHT));
+
+  // Compactness factor: more aggressive scaling when both dimensions are constrained
+  // This helps fit content on small landscape screens
+  const compactnessFactor = (() => {
+    // Very constrained (small phone landscape)
+    if (height < 400) return 0.65;
+    if (height < 500) return 0.75;
+    if (height < 600) return 0.85;
+
+    // Use normal scaling
+    return Math.min(fontScale, heightScale);
+  })();
+
+  // Responsive spacing values (use compactnessFactor in landscape for tighter spacing)
   const spacing = {
-    xs: Math.round(4 * fontScale),
-    sm: Math.round(8 * fontScale),
-    md: Math.round(16 * fontScale),
-    lg: Math.round(24 * fontScale),
-    xl: Math.round(32 * fontScale),
+    xs: Math.round(4 * (isLandscape ? compactnessFactor : fontScale)),
+    sm: Math.round(8 * (isLandscape ? compactnessFactor : fontScale)),
+    md: Math.round(16 * (isLandscape ? compactnessFactor : fontScale)),
+    lg: Math.round(24 * (isLandscape ? compactnessFactor : fontScale)),
+    xl: Math.round(32 * (isLandscape ? compactnessFactor : fontScale)),
   };
 
   return {
@@ -65,6 +83,8 @@ export const useResponsiveDimensions = (): ResponsiveDimensions => {
     columnCount,
     cardSize,
     fontScale,
+    heightScale,
+    compactnessFactor,
     spacing,
   };
 };
