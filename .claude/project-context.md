@@ -9,6 +9,9 @@ An interactive React Native educational game built with Expo where children can 
 - **Audio**: expo-av (v16.0.8) for sound playback and background music
 - **Speech**: expo-speech (v14.0.8) for text-to-speech pronunciation
 - **Fonts**: expo-font (v14.0.10) with Montserrat font family
+- **SVG Rendering**: react-native-svg (v15.12.1) for SVG support
+- **SVG Transformer**: react-native-svg-transformer for importing SVG as components
+- **Emoji Assets**: Twitter Twemoji SVG library
 - **React**: 19.1.0
 - **Path Aliases**: Using `@/` for src imports
 
@@ -41,6 +44,11 @@ Language switching is available on the start screen and during gameplay. All UI 
 ├── App.tsx                # Main application component
 ├── index.ts               # Application entry point
 ├── assets/
+│   ├── emojis/            # Twemoji SVG files (68 files)
+│   │   ├── 1f415.svg      # Dog emoji
+│   │   ├── donkey.svg     # Custom donkey emoji
+│   │   ├── goose.svg      # Custom goose emoji
+│   │   └── ...            # All other animal and UI emojis
 │   ├── fonts/             # Montserrat font files (.ttf)
 │   │   ├── Montserrat-Regular.ttf
 │   │   ├── Montserrat-Medium.ttf
@@ -51,6 +59,8 @@ Language switching is available on the start screen and during gameplay. All UI 
 │   ├── icon.png
 │   ├── splash-icon.png
 │   └── adaptive-icon.png
+├── scripts/
+│   └── downloadTwemojiSvgs.js  # Download Twemoji SVG assets
 └── src/
     ├── components/          # React components
     │   ├── AnimalCard.tsx          # Individual animal tile with wiggle animation
@@ -232,3 +242,70 @@ When adding new UI text:
   - Added `getLanguageDropdownStyles()` to `src/styles/componentStyles.ts`
   - Updated `App.tsx` to use LanguageDropdown in gameplay topBar
   - StartScreen continues using LanguageSwitcher (no changes)
+
+### SVG Emoji Rendering System (Complete Migration)
+
+**Background**: Migrated from native emoji text rendering to SVG-based Twemoji for consistent cross-platform appearance and better quality on Android devices.
+
+**Implementation**:
+- **EmojiSvg Component** (`src/components/EmojiSvg.tsx`):
+  - Accepts emoji character and style props
+  - Extracts fontSize from style and uses it as SVG size
+  - Looks up emoji in EMOJI_SVG_MAP to get corresponding SVG component
+  - Handles module default exports from svg-transformer
+  - Renders SVG in centered View wrapper with explicit opacity: 1
+
+- **Emoji Mapping** (`src/constants/emojiMap.ts`):
+  - Maps all 68 emoji characters to their SVG file paths
+  - 60 animal emojis + 8 UI emojis (🎉, 🔊, 🔇, 📝, 🖼️, 🏠, ✕)
+  - Uses `require()` for SVG assets via react-native-svg-transformer
+  - Supports custom SVG files for Unicode 15.0+ emojis not in Twemoji
+
+- **Metro Bundler Configuration** (`metro.config.js`):
+  - Configured react-native-svg-transformer as babel transformer
+  - SVG files treated as source files, not assets
+  - SVG extension removed from assetExts, added to sourceExts
+
+- **TypeScript Declarations** (`declarations.d.ts`):
+  - Declares SVG modules as React.FC<SvgProps>
+  - Enables TypeScript support for `.svg` imports
+
+**Components Updated** (7 total):
+1. `AnimalCard.tsx` - Main animal emoji in cards
+2. `AnimalDetailView.tsx` - Large emoji + action button icons
+3. `SuccessOverlay.tsx` - Party emoji 🎉
+4. `StartScreen.tsx` - 4 animated animals + 3 button icons
+5. `AnimalsListView.tsx` - Home 🏠 and clear ✕ icons
+6. `SoundToggle.tsx` - Sound on/off icons
+7. `App.tsx` - Home button icon
+
+**Pattern Used**:
+- Wrapped EmojiSvg in Animated.View to preserve wiggle animations
+- Removed Animated.Text emoji rendering
+- Maintained all existing animation transforms
+
+**Custom Emoji SVGs**:
+- `donkey.svg` - Custom SVG for 🫏 (Unicode 15.1, not in Twemoji)
+- `goose.svg` - Custom SVG for 🪿 (Unicode 15.0, not in Twemoji)
+- Placed in `assets/emojis/` directory
+- Referenced in emojiMap.ts alongside Twemoji files
+
+**Download Script** (`scripts/downloadTwemojiSvgs.js`):
+- Downloads all 68 Twemoji SVG files from GitHub
+- Skips already-downloaded files (safe to re-run)
+- Usage: `node scripts/downloadTwemojiSvgs.js`
+- Required for first-time setup or when adding new emojis
+
+**Emoji Centering Fixes**:
+- Added `alignItems: "center"` to imageContainer style
+- Added flexbox centering to Animated.View wrapper (justifyContent, alignItems, width: "100%", height: "100%")
+- Removed unused text-specific styles (lineHeight, textAlign, textAlignVertical, includeFontPadding)
+- Set explicit `opacity: 1` on Animated.View and emojiImage to ensure full opacity
+
+**Benefits**:
+- Consistent emoji appearance across iOS, Android, and Web
+- Higher quality rendering (SVG scales perfectly)
+- No Unicode version dependencies
+- Custom emojis for newer Unicode characters
+- Centered positioning in cards
+- Better Android compatibility

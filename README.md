@@ -292,6 +292,9 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
 - **expo-av** for audio playback and background music
 - **expo-speech** for text-to-speech
 - **expo-font** for custom Montserrat typography
+- **react-native-svg** (v15.12.1) for SVG rendering
+- **react-native-svg-transformer** for importing SVG as React components
+- **Twitter Twemoji** SVG library for consistent cross-platform emoji rendering
 - **React Native Animated API** for smooth animations
 - **Custom hooks** for centralized state management
 - **Path aliases** (`@/`) for clean imports
@@ -395,13 +398,34 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
 - **Callback reliability**: Ensures game flow continues even when TTS fails
 - **bySound mode**: Animal sounds play regardless of TTS availability on device
 
-### Emoji Rendering (Android Optimization)
+### Emoji Rendering (SVG-Based System)
 
-- **Container sizing**: 110x110px containers to accommodate larger Unicode emojis
-- **Android-specific properties**: Uses `textAlignVertical`, `includeFontPadding: false`
-- **Line height**: Proper vertical spacing (65px) for emoji baseline handling
-- **Unicode 15.0+ support**: Fixes display issues with newer emojis (Goose 🪿, Donkey 🫏)
-- **Cross-platform**: iOS compatibility maintained while fixing Android clipping
+**Complete migration from native emoji text to SVG-based Twemoji rendering:**
+
+- **EmojiSvg Component**: Renders emoji characters as SVG components
+  - Extracts size from fontSize style property
+  - Looks up emoji in emojiMap to find corresponding SVG
+  - Handles module default exports from svg-transformer
+  - Centers SVG in View wrapper with explicit opacity
+
+- **Twemoji Integration**: 68 SVG files from Twitter's Twemoji library
+  - 60 animal emojis + 8 UI emojis
+  - Downloaded via `scripts/downloadTwemojiSvgs.js`
+  - Consistent appearance across iOS, Android, and Web
+  - Perfect scaling (vector graphics)
+
+- **Custom SVG Support**: For emojis not in Twemoji (Unicode 15.0+)
+  - Custom donkey.svg and goose.svg for 🫏 and 🪿
+  - Place custom SVGs in `assets/emojis/`
+  - Reference in `src/constants/emojiMap.ts`
+
+- **Centering Fixes**:
+  - Flexbox centering on imageContainer and Animated.View wrapper
+  - Explicit opacity: 1 to ensure full visibility
+  - Removed unused text-specific styles
+
+- **Animation Preservation**: EmojiSvg wrapped in Animated.View to maintain wiggle effects
+- **Cross-platform consistency**: No dependency on device Unicode support or emoji fonts
 
 ### Animation System
 
