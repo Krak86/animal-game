@@ -12,12 +12,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { COLORS } from "@/styles/colors";
 import { FONTS } from "@/constants/fonts";
 import { TRANSLATIONS } from "@/constants/translations";
-import { LanguageSwitcher } from "@/components";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import {
   useResponsiveDimensions,
   ResponsiveDimensions,
 } from "@/hooks/useResponsiveDimensions";
 import { Language, GameMode } from "@/types";
+import { EmojiSvg } from "@/components/EmojiSvg";
 
 interface Props {
   onStart: (mode: GameMode) => void;
@@ -90,98 +91,86 @@ export const StartScreen: React.FC<Props> = ({
         />
 
         <View style={styles.emojiContainer}>
-          <Animated.Text
-            style={[
-              styles.emoji,
-              {
-                transform: [
-                  {
-                    rotate: wiggle1.interpolate({
-                      inputRange: [-1, 1],
-                      outputRange: ["-8deg", "8deg"],
-                    }),
-                  },
-                  {
-                    translateY: wiggle1.interpolate({
-                      inputRange: [-1, 0, 1],
-                      outputRange: [-3, 0, -3],
-                    }),
-                  },
-                ],
-              },
-            ]}
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  rotate: wiggle1.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggle1.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            }}
           >
-            🐕
-          </Animated.Text>
-          <Animated.Text
-            style={[
-              styles.emoji,
-              {
-                transform: [
-                  {
-                    rotate: wiggle2.interpolate({
-                      inputRange: [-1, 1],
-                      outputRange: ["-8deg", "8deg"],
-                    }),
-                  },
-                  {
-                    translateY: wiggle2.interpolate({
-                      inputRange: [-1, 0, 1],
-                      outputRange: [-3, 0, -3],
-                    }),
-                  },
-                ],
-              },
-            ]}
+            <EmojiSvg emoji="🐕" style={styles.emoji} />
+          </Animated.View>
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  rotate: wiggle2.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggle2.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            }}
           >
-            🐈
-          </Animated.Text>
-          <Animated.Text
-            style={[
-              styles.emoji,
-              {
-                transform: [
-                  {
-                    rotate: wiggle3.interpolate({
-                      inputRange: [-1, 1],
-                      outputRange: ["-8deg", "8deg"],
-                    }),
-                  },
-                  {
-                    translateY: wiggle3.interpolate({
-                      inputRange: [-1, 0, 1],
-                      outputRange: [-3, 0, -3],
-                    }),
-                  },
-                ],
-              },
-            ]}
+            <EmojiSvg emoji="🐈" style={styles.emoji} />
+          </Animated.View>
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  rotate: wiggle3.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggle3.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            }}
           >
-            🦁
-          </Animated.Text>
-          <Animated.Text
-            style={[
-              styles.emoji,
-              {
-                transform: [
-                  {
-                    rotate: wiggle4.interpolate({
-                      inputRange: [-1, 1],
-                      outputRange: ["-8deg", "8deg"],
-                    }),
-                  },
-                  {
-                    translateY: wiggle4.interpolate({
-                      inputRange: [-1, 0, 1],
-                      outputRange: [-3, 0, -3],
-                    }),
-                  },
-                ],
-              },
-            ]}
+            <EmojiSvg emoji="🦁" style={styles.emoji} />
+          </Animated.View>
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  rotate: wiggle4.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggle4.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            }}
           >
-            🐘
-          </Animated.Text>
+            <EmojiSvg emoji="🐘" style={styles.emoji} />
+          </Animated.View>
         </View>
         <Text style={styles.title}>{t.title}</Text>
         <Text style={styles.subtitle}>{t.subtitle}</Text>
@@ -194,7 +183,7 @@ export const StartScreen: React.FC<Props> = ({
               onPress={() => onStart("byName")}
               activeOpacity={0.8}
             >
-              <Text style={styles.buttonEmoji}>📝</Text>
+              <EmojiSvg emoji="📝" style={styles.buttonEmoji} />
               <Text style={styles.modeButtonText}>{t.byName}</Text>
             </TouchableOpacity>
 
@@ -203,7 +192,7 @@ export const StartScreen: React.FC<Props> = ({
               onPress={() => onStart("bySound")}
               activeOpacity={0.8}
             >
-              <Text style={styles.buttonEmoji}>🔊</Text>
+              <EmojiSvg emoji="🔊" style={styles.buttonEmoji} />
               <Text style={styles.modeButtonText}>{t.bySound}</Text>
             </TouchableOpacity>
 
@@ -212,7 +201,7 @@ export const StartScreen: React.FC<Props> = ({
               onPress={() => onStart("showAll")}
               activeOpacity={0.8}
             >
-              <Text style={styles.buttonEmoji}>🖼️</Text>
+              <EmojiSvg emoji="🖼️" style={styles.buttonEmoji} />
               <Text style={styles.modeButtonText}>{t.showAll}</Text>
             </TouchableOpacity>
           </View>

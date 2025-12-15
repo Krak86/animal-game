@@ -3,6 +3,7 @@ import { TouchableOpacity, View, Image, Animated } from "react-native";
 import { getAnimalCardStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Animal, Translations } from "@/types";
+import { EmojiSvg } from "@/components/EmojiSvg";
 
 interface Props {
   animal: Animal;
@@ -47,9 +48,20 @@ export const AnimalCard: React.FC<Props> = ({
         activeOpacity={0.7}
       >
         <View style={styles.imageContainer}>
-          <Animated.Text
+          {animal.image && (
+            <Image source={animal.image} style={styles.backgroundImage} />
+          )}
+
+          <Animated.View
             style={[
-              styles.emojiImage,
+              {
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100%",
+                opacity: 1,
+                zIndex: 2,
+              },
               {
                 transform: [
                   {
@@ -68,16 +80,10 @@ export const AnimalCard: React.FC<Props> = ({
               },
             ]}
           >
-            {animal.emoji}
-          </Animated.Text>
-
-          {animal.image && (
-            <Image
-              source={animal.image}
-              style={styles.backgroundImage}
-            />
-          )}
+            <EmojiSvg emoji={animal.emoji} style={styles.emojiImage} />
+          </Animated.View>
         </View>
+
         <Animated.Text style={styles.label}>
           {translations.animals[animal.name]}
         </Animated.Text>

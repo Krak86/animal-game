@@ -1,0 +1,92 @@
+/**
+ * Emoji to SVG mapping for all emojis used in the app
+ * Maps emoji characters to their corresponding Twemoji SVG files
+ */
+
+// Emoji to SVG mapping - all 68 emojis
+export const EMOJI_SVG_MAP: Record<string, any> = {
+  // Animal emojis (60)
+  "🐕": require("@assets/emojis/1f415.svg"),
+  "🐈": require("@assets/emojis/1f408.svg"),
+  "🦁": require("@assets/emojis/1f981.svg"),
+  "🐘": require("@assets/emojis/1f418.svg"),
+  "🦒": require("@assets/emojis/1f992.svg"),
+  "🐒": require("@assets/emojis/1f412.svg"),
+  "🐧": require("@assets/emojis/1f427.svg"),
+  "🦓": require("@assets/emojis/1f993.svg"),
+  "🐅": require("@assets/emojis/1f405.svg"),
+  "🐰": require("@assets/emojis/1f430.svg"),
+  "🐓": require("@assets/emojis/1f413.svg"),
+  "🐄": require("@assets/emojis/1f404.svg"),
+  "🐴": require("@assets/emojis/1f434.svg"),
+  "🐦": require("@assets/emojis/1f426.svg"),
+  "🐺": require("@assets/emojis/1f43a.svg"),
+  "🪿": require("@assets/emojis/goose.svg"),
+  "🫏": require("@assets/emojis/donkey.svg"),
+  "🐻": require("@assets/emojis/1f43b.svg"),
+  "🦈": require("@assets/emojis/1f988.svg"),
+  "🐢": require("@assets/emojis/1f422.svg"),
+  "🐙": require("@assets/emojis/1f419.svg"),
+  "🦀": require("@assets/emojis/1f980.svg"),
+  "🐋": require("@assets/emojis/1f40b.svg"),
+  "🐬": require("@assets/emojis/1f42c.svg"),
+  "🐌": require("@assets/emojis/1f40c.svg"),
+  "🐜": require("@assets/emojis/1f41c.svg"),
+  "🐞": require("@assets/emojis/1f41e.svg"),
+  "🐊": require("@assets/emojis/1f40a.svg"),
+  "🦇": require("@assets/emojis/1f987.svg"),
+  "🦜": require("@assets/emojis/1f99c.svg"),
+  "🦌": require("@assets/emojis/1f98c.svg"),
+  "🦙": require("@assets/emojis/1f999.svg"),
+  "🐃": require("@assets/emojis/1f403.svg"),
+  "🦃": require("@assets/emojis/1f983.svg"),
+  "🦚": require("@assets/emojis/1f99a.svg"),
+  "🦢": require("@assets/emojis/1f9a2.svg"),
+  "🐝": require("@assets/emojis/1f41d.svg"),
+  "🐛": require("@assets/emojis/1f41b.svg"),
+  "🦂": require("@assets/emojis/1f982.svg"),
+  "🦞": require("@assets/emojis/1f99e.svg"),
+  "🦭": require("@assets/emojis/1f9ad.svg"),
+  "🦝": require("@assets/emojis/1f99d.svg"),
+  "🦡": require("@assets/emojis/1f9a1.svg"),
+  "🐗": require("@assets/emojis/1f417.svg"),
+  "🐪": require("@assets/emojis/1f42a.svg"),
+  "🦎": require("@assets/emojis/1f98e.svg"),
+  "🦩": require("@assets/emojis/1f9a9.svg"),
+  "🦍": require("@assets/emojis/1f98d.svg"),
+  "🦘": require("@assets/emojis/1f998.svg"),
+  "🐆": require("@assets/emojis/1f406.svg"),
+  "🐑": require("@assets/emojis/1f411.svg"),
+  "🐥": require("@assets/emojis/1f425.svg"),
+  "🐖": require("@assets/emojis/1f416.svg"),
+  "🐐": require("@assets/emojis/1f410.svg"),
+  "🐂": require("@assets/emojis/1f402.svg"),
+  "🦆": require("@assets/emojis/1f986.svg"),
+  "🐍": require("@assets/emojis/1f40d.svg"),
+  "🦅": require("@assets/emojis/1f985.svg"),
+  "🦉": require("@assets/emojis/1f989.svg"),
+
+  // UI emojis (8)
+  "🎉": require("@assets/emojis/1f389.svg"),
+  "🔊": require("@assets/emojis/1f50a.svg"),
+  "🔉": require("@assets/emojis/1f509.svg"),
+  "🔇": require("@assets/emojis/1f507.svg"),
+  "📝": require("@assets/emojis/1f4dd.svg"),
+  "🖼️": require("@assets/emojis/1f5bc.svg"),
+  "🏠": require("@assets/emojis/1f3e0.svg"),
+  "✕": require("@assets/emojis/2715.svg"),
+};
+
+/**
+ * Get the SVG asset for a given emoji character
+ * @param emoji - The emoji character (e.g., "🐕")
+ * @returns The SVG asset or null if not found
+ */
+export function getEmojiSvg(emoji: string): any {
+  const svg = EMOJI_SVG_MAP[emoji];
+  if (!svg) {
+    console.warn(`No SVG found for emoji: ${emoji}`);
+    return null;
+  }
+  return svg;
+}

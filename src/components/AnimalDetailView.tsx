@@ -9,6 +9,7 @@ import { Animal, Language, Translations } from "@/types";
 import { LanguageDropdown } from "@/components/LanguageDropdown";
 import { speakText, stopSpeech, isLanguageAvailable } from "@/utils/speech";
 import { playAnimalSound, stopAnimalSound } from "@/utils/audio";
+import { EmojiSvg } from "@/components/EmojiSvg";
 
 interface AnimalDetailViewProps {
   animal: Animal;
@@ -146,29 +147,26 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
       </View>
 
       <View style={styles.contentContainer}>
-        <Animated.Text
-          style={[
-            styles.emoji,
-            {
-              transform: [
-                {
-                  rotate: wiggleAnim.interpolate({
-                    inputRange: [-1, 1],
-                    outputRange: ["-8deg", "8deg"],
-                  }),
-                },
-                {
-                  translateY: wiggleAnim.interpolate({
-                    inputRange: [-1, 0, 1],
-                    outputRange: [-3, 0, -3],
-                  }),
-                },
-              ],
-            },
-          ]}
+        <Animated.View
+          style={{
+            transform: [
+              {
+                rotate: wiggleAnim.interpolate({
+                  inputRange: [-1, 1],
+                  outputRange: ["-8deg", "8deg"],
+                }),
+              },
+              {
+                translateY: wiggleAnim.interpolate({
+                  inputRange: [-1, 0, 1],
+                  outputRange: [-3, 0, -3],
+                }),
+              },
+            ],
+          }}
         >
-          {animal.emoji}
-        </Animated.Text>
+          <EmojiSvg emoji={animal.emoji} style={styles.emoji} />
+        </Animated.View>
         <Text style={styles.animalName}>{animalName}</Text>
 
         <View style={styles.buttonContainer} id="animal-detail-view">
@@ -178,9 +176,10 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
               onPress={handleSpeakName}
               activeOpacity={0.7}
             >
-              <Text style={styles.actionButtonText}>
-                🔊 {translations.speakName}
-              </Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <EmojiSvg emoji="🔊" style={{ fontSize: 20 }} />
+                <Text style={styles.actionButtonText}>{translations.speakName}</Text>
+              </View>
             </TouchableOpacity>
           )}
 
@@ -194,14 +193,17 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
               activeOpacity={0.7}
               disabled={isPlayingSound}
             >
-              <Text
-                style={[
-                  styles.actionButtonText,
-                  isPlayingSound && styles.actionButtonTextDisabled,
-                ]}
-              >
-                🔉 {translations.playSound}
-              </Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <EmojiSvg emoji="🔉" style={{ fontSize: 20 }} />
+                <Text
+                  style={[
+                    styles.actionButtonText,
+                    isPlayingSound && styles.actionButtonTextDisabled,
+                  ]}
+                >
+                  {translations.playSound}
+                </Text>
+              </View>
             </TouchableOpacity>
           )}
         </View>

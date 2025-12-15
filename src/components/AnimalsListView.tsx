@@ -15,6 +15,7 @@ import { Animal, Language, Translations } from "@/types";
 import { LanguageDropdown } from "@/components/LanguageDropdown";
 import { debounce } from "@/utils/helpers";
 import { AnimalCard } from "@/components/AnimalCard";
+import { EmojiSvg } from "@/components/EmojiSvg";
 
 interface AnimalsListViewProps {
   animals: Animal[];
@@ -154,9 +155,10 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
           onPress={onBackPress}
           activeOpacity={0.7}
         >
-          <Text style={styles.backButtonText}>
-            🏠 {translations.startFromBeginning}
-          </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <EmojiSvg emoji="🏠" style={{ fontSize: 16 }} />
+            <Text style={styles.backButtonText}>{translations.startFromBeginning}</Text>
+          </View>
         </TouchableOpacity>
 
         <LanguageDropdown
@@ -185,7 +187,7 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
             onPress={() => handleSearchChange("")}
             activeOpacity={0.7}
           >
-            <Text style={styles.clearButtonText}>✕</Text>
+            <EmojiSvg emoji="✕" style={styles.clearButtonText} />
           </TouchableOpacity>
         )}
       </View>

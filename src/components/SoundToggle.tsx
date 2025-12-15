@@ -2,6 +2,7 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 import { COLORS } from "@/styles/colors";
 import { useResponsiveDimensions, ResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
+import { EmojiSvg } from "@/components/EmojiSvg";
 
 interface Props {
   isSoundEnabled: boolean;
@@ -18,7 +19,7 @@ export const SoundToggle: React.FC<Props> = ({ isSoundEnabled, onToggle }) => {
       onPress={onToggle}
       activeOpacity={0.7}
     >
-      <Text style={styles.icon}>{isSoundEnabled ? "🔊" : "🔇"}</Text>
+      <EmojiSvg emoji={isSoundEnabled ? "🔊" : "🔇"} style={styles.icon} />
     </TouchableOpacity>
   );
 };

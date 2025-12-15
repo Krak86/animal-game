@@ -75,15 +75,13 @@ export const getAnimalCardStyles = (responsive: ResponsiveDimensions) => {
       width: imageSize,
       height: imageSize,
       justifyContent: "center",
+      alignItems: "center",
       position: "relative",
     },
     emojiImage: {
-      fontSize: Math.round(imageSize * 0.47), // Proportional to image size
-      lineHeight: Math.round(imageSize * 0.59),
-      textAlign: "center",
-      textAlignVertical: "center",
-      includeFontPadding: false,
+      fontSize: Math.round(imageSize * 0.47), // Proportional to image size (converted to size by EmojiSvg)
       zIndex: 2,
+      opacity: 1,
     },
     backgroundImage: {
       position: "absolute",

@@ -22,6 +22,7 @@ import {
   AnimalsListView,
   AnimalDetailView,
 } from "@/components";
+import { EmojiSvg } from "@/components/EmojiSvg";
 // Constants
 import { TRANSLATIONS } from "@/constants/translations";
 import { FONTS } from "@/constants/fonts";
@@ -244,9 +245,10 @@ export default function App() {
                   activeOpacity={0.7}
                   id="return-to-home-page"
                 >
-                  <Text style={styles.resetButtonText}>
-                    🏠 {t.startFromBeginning}
-                  </Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                    <EmojiSvg emoji="🏠" style={{ fontSize: 14 }} />
+                    <Text style={styles.resetButtonText}>{t.startFromBeginning}</Text>
+                  </View>
                 </TouchableOpacity>
 
                 <LanguageDropdown

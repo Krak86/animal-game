@@ -195,6 +195,77 @@ Replace URLs in `src/constants/sounds.ts` with your own sound files for success/
 3. Load fonts in [App.tsx:46-51](App.tsx#L46-L51) using `useFonts` hook
 4. Use font families in styles
 
+### Downloading Emoji SVG Assets
+
+The app uses SVG versions of emojis (from Twitter's Twemoji library) for consistent cross-platform rendering. These SVG files need to be downloaded before building the app.
+
+#### What the Script Does
+
+The `scripts/downloadTwemojiSvgs.js` script:
+- Downloads 68 Twemoji SVG files (60 animal emojis + 8 UI emojis)
+- Saves them to `assets/emojis/` directory
+- Skips files that already exist (safe to re-run)
+- Shows progress and summary of downloads
+
+#### When to Use
+
+Run this script:
+- **First time setup**: After cloning the repository
+- **Adding new emojis**: After adding new animals to `animals.ts`
+- **Missing assets**: If emoji SVG files are missing from `assets/emojis/`
+
+#### How to Run
+
+```bash
+# Download all Twemoji SVG files
+node scripts/downloadTwemojiSvgs.js
+```
+
+#### Expected Output
+
+```
+Starting download of 68 Twemoji SVG files...
+
+✓ Downloaded 🐕 (1f415.svg)
+✓ Downloaded 🐈 (1f408.svg)
+✓ 🦁 (1f981.svg) - already exists
+...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Download Summary:
+✓ Downloaded: 64
+→ Skipped (already exist): 4
+✗ Failed: 0
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ All SVG files downloaded successfully to assets/emojis
+```
+
+#### Custom Emoji SVGs
+
+For emojis not available in Twemoji (like newer Unicode 15.0+ emojis), you can:
+1. Create custom SVG files (e.g., `donkey.svg`, `goose.svg`)
+2. Place them in `assets/emojis/` directory
+3. Update `src/constants/emojiMap.ts` to reference your custom SVG:
+
+```typescript
+export const EMOJI_SVG_MAP: Record<string, any> = {
+  "🫏": require("@assets/emojis/donkey.svg"), // Custom SVG
+  "🪿": require("@assets/emojis/goose.svg"),  // Custom SVG
+  // ... other emojis
+};
+```
+
+4. Clear Metro cache: `npx expo start --clear`
+
+#### Troubleshooting
+
+**Failed downloads**: Some newer emojis (Unicode 15.0+) may not exist in Twemoji. Create custom SVG files for these.
+
+**Metro bundler errors**: Clear cache with `npx expo start --clear` after adding new SVG files.
+
+**SVG not rendering**: Verify the emoji character in `animals.ts` matches the mapping in `emojiMap.ts`.
+
 ## Game Modes Explained
 
 ### By Name Mode
