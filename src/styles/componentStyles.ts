@@ -210,6 +210,7 @@ export const getSuccessOverlayStyles = (responsive: ResponsiveDimensions) =>
       fontFamily: FONTS.bold,
       color: COLORS.white,
       marginBottom: responsive.spacing.sm,
+      textAlign: "center",
     },
     subtext: {
       fontSize: 20 * responsive.fontScale,
