@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import {
   View,
-  ScrollView,
+  FlatList,
   Text,
   TouchableOpacity,
-  Animated,
   TextInput,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -80,72 +79,33 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
     });
   }, [animals, debouncedSearch, translations]);
 
-  // Create animation values for cards - memoized to recreate when filtered list changes
-  const cardAnimations = useMemo(
-    () => filteredAnimals.map(() => new Animated.Value(0)),
-    [filteredAnimals.length]
+  // Render individual animal card
+  const renderItem = useCallback(
+    ({ item }: { item: Animal; index: number }) => (
+      <AnimalCard
+        animal={item}
+        isWrong={false}
+        translations={translations}
+        onPress={() => onAnimalPress(item)}
+      />
+    ),
+    [translations, onAnimalPress]
   );
 
-  const cardWiggles = useMemo(
-    () => filteredAnimals.map(() => new Animated.Value(0)),
-    [filteredAnimals.length]
+  // Key extractor for FlatList
+  const keyExtractor = useCallback((item: Animal) => item.id.toString(), []);
+
+  // Empty list component
+  const renderEmpty = useCallback(
+    () => (
+      <View style={styles.noResultsContainer}>
+        <Text style={styles.noResultsText}>
+          {translations.noResults || "No animals found"}
+        </Text>
+      </View>
+    ),
+    [translations, styles]
   );
-
-  // Entrance animations for cards
-  useEffect(() => {
-    const animations = cardAnimations.map((anim, index) => {
-      return Animated.sequence([
-        Animated.delay(index * 30), // Stagger the animations
-        Animated.spring(anim, {
-          toValue: 1,
-          useNativeDriver: true,
-          tension: 50,
-          friction: 7,
-        }),
-      ]);
-    });
-
-    Animated.parallel(animations).start();
-  }, [cardAnimations]);
-
-  // Continuous wiggle animations for cards
-  useEffect(() => {
-    const createWiggle = (anim: Animated.Value, delay: number) => {
-      return Animated.loop(
-        Animated.sequence([
-          Animated.delay(delay),
-          Animated.timing(anim, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: true,
-          }),
-          Animated.timing(anim, {
-            toValue: -1,
-            duration: 400,
-            useNativeDriver: true,
-          }),
-          Animated.timing(anim, {
-            toValue: 0,
-            duration: 200,
-            useNativeDriver: true,
-          }),
-          Animated.delay(1500),
-        ])
-      );
-    };
-
-    // Start wiggle animations with staggered delays for each card
-    const wiggleAnimations = cardWiggles.map((wiggle, index) => {
-      return createWiggle(wiggle, index * 100);
-    });
-
-    wiggleAnimations.forEach((anim) => anim.start());
-
-    // Cleanup
-    return () => {
-      wiggleAnimations.forEach((anim) => anim.stop());
-    };
-  }, [cardWiggles]);
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -192,32 +152,20 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
         )}
       </View>
 
-      <ScrollView
+      <FlatList
+        key={responsive.columnCount}
+        data={filteredAnimals}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        numColumns={responsive.columnCount}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.gridContainer}>
-          {filteredAnimals.length > 0 ? (
-            filteredAnimals.map((animal, index) => (
-              <AnimalCard
-                key={animal.id}
-                animal={animal}
-                isWrong={false}
-                wiggleAnimation={cardWiggles[index]}
-                cardAnimation={cardAnimations[index]}
-                translations={translations}
-                onPress={() => onAnimalPress(animal)}
-              />
-            ))
-          ) : (
-            <View style={styles.noResultsContainer}>
-              <Text style={styles.noResultsText}>
-                {translations.noResults || "No animals found"}
-              </Text>
-            </View>
-          )}
-        </View>
-      </ScrollView>
+        removeClippedSubviews={true}
+        initialNumToRender={12}
+        maxToRenderPerBatch={6}
+        windowSize={3}
+        ListEmptyComponent={renderEmpty}
+      />
     </View>
   );
 };
