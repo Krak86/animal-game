@@ -13,6 +13,26 @@
     },
     "production": {
       "autoIncrement": true
+    },
+    "production-arm64": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease -PreactNativeArchitectures=arm64-v8a"
+      }
+    },
+    "production-arm32": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease -PreactNativeArchitectures=armeabi-v7a"
+      }
+    },
+    "production-x86": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease -PreactNativeArchitectures=x86_64"
+      }
+    },
+    "production-universal": {
+      "android": {
+        "buildType": "apk"
+      }
     }
   },
   "submit": {

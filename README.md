@@ -202,6 +202,7 @@ The app uses SVG versions of emojis (from Twitter's Twemoji library) for consist
 #### What the Script Does
 
 The `scripts/downloadTwemojiSvgs.js` script:
+
 - Downloads 68 Twemoji SVG files (60 animal emojis + 8 UI emojis)
 - Saves them to `assets/emojis/` directory
 - Skips files that already exist (safe to re-run)
@@ -210,6 +211,7 @@ The `scripts/downloadTwemojiSvgs.js` script:
 #### When to Use
 
 Run this script:
+
 - **First time setup**: After cloning the repository
 - **Adding new emojis**: After adding new animals to `animals.ts`
 - **Missing assets**: If emoji SVG files are missing from `assets/emojis/`
@@ -244,6 +246,7 @@ Download Summary:
 #### Custom Emoji SVGs
 
 For emojis not available in Twemoji (like newer Unicode 15.0+ emojis), you can:
+
 1. Create custom SVG files (e.g., `donkey.svg`, `goose.svg`)
 2. Place them in `assets/emojis/` directory
 3. Update `src/constants/emojiMap.ts` to reference your custom SVG:
@@ -251,7 +254,7 @@ For emojis not available in Twemoji (like newer Unicode 15.0+ emojis), you can:
 ```typescript
 export const EMOJI_SVG_MAP: Record<string, any> = {
   "🫏": require("@assets/emojis/donkey.svg"), // Custom SVG
-  "🪿": require("@assets/emojis/goose.svg"),  // Custom SVG
+  "🪿": require("@assets/emojis/goose.svg"), // Custom SVG
   // ... other emojis
 };
 ```
@@ -341,6 +344,8 @@ npx expo run:android --variant release
 eas build --platform android --local
 # Or use EAS build locally (APK)
 eas build --platform android --profile preview --local
+# Or use EAS build locally for arm64 (APK)
+eas build --platform android --profile production-arm64 --local
 
 # Build with Gradle
 "build:android:debug": "cd android && ./gradlew assembleDebug",
@@ -403,23 +408,27 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
 **Complete migration from native emoji text to SVG-based Twemoji rendering:**
 
 - **EmojiSvg Component**: Renders emoji characters as SVG components
+
   - Extracts size from fontSize style property
   - Looks up emoji in emojiMap to find corresponding SVG
   - Handles module default exports from svg-transformer
   - Centers SVG in View wrapper with explicit opacity
 
 - **Twemoji Integration**: 68 SVG files from Twitter's Twemoji library
+
   - 60 animal emojis + 8 UI emojis
   - Downloaded via `scripts/downloadTwemojiSvgs.js`
   - Consistent appearance across iOS, Android, and Web
   - Perfect scaling (vector graphics)
 
 - **Custom SVG Support**: For emojis not in Twemoji (Unicode 15.0+)
+
   - Custom donkey.svg and goose.svg for 🫏 and 🪿
   - Place custom SVGs in `assets/emojis/`
   - Reference in `src/constants/emojiMap.ts`
 
 - **Centering Fixes**:
+
   - Flexbox centering on imageContainer and Animated.View wrapper
   - Explicit opacity: 1 to ensure full visibility
   - Removed unused text-specific styles
