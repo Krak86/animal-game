@@ -460,7 +460,7 @@ export const ANIMALS: Animal[] = [
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/Ente_quackt.mp3",
     modes: ["byName", "bySound", "showAll"],
   },
-  {
+  /*   {
     id: 57,
     name: "Lamb",
     emoji: "🐑",
@@ -468,7 +468,7 @@ export const ANIMALS: Animal[] = [
     soundUrl:
       "https://freeanimalsounds.org/wp-content/uploads/2017/07/schaf.mp3",
     modes: ["byName", "bySound", "showAll"],
-  },
+  }, */
   {
     id: 58,
     name: "Snake",
