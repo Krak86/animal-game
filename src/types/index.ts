@@ -17,7 +17,7 @@ export interface Animal {
   name: string;
   emoji: string;
   image: any; // Local image require() result (React Native)
-  soundUrl?: string; // Optional: animal sound URL
+  soundUrl?: string | number; // Optional: animal sound (URL string or local require() number)
   modes: GameMode[]; // Which modes this animal appears in
   // Optional fields for future exhibition features
   images?: string[]; // Multiple images for gallery

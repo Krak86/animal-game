@@ -227,12 +227,12 @@ export const stopAnimalSound = async (
 };
 
 /**
- * Plays an animal sound from a URL with background music ducking
- * @param soundUrl - URL of the animal sound to play
+ * Plays an animal sound from a URL or local file with background music ducking
+ * @param soundUrl - URL string or local require() number of the animal sound to play
  * @param backgroundMusic - Background music to duck during playback
  */
 export const playAnimalSound = async (
-  soundUrl: string,
+  soundUrl: string | number,
   backgroundMusic: Audio.Sound | null
 ): Promise<void> => {
   try {
@@ -246,7 +246,7 @@ export const playAnimalSound = async (
 
     // Load and play animal sound at maximum volume
     const { sound } = await Audio.Sound.createAsync(
-      { uri: soundUrl },
+      soundUrl,
       { volume: ANIMAL_SOUND_VOLUME }
     );
 

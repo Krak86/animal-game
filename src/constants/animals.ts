@@ -15,11 +15,37 @@ const bg10 = require("@assets/imgs/bg/bg10.jpg");
 // Background images array for cycling
 const BG_IMAGES = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9, bg10];
 
-// NOTE: Sound URLs are placeholders - replace with actual working URLs from:
-// - https://mixkit.co/free-sound-effects/animals/
-// - https://freesound.org/ (check licenses)
-// - hhttps://freeanimalsounds.org/downloads/
-// - Other free sound libraries
+// Animal sound files
+const dogSound = require("@assets/music/animals/Dog.mp3");
+const catSound = require("@assets/music/animals/Cat.mp3");
+const lionSound = require("@assets/music/animals/Lion.mp3");
+const elephantSound = require("@assets/music/animals/Elephant.mp3");
+const monkeySound = require("@assets/music/animals/Monkey.mp3");
+const tigerSound = require("@assets/music/animals/Tiger.mp3");
+const roosterSound = require("@assets/music/animals/Rooster.mp3");
+const cowSound = require("@assets/music/animals/Cow.mp3");
+const horseSound = require("@assets/music/animals/Horse.mp3");
+const birdSound = require("@assets/music/animals/Bird.mp3");
+const wolfSound = require("@assets/music/animals/Wolf.mp3");
+const gooseSound = require("@assets/music/animals/Goose.mp3");
+const donkeySound = require("@assets/music/animals/Donkey.mp3");
+const bearSound = require("@assets/music/animals/Bear.mp3");
+const parrotSound = require("@assets/music/animals/Parrot.mp3");
+const buffaloSound = require("@assets/music/animals/Buffalo.mp3");
+const turkeySound = require("@assets/music/animals/Turkey.mp3");
+const peacockSound = require("@assets/music/animals/Peacock.mp3");
+const beeSound = require("@assets/music/animals/Bee.mp3");
+const gorillaSound = require("@assets/music/animals/Gorilla.mp3");
+const leopardSound = require("@assets/music/animals/Leopard.mp3");
+const sheepSound = require("@assets/music/animals/Sheep.mp3");
+const chickenSound = require("@assets/music/animals/Chicken.mp3");
+const pigSound = require("@assets/music/animals/Pig.mp3");
+const goatSound = require("@assets/music/animals/Goat.mp3");
+const bullSound = require("@assets/music/animals/Bull.mp3");
+const duckSound = require("@assets/music/animals/Duck.mp3");
+const snakeSound = require("@assets/music/animals/Snake.mp3");
+const ravenSound = require("@assets/music/animals/Raven.mp3");
+const owlSound = require("@assets/music/animals/Owl.mp3");
 
 // Animal data with placeholder images and sounds
 export const ANIMALS: Animal[] = [
@@ -28,7 +54,7 @@ export const ANIMALS: Animal[] = [
     name: "Dog",
     emoji: "🐕",
     image: BG_IMAGES[0], // bg1
-    soundUrl: "https://assets.mixkit.co/active_storage/sfx/1/1-preview.mp3",
+    soundUrl: dogSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -36,7 +62,7 @@ export const ANIMALS: Animal[] = [
     name: "Cat",
     emoji: "🐈",
     image: BG_IMAGES[1], // bg2
-    soundUrl: "https://assets.mixkit.co/active_storage/sfx/93/93-preview.mp3",
+    soundUrl: catSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -44,7 +70,7 @@ export const ANIMALS: Animal[] = [
     name: "Lion",
     emoji: "🦁",
     image: BG_IMAGES[2], // bg3
-    soundUrl: "https://assets.mixkit.co/active_storage/sfx/6/6-preview.mp3",
+    soundUrl: lionSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -52,8 +78,7 @@ export const ANIMALS: Animal[] = [
     name: "Elephant",
     emoji: "🐘",
     image: BG_IMAGES[3], // bg4
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/Elefant.mp3",
+    soundUrl: elephantSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -68,7 +93,7 @@ export const ANIMALS: Animal[] = [
     name: "Monkey",
     emoji: "🐒",
     image: BG_IMAGES[5], // bg6
-    soundUrl: "https://assets.mixkit.co/active_storage/sfx/108/108-preview.mp3",
+    soundUrl: monkeySound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -90,8 +115,7 @@ export const ANIMALS: Animal[] = [
     name: "Tiger",
     emoji: "🐅",
     image: BG_IMAGES[8], // bg9
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/Tiger.mp3",
+    soundUrl: tigerSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -106,8 +130,7 @@ export const ANIMALS: Animal[] = [
     name: "Rooster",
     emoji: "🐓",
     image: BG_IMAGES[0], // bg1
-    soundUrl:
-      "https://assets.mixkit.co/active_storage/sfx/2462/2462-preview.mp3",
+    soundUrl: roosterSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -115,8 +138,7 @@ export const ANIMALS: Animal[] = [
     name: "Cow",
     emoji: "🐄",
     image: BG_IMAGES[1], // bg2
-    soundUrl:
-      "https://assets.mixkit.co/active_storage/sfx/1751/1751-preview.mp3",
+    soundUrl: cowSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -124,7 +146,7 @@ export const ANIMALS: Animal[] = [
     name: "Horse",
     emoji: "🐴",
     image: BG_IMAGES[2], // bg3
-    soundUrl: "https://assets.mixkit.co/active_storage/sfx/85/85-preview.mp3",
+    soundUrl: horseSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -132,7 +154,7 @@ export const ANIMALS: Animal[] = [
     name: "Bird",
     emoji: "🐦",
     image: BG_IMAGES[3], // bg4
-    soundUrl: "https://assets.mixkit.co/active_storage/sfx/17/17-preview.mp3",
+    soundUrl: birdSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -140,8 +162,7 @@ export const ANIMALS: Animal[] = [
     name: "Wolf",
     emoji: "🐺",
     image: BG_IMAGES[4], // bg5
-    soundUrl:
-      "https://assets.mixkit.co/active_storage/sfx/1775/1775-preview.mp3",
+    soundUrl: wolfSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -149,7 +170,7 @@ export const ANIMALS: Animal[] = [
     name: "Goose",
     emoji: "🪿",
     image: BG_IMAGES[5], // bg6
-    soundUrl: "https://assets.mixkit.co/active_storage/sfx/20/20-preview.mp3",
+    soundUrl: gooseSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -157,8 +178,7 @@ export const ANIMALS: Animal[] = [
     name: "Donkey",
     emoji: "🫏",
     image: BG_IMAGES[6], // bg7
-    soundUrl:
-      "https://assets.mixkit.co/active_storage/sfx/1770/1770-preview.mp3",
+    soundUrl: donkeySound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -166,7 +186,7 @@ export const ANIMALS: Animal[] = [
     name: "Bear",
     emoji: "🐻",
     image: BG_IMAGES[7], // bg8
-    soundUrl: "https://assets.mixkit.co/active_storage/sfx/309/309-preview.mp3",
+    soundUrl: bearSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -251,8 +271,7 @@ export const ANIMALS: Animal[] = [
     name: "Parrot",
     emoji: "🦜",
     image: BG_IMAGES[9], // bg10
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/RedParot.mp3",
+    soundUrl: parrotSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -274,8 +293,7 @@ export const ANIMALS: Animal[] = [
     name: "Buffalo",
     emoji: "🐃",
     image: BG_IMAGES[2], // bg3
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/bison.mp3",
+    soundUrl: buffaloSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -283,8 +301,7 @@ export const ANIMALS: Animal[] = [
     name: "Turkey",
     emoji: "🦃",
     image: BG_IMAGES[3], // bg4
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/truthahn.mp3",
+    soundUrl: turkeySound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -292,8 +309,7 @@ export const ANIMALS: Animal[] = [
     name: "Peacock",
     emoji: "🦚",
     image: BG_IMAGES[4], // bg5
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/08/peacock.mp3",
+    soundUrl: peacockSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -308,7 +324,7 @@ export const ANIMALS: Animal[] = [
     name: "Bee",
     emoji: "🐝",
     image: BG_IMAGES[6], // bg7
-    soundUrl: "https://freeanimalsounds.org/wp-content/uploads/2017/07/bee.mp3",
+    soundUrl: beeSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -386,8 +402,7 @@ export const ANIMALS: Animal[] = [
     name: "Gorilla",
     emoji: "🦍",
     image: BG_IMAGES[7], // bg8
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/Gorilla.mp3",
+    soundUrl: gorillaSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -402,8 +417,7 @@ export const ANIMALS: Animal[] = [
     name: "Leopard",
     emoji: "🐆",
     image: BG_IMAGES[9], // bg10
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/Leopard.mp3",
+    soundUrl: leopardSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -411,8 +425,7 @@ export const ANIMALS: Animal[] = [
     name: "Sheep",
     emoji: "🐑",
     image: BG_IMAGES[0], // bg1
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/schafe.mp3",
+    soundUrl: sheepSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -420,8 +433,7 @@ export const ANIMALS: Animal[] = [
     name: "Chicken",
     emoji: "🐥",
     image: BG_IMAGES[1], // bg2
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/huehner.mp3",
+    soundUrl: chickenSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -429,8 +441,7 @@ export const ANIMALS: Animal[] = [
     name: "Pig",
     emoji: "🐖",
     image: BG_IMAGES[2], // bg3
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/schwein.mp3",
+    soundUrl: pigSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -438,8 +449,7 @@ export const ANIMALS: Animal[] = [
     name: "Goat",
     emoji: "🐐",
     image: BG_IMAGES[3], // bg4
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/Ziege.mp3",
+    soundUrl: goatSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -447,8 +457,7 @@ export const ANIMALS: Animal[] = [
     name: "Bull",
     emoji: "🐂",
     image: BG_IMAGES[4], // bg5
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/ochse.mp3",
+    soundUrl: bullSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -456,8 +465,7 @@ export const ANIMALS: Animal[] = [
     name: "Duck",
     emoji: "🦆",
     image: BG_IMAGES[5], // bg6
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/Ente_quackt.mp3",
+    soundUrl: duckSound,
     modes: ["byName", "bySound", "showAll"],
   },
   /*   {
@@ -474,8 +482,7 @@ export const ANIMALS: Animal[] = [
     name: "Snake",
     emoji: "🐍",
     image: BG_IMAGES[1], // bg2
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/rattlesnake.mp3",
+    soundUrl: snakeSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -483,8 +490,7 @@ export const ANIMALS: Animal[] = [
     name: "Raven",
     emoji: "🦅",
     image: BG_IMAGES[2], // bg3
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/rabe.mp3",
+    soundUrl: ravenSound,
     modes: ["byName", "bySound", "showAll"],
   },
   {
@@ -492,7 +498,7 @@ export const ANIMALS: Animal[] = [
     name: "Owl",
     emoji: "🦉",
     image: BG_IMAGES[3], // bg4
-    soundUrl: "https://freeanimalsounds.org/wp-content/uploads/2017/07/owl.mp3",
+    soundUrl: owlSound,
     modes: ["byName", "bySound", "showAll"],
   },
 ];
