@@ -13,6 +13,7 @@
     "docker:down": "docker-compose down",
     "docker:exec": "docker-compose exec animals-game-builder bash",
     "docker:install": "docker-compose exec animals-game-builder yarn install",
+    "docker:arm64:local": "docker-compose exec animals-game-builder eas build --platform android --profile production-arm64 --local",
     "docker:clean": "docker-compose down -v",
     "build:android:debug": "cd android && ./gradlew assembleDebug",
     "build:android:release": "cd android && ./gradlew assembleRelease",
