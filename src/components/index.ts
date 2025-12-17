@@ -8,3 +8,5 @@ export { StartScreen } from './StartScreen';
 export { SoundToggle } from './SoundToggle';
 export { AnimalsListView } from './AnimalsListView';
 export { AnimalDetailView } from './AnimalDetailView';
+export { CustomDrawerContent } from './CustomDrawerContent';
+export { HamburgerButton } from './HamburgerButton';

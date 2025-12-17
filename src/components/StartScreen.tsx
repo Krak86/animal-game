@@ -11,27 +11,24 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { COLORS } from "@/styles/colors";
 import { FONTS } from "@/constants/fonts";
-import { TRANSLATIONS } from "@/constants/translations";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { HamburgerButton } from "@/components/HamburgerButton";
 import {
   useResponsiveDimensions,
   ResponsiveDimensions,
 } from "@/hooks/useResponsiveDimensions";
-import { Language, GameMode } from "@/types";
+import { GameMode, Translations } from "@/types";
 import { EmojiSvg } from "@/components/EmojiSvg";
 
 interface Props {
   onStart: (mode: GameMode) => void;
-  language: Language;
-  onLanguageChange: (lang: Language) => void;
+  translations: Translations;
 }
 
 export const StartScreen: React.FC<Props> = ({
   onStart,
-  language,
-  onLanguageChange,
+  translations,
 }) => {
-  const t = TRANSLATIONS[language]?.startScreen || TRANSLATIONS.uk.startScreen;
+  const t = translations.startScreen;
   const responsive = useResponsiveDimensions();
   const styles = getStartScreenStyles(responsive);
   const insets = useSafeAreaInsets();
@@ -77,6 +74,7 @@ export const StartScreen: React.FC<Props> = ({
 
   return (
     <View style={styles.outerContainer}>
+      <HamburgerButton />
       <ScrollView
         contentContainerStyle={[
           styles.scrollContent,
@@ -85,11 +83,6 @@ export const StartScreen: React.FC<Props> = ({
         showsVerticalScrollIndicator={false}
         bounces={true}
       >
-        <LanguageSwitcher
-          language={language}
-          onLanguageChange={onLanguageChange}
-        />
-
         <View style={styles.emojiContainer}>
           <Animated.View
             style={{

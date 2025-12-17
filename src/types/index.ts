@@ -56,6 +56,9 @@ export interface Translations {
   playSound: string; // "Play Sound" button
   searchPlaceholder: string; // "Search animals..." placeholder
   noResults: string; // "No animals found" message
+  menu: string; // "Menu" drawer header
+  sound: string; // "Sound" drawer section label
+  language: string; // "Language" drawer section label
   animals: AnimalTranslations;
 }
 

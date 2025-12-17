@@ -340,6 +340,7 @@ export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>
     backButton: {
       paddingHorizontal: 15,
       paddingVertical: 8,
+      marginLeft: 60,
       backgroundColor: COLORS.secondary,
       borderRadius: 20,
       shadowColor: COLORS.black,

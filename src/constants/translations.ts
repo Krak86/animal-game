@@ -23,6 +23,9 @@ export const TRANSLATIONS: TranslationMap = {
     playSound: "Play Sound",
     searchPlaceholder: "Search animals...",
     noResults: "No animals found",
+    menu: "Menu",
+    sound: "Sound",
+    language: "Language",
     animals: {
       Dog: "Dog",
       Cat: "Cat",
@@ -107,6 +110,9 @@ export const TRANSLATIONS: TranslationMap = {
     playSound: "Відтворити звук",
     searchPlaceholder: "Пошук тварин...",
     noResults: "Тварин не знайдено",
+    menu: "Меню",
+    sound: "Звук",
+    language: "Мова",
     animals: {
       Dog: "Пес",
       Cat: "Кіт",
@@ -191,6 +197,9 @@ export const TRANSLATIONS: TranslationMap = {
     playSound: "Воспроизвести звук",
     searchPlaceholder: "Поиск животных...",
     noResults: "Животные не найдены",
+    menu: "Меню",
+    sound: "Звук",
+    language: "Язык",
     animals: {
       Dog: "Собака",
       Cat: "Кот",

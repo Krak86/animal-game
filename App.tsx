@@ -1,40 +1,31 @@
 import { StatusBar } from "expo-status-bar";
 import { useState, useEffect, useRef, useCallback } from "react";
-import {
-  View,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
+import { View, ScrollView, Text } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // Components
 import {
-  LanguageDropdown,
   QuestionDisplay,
   AnimalCard,
   SuccessOverlay,
   StartScreen,
-  SoundToggle,
   AnimalsListView,
   AnimalDetailView,
+  CustomDrawerContent,
+  HamburgerButton,
 } from "@/components";
-import { EmojiSvg } from "@/components/EmojiSvg";
 // Constants
 import { TRANSLATIONS } from "@/constants/translations";
-import { FONTS } from "@/constants/fonts";
 import { ANIMALS } from "@/constants/animals";
 // Styles
 import { getAppStyles } from "@/styles/appStyles";
 // Custom hooks
 import { useGameLogic } from "@/hooks/useGameLogic";
-import {
-  useResponsiveDimensions,
-  ResponsiveDimensions,
-} from "@/hooks/useResponsiveDimensions";
+import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { useLanguageInitialization } from "@/hooks/useLanguageInitialization";
 // Audio utilities
 import {
@@ -48,6 +39,13 @@ import { GameMode, Animal } from "@/types";
 
 // Keep splash screen visible while loading fonts
 SplashScreen.preventAutoHideAsync();
+
+// Create Drawer Navigator
+type RootDrawerParamList = {
+  Main: undefined;
+};
+
+const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 export default function App() {
   const {
@@ -67,7 +65,6 @@ export default function App() {
   // Responsive dimensions
   const responsive = useResponsiveDimensions();
   const appStyles = getAppStyles(responsive);
-  const styles = getLocalStyles(responsive);
 
   // Load Montserrat fonts
   const [fontsLoaded, fontError] = useFonts({
@@ -196,137 +193,114 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <View style={appStyles.container} onLayout={onLayoutRootView}>
-        <StatusBar style="auto" />
-
-        {/* Show SoundToggle for all modes except start screen */}
-        {(gameStarted || gameMode === "showAll") && (
-          <SoundToggle isSoundEnabled={isSoundEnabled} onToggle={toggleSound} />
-        )}
-
-        {!gameStarted && gameMode !== "showAll" ? (
-          <StartScreen
-            onStart={handleStartGame}
-            language={language}
-            onLanguageChange={setLanguage}
-          />
-        ) : gameMode === "showAll" ? (
-          showAnimalDetail ? (
-            <AnimalDetailView
-              animal={selectedAnimal!}
-              translations={t}
+      <NavigationContainer>
+        <Drawer.Navigator
+          drawerContent={(props) => (
+            <CustomDrawerContent
+              {...props}
+              isSoundEnabled={isSoundEnabled}
+              onToggleSound={toggleSound}
               language={language}
               onLanguageChange={setLanguage}
-              onBackPress={handleBackToList}
-              isSoundEnabled={isSoundEnabled}
-              backgroundMusic={exhibitionBackgroundMusic.current}
-            />
-          ) : (
-            <AnimalsListView
-              animals={ANIMALS}
+              onHomePress={handleResetGame}
               translations={t}
-              language={language}
-              onLanguageChange={setLanguage}
-              onAnimalPress={handleAnimalSelect}
-              onBackPress={handleBackToStart}
-              isSoundEnabled={isSoundEnabled}
             />
-          )
-        ) : (
-          <>
-            <ScrollView
-              contentContainerStyle={appStyles.scrollContent}
-              showsVerticalScrollIndicator={false}
-            >
-              <View style={styles.topBar}>
-                <TouchableOpacity
-                  style={styles.resetButton}
-                  onPress={handleResetGame}
-                  activeOpacity={0.7}
-                  id="return-to-home-page"
-                >
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                    <EmojiSvg emoji="🏠" style={{ fontSize: 14 }} />
-                    <Text style={styles.resetButtonText}>{t.startFromBeginning}</Text>
-                  </View>
-                </TouchableOpacity>
+          )}
+          screenOptions={{
+            headerShown: false,
+            drawerType: "front",
+            drawerStyle: {
+              width: responsive.isPortrait
+                ? Math.min(280, responsive.width * 0.75)
+                : Math.min(320, responsive.width * 0.4),
+              backgroundColor: "#FFF5E6",
+            },
+            overlayColor: "rgba(0, 0, 0, 0.5)",
+            swipeEdgeWidth: 50,
+          }}
+        >
+          <Drawer.Screen name="Main">
+            {() => (
+              <View style={appStyles.container} onLayout={onLayoutRootView}>
+                <StatusBar style="auto" />
 
-                <LanguageDropdown
-                  language={language}
-                  onLanguageChange={setLanguage}
-                />
-              </View>
+                {/* Show HamburgerButton on all screens */}
+                <HamburgerButton />
 
-              <View style={appStyles.scoreContainer}>
-                <Text style={appStyles.scoreText}>
-                  {t.score}: {score}
-                </Text>
-              </View>
-
-              <QuestionDisplay
-                currentAnimal={currentAnimal}
-                translations={t}
-                questionAnimation={questionAnimation}
-                gameMode={gameMode || "byName"}
-                onReplaySound={gameMode === "bySound" ? replaySound : undefined}
-                isReplayingSound={isAnimalSoundPlaying}
-              />
-
-              <View style={appStyles.gridContainer}>
-                {shuffledAnimals.map((animal, index) => {
-                  const isWrong = wrongTileId === animal.id;
-
-                  return (
-                    <AnimalCard
-                      key={animal.id}
-                      animal={animal}
-                      isWrong={isWrong}
-                      wiggleAnimation={animalWiggles[index]}
-                      cardAnimation={cardAnimations[index]}
+                {!gameStarted && gameMode !== "showAll" ? (
+                  <StartScreen onStart={handleStartGame} translations={t} />
+                ) : gameMode === "showAll" ? (
+                  showAnimalDetail ? (
+                    <AnimalDetailView
+                      animal={selectedAnimal!}
                       translations={t}
-                      onPress={() => handleAnimalPress(animal)}
+                      onBackPress={handleBackToList}
+                      isSoundEnabled={isSoundEnabled}
+                      backgroundMusic={exhibitionBackgroundMusic.current}
                     />
-                  );
-                })}
-              </View>
-            </ScrollView>
+                  ) : (
+                    <AnimalsListView
+                      animals={ANIMALS}
+                      translations={t}
+                      onAnimalPress={handleAnimalSelect}
+                      isSoundEnabled={isSoundEnabled}
+                    />
+                  )
+                ) : (
+                  <>
+                    <ScrollView
+                      contentContainerStyle={appStyles.scrollContent}
+                      showsVerticalScrollIndicator={false}
+                    >
+                      <View style={appStyles.scoreContainer}>
+                        <Text style={appStyles.scoreText}>
+                          {t.score}: {score}
+                        </Text>
+                      </View>
 
-            <SuccessOverlay
-              visible={showSuccess}
-              translations={t}
-              successScale={successScale}
-              successOpacity={successOpacity}
-            />
-          </>
-        )}
-      </View>
+                      <QuestionDisplay
+                        currentAnimal={currentAnimal}
+                        translations={t}
+                        questionAnimation={questionAnimation}
+                        gameMode={gameMode || "byName"}
+                        onReplaySound={
+                          gameMode === "bySound" ? replaySound : undefined
+                        }
+                        isReplayingSound={isAnimalSoundPlaying}
+                      />
+
+                      <View style={appStyles.gridContainer}>
+                        {shuffledAnimals.map((animal, index) => {
+                          const isWrong = wrongTileId === animal.id;
+
+                          return (
+                            <AnimalCard
+                              key={animal.id}
+                              animal={animal}
+                              isWrong={isWrong}
+                              wiggleAnimation={animalWiggles[index]}
+                              cardAnimation={cardAnimations[index]}
+                              translations={t}
+                              onPress={() => handleAnimalPress(animal)}
+                            />
+                          );
+                        })}
+                      </View>
+                    </ScrollView>
+
+                    <SuccessOverlay
+                      visible={showSuccess}
+                      translations={t}
+                      successScale={successScale}
+                      successOpacity={successOpacity}
+                    />
+                  </>
+                )}
+              </View>
+            )}
+          </Drawer.Screen>
+        </Drawer.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
-
-const getLocalStyles = (responsive: ResponsiveDimensions) =>
-  StyleSheet.create({
-    topBar: {
-      flexDirection: responsive.isLandscape ? "row" : "column",
-      justifyContent: "flex-start",
-      gap: responsive.spacing.sm,
-      alignItems: responsive.isLandscape ? "center" : "stretch",
-      paddingHorizontal: responsive.spacing.sm,
-    },
-    resetButton: {
-      paddingHorizontal: 15,
-      paddingVertical: 8,
-      backgroundColor: "#FFE66D",
-      borderRadius: 20,
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 3,
-      elevation: 2,
-    },
-    resetButtonText: {
-      fontSize: 14 * responsive.fontScale,
-      fontFamily: FONTS.semiBold,
-      color: "#333",
-    },
-  });

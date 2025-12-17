@@ -7,11 +7,12 @@ import { EmojiSvg } from "@/components/EmojiSvg";
 interface Props {
   isSoundEnabled: boolean;
   onToggle: () => void;
+  variant?: 'floating' | 'inline';
 }
 
-export const SoundToggle: React.FC<Props> = ({ isSoundEnabled, onToggle }) => {
+export const SoundToggle: React.FC<Props> = ({ isSoundEnabled, onToggle, variant = 'floating' }) => {
   const responsive = useResponsiveDimensions();
-  const styles = getSoundToggleStyles(responsive);
+  const styles = getSoundToggleStyles(responsive, variant);
 
   return (
     <TouchableOpacity
@@ -24,26 +25,34 @@ export const SoundToggle: React.FC<Props> = ({ isSoundEnabled, onToggle }) => {
   );
 };
 
-const getSoundToggleStyles = (responsive: ResponsiveDimensions) => {
+const getSoundToggleStyles = (responsive: ResponsiveDimensions, variant: 'floating' | 'inline') => {
   const buttonSize = Math.max(45, Math.min(60, responsive.width * 0.12));
+
+  const baseButtonStyles = {
+    backgroundColor: COLORS.white,
+    borderRadius: buttonSize / 2,
+    width: buttonSize,
+    height: buttonSize,
+    justifyContent: "center" as const,
+    alignItems: "center" as const,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  };
+
+  const floatingStyles = variant === 'floating' ? {
+    position: "absolute" as const,
+    top: responsive.spacing.lg,
+    right: responsive.spacing.lg,
+    zIndex: 100,
+  } : {};
 
   return StyleSheet.create({
     button: {
-      position: "absolute",
-      top: responsive.spacing.lg,
-      right: responsive.spacing.lg,
-      backgroundColor: COLORS.white,
-      borderRadius: buttonSize / 2,
-      width: buttonSize,
-      height: buttonSize,
-      justifyContent: "center",
-      alignItems: "center",
-      shadowColor: COLORS.black,
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.2,
-      shadowRadius: 4,
-      elevation: 3,
-      zIndex: 100,
+      ...baseButtonStyles,
+      ...floatingStyles,
     },
     icon: {
       fontSize: 24 * responsive.fontScale,

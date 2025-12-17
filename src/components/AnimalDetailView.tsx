@@ -5,17 +5,14 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { getAnimalDetailViewStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
-import { Animal, Language, Translations } from "@/types";
-import { LanguageDropdown } from "@/components/LanguageDropdown";
-import { speakText, stopSpeech, isLanguageAvailable } from "@/utils/speech";
+import { Animal, Translations } from "@/types";
+import { speakText, stopSpeech } from "@/utils/speech";
 import { playAnimalSound, stopAnimalSound } from "@/utils/audio";
 import { EmojiSvg } from "@/components/EmojiSvg";
 
 interface AnimalDetailViewProps {
   animal: Animal;
   translations: Translations;
-  language: Language;
-  onLanguageChange: (lang: Language) => void;
   onBackPress: () => void;
   isSoundEnabled: boolean;
   backgroundMusic: Audio.Sound | null;
@@ -24,8 +21,6 @@ interface AnimalDetailViewProps {
 export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   animal,
   translations,
-  language,
-  onLanguageChange,
   onBackPress,
   isSoundEnabled,
   backgroundMusic,
@@ -34,36 +29,10 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   const styles = getAnimalDetailViewStyles(responsive);
   const insets = useSafeAreaInsets();
 
-  const [ttsAvailable, setTtsAvailable] = useState(false);
   const [isPlayingSound, setIsPlayingSound] = useState(false);
 
   // Animation value for emoji wiggle
   const wiggleAnim = useRef(new Animated.Value(0)).current;
-
-  // Check TTS availability for current language
-  useEffect(() => {
-    const checkTTSAvailability = async () => {
-      try {
-        // Map language to language code
-        let languageCode: string;
-        if (language === "uk") {
-          languageCode = "uk-UA";
-        } else if (language === "ru") {
-          languageCode = "ru-RU";
-        } else {
-          languageCode = "en-GB";
-        }
-
-        // Check if voice is available for this specific language
-        const available = await isLanguageAvailable(languageCode);
-        setTtsAvailable(available);
-      } catch (error) {
-        setTtsAvailable(false);
-      }
-    };
-
-    checkTTSAvailability();
-  }, [language]); // Re-check when language changes
 
   // Continuous wiggle animation for emoji
   useEffect(() => {
@@ -96,10 +65,11 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   }, [wiggleAnim]);
 
   const handleSpeakName = async () => {
-    if (!isSoundEnabled || !ttsAvailable) return;
+    if (!isSoundEnabled) return;
 
     const animalName = translations.animals[animal.name];
-    speakText(animalName, language, backgroundMusic, () => {});
+    // Default to English for TTS
+    speakText(animalName, "en", backgroundMusic, () => {});
   };
 
   const handlePlaySound = async () => {
@@ -126,7 +96,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   };
 
   const animalName = translations.animals[animal.name];
-  const showTTSButton = ttsAvailable && isSoundEnabled;
+  const showTTSButton = isSoundEnabled;
   const showSoundButton = animal.soundUrl && isSoundEnabled;
 
   return (
@@ -139,13 +109,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
         >
           <Text style={styles.backButtonText}>← {translations.backToList}</Text>
         </TouchableOpacity>
-
-        <LanguageDropdown
-          language={language}
-          onLanguageChange={onLanguageChange}
-        />
       </View>
-
       <View style={styles.contentContainer}>
         <Animated.View
           style={{
@@ -176,9 +140,13 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
               onPress={handleSpeakName}
               activeOpacity={0.7}
             >
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+              >
                 <EmojiSvg emoji="🔊" style={{ fontSize: 20 }} />
-                <Text style={styles.actionButtonText}>{translations.speakName}</Text>
+                <Text style={styles.actionButtonText}>
+                  {translations.speakName}
+                </Text>
               </View>
             </TouchableOpacity>
           )}
@@ -193,7 +161,9 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
               activeOpacity={0.7}
               disabled={isPlayingSound}
             >
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+              >
                 <EmojiSvg emoji="🔉" style={{ fontSize: 20 }} />
                 <Text
                   style={[

@@ -10,8 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { getAnimalsListViewStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
-import { Animal, Language, Translations } from "@/types";
-import { LanguageDropdown } from "@/components/LanguageDropdown";
+import { Animal, Translations } from "@/types";
 import { debounce } from "@/utils/helpers";
 import { AnimalCard } from "@/components/AnimalCard";
 import { EmojiSvg } from "@/components/EmojiSvg";
@@ -19,20 +18,14 @@ import { EmojiSvg } from "@/components/EmojiSvg";
 interface AnimalsListViewProps {
   animals: Animal[];
   translations: Translations;
-  language: Language;
-  onLanguageChange: (lang: Language) => void;
   onAnimalPress: (animal: Animal) => void;
-  onBackPress: () => void;
   isSoundEnabled: boolean;
 }
 
 export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
   animals,
   translations,
-  language,
-  onLanguageChange,
   onAnimalPress,
-  onBackPress,
 }) => {
   const responsive = useResponsiveDimensions();
   const styles = getAnimalsListViewStyles(responsive);
@@ -109,24 +102,6 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={onBackPress}
-          activeOpacity={0.7}
-        >
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <EmojiSvg emoji="🏠" style={{ fontSize: 16 }} />
-            <Text style={styles.backButtonText}>{translations.startFromBeginning}</Text>
-          </View>
-        </TouchableOpacity>
-
-        <LanguageDropdown
-          language={language}
-          onLanguageChange={onLanguageChange}
-        />
-      </View>
-
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{translations.showAllTitle}</Text>
       </View>
