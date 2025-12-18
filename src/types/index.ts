@@ -59,6 +59,7 @@ export interface Translations {
   menu: string; // "Menu" drawer header
   sound: string; // "Sound" drawer section label
   language: string; // "Language" drawer section label
+  gameMode: string; // "Game Mode" drawer section label
   animals: AnimalTranslations;
 }
 
@@ -97,5 +98,6 @@ export interface UseGameLogicReturn {
   startGame: () => Promise<void>;
   toggleSound: () => void;
   resetGame: () => Promise<void>;
+  resetGameState: () => Promise<void>; // Reset game state without stopping background music
   replaySound: () => Promise<void>; // New function for By Sound mode
 }

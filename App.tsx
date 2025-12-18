@@ -186,6 +186,24 @@ export default function App() {
     setSelectedAnimal(null);
   };
 
+  const handleModeSwitch = async (newMode: GameMode): Promise<void> => {
+    // If already in this mode, do nothing
+    if (gameMode === newMode) {
+      return;
+    }
+
+    // For ALL mode switches: use full reset to prevent music overlap
+    await resetGame();
+
+    // Then start the new mode
+    if (newMode === "showAll") {
+      setGameMode(newMode);
+    } else {
+      shouldStartGame.current = true;
+      setGameMode(newMode);
+    }
+  };
+
   // Don't render app until fonts and language are loaded
   if ((!fontsLoaded && !fontError) || isLanguageLoading) {
     return null;
@@ -203,6 +221,8 @@ export default function App() {
               language={language}
               onLanguageChange={setLanguage}
               onHomePress={handleResetGame}
+              onModeSwitch={handleModeSwitch}
+              currentGameMode={gameMode}
               translations={t}
             />
           )}

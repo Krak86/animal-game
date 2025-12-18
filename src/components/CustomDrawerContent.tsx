@@ -1,14 +1,20 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { DrawerContentScrollView, DrawerContentComponentProps } from '@react-navigation/drawer';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  DrawerContentScrollView,
+  DrawerContentComponentProps,
+} from "@react-navigation/drawer";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { SoundToggle } from './SoundToggle';
-import { LanguageSwitcher } from './LanguageSwitcher';
-import { EmojiSvg } from './EmojiSvg';
-import { COLORS } from '@/styles/colors';
-import { FONTS } from '@/constants/fonts';
-import { useResponsiveDimensions, ResponsiveDimensions } from '@/hooks/useResponsiveDimensions';
-import { Language, Translations } from '@/types';
+import { SoundToggle } from "./SoundToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { EmojiSvg } from "./EmojiSvg";
+import { COLORS } from "@/styles/colors";
+import { FONTS } from "@/constants/fonts";
+import {
+  useResponsiveDimensions,
+  ResponsiveDimensions,
+} from "@/hooks/useResponsiveDimensions";
+import { Language, Translations, GameMode } from "@/types";
 
 interface CustomDrawerProps extends DrawerContentComponentProps {
   isSoundEnabled: boolean;
@@ -16,6 +22,8 @@ interface CustomDrawerProps extends DrawerContentComponentProps {
   language: Language;
   onLanguageChange: (lang: Language) => void;
   onHomePress: () => Promise<void>;
+  onModeSwitch: (mode: GameMode) => Promise<void>;
+  currentGameMode: GameMode | null;
   translations: Translations;
 }
 
@@ -25,6 +33,8 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
   language,
   onLanguageChange,
   onHomePress,
+  onModeSwitch,
+  currentGameMode,
   translations,
   navigation,
 }) => {
@@ -37,17 +47,21 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
     navigation.closeDrawer();
   };
 
+  const handleModeSwitch = async (mode: GameMode) => {
+    await onModeSwitch(mode);
+    navigation.closeDrawer();
+  };
+
   return (
     <DrawerContentScrollView
       style={styles.container}
       contentContainerStyle={[
         styles.contentContainer,
-        { paddingTop: insets.top }
+        { paddingTop: insets.top },
       ]}
     >
       {/* Header Section */}
       <View style={styles.header}>
-        <EmojiSvg emoji="🐾" style={styles.headerEmoji} />
         <Text style={styles.headerTitle}>{translations.menu}</Text>
       </View>
 
@@ -61,9 +75,66 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
         >
           <View style={styles.menuItemContent}>
             <EmojiSvg emoji="🏠" style={styles.menuItemEmoji} />
-            <Text style={styles.menuItemText}>{translations.startFromBeginning}</Text>
+            <Text style={styles.menuItemText}>
+              {translations.startFromBeginning}
+            </Text>
           </View>
         </TouchableOpacity>
+
+        {/* Game Mode Section */}
+        <View style={styles.gameModeSection}>
+          <Text style={styles.sectionLabel}>
+            {translations.gameMode || "Game Mode"}
+          </Text>
+
+          {/* By Name Button */}
+          <TouchableOpacity
+            style={[
+              styles.menuItemContent,
+              styles.gameModeButton,
+              currentGameMode === "byName" && styles.activeGameMode,
+            ]}
+            onPress={() => handleModeSwitch("byName")}
+            activeOpacity={0.7}
+          >
+            <EmojiSvg emoji="📝" style={styles.menuItemEmoji} />
+            <Text style={styles.menuItemText}>
+              {translations.startScreen.byName}
+            </Text>
+          </TouchableOpacity>
+
+          {/* By Sound Button */}
+          <TouchableOpacity
+            style={[
+              styles.menuItemContent,
+              styles.gameModeButton,
+              currentGameMode === "bySound" && styles.activeGameMode,
+            ]}
+            onPress={() => handleModeSwitch("bySound")}
+            activeOpacity={0.7}
+          >
+            <EmojiSvg emoji="🔊" style={styles.menuItemEmoji} />
+            <Text style={styles.menuItemText}>
+              {translations.startScreen.bySound}
+            </Text>
+          </TouchableOpacity>
+
+          {/* Show All Button */}
+          <TouchableOpacity
+            style={[
+              styles.menuItemContent,
+              styles.gameModeButton,
+              currentGameMode === "showAll" && styles.activeGameMode,
+            ]}
+            onPress={() => handleModeSwitch("showAll")}
+            activeOpacity={0.7}
+          >
+            <EmojiSvg emoji="🖼️" style={styles.menuItemEmoji} />
+            <Text style={styles.menuItemText}>
+              {translations.startScreen.showAll}
+            </Text>
+          </TouchableOpacity>
+        </View>
 
         {/* Sound Toggle Section */}
         <View style={styles.menuItem}>
@@ -90,67 +161,83 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
   );
 };
 
-const getDrawerStyles = (responsive: ResponsiveDimensions) => StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
-  contentContainer: {
-    flex: 1,
-    paddingHorizontal: responsive.spacing.md,
-  },
-  header: {
-    alignItems: 'center',
-    paddingVertical: responsive.spacing.xl,
-    borderBottomWidth: 2,
-    borderBottomColor: COLORS.lightGray,
-    marginBottom: responsive.spacing.lg,
-  },
-  headerEmoji: {
-    fontSize: 48 * responsive.fontScale,
-    marginBottom: responsive.spacing.sm,
-  },
-  headerTitle: {
-    fontSize: 24 * responsive.fontScale,
-    fontFamily: FONTS.bold,
-    color: COLORS.dark,
-  },
-  menuSection: {
-    flex: 1,
-    gap: responsive.spacing.lg,
-  },
-  menuItem: {
-    paddingVertical: responsive.spacing.sm,
-  },
-  menuItemContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: responsive.spacing.sm,
-    backgroundColor: COLORS.secondary,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 20,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
-  },
-  menuItemEmoji: {
-    fontSize: 20 * responsive.fontScale,
-  },
-  menuItemText: {
-    fontSize: 16 * responsive.fontScale,
-    fontFamily: FONTS.semiBold,
-    color: COLORS.dark,
-  },
-  sectionLabel: {
-    fontSize: 14 * responsive.fontScale,
-    fontFamily: FONTS.semiBold,
-    color: COLORS.gray,
-    marginBottom: responsive.spacing.sm,
-  },
-  soundToggleContainer: {
-    alignItems: 'flex-start',
-  },
-});
+const getDrawerStyles = (responsive: ResponsiveDimensions) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: COLORS.background,
+    },
+    contentContainer: {
+      flex: 1,
+      paddingHorizontal: responsive.spacing.md,
+    },
+    header: {
+      alignItems: "center",
+      paddingVertical: 10,
+      borderBottomWidth: 2,
+      borderBottomColor: COLORS.lightGray,
+      marginBottom: 10,
+    },
+    headerEmoji: {
+      fontSize: 48 * responsive.fontScale,
+      marginBottom: responsive.spacing.sm,
+    },
+    headerTitle: {
+      fontSize: 24 * responsive.fontScale,
+      fontFamily: FONTS.bold,
+      color: COLORS.dark,
+    },
+    menuSection: {
+      flex: 1,
+      gap: 10,
+    },
+    menuItem: {
+      paddingVertical: 1, // responsive.spacing.sm,
+    },
+    menuItemContent: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: responsive.spacing.sm,
+      backgroundColor: COLORS.secondary,
+      paddingHorizontal: 20,
+      paddingVertical: 12,
+      borderRadius: 20,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3,
+      elevation: 2,
+    },
+    menuItemEmoji: {
+      fontSize: 20 * responsive.fontScale,
+    },
+    menuItemText: {
+      fontSize: 16 * responsive.fontScale,
+      fontFamily: FONTS.semiBold,
+      color: COLORS.dark,
+    },
+    sectionLabel: {
+      fontSize: 14 * responsive.fontScale,
+      fontFamily: FONTS.semiBold,
+      color: COLORS.gray,
+      marginBottom: responsive.spacing.sm,
+    },
+    soundToggleContainer: {
+      alignItems: "flex-start",
+    },
+    gameModeSection: {
+      gap: responsive.spacing.sm,
+      paddingBottom: responsive.spacing.md,
+      borderBottomWidth: 1,
+      borderBottomColor: COLORS.lightGray,
+      marginBottom: responsive.spacing.md,
+    },
+    gameModeButton: {
+      paddingVertical: 10,
+    },
+    activeGameMode: {
+      backgroundColor: COLORS.primary,
+      borderWidth: 2,
+      borderColor: COLORS.accent,
+    },
+  });

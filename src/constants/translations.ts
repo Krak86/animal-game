@@ -26,6 +26,7 @@ export const TRANSLATIONS: TranslationMap = {
     menu: "Menu",
     sound: "Sound",
     language: "Language",
+    gameMode: "Game Mode",
     animals: {
       Dog: "Dog",
       Cat: "Cat",
@@ -113,6 +114,7 @@ export const TRANSLATIONS: TranslationMap = {
     menu: "Меню",
     sound: "Звук",
     language: "Мова",
+    gameMode: "Режим гри",
     animals: {
       Dog: "Пес",
       Cat: "Кіт",
@@ -200,6 +202,7 @@ export const TRANSLATIONS: TranslationMap = {
     menu: "Меню",
     sound: "Звук",
     language: "Язык",
+    gameMode: "Режим игры",
     animals: {
       Dog: "Собака",
       Cat: "Кот",

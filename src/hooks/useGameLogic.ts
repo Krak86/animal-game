@@ -297,6 +297,32 @@ export const useGameLogic = (
     animalWiggles.forEach((anim) => anim.setValue(0));
   };
 
+  const resetGameState = async (): Promise<void> => {
+    // Stop any ongoing speech
+    await stopSpeech();
+
+    // Stop any playing animal sound (but preserve background music)
+    await stopAnimalSound(backgroundMusic.current);
+
+    // Reset all game state
+    setGameStarted(false);  // Allow startGame to reinitialize on mode switch
+    setScore(0);
+    setShuffledAnimals([]);
+    setCurrentAnimal(null);
+    setShowSuccess(false);
+    setWrongTileId(null);
+    setIsAnimalSoundPlaying(false);
+
+    // Reset animation values
+    successScale.setValue(0);
+    successOpacity.setValue(0);
+    cardAnimations.forEach((anim) => anim.setValue(1));
+    questionAnimation.setValue(1);
+    animalWiggles.forEach((anim) => anim.setValue(0));
+
+    // Note: backgroundMusic is NOT stopped or unloaded
+  };
+
   const showSuccessAnimation = (): void => {
     setShowSuccess(true);
 
@@ -362,6 +388,7 @@ export const useGameLogic = (
     startGame,
     toggleSound,
     resetGame,
+    resetGameState,
     replaySound,
   };
 };
