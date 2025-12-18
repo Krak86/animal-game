@@ -212,79 +212,55 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: COLORS.background,
-      padding: responsive.isLandscape
-        ? responsive.spacing.sm
-        : responsive.spacing.lg,
+      padding: responsive.spacing.lg,
       paddingBottom: responsive.spacing.lg,
     },
     emojiContainer: {
       flexDirection: "row",
       gap: responsive.spacing.sm,
-      marginBottom: responsive.isLandscape
-        ? responsive.spacing.xs
-        : responsive.spacing.sm,
+      marginBottom: responsive.spacing.sm,
       flexWrap: "wrap",
       justifyContent: "center",
     },
     emoji: {
-      fontSize: responsive.isLandscape
-        ? 24 * responsive.compactnessFactor
-        : 45 * responsive.fontScale,
+      fontSize: 45 * responsive.fontScale,
     },
     title: {
-      fontSize: responsive.isLandscape
-        ? 18 * responsive.compactnessFactor
-        : 36 * responsive.fontScale,
+      fontSize: 36 * responsive.fontScale,
       fontFamily: FONTS.bold,
       color: COLORS.accent,
       marginBottom: responsive.spacing.xs,
       textAlign: "center",
     },
     subtitle: {
-      fontSize: responsive.isLandscape
-        ? 12 * responsive.compactnessFactor
-        : 18 * responsive.fontScale,
+      fontSize: 18 * responsive.fontScale,
       fontFamily: FONTS.medium,
       color: COLORS.dark,
-      marginBottom: responsive.isLandscape
-        ? responsive.spacing.sm
-        : responsive.spacing.lg,
+      marginBottom: responsive.spacing.lg,
       textAlign: "center",
     },
     buttonContainer: {
       flexDirection: "column",
-      gap: responsive.isLandscape
-        ? responsive.spacing.sm
-        : responsive.spacing.sm,
+      gap: responsive.spacing.sm,
       marginTop: 0,
       alignItems: "center",
     },
     buttonRow: {
       flexDirection: "row",
-      gap: responsive.isLandscape
-        ? responsive.spacing.sm
-        : responsive.spacing.md,
+      gap: responsive.spacing.md,
       justifyContent: "center",
       flexWrap: "wrap",
     },
     modeButton: {
-      paddingHorizontal: responsive.isLandscape
-        ? 10 * responsive.compactnessFactor
-        : 20,
-      paddingVertical: responsive.isLandscape
-        ? 8 * responsive.compactnessFactor
-        : 16,
+      paddingHorizontal: 20,
+      paddingVertical: 16,
       borderRadius: 20,
       shadowColor: COLORS.black,
       shadowOffset: { width: 0, height: 5 },
       shadowOpacity: 0.3,
       shadowRadius: 10,
       elevation: 5,
-      // minWidth: responsive.isLandscape ? 110 : 150,
-      maxWidth: responsive.isLandscape ? 130 : 160,
-      /* width: responsive.isLandscape
-        ? Math.min(160, responsive.width * 0.25)
-        : Math.min(200, responsive.width * 0.4), */
+      maxWidth: 160,
       alignItems: "center",
     },
     byNameButton: {
@@ -297,23 +273,17 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
       backgroundColor: "#9B59B6",
     },
     buttonEmoji: {
-      fontSize: responsive.isLandscape
-        ? 22 * responsive.compactnessFactor
-        : 40 * responsive.fontScale,
+      fontSize: 40 * responsive.fontScale,
       marginBottom: responsive.spacing.xs,
     },
     modeButtonText: {
-      fontSize: responsive.isLandscape
-        ? 12 * responsive.compactnessFactor
-        : 18 * responsive.fontScale,
+      fontSize: 18 * responsive.fontScale,
       fontFamily: FONTS.bold,
       color: COLORS.white,
       textAlign: "center",
     },
     modeDescription: {
-      fontSize: responsive.isLandscape
-        ? 10 * responsive.fontScale
-        : 12 * responsive.fontScale,
+      fontSize: 12 * responsive.fontScale,
       fontFamily: FONTS.regular,
       color: COLORS.white,
       textAlign: "center",
