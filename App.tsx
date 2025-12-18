@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
+import * as NavigationBar from "expo-navigation-bar";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { View, ScrollView, Text } from "react-native";
+import { View, ScrollView, Text, Platform } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -57,6 +58,7 @@ export default function App() {
   const shouldStartGame = useRef<boolean>(false);
   const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
   const [showAnimalDetail, setShowAnimalDetail] = useState<boolean>(false);
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   const t = TRANSLATIONS[language];
 
   // Background music for exhibition mode
@@ -204,6 +206,25 @@ export default function App() {
     }
   };
 
+  const handleToggleFullScreen = async (): Promise<void> => {
+    try {
+      const newFullScreenState = !isFullScreen;
+      setIsFullScreen(newFullScreenState);
+
+      // Hide/show navigation bar on Android
+      if (Platform.OS === "android") {
+        if (newFullScreenState) {
+          await NavigationBar.setVisibilityAsync("hidden");
+          await NavigationBar.setBehaviorAsync("overlay-swipe");
+        } else {
+          await NavigationBar.setVisibilityAsync("visible");
+        }
+      }
+    } catch (error) {
+      console.error("Failed to toggle full screen:", error);
+    }
+  };
+
   // Don't render app until fonts and language are loaded
   if ((!fontsLoaded && !fontError) || isLanguageLoading) {
     return null;
@@ -223,6 +244,8 @@ export default function App() {
               onHomePress={handleResetGame}
               onModeSwitch={handleModeSwitch}
               currentGameMode={gameMode}
+              isFullScreen={isFullScreen}
+              onToggleFullScreen={handleToggleFullScreen}
               translations={t}
             />
           )}
@@ -242,7 +265,7 @@ export default function App() {
           <Drawer.Screen name="Main">
             {() => (
               <View style={appStyles.container} onLayout={onLayoutRootView}>
-                <StatusBar style="auto" />
+                <StatusBar style={isFullScreen ? "light" : "auto"} hidden={isFullScreen} />
 
                 {/* Show HamburgerButton on all screens */}
                 <HamburgerButton />

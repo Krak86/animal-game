@@ -60,6 +60,8 @@ export interface Translations {
   sound: string; // "Sound" drawer section label
   language: string; // "Language" drawer section label
   gameMode: string; // "Game Mode" drawer section label
+  enterFullScreen: string; // "Enter Full Screen" button text
+  exitFullScreen: string; // "Exit Full Screen" button text
   animals: AnimalTranslations;
 }
 

@@ -24,6 +24,8 @@ interface CustomDrawerProps extends DrawerContentComponentProps {
   onHomePress: () => Promise<void>;
   onModeSwitch: (mode: GameMode) => Promise<void>;
   currentGameMode: GameMode | null;
+  isFullScreen: boolean;
+  onToggleFullScreen: () => void;
   translations: Translations;
 }
 
@@ -35,6 +37,8 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
   onHomePress,
   onModeSwitch,
   currentGameMode,
+  isFullScreen,
+  onToggleFullScreen,
   translations,
   navigation,
 }) => {
@@ -156,6 +160,20 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
             onLanguageChange={onLanguageChange}
           />
         </View>
+
+        {/* Full Screen Toggle Section */}
+        <View style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItemContent}
+            onPress={onToggleFullScreen}
+            activeOpacity={0.7}
+          >
+            <EmojiSvg emoji="⛶" style={styles.menuItemEmoji} />
+            <Text style={styles.menuItemText}>
+              {isFullScreen ? translations.exitFullScreen : translations.enterFullScreen}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </DrawerContentScrollView>
   );
@@ -168,7 +186,7 @@ const getDrawerStyles = (responsive: ResponsiveDimensions) =>
       backgroundColor: COLORS.background,
     },
     contentContainer: {
-      flex: 1,
+      flexGrow: 1,
       paddingHorizontal: responsive.spacing.md,
     },
     header: {

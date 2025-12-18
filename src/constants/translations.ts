@@ -27,6 +27,8 @@ export const TRANSLATIONS: TranslationMap = {
     sound: "Sound",
     language: "Language",
     gameMode: "Game Mode",
+    enterFullScreen: "Enter Full Screen",
+    exitFullScreen: "Exit Full Screen",
     animals: {
       Dog: "Dog",
       Cat: "Cat",
@@ -115,6 +117,8 @@ export const TRANSLATIONS: TranslationMap = {
     sound: "Звук",
     language: "Мова",
     gameMode: "Режим гри",
+    enterFullScreen: "Увійти в повноекранний режим",
+    exitFullScreen: "Вийти з повноекранного режиму",
     animals: {
       Dog: "Пес",
       Cat: "Кіт",
@@ -203,6 +207,8 @@ export const TRANSLATIONS: TranslationMap = {
     sound: "Звук",
     language: "Язык",
     gameMode: "Режим игры",
+    enterFullScreen: "Войти в полноэкранный режим",
+    exitFullScreen: "Выйти из полноэкранного режима",
     animals: {
       Dog: "Собака",
       Cat: "Кот",
