@@ -71,6 +71,27 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
 
       {/* Menu Items */}
       <View style={styles.menuSection}>
+        {/* Full Screen Toggle Section */}
+        <View style={styles.menuItem}>
+          <TouchableOpacity
+            style={[
+              styles.menuItemContent,
+              styles.fullScreenButton,
+              isFullScreen && styles.fullScreenActive,
+            ]}
+            onPress={onToggleFullScreen}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.menuItemEmoji}>⛶</Text>
+
+            <Text style={styles.menuItemText}>
+              {isFullScreen
+                ? translations.exitFullScreen
+                : translations.enterFullScreen}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         {/* Home Button */}
         <TouchableOpacity
           style={styles.menuItem}
@@ -160,20 +181,6 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
             onLanguageChange={onLanguageChange}
           />
         </View>
-
-        {/* Full Screen Toggle Section */}
-        <View style={styles.menuItem}>
-          <TouchableOpacity
-            style={styles.menuItemContent}
-            onPress={onToggleFullScreen}
-            activeOpacity={0.7}
-          >
-            <EmojiSvg emoji="⛶" style={styles.menuItemEmoji} />
-            <Text style={styles.menuItemText}>
-              {isFullScreen ? translations.exitFullScreen : translations.enterFullScreen}
-            </Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </DrawerContentScrollView>
   );
@@ -257,5 +264,22 @@ const getDrawerStyles = (responsive: ResponsiveDimensions) =>
       backgroundColor: COLORS.primary,
       borderWidth: 2,
       borderColor: COLORS.accent,
+    },
+    fullScreenButton: {
+      backgroundColor: "#FF8C00",
+      paddingHorizontal: 16,
+      paddingVertical: 10,
+      borderRadius: 24,
+      borderWidth: 2,
+      borderColor: "#FF8C00",
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.15,
+      shadowRadius: 6,
+      elevation: 4,
+    },
+    fullScreenActive: {
+      backgroundColor: "#32CD32",
+      borderColor: "#228B22",
     },
   });
