@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity, Animated } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Animated,
+  ScrollView,
+} from "react-native";
 import { Audio } from "expo-av";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -8,7 +14,11 @@ import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Animal, Translations } from "@/types";
 import { speakText, stopSpeech } from "@/utils/speech";
 import { playAnimalSound, stopAnimalSound } from "@/utils/audio";
+import { openExternalLink } from "@/utils/linking";
 import { EmojiSvg } from "@/components/EmojiSvg";
+import { ImageGalleryModal } from "@/components/ImageGalleryModal";
+import { VideoGalleryModal } from "@/components/VideoGalleryModal";
+import { Model3DModal } from "@/components/Model3DModal";
 
 interface AnimalDetailViewProps {
   animal: Animal;
@@ -30,6 +40,9 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   const insets = useSafeAreaInsets();
 
   const [isPlayingSound, setIsPlayingSound] = useState(false);
+  const [showImageGallery, setShowImageGallery] = useState(false);
+  const [showVideoGallery, setShowVideoGallery] = useState(false);
+  const [show3DModel, setShow3DModel] = useState(false);
 
   // Animation value for emoji wiggle
   const wiggleAnim = useRef(new Animated.Value(0)).current;
@@ -110,74 +123,194 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
           <Text style={styles.backButtonText}>← {translations.backToList}</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.contentContainer}>
-        <Animated.View
-          style={{
-            transform: [
-              {
-                rotate: wiggleAnim.interpolate({
-                  inputRange: [-1, 1],
-                  outputRange: ["-8deg", "8deg"],
-                }),
-              },
-              {
-                translateY: wiggleAnim.interpolate({
-                  inputRange: [-1, 0, 1],
-                  outputRange: [-3, 0, -3],
-                }),
-              },
-            ],
-          }}
-        >
-          <EmojiSvg emoji={animal.emoji} style={styles.emoji} />
-        </Animated.View>
-        <Text style={styles.animalName}>{animalName}</Text>
 
-        <View style={styles.buttonContainer} id="animal-detail-view">
-          {showTTSButton && (
+      <ScrollView style={styles.scrollContainer}>
+        {/* TOP SECTION - Existing content (emoji, name, TTS/voice buttons) */}
+        <View style={styles.topSection}>
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  rotate: wiggleAnim.interpolate({
+                    inputRange: [-1, 1],
+                    outputRange: ["-8deg", "8deg"],
+                  }),
+                },
+                {
+                  translateY: wiggleAnim.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [-3, 0, -3],
+                  }),
+                },
+              ],
+            }}
+          >
+            <EmojiSvg emoji={animal.emoji} style={styles.emoji} />
+          </Animated.View>
+          <Text style={styles.animalName}>{animalName}</Text>
+
+          <View style={styles.buttonContainer}>
+            {showTTSButton && (
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={handleSpeakName}
+                activeOpacity={0.7}
+              >
+                <View
+                  style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+                >
+                  <EmojiSvg emoji="🔊" style={{ fontSize: 20 }} />
+                  <Text style={styles.actionButtonText}>
+                    {translations.speakName}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            )}
+
+            {showSoundButton && (
+              <TouchableOpacity
+                style={[
+                  styles.actionButton,
+                  isPlayingSound && styles.actionButtonDisabled,
+                ]}
+                onPress={handlePlaySound}
+                activeOpacity={0.7}
+                disabled={isPlayingSound}
+              >
+                <View
+                  style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+                >
+                  <EmojiSvg emoji="🔉" style={{ fontSize: 20 }} />
+                  <Text
+                    style={[
+                      styles.actionButtonText,
+                      isPlayingSound && styles.actionButtonTextDisabled,
+                    ]}
+                  >
+                    {translations.playSound}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+
+        {/* DESCRIPTION SECTION */}
+        {animal.description && (
+          <View style={styles.descriptionContainer}>
+            <Text style={styles.descriptionText}>
+              {
+                translations.animalDescriptions[
+                  animal.description as keyof typeof translations.animalDescriptions
+                ]
+              }
+            </Text>
+          </View>
+        )}
+
+        {/* MEDIA BUTTONS SECTION */}
+        <View style={styles.mediaButtonsContainer}>
+          {animal.images && animal.images.length > 0 && (
             <TouchableOpacity
-              style={styles.actionButton}
-              onPress={handleSpeakName}
+              style={styles.mediaButton}
+              onPress={() => setShowImageGallery(true)}
               activeOpacity={0.7}
             >
               <View
                 style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
               >
-                <EmojiSvg emoji="🔊" style={{ fontSize: 20 }} />
-                <Text style={styles.actionButtonText}>
-                  {translations.speakName}
+                <EmojiSvg emoji="🖼️" style={{ fontSize: 20 }} />
+                <Text style={styles.mediaButtonText}>
+                  {translations.viewImages}
                 </Text>
               </View>
             </TouchableOpacity>
           )}
 
-          {showSoundButton && (
+          {animal.videos && animal.videos.length > 0 && (
             <TouchableOpacity
-              style={[
-                styles.actionButton,
-                isPlayingSound && styles.actionButtonDisabled,
-              ]}
-              onPress={handlePlaySound}
+              style={styles.mediaButton}
+              onPress={() => setShowVideoGallery(true)}
               activeOpacity={0.7}
-              disabled={isPlayingSound}
             >
               <View
                 style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
               >
-                <EmojiSvg emoji="🔉" style={{ fontSize: 20 }} />
-                <Text
-                  style={[
-                    styles.actionButtonText,
-                    isPlayingSound && styles.actionButtonTextDisabled,
-                  ]}
-                >
-                  {translations.playSound}
+                <EmojiSvg emoji="🎥" style={{ fontSize: 20 }} />
+                <Text style={styles.mediaButtonText}>
+                  {translations.viewVideos}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+
+          {animal.glbUrl && (
+            <TouchableOpacity
+              style={styles.mediaButton}
+              onPress={() => setShow3DModel(true)}
+              activeOpacity={0.7}
+            >
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+              >
+                <EmojiSvg emoji="🎮" style={{ fontSize: 20 }} />
+                <Text style={styles.mediaButtonText}>
+                  {translations.view3DModel}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+
+          {animal.wikipediaUrls && animal.wikipediaUrls.length > 0 && (
+            <TouchableOpacity
+              style={styles.mediaButton}
+              onPress={() =>
+                openExternalLink(
+                  animal.wikipediaUrls![0],
+                  translations.leavingAppMessage
+                )
+              }
+              activeOpacity={0.7}
+            >
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+              >
+                <EmojiSvg emoji="🌐" style={{ fontSize: 20 }} />
+                <Text style={styles.mediaButtonText}>
+                  {translations.viewWikipedia}
                 </Text>
               </View>
             </TouchableOpacity>
           )}
         </View>
-      </View>
+      </ScrollView>
+
+      {/* MODALS - Only render when visible to prevent z-index issues */}
+      {showImageGallery && (
+        <ImageGalleryModal
+          visible={showImageGallery}
+          images={animal.images || []}
+          onClose={() => setShowImageGallery(false)}
+          animalName={animalName}
+        />
+      )}
+      {showVideoGallery && (
+        <VideoGalleryModal
+          visible={showVideoGallery}
+          videoUrls={animal.videos || []}
+          onClose={() => setShowVideoGallery(false)}
+          animalName={animalName}
+        />
+      )}
+      {show3DModel && (
+        <Model3DModal
+          visible={show3DModel}
+          glbUrl={animal.glbUrl}
+          onClose={() => setShow3DModel(false)}
+          animalName={animalName}
+          translations={translations}
+        />
+      )}
     </View>
   );
 };

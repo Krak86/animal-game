@@ -3,7 +3,7 @@
  * Maps emoji characters to their corresponding Twemoji SVG files
  */
 
-// Emoji to SVG mapping - all 68 emojis
+// Emoji to SVG mapping - all 71 emojis
 export const EMOJI_SVG_MAP: Record<string, any> = {
   // Animal emojis (60)
   "🐕": require("@assets/emojis/1f415.svg"),
@@ -66,7 +66,7 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
   "🦅": require("@assets/emojis/1f985.svg"),
   "🦉": require("@assets/emojis/1f989.svg"),
 
-  // UI emojis (8)
+  // UI emojis (11)
   "🎉": require("@assets/emojis/1f389.svg"),
   "🔊": require("@assets/emojis/1f50a.svg"),
   "🔉": require("@assets/emojis/1f509.svg"),
@@ -75,6 +75,9 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
   "🖼️": require("@assets/emojis/1f5bc.svg"),
   "🏠": require("@assets/emojis/1f3e0.svg"),
   "✕": require("@assets/emojis/2715.svg"),
+  "🎮": require("@assets/emojis/1f3ae.svg"),
+  "🌐": require("@assets/emojis/1f310.svg"),
+  "🎥": require("@assets/emojis/1f3a5.svg"),
 };
 
 /**

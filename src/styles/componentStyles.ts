@@ -354,6 +354,14 @@ export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>
       fontFamily: FONTS.semiBold,
       color: COLORS.dark,
     },
+    scrollContainer: {
+      flex: 1,
+    },
+    topSection: {
+      alignItems: "center",
+      paddingHorizontal: responsive.spacing.md,
+      paddingTop: responsive.spacing.md,
+    },
     contentContainer: {
       flex: 1,
       justifyContent: "center",
@@ -372,13 +380,13 @@ export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>
         : 42 * responsive.fontScale,
       fontFamily: FONTS.bold,
       color: COLORS.accent,
-      marginBottom: responsive.spacing.xl,
+      // marginBottom: responsive.spacing.xl,
       textAlign: "center",
     },
     buttonContainer: {
       flexDirection: "row",
       gap: responsive.spacing.md,
-      marginTop: responsive.spacing.lg,
+      marginTop: responsive.spacing.md,
       flexWrap: "wrap",
       justifyContent: "center",
     },
@@ -407,5 +415,194 @@ export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>
     },
     actionButtonTextDisabled: {
       opacity: 0.5,
+    },
+    descriptionContainer: {
+      paddingHorizontal: responsive.spacing.md,
+      paddingVertical: responsive.spacing.md,
+      // marginTop: responsive.spacing.lg,
+    },
+    descriptionText: {
+      fontSize: 16 * responsive.fontScale,
+      fontFamily: FONTS.regular,
+      color: COLORS.dark,
+      lineHeight: 24,
+      textAlign: "center",
+    },
+    mediaButtonsContainer: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      gap: responsive.spacing.md,
+      paddingHorizontal: responsive.spacing.lg,
+      paddingBottom: responsive.spacing.xl * 2,
+      // marginTop: responsive.spacing.lg,
+    },
+    mediaButton: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 8,
+      paddingHorizontal: 20,
+      paddingVertical: 12,
+      borderRadius: 20,
+      backgroundColor: COLORS.accent,
+      shadowColor: COLORS.black,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.15,
+      shadowRadius: 4,
+      elevation: 2,
+      minWidth: 140,
+    },
+    mediaButtonText: {
+      fontSize: 14 * responsive.fontScale,
+      fontFamily: FONTS.semiBold,
+      color: COLORS.white,
+    },
+  });
+
+export const getImageGalleryModalStyles = (responsive: ResponsiveDimensions) =>
+  StyleSheet.create({
+    modalOverlay: {
+      flex: 1,
+      backgroundColor: "rgba(0, 0, 0, 0.95)",
+      justifyContent: "center",
+    },
+    closeButton: {
+      position: "absolute",
+      top: 50,
+      right: 20,
+      zIndex: 100,
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: "rgba(255,255,255,0.3)",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    closeButtonText: {
+      fontSize: 24 * responsive.fontScale,
+      color: COLORS.white,
+      fontFamily: FONTS.bold,
+    },
+    carouselContainer: {
+      flex: 1,
+      justifyContent: "center",
+    },
+    imageContainer: {
+      width: responsive.width,
+      height: responsive.height * 0.7,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    image: {
+      width: "90%",
+      height: "90%",
+      resizeMode: "contain",
+    },
+    loadingContainer: {
+      position: "absolute",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    paginationContainer: {
+      position: "absolute",
+      bottom: 50,
+      alignSelf: "center",
+      flexDirection: "row",
+      gap: 8,
+    },
+    paginationDot: {
+      width: 10,
+      height: 10,
+      borderRadius: 5,
+      backgroundColor: "rgba(255,255,255,0.5)",
+    },
+    paginationDotActive: {
+      backgroundColor: COLORS.primary,
+      width: 12,
+      height: 12,
+      borderRadius: 6,
+    },
+  });
+
+export const getVideoGalleryModalStyles = (responsive: ResponsiveDimensions) =>
+  StyleSheet.create({
+    modalOverlay: {
+      flex: 1,
+      backgroundColor: "rgba(0, 0, 0, 0.95)",
+      justifyContent: "center",
+    },
+    closeButton: {
+      position: "absolute",
+      top: 50,
+      right: 20,
+      zIndex: 100,
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: "rgba(255,255,255,0.3)",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    closeButtonText: {
+      fontSize: 24 * responsive.fontScale,
+      color: COLORS.white,
+      fontFamily: FONTS.bold,
+    },
+    videoContainer: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      paddingVertical: 80,
+    },
+    video: {
+      width: responsive.width * 0.9,
+      height: responsive.height * 0.6,
+    },
+    loadingContainer: {
+      position: "absolute",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  });
+
+export const getModel3DModalStyles = (responsive: ResponsiveDimensions) =>
+  StyleSheet.create({
+    modalOverlay: {
+      flex: 1,
+      backgroundColor: "rgba(0, 0, 0, 0.9)",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    closeButton: {
+      position: "absolute",
+      top: 50,
+      right: 20,
+      zIndex: 100,
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: "rgba(255,255,255,0.3)",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    closeButtonText: {
+      fontSize: 24 * responsive.fontScale,
+      color: COLORS.white,
+      fontFamily: FONTS.bold,
+    },
+    contentContainer: {
+      justifyContent: "center",
+      alignItems: "center",
+      padding: responsive.spacing.xl,
+    },
+    comingSoonText: {
+      fontSize: 32 * responsive.fontScale,
+      fontFamily: FONTS.bold,
+      color: COLORS.white,
+      textAlign: "center",
+      marginTop: responsive.spacing.lg,
+    },
+    emoji: {
+      fontSize: 80 * responsive.fontScale,
     },
   });

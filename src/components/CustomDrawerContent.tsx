@@ -71,27 +71,6 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
 
       {/* Menu Items */}
       <View style={styles.menuSection}>
-        {/* Full Screen Toggle Section */}
-        <View style={styles.menuItem}>
-          <TouchableOpacity
-            style={[
-              styles.menuItemContent,
-              styles.fullScreenButton,
-              isFullScreen && styles.fullScreenActive,
-            ]}
-            onPress={onToggleFullScreen}
-            activeOpacity={0.7}
-          >
-            <Text style={styles.menuItemEmoji}>⛶</Text>
-
-            <Text style={styles.menuItemText}>
-              {isFullScreen
-                ? translations.exitFullScreen
-                : translations.enterFullScreen}
-            </Text>
-          </TouchableOpacity>
-        </View>
-
         {/* Home Button */}
         <TouchableOpacity
           style={styles.menuItem}
@@ -180,6 +159,27 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
             language={language}
             onLanguageChange={onLanguageChange}
           />
+        </View>
+
+        {/* Full Screen Toggle Section */}
+        <View style={styles.menuItem}>
+          <TouchableOpacity
+            style={[
+              styles.menuItemContent,
+              styles.fullScreenButton,
+              isFullScreen && styles.fullScreenActive,
+            ]}
+            onPress={onToggleFullScreen}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.menuItemEmoji}>⛶</Text>
+
+            <Text style={styles.menuItemText}>
+              {isFullScreen
+                ? translations.exitFullScreen
+                : translations.enterFullScreen}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </DrawerContentScrollView>

@@ -26,6 +26,7 @@ export interface Animal {
   description?: string; // Animal description/facts
   wikipediaUrls?: string[]; // Links to Wikipedia
   otherUrls?: string[]; // Other reference URLs
+  glbUrl?: string; // 3D model URL (.glb file)
 }
 
 // Translation structure
@@ -62,6 +63,74 @@ export interface Translations {
   gameMode: string; // "Game Mode" drawer section label
   enterFullScreen: string; // "Enter Full Screen" button text
   exitFullScreen: string; // "Exit Full Screen" button text
+  viewImages: string; // "View Images" button
+  viewVideos: string; // "View Videos" button
+  view3DModel: string; // "3D Model" button
+  viewWikipedia: string; // "Wikipedia" button
+  leavingAppMessage: string; // "You are leaving the app. Continue?"
+  comingSoon: string; // "Coming Soon" for 3D modal
+  close: string; // "Close" button
+  animalDescriptions: {
+    dogDescription: string;
+    catDescription: string;
+    lionDescription: string;
+    elephantDescription: string;
+    giraffeDescription: string;
+    monkeyDescription: string;
+    penguinDescription: string;
+    zebraDescription: string;
+    tigerDescription: string;
+    rabbitDescription: string;
+    roosterDescription: string;
+    cowDescription: string;
+    horseDescription: string;
+    birdDescription: string;
+    wolfDescription: string;
+    gooseDescription: string;
+    donkeyDescription: string;
+    bearDescription: string;
+    sharkDescription: string;
+    turtleDescription: string;
+    octopusDescription: string;
+    crabDescription: string;
+    whaleDescription: string;
+    dolphinDescription: string;
+    snailDescription: string;
+    antDescription: string;
+    ladybugDescription: string;
+    crocodileDescription: string;
+    batDescription: string;
+    parrotDescription: string;
+    mooseDescription: string;
+    llamaDescription: string;
+    buffaloDescription: string;
+    turkeyDescription: string;
+    peacockDescription: string;
+    swanDescription: string;
+    beeDescription: string;
+    caterpillarDescription: string;
+    scorpionDescription: string;
+    lobsterDescription: string;
+    sealDescription: string;
+    raccoonDescription: string;
+    badgerDescription: string;
+    boarDescription: string;
+    camelDescription: string;
+    chameleonDescription: string;
+    flamingoDescription: string;
+    gorillaDescription: string;
+    kangarooDescription: string;
+    leopardDescription: string;
+    sheepDescription: string;
+    chickenDescription: string;
+    pigDescription: string;
+    goatDescription: string;
+    bullDescription: string;
+    duckDescription: string;
+    snakeDescription: string;
+    ravenDescription: string;
+    owlDescription: string;
+  };
   animals: AnimalTranslations;
 }
 

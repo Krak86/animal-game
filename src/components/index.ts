@@ -10,3 +10,6 @@ export { AnimalsListView } from './AnimalsListView';
 export { AnimalDetailView } from './AnimalDetailView';
 export { CustomDrawerContent } from './CustomDrawerContent';
 export { HamburgerButton } from './HamburgerButton';
+export { ImageGalleryModal } from './ImageGalleryModal';
+export { VideoGalleryModal } from './VideoGalleryModal';
+export { Model3DModal } from './Model3DModal';
