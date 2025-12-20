@@ -71,7 +71,7 @@ export const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
         <View style={styles.carouselContainer}>
           <Carousel
             ref={carouselRef}
-            loop={false}
+            loop={true}
             width={windowWidth}
             height={windowHeight * 0.7}
             data={images}
@@ -81,13 +81,6 @@ export const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
             enabled={true}
           />
         </View>
-
-        {/* Pagination dots */}
-        {images.length > 1 && (
-          <View style={styles.paginationContainer}>
-            {images.map((_, index) => renderPaginationDot(index))}
-          </View>
-        )}
       </View>
     </Modal>
   );
