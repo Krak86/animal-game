@@ -212,7 +212,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
 
         {/* MEDIA BUTTONS SECTION */}
         <View style={styles.mediaButtonsContainer}>
-          {animal.images && animal.images.length > 0 && (
+          {animal.images && animal.images.length > 0 ? (
             <TouchableOpacity
               style={styles.mediaButton}
               onPress={() => setShowImageGallery(true)}
@@ -227,9 +227,9 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                 </Text>
               </View>
             </TouchableOpacity>
-          )}
+          ) : null}
 
-          {animal.videos && animal.videos.length > 0 && (
+          {animal.videos && animal.videos.length > 0 ? (
             <TouchableOpacity
               style={styles.mediaButton}
               onPress={() => setShowVideoGallery(true)}
@@ -244,9 +244,9 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                 </Text>
               </View>
             </TouchableOpacity>
-          )}
+          ) : null}
 
-          {animal.glbUrl && (
+          {animal.glbUrl ? (
             <TouchableOpacity
               style={styles.mediaButton}
               onPress={() => setShow3DModel(true)}
@@ -261,9 +261,9 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                 </Text>
               </View>
             </TouchableOpacity>
-          )}
+          ) : null}
 
-          {animal.wikipediaUrls && (
+          {animal.wikipediaUrls ? (
             <TouchableOpacity
               style={styles.mediaButton}
               onPress={() => {
@@ -288,7 +288,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                 </Text>
               </View>
             </TouchableOpacity>
-          )}
+          ) : null}
         </View>
       </ScrollView>
 
