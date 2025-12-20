@@ -66,7 +66,11 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=800&q=80",
       "https://images.unsplash.com/photo-1525253086316-d0c936c814f8?w=800&q=80",
     ],
-    videos: [],
+    videos: [
+      "https://www.youtube.com/watch?v=6v4OgilckIc",
+      "https://www.youtube.com/watch?v=MPV2METPeJU",
+      "https://www.youtube.com/watch?v=Ip_uVTWfXyI",
+    ],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Dog",
@@ -89,7 +93,11 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1513451713350-dee890297c4a?w=800&q=80",
       "https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    // videos: ["https://www.youtube.com/watch?v=I0fo6G1bha4"],
+    videos: [
+      "https://www.youtube.com/watch?v=I0fo6G1bha4",
+      "https://www.youtube.com/watch?v=17f_81LcnKM",
+      "https://www.youtube.com/watch?v=qeUM1WDoOGY",
+    ],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Cat",

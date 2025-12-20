@@ -548,20 +548,16 @@ export const getVideoGalleryModalStyles = (responsive: ResponsiveDimensions) =>
       color: COLORS.white,
       fontFamily: FONTS.bold,
     },
-    videoContainer: {
+    scrollContainer: {
       flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      paddingVertical: 80,
+      width: "100%",
+      paddingTop: 80,
+      paddingBottom: 20,
     },
-    video: {
-      width: responsive.width * 0.9,
-      height: responsive.height * 0.6,
-    },
-    loadingContainer: {
-      position: "absolute",
-      justifyContent: "center",
+    videoContainer: {
+      marginVertical: 10,
       alignItems: "center",
+      paddingHorizontal: responsive.width * 0.05,
     },
   });
 

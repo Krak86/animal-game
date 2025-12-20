@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Modal, View, TouchableOpacity, ActivityIndicator } from "react-native";
-import { Video, ResizeMode, AVPlaybackStatus } from "expo-av";
+import React, { useState } from "react";
+import { Modal, View, TouchableOpacity, ScrollView } from "react-native";
+import YoutubePlayer from "react-native-youtube-iframe";
 import { getVideoGalleryModalStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { EmojiSvg } from "@/components/EmojiSvg";
-import { COLORS } from "@/styles/colors";
 
 interface VideoGalleryModalProps {
   visible: boolean;
@@ -21,62 +20,37 @@ export const VideoGalleryModal: React.FC<VideoGalleryModalProps> = ({
 }) => {
   const responsive = useResponsiveDimensions();
   const styles = getVideoGalleryModalStyles(responsive);
-  const [isLoading, setIsLoading] = useState(true);
-  const videoRef = useRef<Video>(null);
+  const windowWidth = responsive.width;
+  const windowHeight = responsive.height;
+
+  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
 
   // Extract YouTube video ID from URL
   const getYouTubeVideoId = (url: string): string | null => {
-    const patterns = [
-      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
-    ];
+    if (!url) return null;
 
-    for (const pattern of patterns) {
-      const match = url.match(pattern);
-      if (match && match[1]) {
-        return match[1];
-      }
-    }
+    // Match youtube.com/watch?v=VIDEO_ID
+    const match1 = url.match(/[?&]v=([^&]+)/);
+    if (match1) return match1[1];
+
+    // Match youtu.be/VIDEO_ID
+    const match2 = url.match(/youtu\.be\/([^?]+)/);
+    if (match2) return match2[1];
+
+    // Match youtube.com/embed/VIDEO_ID
+    const match3 = url.match(/embed\/([^?]+)/);
+    if (match3) return match3[1];
+
     return null;
   };
 
-  // Convert YouTube URL to embeddable format
-  const getVideoUri = (url: string): string => {
-    const videoId = getYouTubeVideoId(url);
-    if (videoId) {
-      // For YouTube videos, we'll use the direct URL
-      // Note: expo-av Video doesn't directly support YouTube embeds
-      // We'll use the original URL and let the native player handle it
-      return url;
-    }
-    return url;
-  };
-
-  const handlePlaybackStatusUpdate = (status: AVPlaybackStatus) => {
-    if (status.isLoaded) {
-      setIsLoading(false);
-    }
-  };
-
-  const handleClose = async () => {
-    // Pause video before closing
-    if (videoRef.current) {
-      await videoRef.current.pauseAsync();
-    }
-    setIsLoading(true);
+  const handleClose = () => {
+    // Pause all videos by resetting playingVideoId
+    setPlayingVideoId(null);
     onClose();
   };
 
-  // Reset loading state when modal opens
-  useEffect(() => {
-    if (visible) {
-      setIsLoading(true);
-    }
-  }, [visible]);
-
   if (videoUrls.length === 0) return null;
-
-  // For now, show only the first video
-  const videoUri = getVideoUri(videoUrls[0]);
 
   return (
     <Modal
@@ -96,24 +70,36 @@ export const VideoGalleryModal: React.FC<VideoGalleryModalProps> = ({
           <EmojiSvg emoji="✕" style={styles.closeButtonText} />
         </TouchableOpacity>
 
-        {/* Video player */}
-        <View style={styles.videoContainer}>
-          {isLoading && (
-            <View style={styles.loadingContainer}>
-              <ActivityIndicator size="large" color={COLORS.primary} />
-            </View>
-          )}
-          <Video
-            ref={videoRef}
-            source={{ uri: videoUri }}
-            style={styles.video}
-            useNativeControls
-            resizeMode={ResizeMode.CONTAIN}
-            onPlaybackStatusUpdate={handlePlaybackStatusUpdate}
-            shouldPlay={false}
-            accessibilityLabel={`${animalName} video`}
-          />
-        </View>
+        {/* Scrollable video list */}
+        <ScrollView style={styles.scrollContainer}>
+          {videoUrls.map((url, index) => {
+            const videoId = getYouTubeVideoId(url);
+            if (!videoId) return null;
+
+            return (
+              <View key={videoId} style={styles.videoContainer}>
+                <YoutubePlayer
+                  height={windowHeight * 0.3}
+                  width={windowWidth * 0.9}
+                  videoId={videoId}
+                  play={playingVideoId === videoId}
+                  onChangeState={(state) => {
+                    if (state === "playing") {
+                      setPlayingVideoId(videoId);
+                    } else if (state === "paused" || state === "ended") {
+                      if (playingVideoId === videoId) {
+                        setPlayingVideoId(null);
+                      }
+                    }
+                  }}
+                  webViewProps={{
+                    androidLayerType: "hardware",
+                  }}
+                />
+              </View>
+            );
+          })}
+        </ScrollView>
       </View>
     </Modal>
   );
