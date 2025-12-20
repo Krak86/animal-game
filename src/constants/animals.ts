@@ -68,7 +68,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Dog"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Dog",
+      uk: "https://uk.wikipedia.org/wiki/Собака",
+      ru: "https://ru.wikipedia.org/wiki/Собака",
+    },
   },
   {
     id: 2,
@@ -87,7 +91,11 @@ export const ANIMALS: Animal[] = [
     ],
     // videos: ["https://www.youtube.com/watch?v=I0fo6G1bha4"],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Cat"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Cat",
+      uk: "https://uk.wikipedia.org/wiki/Кіт",
+      ru: "https://ru.wikipedia.org/wiki/Кот",
+    },
   },
   {
     id: 3,
@@ -106,7 +114,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Lion"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Lion",
+      uk: "https://uk.wikipedia.org/wiki/Лев",
+      ru: "https://ru.wikipedia.org/wiki/Лев",
+    },
   },
   {
     id: 4,
@@ -125,7 +137,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Elephant"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Elephant",
+      uk: "https://uk.wikipedia.org/wiki/Слон",
+      ru: "https://ru.wikipedia.org/wiki/Слон",
+    },
   },
   {
     id: 5,
@@ -143,7 +159,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Giraffe"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Giraffe",
+      uk: "https://uk.wikipedia.org/wiki/Жирафа",
+      ru: "https://ru.wikipedia.org/wiki/Жираф",
+    },
   },
   {
     id: 6,
@@ -162,7 +182,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Monkey"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Monkey",
+      uk: "https://uk.wikipedia.org/wiki/Мавпи",
+      ru: "https://ru.wikipedia.org/wiki/Обезьяна",
+    },
   },
   {
     id: 7,
@@ -180,7 +204,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Penguin"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Penguin",
+      uk: "https://uk.wikipedia.org/wiki/Пінгвін",
+      ru: "https://ru.wikipedia.org/wiki/Пингвин",
+    },
   },
   {
     id: 8,
@@ -198,7 +226,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Zebra"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Zebra",
+      uk: "https://uk.wikipedia.org/wiki/Зебра",
+      ru: "https://ru.wikipedia.org/wiki/Зебра",
+    },
   },
   {
     id: 9,
@@ -217,7 +249,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Tiger"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Tiger",
+      uk: "https://uk.wikipedia.org/wiki/Тигр",
+      ru: "https://ru.wikipedia.org/wiki/Тигр",
+    },
   },
   {
     id: 10,
@@ -235,7 +271,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Rabbit"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Rabbit",
+      uk: "https://uk.wikipedia.org/wiki/Кролик",
+      ru: "https://ru.wikipedia.org/wiki/Кролик",
+    },
   },
   {
     id: 11,
@@ -254,7 +294,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Rooster"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Rooster",
+      uk: "https://uk.wikipedia.org/wiki/Півень",
+      ru: "https://ru.wikipedia.org/wiki/Петух",
+    },
   },
   {
     id: 12,
@@ -273,7 +317,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Cow"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Cow",
+      uk: "https://uk.wikipedia.org/wiki/Корова",
+      ru: "https://ru.wikipedia.org/wiki/Корова",
+    },
   },
   {
     id: 13,
@@ -292,7 +340,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Horse"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Horse",
+      uk: "https://uk.wikipedia.org/wiki/Кінь",
+      ru: "https://ru.wikipedia.org/wiki/Лошадь",
+    },
   },
   {
     id: 14,
@@ -311,7 +363,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Bird"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Bird",
+      uk: "https://uk.wikipedia.org/wiki/Птах",
+      ru: "https://ru.wikipedia.org/wiki/Птица",
+    },
   },
   {
     id: 15,
@@ -330,7 +386,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Wolf"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Wolf",
+      uk: "https://uk.wikipedia.org/wiki/Вовк",
+      ru: "https://ru.wikipedia.org/wiki/Волк",
+    },
   },
   {
     id: 16,
@@ -349,7 +409,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Goose"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Goose",
+      uk: "https://uk.wikipedia.org/wiki/Гуска",
+      ru: "https://ru.wikipedia.org/wiki/Гусь",
+    },
   },
   {
     id: 17,
@@ -368,7 +432,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Donkey"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Donkey",
+      uk: "https://uk.wikipedia.org/wiki/Віслюк",
+      ru: "https://ru.wikipedia.org/wiki/Осёл",
+    },
   },
   {
     id: 18,
@@ -387,7 +455,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Bear"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Bear",
+      uk: "https://uk.wikipedia.org/wiki/Ведмідь",
+      ru: "https://ru.wikipedia.org/wiki/Медведь",
+    },
   },
   {
     id: 19,
@@ -405,7 +477,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Shark"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Shark",
+      uk: "https://uk.wikipedia.org/wiki/Акула",
+      ru: "https://ru.wikipedia.org/wiki/Акула",
+    },
   },
   {
     id: 20,
@@ -423,7 +499,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Turtle"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Turtle",
+      uk: "https://uk.wikipedia.org/wiki/Черепаха",
+      ru: "https://ru.wikipedia.org/wiki/Черепаха",
+    },
   },
   {
     id: 21,
@@ -441,7 +521,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Octopus"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Octopus",
+      uk: "https://uk.wikipedia.org/wiki/Восьминіг",
+      ru: "https://ru.wikipedia.org/wiki/Осьминог",
+    },
   },
   {
     id: 22,
@@ -459,7 +543,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Crab"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Crab",
+      uk: "https://uk.wikipedia.org/wiki/Краб",
+      ru: "https://ru.wikipedia.org/wiki/Краб",
+    },
   },
   {
     id: 23,
@@ -477,7 +565,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Whale"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Whale",
+      uk: "https://uk.wikipedia.org/wiki/Кит",
+      ru: "https://ru.wikipedia.org/wiki/Кит",
+    },
   },
   {
     id: 24,
@@ -495,7 +587,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Dolphin"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Dolphin",
+      uk: "https://uk.wikipedia.org/wiki/Дельфін",
+      ru: "https://ru.wikipedia.org/wiki/Дельфин",
+    },
   },
   {
     id: 25,
@@ -513,7 +609,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Snail"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Snail",
+      uk: "https://uk.wikipedia.org/wiki/Равлик",
+      ru: "https://ru.wikipedia.org/wiki/Улитка",
+    },
   },
   {
     id: 26,
@@ -531,7 +631,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Ant"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Ant",
+      uk: "https://uk.wikipedia.org/wiki/Мураха",
+      ru: "https://ru.wikipedia.org/wiki/Муравей",
+    },
   },
   {
     id: 27,
@@ -549,7 +653,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Ladybug"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Ladybug",
+      uk: "https://uk.wikipedia.org/wiki/Божа_корівка",
+      ru: "https://ru.wikipedia.org/wiki/Божья_коровка",
+    },
   },
   {
     id: 28,
@@ -567,7 +675,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Crocodile"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Crocodile",
+      uk: "https://uk.wikipedia.org/wiki/Крокодил",
+      ru: "https://ru.wikipedia.org/wiki/Крокодил",
+    },
   },
   {
     id: 29,
@@ -585,7 +697,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Bat"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Bat",
+      uk: "https://uk.wikipedia.org/wiki/Кажан",
+      ru: "https://ru.wikipedia.org/wiki/Летучая_мышь",
+    },
   },
   {
     id: 30,
@@ -604,7 +720,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Parrot"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Parrot",
+      uk: "https://uk.wikipedia.org/wiki/Папуга",
+      ru: "https://ru.wikipedia.org/wiki/Попугай",
+    },
   },
   {
     id: 31,
@@ -622,7 +742,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Moose"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Moose",
+      uk: "https://uk.wikipedia.org/wiki/Лось",
+      ru: "https://ru.wikipedia.org/wiki/Лось",
+    },
   },
   {
     id: 32,
@@ -640,7 +764,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Llama"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Llama",
+      uk: "https://uk.wikipedia.org/wiki/Лама",
+      ru: "https://ru.wikipedia.org/wiki/Лама",
+    },
   },
   {
     id: 33,
@@ -659,7 +787,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Buffalo"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Buffalo",
+      uk: "https://uk.wikipedia.org/wiki/Буйвол",
+      ru: "https://ru.wikipedia.org/wiki/Буйвол",
+    },
   },
   {
     id: 34,
@@ -678,7 +810,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Turkey"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Turkey",
+      uk: "https://uk.wikipedia.org/wiki/Індик",
+      ru: "https://ru.wikipedia.org/wiki/Индюк",
+    },
   },
   {
     id: 35,
@@ -697,7 +833,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Peacock"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Peacock",
+      uk: "https://uk.wikipedia.org/wiki/Павич",
+      ru: "https://ru.wikipedia.org/wiki/Павлин",
+    },
   },
   {
     id: 36,
@@ -715,7 +855,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Swan"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Swan",
+      uk: "https://uk.wikipedia.org/wiki/Лебідь",
+      ru: "https://ru.wikipedia.org/wiki/Лебедь",
+    },
   },
   {
     id: 37,
@@ -734,7 +878,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Bee"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Bee",
+      uk: "https://uk.wikipedia.org/wiki/Бджола",
+      ru: "https://ru.wikipedia.org/wiki/Пчела",
+    },
   },
   {
     id: 38,
@@ -752,7 +900,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Caterpillar"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Caterpillar",
+      uk: "https://uk.wikipedia.org/wiki/Гусінь",
+      ru: "https://ru.wikipedia.org/wiki/Гусеница",
+    },
   },
   {
     id: 39,
@@ -770,7 +922,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Scorpion"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Scorpion",
+      uk: "https://uk.wikipedia.org/wiki/Скорпіон",
+      ru: "https://ru.wikipedia.org/wiki/Скорпион",
+    },
   },
   {
     id: 40,
@@ -788,7 +944,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Lobster"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Lobster",
+      uk: "https://uk.wikipedia.org/wiki/Омар",
+      ru: "https://ru.wikipedia.org/wiki/Омар",
+    },
   },
   {
     id: 41,
@@ -806,7 +966,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Seal"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Seal",
+      uk: "https://uk.wikipedia.org/wiki/Тюлень",
+      ru: "https://ru.wikipedia.org/wiki/Тюлень",
+    },
   },
   {
     id: 42,
@@ -824,7 +988,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Raccoon"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Raccoon",
+      uk: "https://uk.wikipedia.org/wiki/Єнот",
+      ru: "https://ru.wikipedia.org/wiki/Енот",
+    },
   },
   {
     id: 43,
@@ -842,7 +1010,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Badger"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Badger",
+      uk: "https://uk.wikipedia.org/wiki/Барсук",
+      ru: "https://ru.wikipedia.org/wiki/Барсук",
+    },
   },
   {
     id: 44,
@@ -860,7 +1032,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Wild_boar"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Wild_boar",
+      uk: "https://uk.wikipedia.org/wiki/Кабан",
+      ru: "https://ru.wikipedia.org/wiki/Кабан",
+    },
   },
   {
     id: 45,
@@ -878,7 +1054,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Camel"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Camel",
+      uk: "https://uk.wikipedia.org/wiki/Верблюд",
+      ru: "https://ru.wikipedia.org/wiki/Верблюд",
+    },
   },
   {
     id: 46,
@@ -896,7 +1076,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Chameleon"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Chameleon",
+      uk: "https://uk.wikipedia.org/wiki/Хамелеон",
+      ru: "https://ru.wikipedia.org/wiki/Хамелеон",
+    },
   },
   {
     id: 47,
@@ -914,7 +1098,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Flamingo"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Flamingo",
+      uk: "https://uk.wikipedia.org/wiki/Фламінго",
+      ru: "https://ru.wikipedia.org/wiki/Фламинго",
+    },
   },
   {
     id: 48,
@@ -933,7 +1121,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Gorilla"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Gorilla",
+      uk: "https://uk.wikipedia.org/wiki/Горила",
+      ru: "https://ru.wikipedia.org/wiki/Горилла",
+    },
   },
   {
     id: 49,
@@ -951,7 +1143,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Kangaroo"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Kangaroo",
+      uk: "https://uk.wikipedia.org/wiki/Кенгуру",
+      ru: "https://ru.wikipedia.org/wiki/Кенгуру",
+    },
   },
   {
     id: 50,
@@ -970,7 +1166,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Leopard"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Leopard",
+      uk: "https://uk.wikipedia.org/wiki/Леопард",
+      ru: "https://ru.wikipedia.org/wiki/Леопард",
+    },
   },
   {
     id: 51,
@@ -989,7 +1189,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Sheep"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Sheep",
+      uk: "https://uk.wikipedia.org/wiki/Вівця",
+      ru: "https://ru.wikipedia.org/wiki/Овца",
+    },
   },
   {
     id: 52,
@@ -1008,7 +1212,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Chicken"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Chicken",
+      uk: "https://uk.wikipedia.org/wiki/Курка",
+      ru: "https://ru.wikipedia.org/wiki/Курица",
+    },
   },
   {
     id: 53,
@@ -1027,7 +1235,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Pig"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Pig",
+      uk: "https://uk.wikipedia.org/wiki/Свиня",
+      ru: "https://ru.wikipedia.org/wiki/Свинья",
+    },
   },
   {
     id: 54,
@@ -1046,7 +1258,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Goat"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Goat",
+      uk: "https://uk.wikipedia.org/wiki/Коза",
+      ru: "https://ru.wikipedia.org/wiki/Коза",
+    },
   },
   {
     id: 55,
@@ -1065,7 +1281,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Bull"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Bull",
+      uk: "https://uk.wikipedia.org/wiki/Бик",
+      ru: "https://ru.wikipedia.org/wiki/Бык",
+    },
   },
   {
     id: 56,
@@ -1084,7 +1304,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Duck"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Duck",
+      uk: "https://uk.wikipedia.org/wiki/Качка",
+      ru: "https://ru.wikipedia.org/wiki/Утка",
+    },
   },
   /*   {
     id: 57,
@@ -1112,7 +1336,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Snake"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Snake",
+      uk: "https://uk.wikipedia.org/wiki/Змія",
+      ru: "https://ru.wikipedia.org/wiki/Змея",
+    },
   },
   {
     id: 59,
@@ -1131,7 +1359,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Raven"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Raven",
+      uk: "https://uk.wikipedia.org/wiki/Ворон",
+      ru: "https://ru.wikipedia.org/wiki/Ворон",
+    },
   },
   {
     id: 60,
@@ -1150,7 +1382,11 @@ export const ANIMALS: Animal[] = [
     ],
     videos: [],
     glbUrl: "",
-    wikipediaUrls: ["https://en.wikipedia.org/wiki/Owl"],
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Owl",
+      uk: "https://uk.wikipedia.org/wiki/Сова",
+      ru: "https://ru.wikipedia.org/wiki/Сова",
+    },
   },
 ];
 

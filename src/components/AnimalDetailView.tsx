@@ -11,7 +11,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { getAnimalDetailViewStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
-import { Animal, Translations } from "@/types";
+import { Animal, Language, Translations } from "@/types";
 import { speakText, stopSpeech } from "@/utils/speech";
 import { playAnimalSound, stopAnimalSound } from "@/utils/audio";
 import { openExternalLink } from "@/utils/linking";
@@ -26,6 +26,7 @@ interface AnimalDetailViewProps {
   onBackPress: () => void;
   isSoundEnabled: boolean;
   backgroundMusic: Audio.Sound | null;
+  language: Language;
 }
 
 export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
@@ -34,6 +35,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   onBackPress,
   isSoundEnabled,
   backgroundMusic,
+  language,
 }) => {
   const responsive = useResponsiveDimensions();
   const styles = getAnimalDetailViewStyles(responsive);
@@ -261,15 +263,20 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
             </TouchableOpacity>
           )}
 
-          {animal.wikipediaUrls && animal.wikipediaUrls.length > 0 && (
+          {animal.wikipediaUrls && (
             <TouchableOpacity
               style={styles.mediaButton}
-              onPress={() =>
-                openExternalLink(
-                  animal.wikipediaUrls![0],
-                  translations.leavingAppMessage
-                )
-              }
+              onPress={() => {
+                // Get language-specific URL with fallback chain
+                const url =
+                  animal.wikipediaUrls![language] ||
+                  animal.wikipediaUrls!.en ||
+                  Object.values(animal.wikipediaUrls!)[0];
+
+                if (url) {
+                  openExternalLink(url, translations.leavingAppMessage);
+                }
+              }}
               activeOpacity={0.7}
             >
               <View

@@ -24,7 +24,11 @@ export interface Animal {
   videos?: string[]; // Video URLs
   extraSounds?: string[]; // Additional sounds
   description?: string; // Animal description/facts
-  wikipediaUrls?: string[]; // Links to Wikipedia
+  wikipediaUrls?: {
+    en?: string;
+    uk?: string;
+    ru?: string;
+  }; // Language-specific Wikipedia links
   otherUrls?: string[]; // Other reference URLs
   glbUrl?: string; // 3D model URL (.glb file)
 }

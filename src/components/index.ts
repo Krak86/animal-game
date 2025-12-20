@@ -13,3 +13,4 @@ export { HamburgerButton } from './HamburgerButton';
 export { ImageGalleryModal } from './ImageGalleryModal';
 export { VideoGalleryModal } from './VideoGalleryModal';
 export { Model3DModal } from './Model3DModal';
+export { ZoomableImage } from './ZoomableImage';

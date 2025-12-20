@@ -280,6 +280,7 @@ export default function App() {
                       onBackPress={handleBackToList}
                       isSoundEnabled={isSoundEnabled}
                       backgroundMusic={exhibitionBackgroundMusic.current}
+                      language={language}
                     />
                   ) : (
                     <AnimalsListView

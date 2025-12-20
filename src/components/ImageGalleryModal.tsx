@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react";
-import { Modal, View, Image, TouchableOpacity } from "react-native";
+import { Modal, View, TouchableOpacity } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 
 import { getImageGalleryModalStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { EmojiSvg } from "@/components/EmojiSvg";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 interface ImageGalleryModalProps {
   visible: boolean;
@@ -29,24 +30,13 @@ export const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
 
   const renderItem = ({ item, index }: { item: string; index: number }) => (
     <View style={styles.imageContainer}>
-      <Image
-        source={{ uri: item }}
-        style={styles.image}
-        accessibilityLabel={`${animalName} image ${index + 1} of ${
-          images.length
-        }`}
+      <ZoomableImage
+        uri={item}
+        width={windowWidth}
+        height={windowHeight * 0.7}
+        accessibilityLabel={`${animalName} image ${index + 1} of ${images.length}`}
       />
     </View>
-  );
-
-  const renderPaginationDot = (index: number) => (
-    <View
-      key={index}
-      style={[
-        styles.paginationDot,
-        index === currentIndex && styles.paginationDotActive,
-      ]}
-    />
   );
 
   return (
