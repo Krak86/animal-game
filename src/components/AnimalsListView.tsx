@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+  useRef,
+} from "react";
 import {
   View,
   FlatList,
@@ -18,18 +24,33 @@ import { EmojiSvg } from "@/components/EmojiSvg";
 interface AnimalsListViewProps {
   animals: Animal[];
   translations: Translations;
-  onAnimalPress: (animal: Animal) => void;
+  onAnimalPress: (
+    animal: Animal,
+    scrollIndex: number,
+    searchText: string
+  ) => void;
   isSoundEnabled: boolean;
+  scrollToIndex?: number;
+  onScrollIndexChange?: (index: number) => void;
+  onSearchChange?: (searchText: string) => void;
 }
 
 export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
   animals,
   translations,
   onAnimalPress,
+  scrollToIndex,
+  onScrollIndexChange,
+  onSearchChange,
 }) => {
   const responsive = useResponsiveDimensions();
   const styles = getAnimalsListViewStyles(responsive);
   const insets = useSafeAreaInsets();
+
+  // Refs for scroll position management
+  const flatListRef = useRef<FlatList<Animal>>(null);
+  const hasScrolledToInitialPosition = useRef<boolean>(false);
+  const filteredAnimalsRef = useRef<Animal[]>([]);
 
   // Search state
   const [searchText, setSearchText] = useState("");
@@ -48,6 +69,12 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
   const handleSearchChange = (text: string) => {
     setSearchText(text);
     debouncedSetSearch(text);
+    // Reset scroll position flag on search to prevent out-of-bounds scroll attempts
+    hasScrolledToInitialPosition.current = false;
+    // Notify parent of search change (will reset scroll to top)
+    if (onSearchChange) {
+      onSearchChange(text);
+    }
   };
 
   // Clear search when component unmounts or when going back
@@ -56,6 +83,7 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
       setSearchText("");
       setDebouncedSearch("");
       debouncedSetSearch.cancel();
+      hasScrolledToInitialPosition.current = false;
     };
   }, [debouncedSetSearch]);
 
@@ -72,17 +100,77 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
     });
   }, [animals, debouncedSearch, translations]);
 
+  // Keep ref in sync with current filtered animals
+  filteredAnimalsRef.current = filteredAnimals;
+
+  // Restore scroll position when component mounts
+  useEffect(() => {
+    if (
+      scrollToIndex !== undefined &&
+      scrollToIndex > 0 &&
+      filteredAnimals.length > 0 &&
+      !hasScrolledToInitialPosition.current
+    ) {
+      const timer = setTimeout(() => {
+        const currentLength = filteredAnimalsRef.current.length;
+        if (currentLength > 0) {
+          const safeIndex = Math.min(scrollToIndex, currentLength - 1);
+
+          // Check if the index is within the initially rendered range
+          // FlatList typically renders initialNumToRender (12) items initially
+          const initiallyRendered = 12;
+
+          if (safeIndex < initiallyRendered && safeIndex < currentLength) {
+            // Safe to use scrollToIndex for small indices
+            flatListRef.current?.scrollToIndex({
+              index: safeIndex,
+              animated: false,
+              viewPosition: 0,
+            });
+          } else if (safeIndex < currentLength) {
+            // For larger indices, estimate the offset to avoid out-of-range error
+            // Use a rough estimate of item height (adjust based on your actual card height)
+            const estimatedItemHeight = 150; // Adjust this based on your AnimalCard height
+            const estimatedOffset = safeIndex * estimatedItemHeight;
+            flatListRef.current?.scrollToOffset({
+              offset: estimatedOffset,
+              animated: false,
+            });
+          }
+        }
+        hasScrolledToInitialPosition.current = true;
+      }, 150);
+
+      return () => clearTimeout(timer);
+    }
+  }, [scrollToIndex, filteredAnimals.length]);
+
+  // Track visible items to save scroll position
+  const handleViewableItemsChanged = useRef(({ viewableItems }: any) => {
+    if (viewableItems.length > 0 && onScrollIndexChange) {
+      const firstVisibleIndex = viewableItems[0].index;
+      if (firstVisibleIndex !== null && firstVisibleIndex !== undefined) {
+        onScrollIndexChange(firstVisibleIndex);
+      }
+    }
+  }).current;
+
+  const viewabilityConfig = useRef({
+    itemVisiblePercentThreshold: 50,
+    minimumViewTime: 100,
+  }).current;
+
   // Render individual animal card
   const renderItem = useCallback(
-    ({ item }: { item: Animal; index: number }) => (
+    ({ item, index }: { item: Animal; index: number }) => (
       <AnimalCard
         animal={item}
         isWrong={false}
         translations={translations}
-        onPress={() => onAnimalPress(item)}
+        onPress={() => onAnimalPress(item, index, searchText)}
       />
     ),
-    [translations, onAnimalPress]
+    [translations, onAnimalPress, searchText]
   );
 
   // Key extractor for FlatList
@@ -128,6 +216,7 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
       </View>
 
       <FlatList
+        ref={flatListRef}
         key={responsive.columnCount}
         data={filteredAnimals}
         renderItem={renderItem}
@@ -140,6 +229,33 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
         maxToRenderPerBatch={6}
         windowSize={3}
         ListEmptyComponent={renderEmpty}
+        onViewableItemsChanged={handleViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
+        onScrollToIndexFailed={(info) => {
+          const wait = new Promise((resolve) => setTimeout(resolve, 150));
+          wait.then(() => {
+            // Use ref to get current filtered animals length
+            const currentLength = filteredAnimalsRef.current.length;
+            if (currentLength > 0) {
+              // Calculate a safe index that's within bounds
+              const safeIndex = Math.min(info.index, currentLength - 1);
+              // Double-check bounds before scrolling
+              if (safeIndex >= 0 && safeIndex < currentLength) {
+                flatListRef.current?.scrollToIndex({
+                  index: safeIndex,
+                  animated: false,
+                  viewPosition: 0,
+                });
+              } else {
+                // If still out of bounds, scroll to offset instead
+                flatListRef.current?.scrollToOffset({
+                  offset: info.averageItemLength * safeIndex,
+                  animated: false,
+                });
+              }
+            }
+          });
+        }}
       />
     </View>
   );

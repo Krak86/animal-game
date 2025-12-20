@@ -59,6 +59,8 @@ export default function App() {
   const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
   const [showAnimalDetail, setShowAnimalDetail] = useState<boolean>(false);
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+  const [listScrollIndex, setListScrollIndex] = useState<number>(0);
+  const [lastSearchText, setLastSearchText] = useState<string>("");
   const t = TRANSLATIONS[language];
 
   // Background music for exhibition mode
@@ -172,7 +174,9 @@ export default function App() {
   };
 
   // Exhibition mode event handlers
-  const handleAnimalSelect = (animal: Animal): void => {
+  const handleAnimalSelect = (animal: Animal, scrollIndex: number, searchText: string): void => {
+    setListScrollIndex(scrollIndex);
+    setLastSearchText(searchText);
     setSelectedAnimal(animal);
     setShowAnimalDetail(true);
   };
@@ -180,6 +184,14 @@ export default function App() {
   const handleBackToList = (): void => {
     setShowAnimalDetail(false);
     setSelectedAnimal(null);
+    // Keep listScrollIndex and lastSearchText for restoration
+  };
+
+  const handleSearchChange = (newSearchText: string): void => {
+    if (newSearchText !== lastSearchText) {
+      setListScrollIndex(0); // Reset scroll when search changes
+      setLastSearchText(newSearchText);
+    }
   };
 
   const handleBackToStart = (): void => {
@@ -288,6 +300,9 @@ export default function App() {
                       translations={t}
                       onAnimalPress={handleAnimalSelect}
                       isSoundEnabled={isSoundEnabled}
+                      scrollToIndex={listScrollIndex}
+                      onScrollIndexChange={setListScrollIndex}
+                      onSearchChange={handleSearchChange}
                     />
                   )
                 ) : (
