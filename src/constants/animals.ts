@@ -1,5 +1,7 @@
 import { Animal, GameMode } from "@/types";
 
+// extract animal sound URLs from youtube using yout.com https://yout.com/video/?url=https://www.youtube.com/watch?v=Couu-KZ7O1c
+
 // Background images
 const bg1 = require("@assets/imgs/bg/bg1.jpg");
 const bg2 = require("@assets/imgs/bg/bg2.jpg");
@@ -65,6 +67,16 @@ const sharkSound = require("@assets/music/animals/Shark.mp3");
 const swanSound = require("@assets/music/animals/Swan.mp3");
 const whaleSound = require("@assets/music/animals/Whale.mp3");
 const zebraSound = require("@assets/music/animals/Zebra.mp3");
+const turtleSound = require("@assets/music/animals/Turtle.mp3");
+const octopusSound = require("@assets/music/animals/Octopus.mp3");
+const crabSound = require("@assets/music/animals/Crab.mp3");
+const mooseSound = require("@assets/music/animals/Moose.mp3");
+const caterpillarSound = require("@assets/music/animals/Caterpillar.mp3");
+const badgerSound = require("@assets/music/animals/Badger.mp3");
+const lobsterSound = require("@assets/music/animals/Lobster.mp3");
+const scorpionSound = require("@assets/music/animals/Scorpion.mp3");
+const snailSound = require("@assets/music/animals/Snail.mp3");
+const antSound = require("@assets/music/animals/Ant.mp3");
 
 // Animal data with placeholder images and sounds
 export const ANIMALS: Animal[] = [
@@ -520,7 +532,8 @@ export const ANIMALS: Animal[] = [
     name: "Turtle",
     emoji: "🐢",
     image: BG_IMAGES[9], // bg10
-    modes: ["byName", "showAll"],
+    soundUrl: turtleSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "turtleDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1675432656807-216d786dd468?q=80&w=780&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -542,7 +555,8 @@ export const ANIMALS: Animal[] = [
     name: "Octopus",
     emoji: "🐙",
     image: BG_IMAGES[0], // bg1
-    modes: ["byName", "showAll"],
+    soundUrl: octopusSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "octopusDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1723733104322-827186b5eb9e?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -564,7 +578,8 @@ export const ANIMALS: Animal[] = [
     name: "Crab",
     emoji: "🦀",
     image: BG_IMAGES[1], // bg2
-    modes: ["byName", "showAll"],
+    soundUrl: crabSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "crabDescription",
     images: [
       "https://images.unsplash.com/photo-1553659971-f01207815844?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -632,7 +647,8 @@ export const ANIMALS: Animal[] = [
     name: "Snail",
     emoji: "🐌",
     image: BG_IMAGES[4], // bg5
-    modes: ["byName", "showAll"],
+    soundUrl: snailSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "snailDescription",
     images: [
       "https://images.unsplash.com/photo-1533177243638-dd485701f717?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -654,7 +670,8 @@ export const ANIMALS: Animal[] = [
     name: "Ant",
     emoji: "🐜",
     image: BG_IMAGES[5], // bg6
-    modes: ["byName", "showAll"],
+    soundUrl: antSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "antDescription",
     images: [
       "https://images.unsplash.com/photo-1588470045344-4393b295297c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -768,7 +785,8 @@ export const ANIMALS: Animal[] = [
     name: "Moose",
     emoji: "🦌",
     image: BG_IMAGES[0], // bg1
-    modes: ["byName", "showAll"],
+    soundUrl: mooseSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "mooseDescription",
     images: [
       "https://images.unsplash.com/photo-1549471013-3364d7220b75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -928,7 +946,8 @@ export const ANIMALS: Animal[] = [
     name: "Caterpillar",
     emoji: "🐛",
     image: BG_IMAGES[7], // bg8
-    modes: ["byName", "showAll"],
+    soundUrl: caterpillarSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "caterpillarDescription",
     images: [
       "https://images.unsplash.com/photo-1598431429388-c561cb614d2d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -950,7 +969,8 @@ export const ANIMALS: Animal[] = [
     name: "Scorpion",
     emoji: "🦂",
     image: BG_IMAGES[8], // bg9
-    modes: ["byName", "showAll"],
+    soundUrl: scorpionSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "scorpionDescription",
     images: [
       "https://images.unsplash.com/photo-1618479995657-6e2fbb7d5480?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -972,7 +992,8 @@ export const ANIMALS: Animal[] = [
     name: "Lobster",
     emoji: "🦞",
     image: BG_IMAGES[9], // bg10
-    modes: ["byName", "showAll"],
+    soundUrl: lobsterSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "lobsterDescription",
     images: [
       "https://images.unsplash.com/photo-1655697253644-63c270874bb7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1040,7 +1061,8 @@ export const ANIMALS: Animal[] = [
     name: "Badger",
     emoji: "🦡",
     image: BG_IMAGES[2], // bg3
-    modes: ["byName", "showAll"],
+    soundUrl: badgerSound,
+    modes: ["byName", "showAll", "bySound"],
     description: "badgerDescription",
     images: [
       "https://images.unsplash.com/photo-1563016115-85abfc230672?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1284,15 +1306,6 @@ export const ANIMALS: Animal[] = [
       ru: "https://ru.wikipedia.org/wiki/Утка",
     },
   },
-  /*   {
-    id: 57,
-    name: "Lamb",
-    emoji: "🐑",
-    image: BG_IMAGES[0], // bg1
-    soundUrl:
-      "https://freeanimalsounds.org/wp-content/uploads/2017/07/schaf.mp3",
-    modes: ["byName", "bySound", "showAll"],
-  }, */
   {
     id: 58,
     name: "Snake",
