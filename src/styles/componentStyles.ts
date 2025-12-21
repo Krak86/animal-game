@@ -354,6 +354,10 @@ export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>
     },
     scrollContainer: {
       flex: 1,
+      backgroundColor: "rgba(255, 255, 255, 0.3)",
+      margin: responsive.spacing.md,
+      borderRadius: 20,
+      overflow: "hidden",
     },
     topSection: {
       alignItems: "center",

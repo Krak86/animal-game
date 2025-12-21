@@ -337,7 +337,7 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
       borderRadius: 20,
       borderWidth: 2,
       borderColor: COLORS.primary,
-      overflow: "hidden",
+      // overflow: "hidden",
     },
     modeButton: {
       paddingHorizontal: 20,
