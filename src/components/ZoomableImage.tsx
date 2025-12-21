@@ -44,6 +44,22 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({
       }
     });
 
+  const doubleTapGesture = Gesture.Tap()
+    .numberOfTaps(2)
+    .onEnd(() => {
+      if (scale.value > 1.5) {
+        // If already zoomed, reset to 1x
+        scale.value = withTiming(1);
+        savedScale.value = 1;
+      } else {
+        // Zoom to 2x
+        scale.value = withTiming(2);
+        savedScale.value = 2;
+      }
+    });
+
+  const composedGesture = Gesture.Simultaneous(pinchGesture, doubleTapGesture);
+
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));
@@ -60,7 +76,7 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({
           <ActivityIndicator size="large" color="#999" />
         </View>
       )}
-      <GestureDetector gesture={pinchGesture}>
+      <GestureDetector gesture={composedGesture}>
         <Animated.Image
           source={{ uri }}
           style={[{ width, height }, animatedStyle, hasError && styles.hidden]}
