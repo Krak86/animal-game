@@ -85,6 +85,23 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
           </View>
         </TouchableOpacity>
 
+        {/* Font Test Button - Development only */}
+        {__DEV__ && (
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => {
+              navigation.navigate("FontTest");
+              navigation.closeDrawer();
+            }}
+            activeOpacity={0.7}
+          >
+            <View style={styles.menuItemContent}>
+              <EmojiSvg emoji="🔤" style={styles.menuItemEmoji} />
+              <Text style={styles.menuItemText}>Font Test (Dev Only)</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+
         {/* Game Mode Section */}
         <View style={styles.gameModeSection}>
           <Text style={styles.sectionLabel}>

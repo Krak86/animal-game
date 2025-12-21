@@ -14,3 +14,5 @@ export { ImageGalleryModal } from './ImageGalleryModal';
 export { VideoGalleryModal } from './VideoGalleryModal';
 export { Model3DModal } from './Model3DModal';
 export { ZoomableImage } from './ZoomableImage';
+export { EmojiSvg } from './EmojiSvg';
+export { FontTestComponent } from './FontTestComponent';

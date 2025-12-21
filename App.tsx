@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import * as NavigationBar from "expo-navigation-bar";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { View, ScrollView, Text, Platform } from "react-native";
+import { View, ScrollView, Text, Platform, Alert } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -18,6 +18,7 @@ import {
   AnimalDetailView,
   CustomDrawerContent,
   HamburgerButton,
+  FontTestComponent,
 } from "@/components";
 // Constants
 import { TRANSLATIONS } from "@/constants/translations";
@@ -44,6 +45,7 @@ SplashScreen.preventAutoHideAsync();
 // Create Drawer Navigator
 type RootDrawerParamList = {
   Main: undefined;
+  FontTest: undefined;
 };
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
@@ -71,12 +73,36 @@ export default function App() {
   const appStyles = getAppStyles(responsive);
 
   // Load Montserrat fonts
+  // NOTE: Font files must be actual TrueType (.ttf) files, not HTML pages
+  // If fonts aren't loading, verify with: file assets/fonts/Montserrat-Regular.ttf
+  // Expected output: "TrueType Font data" (NOT "HTML document")
   const [fontsLoaded, fontError] = useFonts({
     "Montserrat-Regular": require("./assets/fonts/Montserrat-Regular.ttf"),
     "Montserrat-Medium": require("./assets/fonts/Montserrat-Medium.ttf"),
     "Montserrat-SemiBold": require("./assets/fonts/Montserrat-SemiBold.ttf"),
     "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
   });
+
+  // Debug font loading
+  useEffect(() => {
+    console.log("=== FONT LOADING DEBUG ===");
+    console.log("Platform:", Platform.OS);
+    console.log("Fonts loaded:", fontsLoaded);
+    console.log("Font error:", fontError);
+
+    if (fontError) {
+      console.error("Font loading error details:", fontError);
+      Alert.alert(
+        "Font Loading Error",
+        `Failed to load fonts: ${fontError.message}\n\nThe app will use system fonts instead.`,
+        [{ text: "OK" }]
+      );
+    }
+
+    if (fontsLoaded) {
+      console.log("✅ All Montserrat fonts loaded successfully");
+    }
+  }, [fontsLoaded, fontError]);
 
   const {
     shuffledAnimals,
@@ -357,6 +383,11 @@ export default function App() {
                 )}
               </View>
             )}
+          </Drawer.Screen>
+
+          {/* Font Test Screen - Development only */}
+          <Drawer.Screen name="FontTest">
+            {() => <FontTestComponent />}
           </Drawer.Screen>
         </Drawer.Navigator>
       </NavigationContainer>
