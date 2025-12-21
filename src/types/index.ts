@@ -17,14 +17,14 @@ export interface Animal {
   name: string;
   emoji: string;
   image: any; // Local image require() result (React Native)
-  soundUrl?: string | number; // Optional: animal sound (URL string or local require() number)
+  soundUrl: string | number; // Optional: animal sound (URL string or local require() number)
   modes: GameMode[]; // Which modes this animal appears in
   // Optional fields for future exhibition features
-  images?: string[]; // Multiple images for gallery
-  videos?: string[]; // Video URLs
+  images: string[]; // Multiple images for gallery
+  videos: string[]; // Video URLs
   extraSounds?: string[]; // Additional sounds
-  description?: string; // Animal description/facts
-  wikipediaUrls?: {
+  description: string; // Animal description/facts
+  wikipediaUrls: {
     en?: string;
     uk?: string;
     ru?: string;
