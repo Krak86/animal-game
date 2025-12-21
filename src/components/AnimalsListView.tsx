@@ -223,16 +223,19 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
         keyExtractor={keyExtractor}
         numColumns={responsive.columnCount}
         columnWrapperStyle={{
-          justifyContent:
-            responsive.columnCount > 1 ? "space-between" : "flex-start",
+          justifyContent: "space-around",
         }}
         contentInset={{ bottom: insets.bottom }}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
-        removeClippedSubviews={true}
+        removeClippedSubviews={false}
         initialNumToRender={12}
         maxToRenderPerBatch={6}
         windowSize={3}
+        maintainVisibleContentPosition={{
+          minIndexForVisible: 0,
+          autoscrollToTopThreshold: 0,
+        }}
         ListEmptyComponent={renderEmpty}
         onViewableItemsChanged={handleViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}

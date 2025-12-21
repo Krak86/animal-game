@@ -1178,6 +1178,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[7], // bg8
     soundUrl: gorillaSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "gorillaDescription",
     videos: ["https://www.youtube.com/watch?v=rHhSCO5-3Pg"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1193,6 +1194,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[8], // bg9
     soundUrl: kangarooSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "kangarooDescription",
     videos: ["https://www.youtube.com/watch?v=WCcLMNcWZOc"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1208,6 +1210,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[9], // bg10
     soundUrl: leopardSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "leopardDescription",
     videos: ["https://www.youtube.com/watch?v=0OVfjuf-U-E"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1223,6 +1226,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[0], // bg1
     soundUrl: sheepSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "sheepDescription",
     videos: ["https://www.youtube.com/watch?v=yelEaTDOO2Q"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1238,6 +1242,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[1], // bg2
     soundUrl: chickenSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "chickenDescription",
     videos: ["https://www.youtube.com/watch?v=R2LYMInJdE8"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1253,6 +1258,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[2], // bg3
     soundUrl: pigSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "pigDescription",
     videos: ["https://www.youtube.com/watch?v=BVAIImxcv4g"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1268,6 +1274,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[3], // bg4
     soundUrl: goatSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "goatDescription",
     videos: ["https://www.youtube.com/watch?v=RG9TMn1FJzc"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1283,6 +1290,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[4], // bg5
     soundUrl: bullSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "bullDescription",
     videos: ["https://www.youtube.com/watch?v=CImBgOuc7yw"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1298,6 +1306,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[5], // bg6
     soundUrl: duckSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "duckDescription",
     videos: ["https://www.youtube.com/watch?v=FIqh1-JuxrU"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1313,6 +1322,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[1], // bg2
     soundUrl: snakeSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "snakeDescription",
     videos: ["https://www.youtube.com/watch?v=RKTnxc9sfSQ"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1328,6 +1338,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[2], // bg3
     soundUrl: ravenSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "ravenDescription",
     videos: ["https://www.youtube.com/watch?v=D6s3u0624P8"],
     glbUrl: "",
     wikipediaUrls: {
@@ -1343,6 +1354,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[3], // bg4
     soundUrl: owlSound,
     modes: ["byName", "bySound", "showAll"],
+    description: "owlDescription",
     videos: ["https://www.youtube.com/watch?v=bt3X8MJgJWo"],
     glbUrl: "",
     wikipediaUrls: {
