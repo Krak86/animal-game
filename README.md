@@ -1,69 +1,119 @@
 # Animals Game 🐕🐈🦁
 
-An interactive React Native educational game for children to learn animal names and sounds in English and Ukrainian. Built with TypeScript, Expo, and featuring custom fonts, background music, and engaging animations.
+An interactive React Native educational game for children to learn animal names and sounds in three languages (English, Ukrainian, Russian). Features three distinct game modes including an exhibition mode for browsing all animals. Built with TypeScript, Expo, drawer navigation, and featuring image galleries, YouTube videos, Wikipedia integration, custom fonts, background music, and engaging animations.
 
 ## Features
 
-- 🎮 **Two Game Modes**:
+- 🎮 **Three Game Modes**:
   - **By Name**: Match animal names to images
   - **By Sound**: Identify animals by their sounds
+  - **Exhibition Mode**: Browse all animals with detailed information
+- 🦁 **48 Animals**: Comprehensive collection of farm animals, wild animals, birds, marine life, and insects
+- 🖼️ **Image Galleries**: 6-7 high-quality Unsplash photos per animal with carousel and pinch-to-zoom
+- 🎬 **Video Galleries**: 3 YouTube videos per animal with integrated player
+- 📚 **Wikipedia Integration**: Language-specific Wikipedia links for in-depth learning
+- 🎨 **3D Model Viewer**: Interactive 3D models (coming soon)
+- 🧭 **Drawer Navigation**: Easy access to all game modes and settings via hamburger menu
 - 🌍 **Trilingual Support**: Complete English, Ukrainian, and Russian translations
 - 🌐 **Smart Language Switcher**: Horizontal buttons on start screen, compact dropdown during gameplay
-- 🗣️ **Text-to-Speech**: Pronounces animal names in selected language
+- 🗣️ **Text-to-Speech**: Pronounces animal names in all three languages
 - 🎵 **Background Music**: Optional music with toggle control
-- 🎨 **Smooth Animations**: Wiggle effects, entrance animations, and transitions
-- 🔊 **Animal Sounds**: Authentic audio for select animals
-- 📱 **Responsive Design**: Works on all screen sizes with vertical scrolling
+- 🎨 **Smooth Animations**: High-performance animations using React Native Reanimated
+- 🔊 **Animal Sounds**: Authentic MP3 audio files for all 48 animals
+- 📱 **Responsive Design**: Adaptive layouts for all screen sizes and orientations
 - ✅ **Visual Feedback**: Red borders for wrong answers, celebration overlay for correct ones
-- 📊 **Score Tracking**: Keep track of your progress
+- 📊 **Score Tracking**: Keep track of your progress during gameplay
 - 🔤 **Custom Fonts**: Professional Montserrat typography
+- 🎭 **SVG Emoji Rendering**: Consistent cross-platform emoji appearance using Twemoji
+- 💾 **Language Persistence**: Automatic language detection with AsyncStorage
 - 🏠 **Reset Functionality**: Return to start screen anytime
 
 ## Project Structure
 
 ```
 /
-├── App.tsx                  # Main app component
-├── index.ts                 # Application entry point
-├── package.json
-├── app.json
-├── tsconfig.json            # TypeScript configuration
-├── assets/
-│   ├── fonts/               # Montserrat font family (.ttf)
-│   ├── music/               # Background music files
-│   │   └── kid-366901.mp3
-│   ├── icon.png
-│   ├── splash-icon.png
-│   └── adaptive-icon.png
-└── src/
-    ├── components/          # React components (TypeScript)
-    │   ├── AnimalCard.tsx
-    │   ├── LanguageSwitcher.tsx
-    │   ├── LanguageDropdown.tsx
-    │   ├── QuestionDisplay.tsx
-    │   ├── StartScreen.tsx
-    │   ├── SuccessOverlay.tsx
-    │   ├── SoundToggle.tsx
-    │   └── index.ts
-    ├── constants/           # App constants and data
-    │   ├── animals.ts
-    │   ├── sounds.ts
-    │   ├── translations.ts
-    │   ├── fonts.ts
-    │   └── gameSettings.ts
-    ├── hooks/               # Custom React hooks
-    │   └── useGameLogic.ts
-    ├── styles/              # Style definitions
-    │   ├── appStyles.ts
-    │   ├── colors.ts
-    │   └── componentStyles.ts
-    ├── types/               # TypeScript type definitions
-    │   └── index.ts
-    └── utils/               # Utility functions
-        ├── animations.ts
-        ├── audio.ts
-        ├── speech.ts
-        └── helpers.ts
+├── App.tsx                          # Main app component with drawer navigation
+├── index.ts                         # React Native entry point
+├── package.json                     # Dependencies and scripts
+├── app.json                         # Expo configuration
+├── tsconfig.json                    # TypeScript configuration with path aliases
+├── babel.config.js                  # Babel preset for Expo
+├── metro.config.js                  # Metro bundler config (SVG transformer)
+├── eas.json                         # EAS Build profiles (Android/iOS)
+├── Dockerfile                       # Docker build environment
+├── docker-compose.yml               # Docker compose configuration
+├── declarations.d.ts                # TypeScript declarations for SVG imports
+├── README.md                        # This file
+│
+├── assets/                          # Static assets
+│   ├── fonts/                       # Montserrat font family (4 .ttf files)
+│   │   ├── Montserrat-Regular.ttf
+│   │   ├── Montserrat-Medium.ttf
+│   │   ├── Montserrat-SemiBold.ttf
+│   │   └── Montserrat-Bold.ttf
+│   ├── imgs/bg/                     # Background images (10 JPG files)
+│   ├── music/                       # Audio files
+│   │   ├── animals/                 # 48 animal sound MP3 files
+│   │   ├── kid-366901.mp3           # Background music
+│   │   ├── success.mp3              # Success sound effect
+│   │   └── wrong.mp3                # Error sound effect
+│   ├── emojis/                      # SVG emoji files (70 files: 60 Twemoji + 2 custom + 8 UI)
+│   ├── icon.png                     # App icon
+│   ├── splash-icon.png              # Splash screen
+│   ├── adaptive-icon.png            # Android adaptive icon
+│   └── favicon.png                  # Web favicon
+│
+├── scripts/                         # Build and setup scripts
+│   └── downloadTwemojiSvgs.js       # Download Twemoji SVG assets
+│
+└── src/                             # Source code
+    ├── components/                  # React components (17 files)
+    │   ├── AnimalCard.tsx           # Individual animal tile with wiggle animation
+    │   ├── QuestionDisplay.tsx      # Question display with name or sound replay
+    │   ├── StartScreen.tsx          # Game mode selection screen
+    │   ├── SuccessOverlay.tsx       # Celebration overlay on correct answer
+    │   ├── AnimalsListView.tsx      # Browse all animals (Exhibition mode)
+    │   ├── AnimalDetailView.tsx     # Detailed animal info with galleries
+    │   ├── ImageGalleryModal.tsx    # Image carousel with pinch-to-zoom
+    │   ├── VideoGalleryModal.tsx    # YouTube video player modal
+    │   ├── Model3DModal.tsx         # 3D model viewer (coming soon)
+    │   ├── ZoomableImage.tsx        # Pinch-to-zoom image component
+    │   ├── CustomDrawerContent.tsx  # Drawer menu content
+    │   ├── HamburgerButton.tsx      # Hamburger menu button
+    │   ├── LanguageSwitcher.tsx     # Horizontal 3-button language toggle
+    │   ├── LanguageDropdown.tsx     # Compact dropdown language selector
+    │   ├── SoundToggle.tsx          # Music on/off toggle
+    │   ├── EmojiSvg.tsx             # SVG emoji rendering component
+    │   └── index.ts                 # Components barrel export
+    │
+    ├── constants/                   # App constants and data (6 files)
+    │   ├── animals.ts               # 48 animals with images, videos, Wikipedia (1,442 lines)
+    │   ├── translations.ts          # Complete i18n for en/uk/ru (656 lines)
+    │   ├── sounds.ts                # Sound effect URLs
+    │   ├── fonts.ts                 # Font family constants
+    │   ├── gameSettings.ts          # Game configuration (ANIMALS_PER_SCREEN = 6)
+    │   └── emojiMap.ts              # Emoji to SVG file mappings
+    │
+    ├── hooks/                       # Custom React hooks (3 files)
+    │   ├── useGameLogic.ts          # Core game state and logic management
+    │   ├── useLanguageInitialization.ts  # Language detection & persistence
+    │   └── useResponsiveDimensions.ts    # Screen size & orientation handling
+    │
+    ├── utils/                       # Utility functions (6 files)
+    │   ├── audio.ts                 # Audio loading and playback
+    │   ├── speech.ts                # Text-to-speech utilities
+    │   ├── helpers.ts               # General helpers (shuffle, random)
+    │   ├── animations.ts            # Animation utility functions
+    │   ├── languageDetection.ts     # Device language detection
+    │   └── linking.ts               # External link handling (Wikipedia, etc.)
+    │
+    ├── styles/                      # Styling (3 files)
+    │   ├── colors.ts                # Color palette definitions
+    │   ├── appStyles.ts             # Container, scroll, grid layouts
+    │   └── componentStyles.ts       # Component-specific styles
+    │
+    └── types/                       # TypeScript type definitions (1 file)
+        └── index.ts                 # Animal, Language, GameMode, Translations, etc.
 ```
 
 ## Getting Started
@@ -104,25 +154,42 @@ The app will load fonts on first launch before displaying the splash screen.
 
 ### Components (`src/components/`)
 
+#### Game Components
 - **AnimalCard.tsx**: Displays individual animal with wiggle animation and emoji
-- **LanguageSwitcher.tsx**: Horizontal 3-button language toggle (EN/УКР/РУ) for start screen
-- **LanguageDropdown.tsx**: Compact dropdown language selector for gameplay with modal overlay
 - **QuestionDisplay.tsx**: Shows animal name or sound replay button
 - **StartScreen.tsx**: Game mode selection screen with animations
 - **SuccessOverlay.tsx**: Full-screen celebration overlay on correct answer
+
+#### Exhibition Mode Components
+- **AnimalsListView.tsx**: Browse all 48 animals with search and filter functionality
+- **AnimalDetailView.tsx**: Full-screen detailed animal information view
+- **ImageGalleryModal.tsx**: Image carousel with swipe navigation and pinch-to-zoom
+- **VideoGalleryModal.tsx**: YouTube video player modal
+- **Model3DModal.tsx**: 3D model viewer modal (coming soon)
+- **ZoomableImage.tsx**: Pinch-to-zoom image component using gestures
+
+#### Navigation & UI Components
+- **CustomDrawerContent.tsx**: Custom drawer menu with mode selection
+- **HamburgerButton.tsx**: Hamburger menu button for drawer navigation
+- **LanguageSwitcher.tsx**: Horizontal 3-button language toggle (EN/УКР/РУ) for start screen
+- **LanguageDropdown.tsx**: Compact dropdown language selector for gameplay
 - **SoundToggle.tsx**: Toggle background music on/off
+- **EmojiSvg.tsx**: SVG-based emoji rendering component (Twemoji)
 
 ### Constants (`src/constants/`)
 
-- **animals.ts**: Animal data with name, emoji, image URL, sound URL, and game modes
+- **animals.ts**: 48 animals with images (Unsplash), videos (YouTube), Wikipedia URLs, sounds, and descriptions (1,442 lines)
+- **translations.ts**: Complete English, Ukrainian, and Russian translations including animal descriptions (656 lines)
 - **sounds.ts**: Sound effect URLs for success and error feedback
-- **translations.ts**: Complete English and Ukrainian translations
 - **fonts.ts**: Montserrat font family constants
-- **gameSettings.ts**: Game configuration (grid size, animation timings)
+- **gameSettings.ts**: Game configuration (ANIMALS_PER_SCREEN = 6)
+- **emojiMap.ts**: Mapping of emoji characters to SVG file paths (70 emojis)
 
 ### Hooks (`src/hooks/`)
 
 - **useGameLogic.ts**: Core custom hook managing all game state, logic, animations, and audio
+- **useLanguageInitialization.ts**: Language detection from device settings and AsyncStorage persistence
+- **useResponsiveDimensions.ts**: Screen size and orientation handling for responsive layouts
 
 ### Styles (`src/styles/`)
 
@@ -138,8 +205,10 @@ The app will load fonts on first launch before displaying the splash screen.
 
 - **animations.ts**: Animation helper functions for React Native Animated API
 - **audio.ts**: Sound loading, playback, and background music functions
-- **speech.ts**: Text-to-speech utilities using expo-speech
+- **speech.ts**: Text-to-speech utilities using expo-speech with language support
 - **helpers.ts**: General utility functions (shuffle, random selection, etc.)
+- **languageDetection.ts**: Device language detection from system settings
+- **linking.ts**: External URL handling for Wikipedia and other links
 
 ## Customization
 
@@ -151,12 +220,27 @@ Edit `src/constants/animals.ts`:
 export const ANIMALS: Animal[] = [
   // Add your animal here
   {
-    id: 100,
+    id: 49,
     name: "Bear",
     emoji: "🐻",
-    image: "https://example.com/bear.jpg",
-    soundUrl: "https://example.com/bear-sound.mp3", // Optional
-    modes: ["byName", "bySound"], // Or just ["byName"]
+    image: require("@assets/imgs/bg/bg1.jpg"),
+    images: [
+      "https://images.unsplash.com/photo-1...",
+      "https://images.unsplash.com/photo-2...",
+      // Add 6-7 Unsplash URLs
+    ],
+    videos: [
+      "https://www.youtube.com/watch?v=...",
+      "https://www.youtube.com/watch?v=...",
+      "https://www.youtube.com/watch?v=...",
+    ],
+    wikiUrl: {
+      en: "https://en.wikipedia.org/wiki/Bear",
+      uk: "https://uk.wikipedia.org/wiki/Ведмідь",
+      ru: "https://ru.wikipedia.org/wiki/Медведь",
+    },
+    soundUrl: require("@assets/music/animals/bear.mp3"),
+    modes: ["byName", "bySound", "showAll"],
   },
 ];
 ```
@@ -170,15 +254,41 @@ export const TRANSLATIONS = {
       // ... other animals
       Bear: "Bear",
     },
+    descriptions: {
+      Bear: "Large mammal with thick fur...",
+    },
   },
   uk: {
     animals: {
       // ... other animals
       Bear: "Ведмідь",
     },
+    descriptions: {
+      Bear: "Великий ссавець з густим хутром...",
+    },
+  },
+  ru: {
+    animals: {
+      // ... other animals
+      Bear: "Медведь",
+    },
+    descriptions: {
+      Bear: "Крупное млекопитающее с густым мехом...",
+    },
   },
 };
 ```
+
+Add emoji mapping in `src/constants/emojiMap.ts`:
+
+```typescript
+export const EMOJI_SVG_MAP: Record<string, any> = {
+  // ... other emojis
+  "🐻": require("@assets/emojis/1f43b.svg"),
+};
+```
+
+Download or create the emoji SVG file and place it in `assets/emojis/`.
 
 ### Changing Colors
 
@@ -286,21 +396,46 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
 2. Player taps the animal that makes that sound
 3. Replay button available to hear sound again
 4. Same visual feedback as "By Name" mode
-5. Only includes animals with sound files
+5. All 48 animals include sound files
+
+### Exhibition Mode
+
+1. Browse all 48 animals in a scrollable grid
+2. Search and filter animals by name in current language
+3. Tap any animal card to view detailed information
+4. Animal detail view includes:
+   - Large emoji display
+   - Animal name and translated description
+   - **Image Gallery**: View 6-7 high-quality Unsplash photos
+     - Swipe through images with carousel
+     - Pinch-to-zoom for detailed viewing
+   - **Video Gallery**: Watch 3 curated YouTube videos
+     - Full video playback controls
+     - HD quality streaming
+   - **Wikipedia**: Learn more via language-specific Wikipedia link
+   - **Play Sound**: Listen to the animal's sound
+5. Navigate back to browse more animals
+6. Access via drawer menu (hamburger button)
 
 ## Technologies
 
-- **React Native 0.81.5** with **Expo ~54.0**
+- **React Native 0.81.5** with **Expo ~54.0.29**
 - **TypeScript 5.9.3** for type safety
+- **@react-navigation/drawer** (v7.x) and **@react-navigation/native** (v7.x) for drawer navigation system
+- **react-native-reanimated** (v3.x) for high-performance animations
+- **react-native-reanimated-carousel** for image gallery carousel
 - **expo-av** for audio playback and background music
-- **expo-speech** for text-to-speech
+- **expo-speech** for text-to-speech in all three languages
 - **expo-font** for custom Montserrat typography
+- **@react-native-async-storage** for language persistence
 - **react-native-svg** (v15.12.1) for SVG rendering
 - **react-native-svg-transformer** for importing SVG as React components
 - **Twitter Twemoji** SVG library for consistent cross-platform emoji rendering
-- **React Native Animated API** for smooth animations
 - **Custom hooks** for centralized state management
-- **Path aliases** (`@/`) for clean imports
+- **Path aliases** (`@/` for src, `@assets/` for assets) for clean imports
+- **Unsplash** for high-quality animal images
+- **YouTube** for educational animal videos
+- **Wikipedia** for comprehensive animal information
 
 ## License
 
