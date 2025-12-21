@@ -274,7 +274,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                   Object.values(animal.wikipediaUrls!)[0];
 
                 if (url) {
-                  openExternalLink(url, translations.leavingAppMessage);
+                  openExternalLink(url, translations);
                 }
               }}
               activeOpacity={0.7}

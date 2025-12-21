@@ -74,6 +74,11 @@ export interface Translations {
   leavingAppMessage: string; // "You are leaving the app. Continue?"
   comingSoon: string; // "Coming Soon" for 3D modal
   close: string; // "Close" button
+  externalLink: string; // "External Link" alert title
+  cancel: string; // "Cancel" button
+  continue: string; // "Continue" button
+  error: string; // "Error" alert title
+  browserNotInstalledError: string; // Browser not installed error message
   animalDescriptions: {
     dogDescription: string;
     catDescription: string;

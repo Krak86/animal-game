@@ -36,6 +36,11 @@ export const TRANSLATIONS: TranslationMap = {
     leavingAppMessage: "You are leaving the app. Continue?",
     comingSoon: "Coming Soon",
     close: "Close",
+    externalLink: "External Link",
+    cancel: "Cancel",
+    continue: "Continue",
+    error: "Error",
+    browserNotInstalledError: "Failed to open link: {error}\n\nPlease ensure you have a web browser installed on your device.",
     animalDescriptions: {
       dogDescription:
         "Dogs are loyal, friendly companions that have been domesticated for thousands of years. They come in many breeds and sizes, each with unique characteristics. Known for their intelligence and trainability, dogs serve as pets, working animals, and service animals.",
@@ -253,6 +258,11 @@ export const TRANSLATIONS: TranslationMap = {
     leavingAppMessage: "Ви виходите з програми. Продовжити?",
     comingSoon: "Незабаром",
     close: "Закрити",
+    externalLink: "Зовнішнє посилання",
+    cancel: "Скасувати",
+    continue: "Продовжити",
+    error: "Помилка",
+    browserNotInstalledError: "Не вдалося відкрити посилання: {error}\n\nБудь ласка, переконайтеся, що у вас встановлено веб-браузер.",
     animalDescriptions: {
       dogDescription:
         "Собаки — це вірні, дружелюбні компаньйони, які були одомашнені тисячі років тому. Вони бувають різних порід і розмірів, кожна з унікальними характеристиками. Відомі своїм інтелектом і здатністю до навчання, собаки служать як домашні улюбленці, робочі тварини та службові тварини.",
@@ -470,6 +480,11 @@ export const TRANSLATIONS: TranslationMap = {
     leavingAppMessage: "Вы покидаете приложение. Продолжить?",
     comingSoon: "Скоро",
     close: "Закрыть",
+    externalLink: "Внешняя ссылка",
+    cancel: "Отмена",
+    continue: "Продолжить",
+    error: "Ошибка",
+    browserNotInstalledError: "Не удалось открыть ссылку: {error}\n\nПожалуйста, убедитесь, что у вас установлен веб-браузер.",
     animalDescriptions: {
       dogDescription:
         "Собаки — верные, дружелюбные компаньоны, одомашненные тысячи лет назад. Они бывают разных пород и размеров, каждая с уникальными характеристиками. Известные своим интеллектом и обучаемостью, собаки служат домашними животными, рабочими животными и служебными животными.",
