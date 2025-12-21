@@ -168,6 +168,7 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
         isWrong={false}
         translations={translations}
         onPress={() => onAnimalPress(item, index, searchText)}
+        index={index}
       />
     ),
     [translations, onAnimalPress, searchText]
