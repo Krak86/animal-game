@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Animated,
   ScrollView,
+  Platform,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -39,23 +40,24 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
   useEffect(() => {
     // Create wiggle animation for each emoji
     const createWiggle = (anim: Animated.Value, delay: number) => {
+      const nativeDriver = Platform.OS !== "web";
       return Animated.loop(
         Animated.sequence([
           Animated.delay(delay),
           Animated.timing(anim, {
             toValue: 1,
             duration: 200,
-            useNativeDriver: true,
+            useNativeDriver: nativeDriver,
           }),
           Animated.timing(anim, {
             toValue: -1,
             duration: 400,
-            useNativeDriver: true,
+            useNativeDriver: nativeDriver,
           }),
           Animated.timing(anim, {
             toValue: 0,
             duration: 200,
-            useNativeDriver: true,
+            useNativeDriver: nativeDriver,
           }),
           Animated.delay(1000),
         ])
@@ -205,13 +207,11 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
   StyleSheet.create({
     outerContainer: {
       flex: 1,
-      backgroundColor: COLORS.background,
     },
     scrollContent: {
       flexGrow: 1,
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: COLORS.background,
       padding: responsive.spacing.lg,
       paddingBottom: responsive.spacing.lg,
     },

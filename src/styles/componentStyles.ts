@@ -223,7 +223,6 @@ export const getAnimalsListViewStyles = (responsive: ResponsiveDimensions) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: COLORS.background,
     },
     header: {
       flexDirection: responsive.isLandscape ? "row" : "column",
@@ -327,7 +326,6 @@ export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: COLORS.background,
     },
     header: {
       flexDirection: responsive.isLandscape ? "row" : "column",

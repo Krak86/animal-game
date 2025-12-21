@@ -19,6 +19,7 @@ import {
   CustomDrawerContent,
   HamburgerButton,
   FontTestComponent,
+  AnimatedBackground,
 } from "@/components";
 // Constants
 import { TRANSLATIONS } from "@/constants/translations";
@@ -200,7 +201,11 @@ export default function App() {
   };
 
   // Exhibition mode event handlers
-  const handleAnimalSelect = (animal: Animal, scrollIndex: number, searchText: string): void => {
+  const handleAnimalSelect = (
+    animal: Animal,
+    scrollIndex: number,
+    searchText: string
+  ): void => {
     setListScrollIndex(scrollIndex);
     setLastSearchText(searchText);
     setSelectedAnimal(animal);
@@ -303,7 +308,11 @@ export default function App() {
           <Drawer.Screen name="Main">
             {() => (
               <View style={appStyles.container} onLayout={onLayoutRootView}>
-                <StatusBar style={isFullScreen ? "light" : "auto"} hidden={isFullScreen} />
+                <AnimatedBackground />
+                <StatusBar
+                  style={isFullScreen ? "light" : "auto"}
+                  hidden={isFullScreen}
+                />
 
                 {/* Show HamburgerButton on all screens */}
                 <HamburgerButton />
