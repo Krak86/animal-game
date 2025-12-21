@@ -139,7 +139,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1519066629447-267fffa62d4b?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1554990772-0bea55d510d5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=OMkEVX23BdM"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Lion",
@@ -162,7 +162,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1544211412-2a32426e7fd5?q=80&w=778&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1575187105891-be9b5d30cecd?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=Aw6GkiCvcWs"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Elephant",
@@ -185,7 +185,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1547721064-da6cfb341d50?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://plus.unsplash.com/premium_photo-1661810398337-1fddd20130c3?q=80&w=950&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=P_ckAbOr0r4"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Giraffe",
@@ -208,7 +208,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1463852247062-1bbca38f7805?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/flagged/photo-1566127992631-137a642a90f4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=YfUMeMw1kY4"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Monkey",
@@ -231,7 +231,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1551415923-a2297c7fda79?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://plus.unsplash.com/premium_photo-1664303314018-d59cbbb5b13d?q=80&w=770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=woCIpMyyjxw"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Penguin",
@@ -254,7 +254,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1501706362039-c06b2d715385?q=80&w=1220&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1598755257130-c2aaca1f061c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=cUh3iSdq8Is"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Zebra",
@@ -277,7 +277,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1615824996195-f780bba7cfab?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://plus.unsplash.com/premium_photo-1664302954356-a79b02fe66b8?q=80&w=1736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=ja4GNdU2vYc"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Tiger",
@@ -300,7 +300,7 @@ export const ANIMALS: Animal[] = [
       "https://plus.unsplash.com/premium_photo-1661808819761-878bc1a39dee?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1591561582301-7ce6588cc286?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=WtM4OW2qVjY"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Rabbit",
@@ -323,7 +323,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1583510383754-35fc1d1eb598?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://plus.unsplash.com/premium_photo-1661963371598-060006de7103?q=80&w=1736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=K3CenN7d30Y"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Rooster",
@@ -346,7 +346,7 @@ export const ANIMALS: Animal[] = [
       "https://plus.unsplash.com/premium_photo-1661962510497-9505129083fa?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1546552615-f8861d1aa798?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=KjmuBo8xoCU"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Cow",
@@ -369,7 +369,7 @@ export const ANIMALS: Animal[] = [
       "https://plus.unsplash.com/premium_photo-1661885945007-e4871c8dec35?q=80&w=1837&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1547581849-38ba650ad0de?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=bHiZjBCnGbM"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Horse",
@@ -392,7 +392,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1480044965905-02098d419e96?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=0AugFrZPP9U"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Bird",
@@ -415,7 +415,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1572363420552-058bd41af8c7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1607350999170-b893fef057ea?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=YXMo5w9aMNs"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Wolf",
@@ -438,7 +438,7 @@ export const ANIMALS: Animal[] = [
       "https://plus.unsplash.com/premium_photo-1661897340844-3920b9894070?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1484704324500-528d0ae4dc7d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=zkgwmPUak70"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Goose",
@@ -461,7 +461,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1522231796108-23cbe9982a9c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1589604070897-fe1cccceca0d?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=D0_fctsOcI0"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Donkey",
@@ -484,7 +484,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1568162603664-fcd658421851?q=80&w=1562&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://plus.unsplash.com/premium_photo-1661878515974-9455f7e283de?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=aAfXsxLSblM"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Bear",
@@ -507,7 +507,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1704694214588-24f4bae4757b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1586115457457-b3753fe50cf1?q=80&w=1576&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=4HGNqFdaD34"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Shark",
@@ -529,7 +529,7 @@ export const ANIMALS: Animal[] = [
       "https://plus.unsplash.com/premium_photo-1724311824020-d5aa35632c81?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1709483095301-2d1f3e95b1d4?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=5Rmv3nliwCs"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Turtle",
@@ -551,7 +551,7 @@ export const ANIMALS: Animal[] = [
       "https://plus.unsplash.com/premium_photo-1661964453866-1ee129a25078?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1473239683252-44d654a9756f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=EmcdhDUQzik"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Octopus",
@@ -573,7 +573,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1561361398-b2bc9f049851?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1634600766237-ccf257a83fa7?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=YlEbg6fEKGI"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Crab",
@@ -596,7 +596,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1698551007683-7226dc6f4e85?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://plus.unsplash.com/premium_photo-1697730002225-fcdc0ba16854?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=0guNyC6cEJE"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Whale",
@@ -619,7 +619,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1591706405280-f03acb082051?q=80&w=1772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1591706083700-cf05c6be75e2?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=G7L4YzGAvMA"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Dolphin",
@@ -641,7 +641,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1695903431964-23ba338ee1e8?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1596708635238-aab8d249a455?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=kKZNdhNyYnc"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Snail",
@@ -663,7 +663,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1592331753290-91e0de78233f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1718465545555-56eb0d1624cf?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=qu0HN9rYtIw"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Ant",
@@ -686,7 +686,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1526773357673-2d4e8116d497?q=80&w=1246&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1634463111954-df9018cb119e?q=80&w=1754&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=ws_D5nXOAJg"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Ladybug",
@@ -709,7 +709,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1570308514141-48b0e0852591?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1595433409683-943ded8e7b1d?q=80&w=1522&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=ycAnNy5cbKo"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Crocodile",
@@ -732,7 +732,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1538630834610-87751cd747f4?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1658663072432-b1f76adf30af?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=p08Y0oRAX3g"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Bat",
@@ -755,7 +755,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1512819432727-dbcb57a06f13?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1555169062-013468b47731?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=m3-lHec4C3g"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Parrot",
@@ -777,7 +777,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1582002834723-2256d33da100?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1510992107199-e5224f959d6c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=F3yse7vTWrw"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Moose",
@@ -800,7 +800,7 @@ export const ANIMALS: Animal[] = [
       "https://plus.unsplash.com/premium_photo-1694542947673-9e1c61387343?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1511885663737-eea53f6d6187?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=KYHBWkyZnfk"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Llama",
@@ -823,7 +823,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/flagged/photo-1575440172687-fdd4ddf4285f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1583753728966-92341099e359?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=nxYatPDp8PA"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Buffalo",
@@ -846,7 +846,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1560011961-4ab41261de01?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1585779789236-e07efb099e2b?q=80&w=1408&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=KXhesrnIcCY"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Turkey",
@@ -869,7 +869,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1548148491-90655471726c?q=80&w=1253&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1546008523-a2840156b297?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=TTwT1-TpFhE"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Peacock",
@@ -892,7 +892,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1577897503253-ef34a3a08e6a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1472483160703-a6459053c1a3?q=80&w=1911&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=NcuA3Dd63VY"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Swan",
@@ -915,7 +915,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1481595357459-84468f6eeaac?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1586106901017-b2d588f9c458?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=UNroEwFxh6I"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Bee",
@@ -937,7 +937,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1618805712380-282512bcaf71?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1611049754721-c5428b272265?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=4JoEWdV7tpQ"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Caterpillar",
@@ -959,7 +959,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1618752362049-bcc57fb5ddb0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1590732468359-54a275f4273e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=gzszFCxFKNo"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Scorpion",
@@ -981,7 +981,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1707995548175-a7613effbe32?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1707995546403-a8cb996e5932?q=80&w=1822&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=2PGHZDnZ0Mc"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Lobster",
@@ -1004,7 +1004,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1618075254478-850bc1729c17?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1559157693-c34156e0f8c3?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=BG_zMQtYB_E"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Seal",
@@ -1027,7 +1027,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1691874135454-c063836f70dd?q=80&w=1212&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1628044582571-1b2615cc451a?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=YGGzNi50Jgs"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Raccoon",
@@ -1049,7 +1049,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1590695930875-0fcf4a30f4d0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1590683691443-7c562f69f077?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=V-aqiMLlI1Q"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Badger",
@@ -1072,7 +1072,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1620122504822-a33f06836ff0?q=80&w=1734&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1698720870452-3b411b55d81d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=Oyhk6kRAJW0"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Wild_boar",
@@ -1095,7 +1095,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1543458104-7d567484d770?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1700299926955-d68c16ba107b?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=_z7kpemfqlg"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Camel",
@@ -1118,7 +1118,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1570116908822-ae64583bac19?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1621150538602-2351d4f7dc2f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=KJtaIqahi3I"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Chameleon",
@@ -1141,7 +1141,7 @@ export const ANIMALS: Animal[] = [
       "https://plus.unsplash.com/premium_photo-1661822053999-b704e1019b51?q=80&w=748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1595344253433-6baa8e8798f9?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=wvmHW5_1jN4"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Flamingo",
@@ -1156,15 +1156,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[7], // bg8
     soundUrl: gorillaSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "gorillaDescription",
-    images: [
-      "https://images.unsplash.com/photo-1581281863883-2469417a1668?q=80&w=902&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1546146020-c84c6bf355bf?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1581252789066-5110779bda1b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1557218825-334e575bcc38?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1509897739002-791fa79aac9b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=rHhSCO5-3Pg"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Gorilla",
@@ -1179,15 +1171,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[8], // bg9
     soundUrl: kangarooSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "kangarooDescription",
-    images: [
-      "https://images.unsplash.com/photo-1575699914911-0027c7b95fb6?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1529451310546-178d75816ffc?q=80&w=748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1551270988-87c5ea57cdfe?q=80&w=1590&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://plus.unsplash.com/premium_photo-1664303213315-aa35bec4c95e?q=80&w=768&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1568198972020-de1dab9ac71a?q=80&w=1368&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=WCcLMNcWZOc"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Kangaroo",
@@ -1202,15 +1186,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[9], // bg10
     soundUrl: leopardSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "leopardDescription",
-    images: [
-      "https://images.unsplash.com/photo-1544985361-b420d7a77043?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1534759846116-5799c33ce22a?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1544979590-37e9b47eb705?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1629820133762-24189e3c2b13?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1566708627877-859df13ae63e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=0OVfjuf-U-E"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Leopard",
@@ -1225,15 +1201,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[0], // bg1
     soundUrl: sheepSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "sheepDescription",
-    images: [
-      "https://plus.unsplash.com/premium_photo-1666777246850-e18916172de7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1575014912260-91c2b5ad7441?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1484557985045-edf25e08da73?q=80&w=1546&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1554755209-85e44182e019?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://plus.unsplash.com/premium_photo-1661811804102-0da6840d7327?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=yelEaTDOO2Q"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Sheep",
@@ -1248,15 +1216,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[1], // bg2
     soundUrl: chickenSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "chickenDescription",
-    images: [
-      "https://images.unsplash.com/photo-1612170153139-6f881ff067e0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1556316918-880f9e893822?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1588597989061-b60ad0eefdbf?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://plus.unsplash.com/premium_photo-1664971411530-9d2199405d53?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=R2LYMInJdE8"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Chicken",
@@ -1271,15 +1231,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[2], // bg3
     soundUrl: pigSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "pigDescription",
-    images: [
-      "https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1580682777666-24a7b3024e24?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1587213128862-80345e23a71a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1567201080580-bfcc97dae346?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1541689221361-ad95003448dc?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=BVAIImxcv4g"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Pig",
@@ -1294,15 +1246,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[3], // bg4
     soundUrl: goatSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "goatDescription",
-    images: [
-      "https://plus.unsplash.com/premium_photo-1664304299664-a8e2e2f80290?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1524024973431-2ad916746881?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1588466585717-f8041aec7875?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1604076150017-48b528308aa3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1573578160998-4f4c7b023aec?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=RG9TMn1FJzc"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Goat",
@@ -1317,15 +1261,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[4], // bg5
     soundUrl: bullSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "bullDescription",
-    images: [
-      "https://plus.unsplash.com/premium_photo-1661835557655-99a912d26132?q=80&w=748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1439434768192-c60615c1b3c8?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1551606712-b0341396cc87?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1603966474815-85d21585ffb9?q=80&w=770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1562360742-318972306207?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=CImBgOuc7yw"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Bull",
@@ -1340,15 +1276,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[5], // bg6
     soundUrl: duckSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "duckDescription",
-    images: [
-      "https://images.unsplash.com/photo-1465153690352-10c1b29577f8?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1563409236302-8442b5e644df?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1585533530535-2f4236949d08?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1459682687441-7761439a709d?q=80&w=1840&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1578956919791-af7615c94b90?q=80&w=878&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=FIqh1-JuxrU"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Duck",
@@ -1372,15 +1300,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[1], // bg2
     soundUrl: snakeSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "snakeDescription",
-    images: [
-      "https://plus.unsplash.com/premium_photo-1661897154120-5b27cd6a0bd5?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1633081528930-91c8cc07f3d7?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1472645977521-95bbf4f0a748?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1568204960342-8612e15f9d1e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1638855370496-1ec25682adbe?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=RKTnxc9sfSQ"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Snake",
@@ -1395,15 +1315,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[2], // bg3
     soundUrl: ravenSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "ravenDescription",
-    images: [
-      "https://plus.unsplash.com/premium_photo-1673491310188-13caeef2c5cd?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1682467612877-f9b5e55ff2af?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1433888376991-1297486ba3f5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1610961388965-129b15e46a2c?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://plus.unsplash.com/premium_photo-1673491310534-ea8af31c93ee?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=D6s3u0624P8"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Raven",
@@ -1418,15 +1330,7 @@ export const ANIMALS: Animal[] = [
     image: BG_IMAGES[3], // bg4
     soundUrl: owlSound,
     modes: ["byName", "bySound", "showAll"],
-    description: "owlDescription",
-    images: [
-      "https://plus.unsplash.com/premium_photo-1664304409780-6d31241e9058?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1553264701-d138db4fd5d4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1543549790-8b5f4a028cfb?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1516233758813-a38d024919c5?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1558945657-484aa38065ec?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-    videos: [],
+    videos: ["https://www.youtube.com/watch?v=bt3X8MJgJWo"],
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Owl",
