@@ -222,6 +222,11 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         numColumns={responsive.columnCount}
+        columnWrapperStyle={{
+          justifyContent:
+            responsive.columnCount > 1 ? "space-between" : "flex-start",
+        }}
+        contentInset={{ bottom: insets.bottom }}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         removeClippedSubviews={true}
