@@ -49,6 +49,9 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
 
   // Animation value for emoji wiggle
   const wiggleAnim = useRef(new Animated.Value(0)).current;
+  const soundIconAnim = useRef(new Animated.Value(1)).current;
+  const speakIconAnim = useRef(new Animated.Value(1)).current;
+  const speakingIndicatorAnim = useRef(new Animated.Value(1)).current;
 
   // Continuous wiggle animation for emoji
   useEffect(() => {
@@ -79,6 +82,69 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
       wiggle.stop();
     };
   }, [wiggleAnim]);
+
+  // Zoom animation for sound emoji icons
+  useEffect(() => {
+    const zoomSound = Animated.loop(
+      Animated.sequence([
+        Animated.timing(soundIconAnim, {
+          toValue: 1.3,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+        Animated.timing(soundIconAnim, {
+          toValue: 1,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+
+    const zoomSpeak = Animated.loop(
+      Animated.sequence([
+        Animated.timing(speakIconAnim, {
+          toValue: 1.3,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+        Animated.timing(speakIconAnim, {
+          toValue: 1,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+
+    zoomSound.start();
+    zoomSpeak.start();
+
+    return () => {
+      zoomSound.stop();
+      zoomSpeak.stop();
+    };
+  }, [soundIconAnim, speakIconAnim]);
+
+  // Speaking indicator animation
+  useEffect(() => {
+    if (isPlayingSound) {
+      const pulse = Animated.loop(
+        Animated.sequence([
+          Animated.timing(speakingIndicatorAnim, {
+            toValue: 1.4,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+          Animated.timing(speakingIndicatorAnim, {
+            toValue: 1,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+        ])
+      );
+      pulse.start();
+      return () => pulse.stop();
+    }
+  }, [isPlayingSound, speakingIndicatorAnim]);
 
   const handleSpeakName = async () => {
     if (!isSoundEnabled) return;
@@ -130,72 +196,92 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
       <ScrollView style={styles.scrollContainer}>
         {/* TOP SECTION - Existing content (emoji, name, TTS/voice buttons) */}
         <View style={styles.topSection}>
-          <Animated.View
-            style={{
-              transform: [
-                {
-                  rotate: wiggleAnim.interpolate({
-                    inputRange: [-1, 1],
-                    outputRange: ["-8deg", "8deg"],
-                  }),
-                },
-                {
-                  translateY: wiggleAnim.interpolate({
-                    inputRange: [-1, 0, 1],
-                    outputRange: [-3, 0, -3],
-                  }),
-                },
-              ],
-            }}
+          <TouchableOpacity
+            onPress={handlePlaySound}
+            activeOpacity={0.7}
+            disabled={!showSoundButton || isPlayingSound}
           >
-            <EmojiSvg emoji={animal.emoji} style={styles.emoji} />
-          </Animated.View>
-          <Text style={styles.animalName}>{animalName}</Text>
-
-          <View style={styles.buttonContainer}>
-            {showTTSButton && (
-              <TouchableOpacity
-                style={styles.actionButton}
-                onPress={handleSpeakName}
-                activeOpacity={0.7}
+            <View style={{ position: "relative" }}>
+              <Animated.View
+                style={{
+                  opacity: isPlayingSound ? 0.3 : 1,
+                  transform: [
+                    {
+                      rotate: wiggleAnim.interpolate({
+                        inputRange: [-1, 1],
+                        outputRange: ["-8deg", "8deg"],
+                      }),
+                    },
+                    {
+                      translateY: wiggleAnim.interpolate({
+                        inputRange: [-1, 0, 1],
+                        outputRange: [-3, 0, -3],
+                      }),
+                    },
+                  ],
+                }}
               >
-                <View
-                  style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+                <EmojiSvg emoji={animal.emoji} style={styles.emoji} />
+              </Animated.View>
+              {isPlayingSound && (
+                <Animated.View
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: [
+                      { translateX: -15 },
+                      { translateY: -15 },
+                      { scale: speakingIndicatorAnim },
+                    ],
+                  }}
                 >
-                  <EmojiSvg emoji="🔊" style={{ fontSize: 20 }} />
-                  <Text style={styles.actionButtonText}>
-                    {translations.speakName}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            )}
-
-            {showSoundButton && (
-              <TouchableOpacity
-                style={[
-                  styles.actionButton,
-                  isPlayingSound && styles.actionButtonDisabled,
-                ]}
-                onPress={handlePlaySound}
-                activeOpacity={0.7}
-                disabled={isPlayingSound}
+                  <EmojiSvg emoji="💬" style={{ fontSize: 30 }} />
+                </Animated.View>
+              )}
+              <Animated.View
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "-20%",
+                  transform: [
+                    { translateX: -10 },
+                    { translateY: -10 },
+                    { scale: soundIconAnim },
+                  ],
+                  opacity: 0.7,
+                }}
               >
-                <View
-                  style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
-                >
-                  <EmojiSvg emoji="🔉" style={{ fontSize: 20 }} />
-                  <Text
-                    style={[
-                      styles.actionButtonText,
-                      isPlayingSound && styles.actionButtonTextDisabled,
-                    ]}
-                  >
-                    {translations.playSound}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          </View>
+                <EmojiSvg emoji="🔉" style={{ fontSize: 20 }} />
+              </Animated.View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleSpeakName}
+            activeOpacity={0.7}
+            disabled={!showTTSButton}
+          >
+            <View style={{ position: "relative" }}>
+              <Text style={styles.animalName}>{animalName}</Text>
+              <Animated.View
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "-20%",
+                  transform: [
+                    { translateX: -10 },
+                    { translateY: -10 },
+                    { scale: speakIconAnim },
+                  ],
+                  opacity: 0.7,
+                }}
+              >
+                <EmojiSvg emoji="🔊" style={{ fontSize: 20 }} />
+              </Animated.View>
+            </View>
+          </TouchableOpacity>
+
+          {/* Buttons hidden - click emoji for sound, name for pronunciation */}
         </View>
 
         {/* DESCRIPTION SECTION */}

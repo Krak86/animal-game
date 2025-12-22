@@ -87,6 +87,9 @@ const EMOJI_CODEPOINTS = {
   "🌐": "1f310",
   "🎥": "1f3a5",
   "📄": "1f4c4",
+  "💬": "1f4ac",
+  "◀": "25c0",
+  "▶": "25b6",
 };
 
 const OUTPUT_DIR = path.join(__dirname, "..", "assets", "emojis");
