@@ -60,6 +60,7 @@ export default function App() {
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const shouldStartGame = useRef<boolean>(false);
   const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
+  const [currentAnimalIndex, setCurrentAnimalIndex] = useState<number>(0);
   const [showAnimalDetail, setShowAnimalDetail] = useState<boolean>(false);
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   const [listScrollIndex, setListScrollIndex] = useState<number>(0);
@@ -86,10 +87,13 @@ export default function App() {
 
   // Debug font loading
   useEffect(() => {
-    console.log("=== FONT LOADING DEBUG ===");
+    /*     console.log("=== FONT LOADING DEBUG ===");
     console.log("Platform:", Platform.OS);
     console.log("Fonts loaded:", fontsLoaded);
-    console.log("Font error:", fontError);
+    console.log("Font error:", fontError);    console.log("=== FONT LOADING DEBUG ===");
+    console.log("Platform:", Platform.OS);
+    console.log("Fonts loaded:", fontsLoaded);
+    console.log("Font error:", fontError); */
 
     if (fontError) {
       console.error("Font loading error details:", fontError);
@@ -101,7 +105,7 @@ export default function App() {
     }
 
     if (fontsLoaded) {
-      console.log("✅ All Montserrat fonts loaded successfully");
+      // console.log("✅ All Montserrat fonts loaded successfully");
     }
   }, [fontsLoaded, fontError]);
 
@@ -208,8 +212,21 @@ export default function App() {
   ): void => {
     setListScrollIndex(scrollIndex);
     setLastSearchText(searchText);
+
+    // Find the animal's index in the full ANIMALS list
+    const animalIndex = ANIMALS.findIndex((a) => a.id === animal.id);
+    setCurrentAnimalIndex(animalIndex >= 0 ? animalIndex : 0);
+
     setSelectedAnimal(animal);
     setShowAnimalDetail(true);
+  };
+
+  // Handle animal change from swipe gesture
+  const handleAnimalChange = (animal: Animal, newIndex: number): void => {
+    setSelectedAnimal(animal);
+    setCurrentAnimalIndex(newIndex);
+    // Update the list scroll index to match the new animal's position in filtered list
+    // Note: This works best when not searching; with search active, position may differ
   };
 
   const handleBackToList = (): void => {
@@ -323,6 +340,9 @@ export default function App() {
                   showAnimalDetail ? (
                     <AnimalDetailView
                       animal={selectedAnimal!}
+                      animals={ANIMALS}
+                      currentIndex={currentAnimalIndex}
+                      onAnimalChange={handleAnimalChange}
                       translations={t}
                       onBackPress={handleBackToList}
                       isSoundEnabled={isSoundEnabled}

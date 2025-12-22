@@ -75,18 +75,14 @@ export const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
             style={[styles.arrowButton, { left: 16 }]}
             onPress={() => carouselRef.current?.prev()}
             activeOpacity={0.7}
-          >
-            <EmojiSvg emoji="◀" style={styles.arrowText} />
-          </TouchableOpacity>
+          ></TouchableOpacity>
 
           {/* Right Arrow Button */}
           <TouchableOpacity
             style={[styles.arrowButton, { right: 16 }]}
             onPress={() => carouselRef.current?.next()}
             activeOpacity={0.7}
-          >
-            <EmojiSvg emoji="▶" style={styles.arrowText} />
-          </TouchableOpacity>
+          ></TouchableOpacity>
         </View>
       </View>
     </Modal>
