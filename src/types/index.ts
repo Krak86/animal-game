@@ -67,6 +67,7 @@ export interface Translations {
   gameMode: string; // "Game Mode" drawer section label
   enterFullScreen: string; // "Enter Full Screen" button text
   exitFullScreen: string; // "Exit Full Screen" button text
+  privacyPolicy: string; // "Privacy Policy" button text
   viewImages: string; // "View Images" button
   viewVideos: string; // "View Videos" button
   view3DModel: string; // "3D Model" button

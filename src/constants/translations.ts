@@ -4,7 +4,7 @@ import { TranslationMap } from "@/types";
 export const TRANSLATIONS: TranslationMap = {
   en: {
     startScreen: {
-      title: "Animal Game",
+      title: "Animal Explorer",
       subtitle: "Find the animals!",
       byName: "By Name",
       bySound: "By Sound",
@@ -14,7 +14,7 @@ export const TRANSLATIONS: TranslationMap = {
     findThe: "Find the:",
     greatJob: "Great Job!",
     youFoundIt: "You found it!",
-    startFromBeginning: "Start from Beginning",
+    startFromBeginning: "Home",
     whoSaysThis: "Who says so?",
     replaySound: "🔊 Play Again",
     showAllTitle: "All Animals",
@@ -29,6 +29,7 @@ export const TRANSLATIONS: TranslationMap = {
     gameMode: "Game Mode",
     enterFullScreen: "Enter Full Screen",
     exitFullScreen: "Exit Full Screen",
+    privacyPolicy: "Privacy Policy",
     viewImages: "Images",
     viewVideos: "Videos",
     view3DModel: "3D Model",
@@ -40,7 +41,8 @@ export const TRANSLATIONS: TranslationMap = {
     cancel: "Cancel",
     continue: "Continue",
     error: "Error",
-    browserNotInstalledError: "Failed to open link: {error}\n\nPlease ensure you have a web browser installed on your device.",
+    browserNotInstalledError:
+      "Failed to open link: {error}\n\nPlease ensure you have a web browser installed on your device.",
     animalDescriptions: {
       dogDescription:
         "Dogs are loyal, friendly companions that have been domesticated for thousands of years. They come in many breeds and sizes, each with unique characteristics. Known for their intelligence and trainability, dogs serve as pets, working animals, and service animals.",
@@ -226,7 +228,7 @@ export const TRANSLATIONS: TranslationMap = {
   },
   uk: {
     startScreen: {
-      title: "Гра Тварини",
+      title: "Дослідник тварин",
       subtitle: "Знайди тварин!",
       byName: "За назвою",
       bySound: "За звуком",
@@ -235,8 +237,8 @@ export const TRANSLATIONS: TranslationMap = {
     score: "Рахунок",
     findThe: "Знайди:",
     greatJob: "Чудова робота!",
-    youFoundIt: "Ти знайшов!",
-    startFromBeginning: "Почати спочатку",
+    youFoundIt: "Тобі вдалося знайти!",
+    startFromBeginning: "Спочатку",
     whoSaysThis: "Хто так каже?",
     replaySound: "🔊 Грати знову",
     showAllTitle: "Всі тварини",
@@ -251,6 +253,7 @@ export const TRANSLATIONS: TranslationMap = {
     gameMode: "Режим гри",
     enterFullScreen: "Увійти в повноекранний режим",
     exitFullScreen: "Вийти з повноекранного режиму",
+    privacyPolicy: "Політика конфіденційності",
     viewImages: "Зображення",
     viewVideos: "Відео",
     view3DModel: "3D Модель",
@@ -262,7 +265,8 @@ export const TRANSLATIONS: TranslationMap = {
     cancel: "Скасувати",
     continue: "Продовжити",
     error: "Помилка",
-    browserNotInstalledError: "Не вдалося відкрити посилання: {error}\n\nБудь ласка, переконайтеся, що у вас встановлено веб-браузер.",
+    browserNotInstalledError:
+      "Не вдалося відкрити посилання: {error}\n\nБудь ласка, переконайтеся, що у вас встановлено веб-браузер.",
     animalDescriptions: {
       dogDescription:
         "Собаки — це вірні, дружелюбні компаньйони, які були одомашнені тисячі років тому. Вони бувають різних порід і розмірів, кожна з унікальними характеристиками. Відомі своїм інтелектом і здатністю до навчання, собаки служать як домашні улюбленці, робочі тварини та службові тварини.",
@@ -448,7 +452,7 @@ export const TRANSLATIONS: TranslationMap = {
   },
   ru: {
     startScreen: {
-      title: "Игра Животные",
+      title: "Исследователь животных",
       subtitle: "Найди животных!",
       byName: "По названию",
       bySound: "По звуку",
@@ -457,8 +461,8 @@ export const TRANSLATIONS: TranslationMap = {
     score: "Счёт",
     findThe: "Найди:",
     greatJob: "Отлично!",
-    youFoundIt: "Ты нашёл!",
-    startFromBeginning: "Начать сначала",
+    youFoundIt: "Тебе удалось найти!",
+    startFromBeginning: "Сначала",
     whoSaysThis: "Кто так говорит?",
     replaySound: "🔊 Играть снова",
     showAllTitle: "Все животные",
@@ -473,6 +477,7 @@ export const TRANSLATIONS: TranslationMap = {
     gameMode: "Режим игры",
     enterFullScreen: "Войти в полноэкранный режим",
     exitFullScreen: "Выйти из полноэкранного режима",
+    privacyPolicy: "Политика конфиденциальности",
     viewImages: "Изображения",
     viewVideos: "Видео",
     view3DModel: "3D Модель",
@@ -484,7 +489,8 @@ export const TRANSLATIONS: TranslationMap = {
     cancel: "Отмена",
     continue: "Продолжить",
     error: "Ошибка",
-    browserNotInstalledError: "Не удалось открыть ссылку: {error}\n\nПожалуйста, убедитесь, что у вас установлен веб-браузер.",
+    browserNotInstalledError:
+      "Не удалось открыть ссылку: {error}\n\nПожалуйста, убедитесь, что у вас установлен веб-браузер.",
     animalDescriptions: {
       dogDescription:
         "Собаки — верные, дружелюбные компаньоны, одомашненные тысячи лет назад. Они бывают разных пород и размеров, каждая с уникальными характеристиками. Известные своим интеллектом и обучаемостью, собаки служат домашними животными, рабочими животными и служебными животными.",

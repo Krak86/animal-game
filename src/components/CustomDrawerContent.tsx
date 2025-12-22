@@ -4,10 +4,12 @@ import {
   DrawerContentComponentProps,
 } from "@react-navigation/drawer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useState } from "react";
 
 import { SoundToggle } from "./SoundToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { EmojiSvg } from "./EmojiSvg";
+import { PrivacyPolicyModal } from "./PrivacyPolicyModal";
 import { COLORS } from "@/styles/colors";
 import { FONTS } from "@/constants/fonts";
 import {
@@ -45,6 +47,7 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
   const responsive = useResponsiveDimensions();
   const insets = useSafeAreaInsets();
   const styles = getDrawerStyles(responsive);
+  const [isPrivacyPolicyVisible, setIsPrivacyPolicyVisible] = useState(false);
 
   const handleHomePress = async () => {
     await onHomePress();
@@ -197,7 +200,28 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
             </Text>
           </TouchableOpacity>
         </View>
+
+        {/* Privacy Policy Button */}
+        <View style={styles.menuItem}>
+          <TouchableOpacity
+            style={[styles.menuItemContent, styles.privacyButton]}
+            onPress={() => setIsPrivacyPolicyVisible(true)}
+            activeOpacity={0.7}
+          >
+            <EmojiSvg emoji="📄" style={styles.menuItemEmoji} />
+            <Text style={styles.menuItemText}>
+              {translations.privacyPolicy}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
+
+      {/* Privacy Policy Modal */}
+      <PrivacyPolicyModal
+        visible={isPrivacyPolicyVisible}
+        onClose={() => setIsPrivacyPolicyVisible(false)}
+        language={language}
+      />
     </DrawerContentScrollView>
   );
 };
@@ -297,5 +321,10 @@ const getDrawerStyles = (responsive: ResponsiveDimensions) =>
     fullScreenActive: {
       backgroundColor: "#32CD32",
       borderColor: "#228B22",
+    },
+    privacyButton: {
+      backgroundColor: "#9370DB",
+      borderWidth: 2,
+      borderColor: "#8A2BE2",
     },
   });

@@ -1,4 +1,4 @@
-# Animals Game 🐕🐈🦁
+# Animal Explorer 🐕🐈🦁
 
 An interactive React Native educational game for children to learn animal names and sounds in three languages (English, Ukrainian, Russian). Features three distinct game modes including an exhibition mode for browsing all animals. Built with TypeScript, Expo, drawer navigation, and featuring image galleries, YouTube videos, Wikipedia integration, custom fonts, background music, and engaging animations.
 
@@ -155,12 +155,14 @@ The app will load fonts on first launch before displaying the splash screen.
 ### Components (`src/components/`)
 
 #### Game Components
+
 - **AnimalCard.tsx**: Displays individual animal with wiggle animation and emoji
 - **QuestionDisplay.tsx**: Shows animal name or sound replay button
 - **StartScreen.tsx**: Game mode selection screen with animations
 - **SuccessOverlay.tsx**: Full-screen celebration overlay on correct answer
 
 #### Exhibition Mode Components
+
 - **AnimalsListView.tsx**: Browse all 48 animals with search and filter functionality
 - **AnimalDetailView.tsx**: Full-screen detailed animal information view
 - **ImageGalleryModal.tsx**: Image carousel with swipe navigation and pinch-to-zoom
@@ -169,6 +171,7 @@ The app will load fonts on first launch before displaying the splash screen.
 - **ZoomableImage.tsx**: Pinch-to-zoom image component using gestures
 
 #### Navigation & UI Components
+
 - **CustomDrawerContent.tsx**: Custom drawer menu with mode selection
 - **HamburgerButton.tsx**: Hamburger menu button for drawer navigation
 - **LanguageSwitcher.tsx**: Horizontal 3-button language toggle (EN/УКР/РУ) for start screen
