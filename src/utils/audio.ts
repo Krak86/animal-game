@@ -35,14 +35,14 @@ export const loadSounds = async (): Promise<LoadSoundsReturn> => {
     });
 
     const { sound: success } = await Audio.Sound.createAsync(
-      { uri: SUCCESS_SOUND_URL },
+      SUCCESS_SOUND_URL,
       { shouldPlay: false, volume: SOUND_EFFECT_VOLUME }
     );
 
-    const { sound: wrong } = await Audio.Sound.createAsync(
-      { uri: WRONG_SOUND_URL },
-      { shouldPlay: false, volume: SOUND_EFFECT_VOLUME }
-    );
+    const { sound: wrong } = await Audio.Sound.createAsync(WRONG_SOUND_URL, {
+      shouldPlay: false,
+      volume: SOUND_EFFECT_VOLUME,
+    });
 
     return { successSound: success, wrongSound: wrong };
   } catch (error) {
@@ -245,10 +245,9 @@ export const playAnimalSound = async (
     }
 
     // Load and play animal sound at maximum volume
-    const { sound } = await Audio.Sound.createAsync(
-      soundUrl,
-      { volume: ANIMAL_SOUND_VOLUME }
-    );
+    const { sound } = await Audio.Sound.createAsync(soundUrl, {
+      volume: ANIMAL_SOUND_VOLUME,
+    });
 
     // Store reference to current sound
     currentAnimalSound = sound;
