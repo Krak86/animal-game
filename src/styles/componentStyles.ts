@@ -524,6 +524,36 @@ export const getImageGalleryModalStyles = (responsive: ResponsiveDimensions) =>
       height: 12,
       borderRadius: 6,
     },
+    arrowButton: {
+      position: "absolute",
+      top: "50%",
+      zIndex: 50,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+      backgroundColor: "rgba(255,255,255,0.2)",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: -25,
+    },
+    arrowText: {
+      fontSize: 28,
+      color: COLORS.white,
+    },
+    counterContainer: {
+      position: "absolute",
+      bottom: 30,
+      alignSelf: "center",
+      backgroundColor: "rgba(0,0,0,0.6)",
+      paddingHorizontal: 16,
+      paddingVertical: 8,
+      borderRadius: 20,
+    },
+    counterText: {
+      color: COLORS.white,
+      fontSize: 14 * responsive.fontScale,
+      fontFamily: FONTS.medium,
+    },
   });
 
 export const getVideoGalleryModalStyles = (responsive: ResponsiveDimensions) =>

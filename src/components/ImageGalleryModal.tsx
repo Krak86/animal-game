@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Modal, View, TouchableOpacity } from "react-native";
+import { Modal, View, TouchableOpacity, Text } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 
 import { getImageGalleryModalStyles } from "@/styles/componentStyles";
@@ -34,7 +34,6 @@ export const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
         uri={item}
         width={windowWidth}
         height={windowHeight * 0.7}
-        accessibilityLabel={`${animalName} image ${index + 1} of ${images.length}`}
       />
     </View>
   );
@@ -70,6 +69,24 @@ export const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
             pagingEnabled={true}
             enabled={true}
           />
+
+          {/* Left Arrow Button */}
+          <TouchableOpacity
+            style={[styles.arrowButton, { left: 16 }]}
+            onPress={() => carouselRef.current?.prev()}
+            activeOpacity={0.7}
+          >
+            <EmojiSvg emoji="◀" style={styles.arrowText} />
+          </TouchableOpacity>
+
+          {/* Right Arrow Button */}
+          <TouchableOpacity
+            style={[styles.arrowButton, { right: 16 }]}
+            onPress={() => carouselRef.current?.next()}
+            activeOpacity={0.7}
+          >
+            <EmojiSvg emoji="▶" style={styles.arrowText} />
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>
