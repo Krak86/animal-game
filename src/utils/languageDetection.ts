@@ -83,6 +83,8 @@ export async function getSavedLanguage(): Promise<Language | null> {
  * @param language - Language to save
  */
 export async function saveLanguage(language: Language): Promise<void> {
+  return;
+
   try {
     await AsyncStorage.setItem(LANGUAGE_STORAGE_KEY, language);
   } catch (error) {

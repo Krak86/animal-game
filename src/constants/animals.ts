@@ -78,6 +78,10 @@ const scorpionSound = require("@assets/music/animals/Scorpion.mp3");
 const snailSound = require("@assets/music/animals/Snail.mp3");
 const antSound = require("@assets/music/animals/Ant.mp3");
 
+// animal 3d models
+// const catGlb = require("@assets/glb/Cat.glb");
+// const beeGlb = require("@assets/glb/Bee.glb");
+
 // Animal data with placeholder images and sounds
 export const ANIMALS: Animal[] = [
   {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, View, TouchableOpacity, Text } from "react-native";
+
 import { getModel3DModalStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { EmojiSvg } from "@/components/EmojiSvg";
@@ -7,7 +8,7 @@ import { Translations } from "@/types";
 
 interface Model3DModalProps {
   visible: boolean;
-  glbUrl?: string;
+  glbUrl?: string | number;
   onClose: () => void;
   animalName: string;
   translations: Translations;

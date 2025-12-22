@@ -30,7 +30,7 @@ export interface Animal {
     ru?: string;
   }; // Language-specific Wikipedia links
   otherUrls?: string[]; // Other reference URLs
-  glbUrl?: string; // 3D model URL (.glb file)
+  glbUrl?: string | number; // 3D model (.glb file - URL string or local require() number)
 }
 
 // Translation structure
