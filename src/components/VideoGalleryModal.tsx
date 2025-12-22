@@ -25,6 +25,38 @@ export const VideoGalleryModal: React.FC<VideoGalleryModalProps> = ({
 
   const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
 
+  // Calculate responsive video dimensions based on device type
+  const getVideoDimensions = () => {
+    const width = windowWidth;
+
+    // Mobile: width < 768px
+    if (width < 768) {
+      const videoWidth = width * 0.9; // 90% of screen width
+      const videoHeight = videoWidth * (9 / 16); // 16:9 aspect ratio
+      return {
+        width: videoWidth,
+        height: Math.min(videoHeight, windowHeight * 0.35),
+      };
+    }
+
+    // Tablet: 768px <= width < 1024px
+    if (width < 1024) {
+      const videoWidth = width * 0.85; // 85% of screen width
+      const videoHeight = videoWidth * (9 / 16); // 16:9 aspect ratio
+      return {
+        width: videoWidth,
+        height: Math.min(videoHeight, windowHeight * 0.4),
+      };
+    }
+
+    // Desktop: width >= 1024px
+    const videoWidth = Math.min(width * 0.7, 1280); // Max 1280px or 70% of width
+    const videoHeight = videoWidth * (9 / 16); // 16:9 aspect ratio
+    return { width: videoWidth, height: videoHeight };
+  };
+
+  const videoDimensions = getVideoDimensions();
+
   // Extract YouTube video ID from URL
   const getYouTubeVideoId = (url: string): string | null => {
     if (!url) return null;
@@ -79,11 +111,11 @@ export const VideoGalleryModal: React.FC<VideoGalleryModalProps> = ({
             return (
               <View key={videoId} style={styles.videoContainer}>
                 <YoutubePlayer
-                  height={windowHeight * 0.3}
-                  width={windowWidth * 0.9}
+                  height={videoDimensions.height}
+                  width={videoDimensions.width}
                   videoId={videoId}
                   play={playingVideoId === videoId}
-                  onChangeState={(state) => {
+                  onChangeState={(state: string) => {
                     if (state === "playing") {
                       setPlayingVideoId(videoId);
                     } else if (state === "paused" || state === "ended") {

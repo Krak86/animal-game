@@ -1,6 +1,36 @@
-import { Alert } from "react-native";
+import { Alert, Linking, Platform } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { Translations } from "@/types";
+
+/**
+ * Opens an external URL directly without confirmation
+ * On web: Opens in a new tab using window.open
+ * On native: Opens with the default URL handler
+ *
+ * @param url - The URL to open
+ */
+export const openLinkDirect = async (url: string): Promise<void> => {
+  try {
+    console.log(`[Linking] Opening URL directly: ${url}`);
+
+    // On web, use window.open to open in new tab
+    if (Platform.OS === "web") {
+      window.open(url, "_blank");
+      return;
+    }
+
+    // On native platforms, use Linking API
+    const canOpen = await Linking.canOpenURL(url);
+
+    if (canOpen) {
+      await Linking.openURL(url);
+    } else {
+      console.error(`[Linking] Cannot open URL: ${url}`);
+    }
+  } catch (error) {
+    console.error("[Linking] Error opening link:", error);
+  }
+};
 
 /**
  * Opens an external URL with user confirmation using expo-web-browser
@@ -30,17 +60,17 @@ export const openExternalLink = async (
             // Enable browser toolbar on Android
             enableBarCollapsing: false,
             // Use Chrome Custom Tabs on Android if available
-            toolbarColor: '#4A90E2',
-            controlsColor: '#ffffff',
+            toolbarColor: "#4A90E2",
+            controlsColor: "#ffffff",
             // Dismiss button style
-            dismissButtonStyle: 'close',
+            dismissButtonStyle: "close",
           });
 
           console.log(`[WebBrowser] Browser result:`, result);
 
-          if (result.type === 'cancel') {
+          if (result.type === "cancel") {
             console.log(`[WebBrowser] User cancelled browser`);
-          } else if (result.type === 'dismiss') {
+          } else if (result.type === "dismiss") {
             console.log(`[WebBrowser] User dismissed browser`);
           }
         } catch (error) {
@@ -49,7 +79,10 @@ export const openExternalLink = async (
             error instanceof Error ? error.message : "Unknown error";
           Alert.alert(
             translations.error,
-            translations.browserNotInstalledError.replace("{error}", errorMessage)
+            translations.browserNotInstalledError.replace(
+              "{error}",
+              errorMessage
+            )
           );
         }
       },

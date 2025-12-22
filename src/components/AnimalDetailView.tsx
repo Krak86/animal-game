@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Animated,
   ScrollView,
+  Platform,
 } from "react-native";
 import { Audio } from "expo-av";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -14,7 +15,7 @@ import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Animal, Language, Translations } from "@/types";
 import { speakText, stopSpeech } from "@/utils/speech";
 import { playAnimalSound, stopAnimalSound } from "@/utils/audio";
-import { openExternalLink } from "@/utils/linking";
+import { openLinkDirect, openExternalLink } from "@/utils/linking";
 import { EmojiSvg } from "@/components/EmojiSvg";
 import { ImageGalleryModal } from "@/components/ImageGalleryModal";
 import { VideoGalleryModal } from "@/components/VideoGalleryModal";
@@ -274,7 +275,12 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                   Object.values(animal.wikipediaUrls!)[0];
 
                 if (url) {
-                  openExternalLink(url, translations);
+                  // Use different handlers for web vs native
+                  if (Platform.OS === "web") {
+                    openLinkDirect(url);
+                  } else {
+                    openExternalLink(url, translations);
+                  }
                 }
               }}
               activeOpacity={0.7}
