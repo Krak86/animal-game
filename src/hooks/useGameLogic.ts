@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Animated } from "react-native";
 import { Audio } from "expo-av";
+import * as Haptics from "expo-haptics";
 
 import { getAnimalsByMode } from "@/constants/animals";
 import { ANIMALS_PER_SCREEN } from "@/constants/gameSettings";
@@ -59,7 +60,8 @@ export const useGameLogic = (
   const [wrongTileId, setWrongTileId] = useState<number | null>(null);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [isSoundEnabled, setIsSoundEnabled] = useState<boolean>(true);
-  const [isAnimalSoundPlaying, setIsAnimalSoundPlaying] = useState<boolean>(false);
+  const [isAnimalSoundPlaying, setIsAnimalSoundPlaying] =
+    useState<boolean>(false);
 
   // Animation values
   const successScale = useRef(new Animated.Value(0)).current;
@@ -199,7 +201,10 @@ export const useGameLogic = (
               if (targetAnimal.soundUrl) {
                 try {
                   setIsAnimalSoundPlaying(true);
-                  await playAnimalSound(targetAnimal.soundUrl, backgroundMusic.current);
+                  await playAnimalSound(
+                    targetAnimal.soundUrl,
+                    backgroundMusic.current
+                  );
                 } finally {
                   setIsAnimalSoundPlaying(false);
                 }
@@ -229,6 +234,9 @@ export const useGameLogic = (
     // Stop any playing animal sound
     await stopAnimalSound(backgroundMusic.current);
 
+    // Haptic feedback for success
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
     setScore(score + 1);
     if (isSoundEnabled) {
       playSound(successSound.current, backgroundMusic.current);
@@ -239,6 +247,10 @@ export const useGameLogic = (
   const handleWrongAnswer = (animal: Animal): void => {
     const cardIndex = shuffledAnimals.findIndex((a) => a.id === animal.id);
     shakeCard(cardAnimations[cardIndex]);
+
+    // Haptic feedback for error
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+
     if (isSoundEnabled) {
       playSound(wrongSound.current, backgroundMusic.current);
     }
@@ -305,7 +317,7 @@ export const useGameLogic = (
     await stopAnimalSound(backgroundMusic.current);
 
     // Reset all game state
-    setGameStarted(false);  // Allow startGame to reinitialize on mode switch
+    setGameStarted(false); // Allow startGame to reinitialize on mode switch
     setScore(0);
     setShuffledAnimals([]);
     setCurrentAnimal(null);
