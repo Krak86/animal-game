@@ -299,6 +299,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
               onPress={handlePlaySound}
               activeOpacity={0.7}
               disabled={!showSoundButton || isPlayingSound}
+              hitSlop={{ top: 20, bottom: 20, left: 50, right: 20 }}
             >
               <View style={{ position: "relative" }}>
                 <Animated.View
@@ -324,6 +325,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                 </Animated.View>
                 {isPlayingSound && (
                   <Animated.View
+                    pointerEvents="none"
                     style={{
                       position: "absolute",
                       top: "50%",
@@ -339,6 +341,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                   </Animated.View>
                 )}
                 <Animated.View
+                  pointerEvents="none"
                   style={{
                     position: "absolute",
                     top: "50%",
@@ -359,10 +362,12 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
               onPress={handleSpeakName}
               activeOpacity={0.7}
               disabled={!showTTSButton}
+              hitSlop={{ top: 20, bottom: 20, left: 50, right: 20 }}
             >
               <View style={{ position: "relative" }}>
                 <Text style={styles.animalName}>{animalName}</Text>
                 <Animated.View
+                  pointerEvents="none"
                   style={{
                     position: "absolute",
                     top: "50%",
