@@ -1,5 +1,6 @@
 import { TouchableOpacity, View, Image, Animated } from "react-native";
 import { useEffect, useRef } from "react";
+import * as Haptics from "expo-haptics";
 
 import { getAnimalCardStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
@@ -183,7 +184,10 @@ export const AnimalCard: React.FC<Props> = ({
     >
       <TouchableOpacity
         style={[styles.card, isWrong && styles.cardWrong]}
-        onPress={onPress}
+        onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          onPress();
+        }}
         activeOpacity={0.7}
       >
         <View style={styles.imageContainer}>

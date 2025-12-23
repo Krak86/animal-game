@@ -8,6 +8,7 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
+import * as Haptics from "expo-haptics";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { COLORS } from "@/styles/colors";
@@ -229,7 +230,10 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
             >
               <TouchableOpacity
                 style={[styles.modeButton, styles.byNameButton]}
-                onPress={() => onStart("byName")}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  onStart("byName");
+                }}
                 activeOpacity={0.8}
               >
                 <EmojiSvg emoji="📝" style={styles.buttonEmoji} />
@@ -250,7 +254,10 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
             >
               <TouchableOpacity
                 style={[styles.modeButton, styles.bySoundButton]}
-                onPress={() => onStart("bySound")}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  onStart("bySound");
+                }}
                 activeOpacity={0.8}
               >
                 <EmojiSvg emoji="🔊" style={styles.buttonEmoji} />
@@ -271,7 +278,10 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
             >
               <TouchableOpacity
                 style={[styles.modeButton, styles.showAllButton]}
-                onPress={() => onStart("showAll")}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  onStart("showAll");
+                }}
                 activeOpacity={0.8}
               >
                 <EmojiSvg emoji="🖼️" style={styles.buttonEmoji} />

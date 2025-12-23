@@ -226,6 +226,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   const handleSpeakName = async () => {
     if (!isSoundEnabled) return;
 
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     const animalName = translations.animals[animal.name];
     // Default to English for TTS
     speakText(animalName, "en", backgroundMusic, () => {});
@@ -234,6 +235,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   const handlePlaySound = async () => {
     if (!isSoundEnabled || !animal.soundUrl || isPlayingSound) return;
 
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     try {
       setIsPlayingSound(true);
       // Play animal sound with background music ducking
@@ -244,6 +246,8 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   };
 
   const handleBackPress = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
     // Stop any ongoing TTS speech
     await stopSpeech();
 

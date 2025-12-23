@@ -1383,7 +1383,7 @@ export const ANIMALS: Animal[] = [
     },
   },
   {
-    id: 58,
+    id: 57,
     name: "Snake",
     emoji: "🐍",
     image: BG_IMAGES[1], // bg2
@@ -1406,7 +1406,7 @@ export const ANIMALS: Animal[] = [
     },
   },
   {
-    id: 59,
+    id: 58,
     name: "Raven",
     emoji: "🦅",
     image: BG_IMAGES[2], // bg3
@@ -1429,7 +1429,7 @@ export const ANIMALS: Animal[] = [
     },
   },
   {
-    id: 60,
+    id: 59,
     name: "Owl",
     emoji: "🦉",
     image: BG_IMAGES[3], // bg4

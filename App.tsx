@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import * as NavigationBar from "expo-navigation-bar";
+import * as Haptics from "expo-haptics";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { View, ScrollView, Text, Platform, Alert, BackHandler, Animated } from "react-native";
 import { useFonts } from "expo-font";
@@ -293,12 +294,14 @@ export default function App() {
     const handleBackPress = (): boolean => {
       // Priority 1: Exit animal detail view -> return to list
       if (gameMode === "showAll" && showAnimalDetail) {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         handleBackToList();
         return true; // Prevent default (app exit)
       }
 
       // Priority 2: Exit any game mode or exhibition list -> return to start
       if (gameMode !== null) {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         // Clean up game state for game modes
         if (gameMode === "byName" || gameMode === "bySound") {
           resetGame();
@@ -308,6 +311,7 @@ export default function App() {
       }
 
       // Priority 3: On StartScreen -> show exit confirmation
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       Alert.alert(
         t.exitApp,
         t.exitAppMessage,
