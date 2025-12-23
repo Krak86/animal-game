@@ -3,6 +3,7 @@ import { Audio } from "expo-av";
 import {
   SUCCESS_SOUND_URL,
   WRONG_SOUND_URL,
+  MILESTONE_SOUND_URL,
   BACKGROUND_MUSIC,
 } from "@/constants/sounds";
 
@@ -21,6 +22,7 @@ let currentAnimalSound: Audio.Sound | null = null;
 interface LoadSoundsReturn {
   successSound: Audio.Sound | null;
   wrongSound: Audio.Sound | null;
+  milestoneSound: Audio.Sound | null;
 }
 
 /**
@@ -44,10 +46,18 @@ export const loadSounds = async (): Promise<LoadSoundsReturn> => {
       volume: SOUND_EFFECT_VOLUME,
     });
 
-    return { successSound: success, wrongSound: wrong };
+    const { sound: milestone } = await Audio.Sound.createAsync(
+      MILESTONE_SOUND_URL,
+      {
+        shouldPlay: false,
+        volume: SOUND_EFFECT_VOLUME,
+      }
+    );
+
+    return { successSound: success, wrongSound: wrong, milestoneSound: milestone };
   } catch (error) {
     console.log("Error loading sounds:", error);
-    return { successSound: null, wrongSound: null };
+    return { successSound: null, wrongSound: null, milestoneSound: null };
   }
 };
 

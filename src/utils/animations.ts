@@ -157,3 +157,33 @@ export const animateCardsEntrance = (cardAnimations: Animated.Value[]): void => 
     )
   ).start();
 };
+
+/**
+ * Animates score text on milestone achievement
+ * Scales up with bounce, then returns to normal
+ * @param scale - Scale animation value
+ * @param onComplete - Callback when animation completes
+ */
+export const animateMilestoneScore = (
+  scale: Animated.Value,
+  onComplete?: () => void
+): void => {
+  Animated.sequence([
+    // Zoom in
+    Animated.spring(scale, {
+      toValue: 1.5,
+      friction: 3,
+      tension: 40,
+      useNativeDriver: true,
+    }),
+    // Bounce back
+    Animated.spring(scale, {
+      toValue: 1,
+      friction: 5,
+      tension: 40,
+      useNativeDriver: true,
+    }),
+  ]).start(() => {
+    if (onComplete) onComplete();
+  });
+};

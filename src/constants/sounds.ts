@@ -3,6 +3,9 @@ export const SUCCESS_SOUND_URL = require("@assets/music/success.mp3");
 
 export const WRONG_SOUND_URL = require("@assets/music/wrong.mp3");
 
+// Milestone celebration sound (10, 20, 30 points)
+export const MILESTONE_SOUND_URL = require("@assets/music/milestone.mp3");
+
 // Background music - local file (cheerful, funny melody for kids)
 // https://pixabay.com/music/search/kid%20game/
 // https://mixkit.co/free-sound-effects/animals/

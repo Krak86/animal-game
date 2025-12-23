@@ -48,7 +48,9 @@ import {
 export const useGameLogic = (
   language: Language,
   translations: Translations,
-  gameMode: GameMode
+  gameMode: GameMode,
+  sessionScore: number,
+  onScoreChange: (newScore: number) => void
 ): UseGameLogicReturn => {
   // Filter animals based on game mode
   const modeAnimals = useMemo(() => getAnimalsByMode(gameMode), [gameMode]);
@@ -56,7 +58,6 @@ export const useGameLogic = (
   const [shuffledAnimals, setShuffledAnimals] = useState<Animal[]>([]);
   const [currentAnimal, setCurrentAnimal] = useState<Animal | null>(null);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
-  const [score, setScore] = useState<number>(0);
   const [wrongTileId, setWrongTileId] = useState<number | null>(null);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [isSoundEnabled, setIsSoundEnabled] = useState<boolean>(true);
@@ -83,6 +84,7 @@ export const useGameLogic = (
   // Sound objects
   const successSound = useRef<Audio.Sound | null>(null);
   const wrongSound = useRef<Audio.Sound | null>(null);
+  const milestoneSound = useRef<Audio.Sound | null>(null);
   const backgroundMusic = useRef<Audio.Sound | null>(null);
 
   useEffect(() => {
@@ -105,6 +107,7 @@ export const useGameLogic = (
     const sounds = await loadSounds();
     successSound.current = sounds.successSound;
     wrongSound.current = sounds.wrongSound;
+    milestoneSound.current = sounds.milestoneSound;
   };
 
   const startGame = async (): Promise<void> => {
@@ -237,7 +240,7 @@ export const useGameLogic = (
     // Haptic feedback for success
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
-    setScore(score + 1);
+    onScoreChange(sessionScore + 1);
     if (isSoundEnabled) {
       playSound(successSound.current, backgroundMusic.current);
     }
@@ -292,9 +295,8 @@ export const useGameLogic = (
       backgroundMusic.current = null;
     }
 
-    // Reset all state
+    // Reset all state (preserve sessionScore for persistence)
     setGameStarted(false);
-    setScore(0);
     setShuffledAnimals([]);
     setCurrentAnimal(null);
     setShowSuccess(false);
@@ -316,9 +318,8 @@ export const useGameLogic = (
     // Stop any playing animal sound (but preserve background music)
     await stopAnimalSound(backgroundMusic.current);
 
-    // Reset all game state
+    // Reset all game state (preserve sessionScore for persistence)
     setGameStarted(false); // Allow startGame to reinitialize on mode switch
-    setScore(0);
     setShuffledAnimals([]);
     setCurrentAnimal(null);
     setShowSuccess(false);
@@ -383,12 +384,13 @@ export const useGameLogic = (
     shuffledAnimals,
     currentAnimal,
     showSuccess,
-    score,
+    score: sessionScore,
     wrongTileId,
     gameStarted,
     isSoundEnabled,
     isAnimalSoundPlaying,
     gameMode,
+    milestoneSound: milestoneSound.current,
     // Animation values
     successScale,
     successOpacity,

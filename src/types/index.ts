@@ -170,6 +170,7 @@ export interface UseGameLogicReturn {
   isSoundEnabled: boolean;
   isAnimalSoundPlaying: boolean;
   gameMode: GameMode;
+  milestoneSound: Audio.Sound | null;
   // Animation values
   successScale: Animated.Value;
   successOpacity: Animated.Value;

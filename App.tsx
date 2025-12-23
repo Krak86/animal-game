@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import * as NavigationBar from "expo-navigation-bar";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { View, ScrollView, Text, Platform, Alert, BackHandler } from "react-native";
+import { View, ScrollView, Text, Platform, Alert, BackHandler, Animated } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -30,13 +30,17 @@ import { getAppStyles } from "@/styles/appStyles";
 import { useGameLogic } from "@/hooks/useGameLogic";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { useLanguageInitialization } from "@/hooks/useLanguageInitialization";
+import { useMilestoneDetection } from "@/hooks/useMilestoneDetection";
 // Audio utilities
 import {
   loadBackgroundMusic,
   pauseBackgroundMusic,
   resumeBackgroundMusic,
+  playSound,
 } from "@/utils/audio";
 import { Audio } from "expo-av";
+// Animations
+import { animateMilestoneScore } from "@/utils/animations";
 // Types
 import { GameMode, Animal } from "@/types";
 
@@ -65,7 +69,11 @@ export default function App() {
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   const [listScrollIndex, setListScrollIndex] = useState<number>(0);
   const [lastSearchText, setLastSearchText] = useState<string>("");
+  const [sessionScore, setSessionScore] = useState<number>(0);
   const t = TRANSLATIONS[language];
+
+  // Milestone animation
+  const milestoneScale = useRef(new Animated.Value(1)).current;
 
   // Background music for exhibition mode
   const exhibitionBackgroundMusic = useRef<Audio.Sound | null>(null);
@@ -128,7 +136,16 @@ export default function App() {
     toggleSound,
     resetGame,
     replaySound,
-  } = useGameLogic(language, t, gameMode || "byName");
+    milestoneSound,
+  } = useGameLogic(language, t, gameMode || "byName", sessionScore, setSessionScore);
+
+  // Milestone detection
+  const {
+    milestoneReached,
+    currentMilestone,
+    celebratingMilestone,
+    resetCelebration,
+  } = useMilestoneDetection(sessionScore);
 
   // Start game when mode is selected
   useEffect(() => {
@@ -174,6 +191,29 @@ export default function App() {
       }
     }
   }, [isSoundEnabled, gameMode]);
+
+  // Celebrate milestone achievements
+  useEffect(() => {
+    if (celebratingMilestone && gameMode && gameMode !== "showAll") {
+      // Reset celebration flag immediately to prevent double-triggering
+      resetCelebration();
+
+      // Play milestone sound
+      if (milestoneSound && isSoundEnabled) {
+        playSound(milestoneSound, exhibitionBackgroundMusic.current);
+      }
+
+      // Trigger score animation
+      animateMilestoneScore(milestoneScale);
+    }
+  }, [
+    celebratingMilestone,
+    gameMode,
+    isSoundEnabled,
+    milestoneSound,
+    milestoneScale,
+    resetCelebration,
+  ]);
 
   // Hide splash screen when fonts are loaded
   const onLayoutRootView = useCallback(async () => {
@@ -417,11 +457,18 @@ export default function App() {
                       contentContainerStyle={appStyles.scrollContent}
                       showsVerticalScrollIndicator={false}
                     >
-                      <View style={appStyles.scoreContainer}>
+                      <Animated.View
+                        style={[
+                          appStyles.scoreContainer,
+                          {
+                            transform: [{ scale: milestoneScale }],
+                          },
+                        ]}
+                      >
                         <Text style={appStyles.scoreText}>
-                          {t.score}: {score}
+                          {t.score}: {sessionScore}
                         </Text>
-                      </View>
+                      </Animated.View>
 
                       <QuestionDisplay
                         currentAnimal={currentAnimal}
