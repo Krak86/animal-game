@@ -78,6 +78,8 @@ export interface Translations {
   externalLink: string; // "External Link" alert title
   cancel: string; // "Cancel" button
   continue: string; // "Continue" button
+  exitApp: string; // "Exit Game" alert title
+  exitAppMessage: string; // "Are you sure you want to exit?" message
   error: string; // "Error" alert title
   browserNotInstalledError: string; // Browser not installed error message
   animalDescriptions: {

@@ -40,6 +40,8 @@ export const TRANSLATIONS: TranslationMap = {
     externalLink: "External Link",
     cancel: "Cancel",
     continue: "Continue",
+    exitApp: "Exit Game",
+    exitAppMessage: "Are you sure you want to exit?",
     error: "Error",
     browserNotInstalledError:
       "Failed to open link: {error}\n\nPlease ensure you have a web browser installed on your device.",
@@ -264,6 +266,8 @@ export const TRANSLATIONS: TranslationMap = {
     externalLink: "Зовнішнє посилання",
     cancel: "Скасувати",
     continue: "Продовжити",
+    exitApp: "Вийти з гри",
+    exitAppMessage: "Ви впевнені, що хочете вийти?",
     error: "Помилка",
     browserNotInstalledError:
       "Не вдалося відкрити посилання: {error}\n\nБудь ласка, переконайтеся, що у вас встановлено веб-браузер.",
@@ -488,6 +492,8 @@ export const TRANSLATIONS: TranslationMap = {
     externalLink: "Внешняя ссылка",
     cancel: "Отмена",
     continue: "Продолжить",
+    exitApp: "Выйти из игры",
+    exitAppMessage: "Вы уверены, что хотите выйти?",
     error: "Ошибка",
     browserNotInstalledError:
       "Не удалось открыть ссылку: {error}\n\nПожалуйста, убедитесь, что у вас установлен веб-браузер.",

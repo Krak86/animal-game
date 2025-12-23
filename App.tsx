@@ -267,8 +267,24 @@ export default function App() {
         return true; // Prevent default (app exit)
       }
 
-      // Priority 3: On StartScreen -> allow app exit
-      return false; // Allow default behavior
+      // Priority 3: On StartScreen -> show exit confirmation
+      Alert.alert(
+        t.exitApp,
+        t.exitAppMessage,
+        [
+          {
+            text: t.cancel,
+            style: "cancel",
+          },
+          {
+            text: t.continue,
+            style: "destructive",
+            onPress: () => BackHandler.exitApp(),
+          },
+        ],
+        { cancelable: true }
+      );
+      return true; // Prevent default behavior
     };
 
     // Add the back button listener
