@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import * as NavigationBar from "expo-navigation-bar";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { View, ScrollView, Text, Platform, Alert } from "react-native";
+import { View, ScrollView, Text, Platform, Alert, BackHandler } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -247,6 +247,41 @@ export default function App() {
     setShowAnimalDetail(false);
     setSelectedAnimal(null);
   };
+
+  // Handle Android hardware back button
+  useEffect(() => {
+    const handleBackPress = (): boolean => {
+      // Priority 1: Exit animal detail view -> return to list
+      if (gameMode === "showAll" && showAnimalDetail) {
+        handleBackToList();
+        return true; // Prevent default (app exit)
+      }
+
+      // Priority 2: Exit any game mode or exhibition list -> return to start
+      if (gameMode !== null) {
+        // Clean up game state for game modes
+        if (gameMode === "byName" || gameMode === "bySound") {
+          resetGame();
+        }
+        handleBackToStart();
+        return true; // Prevent default (app exit)
+      }
+
+      // Priority 3: On StartScreen -> allow app exit
+      return false; // Allow default behavior
+    };
+
+    // Add the back button listener
+    const subscription = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleBackPress
+    );
+
+    // Cleanup function - removes listener when component unmounts or dependencies change
+    return () => {
+      subscription.remove();
+    };
+  }, [gameMode, showAnimalDetail, handleBackToList, handleBackToStart, resetGame]);
 
   const handleModeSwitch = async (newMode: GameMode): Promise<void> => {
     // If already in this mode, do nothing
