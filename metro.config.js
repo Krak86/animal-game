@@ -8,7 +8,9 @@ module.exports = (() => {
   config.transformer = {
     ...transformer,
     babelTransformerPath: require.resolve("react-native-svg-transformer"),
-    publicPath: process.env.EXPO_BASE_URL || "/",
+    publicPath: process.env.EXPO_BASE_URL
+      ? `${process.env.EXPO_BASE_URL}/`
+      : "/",
   };
 
   config.resolver = {
