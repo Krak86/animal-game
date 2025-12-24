@@ -34,8 +34,6 @@ jobs:
 
       - name: Build web app
         run: yarn build:web
-        env:
-          EXPO_BASE_URL: /animal-game
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
