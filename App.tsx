@@ -159,12 +159,12 @@ export default function App() {
   // Manage exhibition mode background music
   useEffect(() => {
     const loadExhibitionMusic = async () => {
-      if (gameMode === "showAll") {
-        // Load and start background music for exhibition mode
+      if (gameMode === "showAll" || gameMode === "secret") {
+        // Load and start background music for exhibition mode and secret mode
         const music = await loadBackgroundMusic(isSoundEnabled);
         exhibitionBackgroundMusic.current = music;
       } else {
-        // Stop and unload music when leaving exhibition mode
+        // Stop and unload music when leaving exhibition/secret mode
         if (exhibitionBackgroundMusic.current) {
           await exhibitionBackgroundMusic.current.unloadAsync();
           exhibitionBackgroundMusic.current = null;
@@ -182,9 +182,9 @@ export default function App() {
     };
   }, [gameMode, isSoundEnabled]);
 
-  // Handle sound toggle for exhibition mode
+  // Handle sound toggle for exhibition mode and secret mode
   useEffect(() => {
-    if (gameMode === "showAll") {
+    if (gameMode === "showAll" || gameMode === "secret") {
       if (isSoundEnabled) {
         resumeBackgroundMusic(exhibitionBackgroundMusic.current);
       } else {
@@ -195,7 +195,7 @@ export default function App() {
 
   // Celebrate milestone achievements
   useEffect(() => {
-    if (celebratingMilestone && gameMode && gameMode !== "showAll") {
+    if (celebratingMilestone && gameMode && gameMode !== "showAll" && gameMode !== "secret") {
       // Reset celebration flag immediately to prevent double-triggering
       resetCelebration();
 
@@ -224,7 +224,16 @@ export default function App() {
   }, [fontsLoaded, fontError]);
 
   const handleStartGame = (mode: GameMode): void => {
-    if (mode === "showAll") {
+    if (mode === "secret") {
+      // Secret mode - pick random animal and show detail view directly
+      const randomIndex = Math.floor(Math.random() * ANIMALS.length);
+      const randomAnimal = ANIMALS[randomIndex];
+
+      setSelectedAnimal(randomAnimal);
+      setCurrentAnimalIndex(randomIndex);
+      setShowAnimalDetail(true);
+      setGameMode(mode);
+    } else if (mode === "showAll") {
       // Exhibition mode: just set mode, skip game logic
       setGameMode(mode);
     } else {
@@ -273,6 +282,7 @@ export default function App() {
   const handleBackToList = (): void => {
     setShowAnimalDetail(false);
     setSelectedAnimal(null);
+    // For both showAll and secret modes, stays in AnimalsListView
     // Keep listScrollIndex and lastSearchText for restoration
   };
 
@@ -292,8 +302,8 @@ export default function App() {
   // Handle Android hardware back button
   useEffect(() => {
     const handleBackPress = (): boolean => {
-      // Priority 1: Exit animal detail view -> return to list
-      if (gameMode === "showAll" && showAnimalDetail) {
+      // Priority 1: Exit animal detail view -> return to list (or start for secret mode)
+      if ((gameMode === "showAll" || gameMode === "secret") && showAnimalDetail) {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         handleBackToList();
         return true; // Prevent default (app exit)
@@ -429,9 +439,9 @@ export default function App() {
                 {/* Show HamburgerButton on all screens */}
                 <HamburgerButton />
 
-                {!gameStarted && gameMode !== "showAll" ? (
+                {!gameStarted && gameMode !== "showAll" && gameMode !== "secret" ? (
                   <StartScreen onStart={handleStartGame} translations={t} />
-                ) : gameMode === "showAll" ? (
+                ) : gameMode === "showAll" || gameMode === "secret" ? (
                   showAnimalDetail ? (
                     <AnimalDetailView
                       animal={selectedAnimal!}

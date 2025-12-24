@@ -66,7 +66,7 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
   "🦅": require("@assets/emojis/1f985.svg"),
   "🦉": require("@assets/emojis/1f989.svg"),
 
-  // UI emojis (11)
+  // UI emojis (12)
   "🎉": require("@assets/emojis/1f389.svg"),
   "🔊": require("@assets/emojis/1f50a.svg"),
   "🔉": require("@assets/emojis/1f509.svg"),
@@ -82,6 +82,7 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
   "💬": require("@assets/emojis/1f4ac.svg"),
   "◀": require("@assets/emojis/25c0.svg"),
   "▶": require("@assets/emojis/25b6.svg"),
+  "📦": require("@assets/emojis/1f4e6.svg"),
 };
 
 /**

@@ -37,11 +37,13 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
   const wiggle2 = useRef(new Animated.Value(0)).current;
   const wiggle3 = useRef(new Animated.Value(0)).current;
   const wiggle4 = useRef(new Animated.Value(0)).current;
+  const wiggle5 = useRef(new Animated.Value(0)).current; // For secret box
 
   // Animation values for button border effects
   const borderAnim1 = useRef(new Animated.Value(0)).current;
   const borderAnim2 = useRef(new Animated.Value(0)).current;
   const borderAnim3 = useRef(new Animated.Value(0)).current;
+  const borderAnim4 = useRef(new Animated.Value(0)).current; // For secret button
 
   useEffect(() => {
     // Create wiggle animation for each emoji
@@ -76,6 +78,46 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
     createWiggle(wiggle3, 400).start();
     createWiggle(wiggle4, 600).start();
 
+    // Special shaking animation for secret box (shake, pause, shake)
+    const createSecretBoxShake = () => {
+      const nativeDriver = Platform.OS !== "web";
+      return Animated.loop(
+        Animated.sequence([
+          // Shake rapidly (4 quick shakes)
+          Animated.timing(wiggle5, {
+            toValue: 1,
+            duration: 100,
+            useNativeDriver: nativeDriver,
+          }),
+          Animated.timing(wiggle5, {
+            toValue: -1,
+            duration: 100,
+            useNativeDriver: nativeDriver,
+          }),
+          Animated.timing(wiggle5, {
+            toValue: 1,
+            duration: 100,
+            useNativeDriver: nativeDriver,
+          }),
+          Animated.timing(wiggle5, {
+            toValue: -1,
+            duration: 100,
+            useNativeDriver: nativeDriver,
+          }),
+          // Return to center
+          Animated.timing(wiggle5, {
+            toValue: 0,
+            duration: 100,
+            useNativeDriver: nativeDriver,
+          }),
+          // Long pause before next shake
+          Animated.delay(2000),
+        ])
+      );
+    };
+
+    createSecretBoxShake().start();
+
     // Create border animation loops with random delays per button
     const createBorderLoop = (anim: Animated.Value, randomDelay: number) => {
       return Animated.loop(
@@ -103,14 +145,17 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
     createBorderLoop(borderAnim1, Math.random() * 2000).start();
     createBorderLoop(borderAnim2, Math.random() * 2000).start();
     createBorderLoop(borderAnim3, Math.random() * 2000).start();
+    createBorderLoop(borderAnim4, Math.random() * 2000).start();
   }, [
     wiggle1,
     wiggle2,
     wiggle3,
     wiggle4,
+    wiggle5,
     borderAnim1,
     borderAnim2,
     borderAnim3,
+    borderAnim4,
   ]);
 
   return (
@@ -288,6 +333,50 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
                 <Text style={styles.modeButtonText}>{t.showAll}</Text>
               </TouchableOpacity>
             </Animated.View>
+
+            <Animated.View
+              style={[
+                styles.buttonWrapper,
+                {
+                  borderColor: borderAnim4.interpolate({
+                    inputRange: [0, 0.33, 0.66, 1],
+                    outputRange: ["#FF6B35", "#FFA500", "#FFD700", "#FF6B35"], // Orange to gold
+                  }),
+                },
+              ]}
+            >
+              <TouchableOpacity
+                style={[styles.modeButton, styles.secretButton]}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  onStart("secret");
+                }}
+                activeOpacity={0.8}
+              >
+                <Animated.View
+                  style={{
+                    transform: [
+                      {
+                        rotate: wiggle5.interpolate({
+                          inputRange: [-1, 1],
+                          outputRange: ["-12deg", "12deg"], // More dramatic shake
+                        }),
+                      },
+                      {
+                        translateX: wiggle5.interpolate({
+                          inputRange: [-1, 0, 1],
+                          outputRange: [-5, 0, 5], // Horizontal shake
+                        }),
+                      },
+                    ],
+                  }}
+                >
+                  <EmojiSvg emoji="📦" style={styles.buttonEmoji} />
+                </Animated.View>
+                <Text style={styles.modeButtonText}>???</Text>
+                <Text style={styles.modeDescription}>{t.secretDescription}</Text>
+              </TouchableOpacity>
+            </Animated.View>
           </View>
         </View>
       </ScrollView>
@@ -347,19 +436,22 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
       borderRadius: 20,
       borderWidth: 2,
       borderColor: COLORS.primary,
-      // overflow: "hidden",
+      width: 160, // Fixed width for all tiles
+      overflow: "hidden", // Important: clips content to border radius
     },
     modeButton: {
       paddingHorizontal: 20,
       paddingVertical: 16,
-      borderRadius: 16,
       shadowColor: COLORS.black,
       shadowOffset: { width: 0, height: 5 },
       shadowOpacity: 0.3,
       shadowRadius: 10,
       elevation: 5,
-      maxWidth: 160,
+      flex: 1, // Fill all available space in wrapper
+      width: "100%", // Fill the wrapper width
+      minHeight: 120, // Ensure minimum height for consistency
       alignItems: "center",
+      justifyContent: "center",
     },
     byNameButton: {
       backgroundColor: COLORS.primary,
@@ -369,6 +461,9 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
     },
     showAllButton: {
       backgroundColor: "#9B59B6",
+    },
+    secretButton: {
+      backgroundColor: "#FF8C42", // Orange/mystery color
     },
     buttonEmoji: {
       fontSize: 40 * responsive.fontScale,

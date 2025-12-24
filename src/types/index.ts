@@ -9,7 +9,7 @@ import { Audio } from "expo-av";
 export type Language = "en" | "uk" | "ru";
 
 // Game mode type
-export type GameMode = "byName" | "bySound" | "showAll";
+export type GameMode = "byName" | "bySound" | "showAll" | "secret";
 
 // Animal definition
 export interface Animal {
@@ -44,6 +44,8 @@ export interface ScreenTranslations {
   byName: string; // "By Name" button
   bySound: string; // "By Sound" button
   showAll: string; // "Show All" button
+  secret: string; // "Secret Animal" button
+  secretDescription: string; // "Discover a mystery animal!" description
 }
 
 export interface Translations {
