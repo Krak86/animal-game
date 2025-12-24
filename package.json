@@ -19,7 +19,7 @@
     "build:android:debug": "cd android && ./gradlew assembleDebug",
     "build:android:release": "cd android && ./gradlew assembleRelease",
     "build:android:clean": "cd android && ./gradlew clean",
-    "build:web": "expo export --platform web --public-url /animal-game",
+    "build:web": "expo export --platform web && node scripts/fix-base-path.js",
     "open:web": "http-server dist -p 8080 -o"
   },
   "dependencies": {
