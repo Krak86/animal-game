@@ -7,11 +7,12 @@ import React, {
 } from "react";
 import {
   View,
-  FlatList,
   Text,
   TouchableOpacity,
   TextInput,
+  Dimensions,
 } from "react-native";
+import { FlashList } from "@shopify/flash-list";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { getAnimalsListViewStyles } from "@/styles/componentStyles";
@@ -48,7 +49,7 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
   const insets = useSafeAreaInsets();
 
   // Refs for scroll position management
-  const flatListRef = useRef<FlatList<Animal>>(null);
+  const flatListRef = useRef<any>(null); // FlashList ref for row-based rendering
   const hasScrolledToInitialPosition = useRef<boolean>(false);
   const filteredAnimalsRef = useRef<Animal[]>([]);
 
@@ -71,6 +72,12 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
     debouncedSetSearch(text);
     // Reset scroll position flag on search to prevent out-of-bounds scroll attempts
     hasScrolledToInitialPosition.current = false;
+
+    // Reset scroll to top when searching to avoid out-of-bounds
+    if (flatListRef.current) {
+      flatListRef.current.scrollToOffset({ offset: 0, animated: false });
+    }
+
     // Notify parent of search change (will reset scroll to top)
     if (onSearchChange) {
       onSearchChange(text);
@@ -103,54 +110,77 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
   // Keep ref in sync with current filtered animals
   filteredAnimalsRef.current = filteredAnimals;
 
-  // Restore scroll position when component mounts
+  // Get window dimensions for FlashList estimatedListSize
+  const { height, width } = Dimensions.get('window');
+
+  // Convert flat list to rows for multi-column layout (FlashList doesn't support numColumns)
+  const getAnimalRows = useCallback(
+    (animals: Animal[], columns: number): Animal[][] => {
+      const rows: Animal[][] = [];
+      for (let i = 0; i < animals.length; i += columns) {
+        rows.push(animals.slice(i, i + columns));
+      }
+      return rows;
+    },
+    [] // Pure function, no dependencies needed
+  );
+
+  // Transform filtered animals into rows
+  const animalRows = useMemo(
+    () => getAnimalRows(filteredAnimals, responsive.columnCount),
+    [filteredAnimals, responsive.columnCount, getAnimalRows]
+  );
+
+  // Calculate dynamic estimated row height based on content
+  const estimatedRowHeight = useMemo(() => {
+    const cardHeight = responsive.cardSize;
+    const labelHeight = (14 * responsive.fontScale) * 1.2; // Line height
+    const maxLabelLines = 2; // Max 2 lines due to numberOfLines={2}
+    const padding = 10 * 2; // Card padding top and bottom
+    const margin = responsive.spacing.md;
+
+    return cardHeight + (labelHeight * maxLabelLines) + padding + margin;
+  }, [responsive.cardSize, responsive.fontScale, responsive.spacing.md]);
+
+  // Restore scroll position when component mounts (row-based with sub-row offset)
   useEffect(() => {
     if (
       scrollToIndex !== undefined &&
       scrollToIndex > 0 &&
-      filteredAnimals.length > 0 &&
+      animalRows.length > 0 &&
       !hasScrolledToInitialPosition.current
     ) {
       const timer = setTimeout(() => {
-        const currentLength = filteredAnimalsRef.current.length;
-        if (currentLength > 0) {
-          const safeIndex = Math.min(scrollToIndex, currentLength - 1);
+        // Convert item index to row index
+        const rowIndex = Math.floor(scrollToIndex / responsive.columnCount);
+        const safeRowIndex = Math.min(rowIndex, animalRows.length - 1);
 
-          // Check if the index is within the initially rendered range
-          // FlatList typically renders initialNumToRender (12) items initially
-          const initiallyRendered = 12;
+        if (safeRowIndex >= 0 && flatListRef.current) {
+          // Calculate sub-row offset for more accurate positioning
+          const columnOffset = scrollToIndex % responsive.columnCount;
+          const viewOffset = columnOffset / responsive.columnCount;
 
-          if (safeIndex < initiallyRendered && safeIndex < currentLength) {
-            // Safe to use scrollToIndex for small indices
-            flatListRef.current?.scrollToIndex({
-              index: safeIndex,
-              animated: false,
-              viewPosition: 0,
-            });
-          } else if (safeIndex < currentLength) {
-            // For larger indices, estimate the offset to avoid out-of-range error
-            // Use a rough estimate of item height (adjust based on your actual card height)
-            const estimatedItemHeight = 150; // Adjust this based on your AnimalCard height
-            const estimatedOffset = safeIndex * estimatedItemHeight;
-            flatListRef.current?.scrollToOffset({
-              offset: estimatedOffset,
-              animated: false,
-            });
-          }
+          flatListRef.current.scrollToIndex({
+            index: safeRowIndex,
+            animated: false,
+            viewOffset: viewOffset, // FlashList supports viewOffset for precise positioning
+          });
         }
         hasScrolledToInitialPosition.current = true;
       }, 150);
 
       return () => clearTimeout(timer);
     }
-  }, [scrollToIndex, filteredAnimals.length]);
+  }, [scrollToIndex, animalRows.length, responsive.columnCount, filteredAnimals.length]);
 
-  // Track visible items to save scroll position
+  // Track visible items to save scroll position (convert row index to item index)
   const handleViewableItemsChanged = useRef(({ viewableItems }: any) => {
     if (viewableItems.length > 0 && onScrollIndexChange) {
-      const firstVisibleIndex = viewableItems[0].index;
-      if (firstVisibleIndex !== null && firstVisibleIndex !== undefined) {
-        onScrollIndexChange(firstVisibleIndex);
+      const firstVisibleRowIndex = viewableItems[0].index;
+      if (firstVisibleRowIndex !== null && firstVisibleRowIndex !== undefined) {
+        // Convert row index to item index for parent component
+        const firstVisibleItemIndex = firstVisibleRowIndex * responsive.columnCount;
+        onScrollIndexChange(firstVisibleItemIndex);
       }
     }
   }).current;
@@ -160,22 +190,52 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
     minimumViewTime: 100,
   }).current;
 
-  // Render individual animal card
-  const renderItem = useCallback(
-    ({ item, index }: { item: Animal; index: number }) => (
-      <AnimalCard
-        animal={item}
-        isWrong={false}
-        translations={translations}
-        onPress={() => onAnimalPress(item, index, searchText)}
-        index={index}
-      />
+  // Render row of animal cards for multi-column layout
+  const renderRow = useCallback(
+    ({ item: row, index: rowIndex }: { item: Animal[]; index: number }) => (
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          paddingHorizontal: responsive.spacing.md
+        }}
+      >
+        {row.map((animal, colIndex) => {
+          const itemIndex = rowIndex * responsive.columnCount + colIndex;
+          return (
+            <AnimalCard
+              key={animal.id}
+              animal={animal}
+              isWrong={false}
+              translations={translations}
+              onPress={() => onAnimalPress(animal, itemIndex, searchText)}
+              index={itemIndex}
+            />
+          );
+        })}
+        {/* Fill empty spaces if last row isn't full */}
+        {row.length < responsive.columnCount &&
+          Array.from({ length: responsive.columnCount - row.length }).map((_, i) => (
+            <View
+              key={`empty-${i}`}
+              style={{
+                width: responsive.cardSize,
+                marginBottom: responsive.spacing.md,
+                opacity: 0,
+                pointerEvents: 'none'
+              }}
+            />
+          ))}
+      </View>
     ),
-    [translations, onAnimalPress, searchText]
+    [translations, onAnimalPress, searchText, responsive.columnCount, responsive.cardSize, responsive.spacing.md]
   );
 
-  // Key extractor for FlatList
-  const keyExtractor = useCallback((item: Animal) => item.id.toString(), []);
+  // Key extractor for FlashList with proper empty row handling
+  const keyExtractor = useCallback((row: Animal[], index: number) => {
+    if (row.length === 0) return `row-empty-${index}`;
+    return `row-${index}-${row.map(a => a.id).join('-')}`;
+  }, []);
 
   // Empty list component
   const renderEmpty = useCallback(
@@ -216,55 +276,19 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
         )}
       </View>
 
-      <FlatList
+      <FlashList
         ref={flatListRef}
-        key={responsive.columnCount}
-        data={filteredAnimals}
-        renderItem={renderItem}
+        data={animalRows}
+        renderItem={renderRow as any}
         keyExtractor={keyExtractor}
-        numColumns={responsive.columnCount}
-        columnWrapperStyle={{
-          justifyContent: "space-around",
-        }}
-        contentInset={{ bottom: insets.bottom }}
+        // @ts-expect-error - FlashList prop type definitions issue
+        estimatedItemSize={estimatedRowHeight}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
-        removeClippedSubviews={false}
-        initialNumToRender={12}
-        maxToRenderPerBatch={6}
-        windowSize={3}
-        maintainVisibleContentPosition={{
-          minIndexForVisible: 0,
-          autoscrollToTopThreshold: 0,
-        }}
         ListEmptyComponent={renderEmpty}
         onViewableItemsChanged={handleViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
-        onScrollToIndexFailed={(info) => {
-          const wait = new Promise((resolve) => setTimeout(resolve, 150));
-          wait.then(() => {
-            // Use ref to get current filtered animals length
-            const currentLength = filteredAnimalsRef.current.length;
-            if (currentLength > 0) {
-              // Calculate a safe index that's within bounds
-              const safeIndex = Math.min(info.index, currentLength - 1);
-              // Double-check bounds before scrolling
-              if (safeIndex >= 0 && safeIndex < currentLength) {
-                flatListRef.current?.scrollToIndex({
-                  index: safeIndex,
-                  animated: false,
-                  viewPosition: 0,
-                });
-              } else {
-                // If still out of bounds, scroll to offset instead
-                flatListRef.current?.scrollToOffset({
-                  offset: info.averageItemLength * safeIndex,
-                  animated: false,
-                });
-              }
-            }
-          });
-        }}
+        drawDistance={height * 0.5}
       />
     </View>
   );

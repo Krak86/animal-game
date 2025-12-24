@@ -29,6 +29,9 @@ export const AnimalCard: React.FC<Props> = ({
   const responsive = useResponsiveDimensions();
   const styles = getAnimalCardStyles(responsive);
 
+  // Track if item has been visible to prevent re-animation on recycle
+  const hasBeenVisible = useRef(false);
+
   // Internal animations - used when external animations are not provided
   const internalCardAnim = useRef(new Animated.Value(0)).current;
   const internalWiggleAnim = useRef(new Animated.Value(0)).current;
@@ -48,9 +51,12 @@ export const AnimalCard: React.FC<Props> = ({
   const shineDelay = cardDelay + 200;
   const pulseDelay = cardDelay + 400;
 
-  // Initialize animations only if using internal animations
+  // Initialize animations only if using internal animations and not recycled
   useEffect(() => {
-    if (!externalCard && !externalWiggle) {
+    if (!externalCard && !externalWiggle && !hasBeenVisible.current) {
+      // Mark as visible to prevent re-animation on recycle
+      hasBeenVisible.current = true;
+
       // Entrance animation
       Animated.spring(internalCardAnim, {
         toValue: 1,
@@ -169,7 +175,7 @@ export const AnimalCard: React.FC<Props> = ({
             {
               scale: cardAnimation.interpolate({
                 inputRange: [0, 1],
-                outputRange: [0.3, 1],
+                outputRange: [0.95, 1], // Reduced from 0.3 to prevent layout shifts
               }),
             },
             {
