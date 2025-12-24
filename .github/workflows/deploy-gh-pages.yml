@@ -33,7 +33,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build web app
-        run: yarn build:web:gh-pages
+        run: yarn build:web
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
