@@ -27,8 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "bundler": "metro",
-      "baseUrl": "/animal-game"
+      "bundler": "metro"
     },
     "extra": {
       "eas": {
