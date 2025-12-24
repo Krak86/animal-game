@@ -33,9 +33,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build web app
-        run: yarn build:web
-        env:
-          EXPO_BASE_URL: /animal-game
+        run: yarn build:web:gh-pages
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
