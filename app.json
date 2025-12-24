@@ -26,15 +26,14 @@
       "permissions": []
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "extra": {
       "eas": {
         "projectId": "ffc7ca2a-650e-41dc-9e9b-82a7e779ca32"
       }
     },
-    "plugins": [
-      "expo-font"
-    ]
+    "plugins": ["expo-font"]
   }
 }
