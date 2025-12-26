@@ -75,7 +75,7 @@ export default function App() {
   const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
   const [currentAnimalIndex, setCurrentAnimalIndex] = useState<number>(0);
   const [showAnimalDetail, setShowAnimalDetail] = useState<boolean>(false);
-  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(true);
   const [listScrollIndex, setListScrollIndex] = useState<number>(0);
   const [lastSearchText, setLastSearchText] = useState<string>("");
   const [sessionScore, setSessionScore] = useState<number>(0);
@@ -125,6 +125,22 @@ export default function App() {
       // console.log("✅ All Montserrat fonts loaded successfully");
     }
   }, [fontsLoaded, fontError]);
+
+  // Set full screen mode on app startup
+  useEffect(() => {
+    const enableFullScreen = async () => {
+      try {
+        if (Platform.OS === "android") {
+          await NavigationBar.setVisibilityAsync("hidden");
+          await NavigationBar.setBehaviorAsync("overlay-swipe");
+        }
+      } catch (error) {
+        console.error("Failed to enable full screen on startup:", error);
+      }
+    };
+
+    enableFullScreen();
+  }, []);
 
   const {
     shuffledAnimals,

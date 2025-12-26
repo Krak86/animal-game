@@ -1,10 +1,11 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Alert, BackHandler, Platform } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerContentComponentProps,
 } from "@react-navigation/drawer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
+import * as Haptics from "expo-haptics";
 
 import { SoundToggle } from "./SoundToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -57,6 +58,26 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
   const handleModeSwitch = async (mode: GameMode) => {
     await onModeSwitch(mode);
     navigation.closeDrawer();
+  };
+
+  const handleExitApp = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Alert.alert(
+      translations.exitApp,
+      translations.exitAppMessage,
+      [
+        {
+          text: translations.cancel,
+          style: "cancel",
+        },
+        {
+          text: translations.continue,
+          style: "destructive",
+          onPress: () => BackHandler.exitApp(),
+        },
+      ],
+      { cancelable: true }
+    );
   };
 
   return (
@@ -181,25 +202,27 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
         </View>
 
         {/* Full Screen Toggle Section */}
-        <View style={styles.menuItem}>
-          <TouchableOpacity
-            style={[
-              styles.menuItemContent,
-              styles.fullScreenButton,
-              isFullScreen && styles.fullScreenActive,
-            ]}
-            onPress={onToggleFullScreen}
-            activeOpacity={0.7}
-          >
-            <Text style={styles.menuItemEmoji}>⛶</Text>
+        {Platform.OS !== 'web' && (
+          <View style={styles.menuItem}>
+            <TouchableOpacity
+              style={[
+                styles.menuItemContent,
+                styles.fullScreenButton,
+                isFullScreen && styles.fullScreenActive,
+              ]}
+              onPress={onToggleFullScreen}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.menuItemEmoji}>⛶</Text>
 
-            <Text style={styles.menuItemText}>
-              {isFullScreen
-                ? translations.exitFullScreen
-                : translations.enterFullScreen}
-            </Text>
-          </TouchableOpacity>
-        </View>
+              <Text style={styles.menuItemText}>
+                {isFullScreen
+                  ? translations.exitFullScreen
+                  : translations.enterFullScreen}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* Privacy Policy Button */}
         <View style={styles.menuItem}>
@@ -209,11 +232,25 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
             activeOpacity={0.7}
           >
             <EmojiSvg emoji="📄" style={styles.menuItemEmoji} />
-            <Text style={styles.menuItemText}>
+            <Text style={styles.menuItemText} numberOfLines={2}>
               {translations.privacyPolicy}
             </Text>
           </TouchableOpacity>
         </View>
+
+        {/* Exit App Button */}
+        {Platform.OS !== 'web' && (
+          <View style={styles.menuItem}>
+            <TouchableOpacity
+              style={[styles.menuItemContent, styles.exitButton]}
+              onPress={handleExitApp}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.menuItemEmoji}>🚪</Text>
+              <Text style={styles.menuItemText}>{translations.exitApp}</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
 
       {/* Privacy Policy Modal */}
@@ -280,6 +317,7 @@ const getDrawerStyles = (responsive: ResponsiveDimensions) =>
       fontSize: 16 * responsive.fontScale,
       fontFamily: FONTS.semiBold,
       color: COLORS.dark,
+      flex: 1,
     },
     sectionLabel: {
       fontSize: 14 * responsive.fontScale,
@@ -326,5 +364,10 @@ const getDrawerStyles = (responsive: ResponsiveDimensions) =>
       backgroundColor: "#9370DB",
       borderWidth: 2,
       borderColor: "#8A2BE2",
+    },
+    exitButton: {
+      backgroundColor: "#DC143C",
+      borderColor: "#B22222",
+      borderWidth: 2,
     },
   });
