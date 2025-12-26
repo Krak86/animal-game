@@ -111,7 +111,7 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
   filteredAnimalsRef.current = filteredAnimals;
 
   // Get window dimensions for FlashList estimatedListSize
-  const { height, width } = Dimensions.get('window');
+  const { height, width } = Dimensions.get("window");
 
   // Convert flat list to rows for multi-column layout (FlashList doesn't support numColumns)
   const getAnimalRows = useCallback(
@@ -134,12 +134,12 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
   // Calculate dynamic estimated row height based on content
   const estimatedRowHeight = useMemo(() => {
     const cardHeight = responsive.cardSize;
-    const labelHeight = (14 * responsive.fontScale) * 1.2; // Line height
+    const labelHeight = 14 * responsive.fontScale * 1.2; // Line height
     const maxLabelLines = 2; // Max 2 lines due to numberOfLines={2}
     const padding = 10 * 2; // Card padding top and bottom
     const margin = responsive.spacing.md;
 
-    return cardHeight + (labelHeight * maxLabelLines) + padding + margin;
+    return cardHeight + labelHeight * maxLabelLines + padding + margin;
   }, [responsive.cardSize, responsive.fontScale, responsive.spacing.md]);
 
   // Restore scroll position when component mounts (row-based with sub-row offset)
@@ -171,7 +171,12 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
 
       return () => clearTimeout(timer);
     }
-  }, [scrollToIndex, animalRows.length, responsive.columnCount, filteredAnimals.length]);
+  }, [
+    scrollToIndex,
+    animalRows.length,
+    responsive.columnCount,
+    filteredAnimals.length,
+  ]);
 
   // Track visible items to save scroll position (convert row index to item index)
   const handleViewableItemsChanged = useRef(({ viewableItems }: any) => {
@@ -179,7 +184,8 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
       const firstVisibleRowIndex = viewableItems[0].index;
       if (firstVisibleRowIndex !== null && firstVisibleRowIndex !== undefined) {
         // Convert row index to item index for parent component
-        const firstVisibleItemIndex = firstVisibleRowIndex * responsive.columnCount;
+        const firstVisibleItemIndex =
+          firstVisibleRowIndex * responsive.columnCount;
         onScrollIndexChange(firstVisibleItemIndex);
       }
     }
@@ -197,7 +203,7 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
         style={{
           flexDirection: "row",
           justifyContent: "space-around",
-          paddingHorizontal: responsive.spacing.md
+          paddingHorizontal: responsive.spacing.md,
         }}
       >
         {row.map((animal, colIndex) => {
@@ -215,26 +221,35 @@ export const AnimalsListView: React.FC<AnimalsListViewProps> = ({
         })}
         {/* Fill empty spaces if last row isn't full */}
         {row.length < responsive.columnCount &&
-          Array.from({ length: responsive.columnCount - row.length }).map((_, i) => (
-            <View
-              key={`empty-${i}`}
-              style={{
-                width: responsive.cardSize,
-                marginBottom: responsive.spacing.md,
-                opacity: 0,
-                pointerEvents: 'none'
-              }}
-            />
-          ))}
+          Array.from({ length: responsive.columnCount - row.length }).map(
+            (_, i) => (
+              <View
+                key={`empty-${i}`}
+                style={{
+                  width: responsive.cardSize,
+                  marginBottom: responsive.spacing.md,
+                  opacity: 0,
+                  pointerEvents: "none",
+                }}
+              />
+            )
+          )}
       </View>
     ),
-    [translations, onAnimalPress, searchText, responsive.columnCount, responsive.cardSize, responsive.spacing.md]
+    [
+      translations,
+      onAnimalPress,
+      searchText,
+      responsive.columnCount,
+      responsive.cardSize,
+      responsive.spacing.md,
+    ]
   );
 
   // Key extractor for FlashList with proper empty row handling
   const keyExtractor = useCallback((row: Animal[], index: number) => {
     if (row.length === 0) return `row-empty-${index}`;
-    return `row-${index}-${row.map(a => a.id).join('-')}`;
+    return `row-${index}-${row.map((a) => a.id).join("-")}`;
   }, []);
 
   // Empty list component

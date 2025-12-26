@@ -1,4 +1,4 @@
-import { useWindowDimensions } from 'react-native';
+import { useWindowDimensions } from "react-native";
 
 export interface ResponsiveDimensions {
   width: number;
@@ -33,12 +33,12 @@ export const useResponsiveDimensions = (): ResponsiveDimensions => {
   // Determine number of columns based on orientation and screen width
   const columnCount = (() => {
     if (isPortrait) {
-      return width < 360 ? 2 : 3; // 2 columns for very small screens, 3 for normal
+      return width < 500 ? 2 : 3; // 2 columns for very small screens, 3 for normal
     } else {
       // Landscape mode
-      if (width < 600) return 3;      // Small phones in landscape
-      if (width < 900) return 4;      // Larger phones/small tablets
-      return 5;                        // Tablets in landscape
+      if (width < 600) return 3; // Small phones in landscape
+      if (width < 900) return 4; // Larger phones/small tablets
+      return 5; // Tablets in landscape
     }
   })();
 

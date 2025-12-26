@@ -2,7 +2,15 @@ import { StatusBar } from "expo-status-bar";
 import * as NavigationBar from "expo-navigation-bar";
 import * as Haptics from "expo-haptics";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { View, ScrollView, Text, Platform, Alert, BackHandler, Animated } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  Platform,
+  Alert,
+  BackHandler,
+  Animated,
+} from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -138,7 +146,13 @@ export default function App() {
     resetGame,
     replaySound,
     milestoneSound,
-  } = useGameLogic(language, t, gameMode || "byName", sessionScore, setSessionScore);
+  } = useGameLogic(
+    language,
+    t,
+    gameMode || "byName",
+    sessionScore,
+    setSessionScore
+  );
 
   // Milestone detection
   const {
@@ -195,7 +209,12 @@ export default function App() {
 
   // Celebrate milestone achievements
   useEffect(() => {
-    if (celebratingMilestone && gameMode && gameMode !== "showAll" && gameMode !== "secret") {
+    if (
+      celebratingMilestone &&
+      gameMode &&
+      gameMode !== "showAll" &&
+      gameMode !== "secret"
+    ) {
       // Reset celebration flag immediately to prevent double-triggering
       resetCelebration();
 
@@ -303,7 +322,10 @@ export default function App() {
   useEffect(() => {
     const handleBackPress = (): boolean => {
       // Priority 1: Exit animal detail view -> return to list (or start for secret mode)
-      if ((gameMode === "showAll" || gameMode === "secret") && showAnimalDetail) {
+      if (
+        (gameMode === "showAll" || gameMode === "secret") &&
+        showAnimalDetail
+      ) {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         handleBackToList();
         return true; // Prevent default (app exit)
@@ -351,7 +373,13 @@ export default function App() {
     return () => {
       subscription.remove();
     };
-  }, [gameMode, showAnimalDetail, handleBackToList, handleBackToStart, resetGame]);
+  }, [
+    gameMode,
+    showAnimalDetail,
+    handleBackToList,
+    handleBackToStart,
+    resetGame,
+  ]);
 
   const handleModeSwitch = async (newMode: GameMode): Promise<void> => {
     // If already in this mode, do nothing
@@ -439,7 +467,9 @@ export default function App() {
                 {/* Show HamburgerButton on all screens */}
                 <HamburgerButton />
 
-                {!gameStarted && gameMode !== "showAll" && gameMode !== "secret" ? (
+                {!gameStarted &&
+                gameMode !== "showAll" &&
+                gameMode !== "secret" ? (
                   <StartScreen onStart={handleStartGame} translations={t} />
                 ) : gameMode === "showAll" || gameMode === "secret" ? (
                   showAnimalDetail ? (
