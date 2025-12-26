@@ -7,9 +7,9 @@ const https = require("https");
 const fs = require("fs");
 const path = require("path");
 
-// Base URL for Twemoji SVGs on GitHub
+// Base URL for Twemoji SVGs on jsDelivr CDN (newer version)
 const TWEMOJI_BASE_URL =
-  "https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/";
+  "https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/svg/";
 
 // Emoji to codepoint mapping for all 71 emojis needed
 const EMOJI_CODEPOINTS = {
@@ -73,6 +73,7 @@ const EMOJI_CODEPOINTS = {
   "🐍": "1f40d",
   "🦅": "1f985",
   "🦉": "1f989",
+  "🐦‍⬛": "1f426-200d-2b1b",
 
   // UI emojis
   "🎉": "1f389",

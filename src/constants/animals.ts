@@ -1408,7 +1408,7 @@ export const ANIMALS: Animal[] = [
   {
     id: 58,
     name: "Raven",
-    emoji: "🦅",
+    emoji: "🐦‍⬛",
     image: BG_IMAGES[2], // bg3
     soundUrl: ravenSound,
     modes: ["byName", "bySound", "showAll"],
