@@ -39,3 +39,7 @@ yarn-error.*
 # aab, apk
 *.apk
 *.aab
+
+# Prerecorded TTS audio files
+# NOTE: Audio files in assets/audio/ should be committed (they're part of the app)
+# !assets/audio/**/*.mp3

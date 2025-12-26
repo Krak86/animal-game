@@ -572,11 +572,50 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
 
 ### TTS (Text-to-Speech) System
 
-- **Language support**: English (en-GB) and Ukrainian (uk-UA)
-- **Voice detection**: Checks for available TTS voices on device
+**Hybrid Approach:**
+- **English**: Live TTS using expo-speech (device-dependent, en-GB voice)
+- **Ukrainian & Russian**: Pre-recorded high-quality MP3 files (Piper TTS, female voice)
+- **Fallback**: If prerecorded files missing, falls back to live TTS
+
+**Implementation:**
+- **Prerecorded Audio**: 120 MP3 files (58 animals × 2 languages + 2 UI phrases × 2 languages)
+  - Generated using Piper TTS neural engine
+  - Ukrainian: `uk_UA-lada-medium` model (female voice)
+  - Russian: `ru_RU-dmitri-medium` model
+  - Format: 16kbps MP3, mono, 44.1kHz (~6MB total)
+- **Voice detection**: Checks for available TTS voices on device (for English fallback)
 - **Error handling**: Gracefully handles unsupported languages (critical for Android)
 - **Callback reliability**: Ensures game flow continues even when TTS fails
-- **bySound mode**: Animal sounds play regardless of TTS availability on device
+- **Audio ducking**: Background music volume reduces to 5% during speech playback
+- **bySound mode**: Animal sounds play regardless of TTS availability
+
+**Generating Audio Files:**
+
+To regenerate or update prerecorded audio files:
+
+```bash
+# 1. Build and start TTS generator (first time only)
+cd scripts/tts-generator
+docker-compose build  # Downloads Piper models (~5 min)
+docker-compose up -d
+
+# 2. Generate audio files
+cd ../..  # Return to project root
+node scripts/generateTTSAudio.js
+
+# 3. Files saved to:
+#    - assets/audio/animals/uk/*.mp3 (58 Ukrainian animal names)
+#    - assets/audio/animals/ru/*.mp3 (58 Russian animal names)
+#    - assets/audio/ui/uk/*.mp3 (2 UI phrases)
+#    - assets/audio/ui/ru/*.mp3 (2 UI phrases)
+#    - src/constants/audioFiles.ts (auto-generated mappings)
+```
+
+**Technical Details:**
+- TTS Engine: Piper TTS (lightweight neural TTS, runs in Docker)
+- Generation time: ~10-15 minutes for all 120 files
+- Disk space: ~100MB Docker models + ~6MB audio files
+- Quality: Clear pronunciation suitable for children's educational content
 
 ### Emoji Rendering (SVG-Based System)
 
