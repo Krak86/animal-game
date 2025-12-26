@@ -27,6 +27,9 @@ An interactive React Native educational game for children to learn animal names 
 - 🎭 **SVG Emoji Rendering**: Consistent cross-platform emoji appearance using Twemoji
 - 💾 **Language Persistence**: Automatic language detection with AsyncStorage
 - 🏠 **Reset Functionality**: Return to start screen anytime
+- 📱 **Full Screen Mode**: Automatic full screen on Android startup for immersive experience
+- 🚪 **Exit App Button**: Easy app termination with confirmation dialog
+- ⚡ **FlashList Performance**: Lightning-fast scrolling in Exhibition mode
 
 ## Project Structure
 
@@ -436,14 +439,16 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
 
 ## Technologies
 
-- **React Native 0.81.5** with **Expo ~54.0.29**
+- **React Native 0.81.5** with **Expo ~54.0.30**
 - **TypeScript 5.9.3** for type safety
 - **@react-navigation/drawer** (v7.x) and **@react-navigation/native** (v7.x) for drawer navigation system
-- **react-native-reanimated** (v3.x) for high-performance animations
+- **@shopify/flash-list** (v2.0.2) for high-performance list rendering in Exhibition mode
+- **react-native-reanimated** (v4.1.1) for high-performance animations
 - **react-native-reanimated-carousel** for image gallery carousel
 - **expo-av** for audio playback and background music
 - **expo-speech** for text-to-speech in all three languages
 - **expo-font** for custom Montserrat typography
+- **expo-navigation-bar** for full screen mode control on Android
 - **@react-native-async-storage** for language persistence
 - **react-native-svg** (v15.12.1) for SVG rendering
 - **react-native-svg-transformer** for importing SVG as React components

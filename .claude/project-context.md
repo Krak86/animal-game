@@ -6,16 +6,17 @@ An interactive React Native educational game built with Expo where children can 
 
 ## Tech Stack
 
-- **Framework**: React Native 0.81.5 with Expo ~54.0.29
+- **Framework**: React Native 0.81.5 with Expo ~54.0.30
 - **Language**: TypeScript 5.9.3
 - **Navigation**: @react-navigation/drawer (v7.x), @react-navigation/native (v7.x)
+- **List Rendering**: @shopify/flash-list (v2.0.2) for high-performance scrolling in Exhibition mode
 - **Audio**: expo-av (v16.0.8) for sound playback and background music
 - **Speech**: expo-speech (v14.0.8) for text-to-speech pronunciation
 - **Fonts**: expo-font (v14.0.10) with Montserrat font family
 - **SVG Rendering**: react-native-svg (v15.12.1) for SVG support
 - **SVG Transformer**: react-native-svg-transformer for importing SVG as components
 - **Emoji Assets**: Twitter Twemoji SVG library
-- **Animations**: react-native-reanimated (v3.x) for high-performance animations
+- **Animations**: react-native-reanimated (v4.1.1) for high-performance animations
 - **Image Carousel**: react-native-reanimated-carousel for image galleries
 - **React**: 19.1.0
 - **Storage**: @react-native-async-storage for language persistence
@@ -435,11 +436,41 @@ When adding new UI text:
 
 ## Recent Changes
 
-### Exhibition Mode & Navigation (Latest)
+### UI/UX Improvements (Latest - December 2025)
+
+- **Full Screen Mode on Startup**: App now automatically enables full screen mode on Android when launched
+  - Uses `expo-navigation-bar` to hide Android navigation bar on startup
+  - Full screen state initialized to `true` in [App.tsx](App.tsx#L78)
+  - Drawer menu reflects correct state ("Exit Full Screen" shown initially)
+  - useEffect hook at [App.tsx:129-143](App.tsx#L129-L143) enables full screen on mount
+- **Exit App Button**: Added to drawer menu with confirmation dialog
+  - Positioned at bottom of drawer menu in [CustomDrawerContent.tsx](src/components/CustomDrawerContent.tsx)
+  - Shows confirmation alert with translations for all 3 languages
+  - Uses `BackHandler.exitApp()` for clean app termination
+  - Includes haptic feedback (`Haptics.impactAsync`) on button press
+  - Styled with crimson red color (#DC143C) for destructive action visibility
+- **Platform-Specific UI Elements**:
+  - "Exit Full Screen" and "Exit App" buttons hidden on web platform
+  - Visible only on Android and iOS using `Platform.OS !== 'web'` conditional rendering
+  - Improves web experience by removing mobile-only controls
+  - Implemented in [CustomDrawerContent.tsx:205](src/components/CustomDrawerContent.tsx#L205) and [CustomDrawerContent.tsx:242](src/components/CustomDrawerContent.tsx#L242)
+- **Privacy Policy Text Display**:
+  - Long translations (like Russian "Политика конфиденциальности") now wrap to 2 lines
+  - Uses `numberOfLines={2}` instead of single-line truncation with ellipsis
+  - Text wraps naturally within button using `flex: 1` styling
+  - Improves readability for long button labels across all languages
+- **FlashList Performance Optimization**:
+  - Migrated from FlatList to `@shopify/flash-list` (v2.0.2) in AnimalsListView
+  - Significantly improved scrolling performance and memory usage for 48-animal list
+  - Maintains row-based multi-column layout with proper scroll position restoration
+  - Dynamic row height calculation based on card size, font scale, and padding
+  - Viewability tracking for scroll position persistence across navigation
+
+### Exhibition Mode & Navigation
 
 - **Exhibition Mode ("showAll")**: Complete browsing experience for all 48 animals
 - **Drawer Navigation**: Implemented React Navigation drawer with CustomDrawerContent
-- **AnimalsListView**: Browse screen with search/filter functionality
+- **AnimalsListView**: Browse screen with search/filter functionality using FlashList
 - **AnimalDetailView**: Full-screen detail view with comprehensive animal information
 - **Image Galleries**: 6-7 Unsplash photos per animal with carousel and pinch-to-zoom
 - **Video Galleries**: YouTube video player integration (3 videos per animal)
