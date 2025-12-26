@@ -14,7 +14,7 @@ import * as Haptics from "expo-haptics";
 import { getAnimalDetailViewStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Animal, Language, Translations } from "@/types";
-import { speakText, stopSpeech } from "@/utils/speech";
+import { speakAnimalName, stopSpeech } from "@/utils/speech";
 import { playAnimalSound, stopAnimalSound } from "@/utils/audio";
 import { openLinkDirect, openExternalLink } from "@/utils/linking";
 import { EmojiSvg } from "@/components/EmojiSvg";
@@ -227,9 +227,8 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
     if (!isSoundEnabled) return;
 
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    const animalName = translations.animals[animal.name];
-    // Default to English for TTS
-    speakText(animalName, "en", backgroundMusic, () => {});
+    // Use speakAnimalName to support prerecorded audio for UK/RU
+    speakAnimalName(animal.name, language, backgroundMusic, () => {});
   };
 
   const handlePlaySound = async () => {

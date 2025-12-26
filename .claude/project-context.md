@@ -82,6 +82,9 @@ Language switching is available on the start screen and during gameplay. All UI 
 ├── PrivacyPolicy.UK.md              # Privacy policy (Ukrainian)
 ├── PrivacyPolicy.RU.md              # Privacy policy (Russian)
 ├── DOCKER_SETUP.md                  # Docker setup documentation
+├── docs/                            # Additional documentation
+│   ├── ADDING_NEW_AUDIO.md          # Guide for adding new animals/UI audio
+│   └── AUDIO_QUICK_REFERENCE.md     # Quick reference for TTS audio generation
 │
 ├── assets/                          # Static assets
 │   ├── fonts/                       # Montserrat TTF fonts (4 files)
@@ -93,7 +96,18 @@ Language switching is available on the start screen and during gameplay. All UI 
 │   │   ├── bg1.jpg
 │   │   ├── bg2.jpg
 │   │   └── ...                      # bg3.jpg - bg10.jpg
-│   ├── music/                       # Audio files
+│   ├── audio/                       # TTS audio files (prerecorded)
+│   │   ├── animals/                 # Animal names (UK/RU)
+│   │   │   ├── uk/                  # 60 Ukrainian MP3 files
+│   │   │   │   ├── dog.mp3, cat.mp3, ...
+│   │   │   └── ru/                  # 60 Russian MP3 files
+│   │   │       ├── dog.mp3, cat.mp3, ...
+│   │   └── ui/                      # UI phrases (UK/RU)
+│   │       ├── uk/                  # 2 Ukrainian UI phrases
+│   │       │   ├── findthe.mp3, whosaysthis.mp3
+│   │       └── ru/                  # 2 Russian UI phrases
+│   │           ├── findthe.mp3, whosaysthis.mp3
+│   ├── music/                       # Audio files (sound effects)
 │   │   ├── animals/                 # 48 animal sound files (MP3)
 │   │   │   ├── bear.mp3
 │   │   │   ├── cat.mp3
@@ -114,6 +128,11 @@ Language switching is available on the start screen and during gameplay. All UI 
 ├── scripts/                         # Build and setup scripts
 │   ├── downloadTwemojiSvgs.js       # Download Twemoji SVG assets
 │   ├── downloadAnimalSounds.js      # Download animal sound files
+│   ├── generateTTSAudio.js          # Generate TTS audio files for UK/RU (Edge TTS)
+│   ├── tts-generator/               # Docker TTS generation environment
+│   │   ├── Dockerfile               # Edge TTS container config
+│   │   ├── docker-compose.yml       # Container orchestration
+│   │   └── output/                  # Temporary audio generation output
 │   └── fix-base-path.js             # Post-build script for GitHub Pages deployment
 │
 ├── .github/                         # GitHub Actions workflows
@@ -144,9 +163,10 @@ Language switching is available on the start screen and during gameplay. All UI 
 │   │   ├── EmojiSvg.tsx             # SVG emoji rendering component
 │   │   └── index.ts                 # Components barrel export
 │   │
-│   ├── constants/                   # App constants and data (6 files)
+│   ├── constants/                   # App constants and data (7 files)
 │   │   ├── animals.ts               # 48 animals with images, videos, Wikipedia URLs (1,442 lines)
 │   │   ├── translations.ts          # Complete i18n for en/uk/ru (656 lines)
+│   │   ├── audioFiles.ts            # Auto-generated TTS audio mappings (UK/RU)
 │   │   ├── sounds.ts                # Sound effect URLs (success, wrong)
 │   │   ├── fonts.ts                 # Font family constants
 │   │   ├── gameSettings.ts          # Game configuration (ANIMALS_PER_SCREEN = 6)
@@ -282,10 +302,22 @@ The app is automatically deployed to GitHub Pages via GitHub Actions:
 
 ### Audio System
 
-- Background music: Looping music file with volume control
-- Animal sounds: External URLs loaded on-demand
-- Sound effects: Success and error sounds
-- Global sound toggle affects all audio
+- **Background music**: Looping music file with volume control (0.2 normal, 0.05 ducked)
+- **Animal sounds**: External URLs loaded on-demand (1.0 volume)
+- **Sound effects**: Success and error sounds (0.8 volume)
+- **TTS (Text-to-Speech)**:
+  - **English**: Live TTS using expo-speech (device TTS engine)
+  - **Ukrainian & Russian**: Pre-recorded high-quality MP3 files
+    - Generated using Microsoft Edge TTS (cloud-based)
+    - 124 total files (60 animals × 2 langs + 2 UI × 2 langs)
+    - Format: 16kbps MP3, mono, 44.1kHz (~0.85 MB total)
+    - Voices: uk-UA-PolinaNeural (Ukrainian female), ru-RU-SvetlanaNeural (Russian female)
+  - **Audio ducking**: Background music volume reduces during speech
+  - **Fallback**: Uses live TTS if prerecorded files missing
+- **Global sound toggle**: Affects all audio with state persistence
+- **Prerecorded audio generation**: Docker-based TTS system
+  - See `docs/ADDING_NEW_AUDIO.md` for complete guide
+  - See `docs/AUDIO_QUICK_REFERENCE.md` for quick commands
 
 ### Animation System
 

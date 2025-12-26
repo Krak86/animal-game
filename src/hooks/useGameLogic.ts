@@ -28,9 +28,12 @@ import {
 import {
   speakQuestion,
   speakText,
+  speakAnimalName,
   stopSpeech,
   logAvailableVoices,
+  playPrerecordedAudio,
 } from "@/utils/speech";
+import { PRERECORDED_UI_AUDIO, hasPrerecordedAudio } from "@/constants/audioFiles";
 import {
   Animal,
   Language,
@@ -186,34 +189,57 @@ export const useGameLogic = (
       ) {
         if (gameMode === "byName") {
           // Speak "Find the [animal name]"
-          const animalName = translations.animals[targetAnimal.name];
+          // Pass English animal name - speakQuestion will handle prerecorded audio
           speakQuestion(
             translations.findThe,
-            animalName,
+            targetAnimal.name,
             language,
             backgroundMusic.current
           );
         } else if (gameMode === "bySound") {
           // First speak "Who says so?", then play animal sound
-          speakText(
-            translations.whoSaysThis,
-            language,
-            backgroundMusic.current,
-            async () => {
-              // After speaking, play the animal sound
-              if (targetAnimal.soundUrl) {
-                try {
-                  setIsAnimalSoundPlaying(true);
-                  await playAnimalSound(
-                    targetAnimal.soundUrl,
-                    backgroundMusic.current
-                  );
-                } finally {
-                  setIsAnimalSoundPlaying(false);
+          // Use prerecorded audio for UK/RU
+          if (hasPrerecordedAudio(language) && PRERECORDED_UI_AUDIO.whoSaysThis[language]) {
+            playPrerecordedAudio(
+              PRERECORDED_UI_AUDIO.whoSaysThis[language],
+              backgroundMusic.current,
+              async () => {
+                // After speaking, play the animal sound
+                if (targetAnimal.soundUrl) {
+                  try {
+                    setIsAnimalSoundPlaying(true);
+                    await playAnimalSound(
+                      targetAnimal.soundUrl,
+                      backgroundMusic.current
+                    );
+                  } finally {
+                    setIsAnimalSoundPlaying(false);
+                  }
                 }
               }
-            }
-          );
+            );
+          } else {
+            // Fall back to live TTS for English
+            speakText(
+              translations.whoSaysThis,
+              language,
+              backgroundMusic.current,
+              async () => {
+                // After speaking, play the animal sound
+                if (targetAnimal.soundUrl) {
+                  try {
+                    setIsAnimalSoundPlaying(true);
+                    await playAnimalSound(
+                      targetAnimal.soundUrl,
+                      backgroundMusic.current
+                    );
+                  } finally {
+                    setIsAnimalSoundPlaying(false);
+                  }
+                }
+              }
+            );
+          }
         }
       }
     });
@@ -222,8 +248,8 @@ export const useGameLogic = (
   const handleAnimalPress = (animal: Animal): void => {
     // Speak the animal name when clicked (if sound is enabled)
     if (isSoundEnabled && backgroundMusic.current && translations) {
-      const animalName = translations.animals[animal.name];
-      speakQuestion("", animalName, language, backgroundMusic.current);
+      // Use new speakAnimalName function to play prerecorded audio for UK/RU
+      speakAnimalName(animal.name, language, backgroundMusic.current, () => {});
     }
 
     if (animal.id === currentAnimal?.id) {

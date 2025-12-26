@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  edge-tts:
+    build: .
+    container_name: animals-tts-generator
+    volumes:
+      - ./output:/output
+    stdin_open: true
+    tty: true
