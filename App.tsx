@@ -21,6 +21,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import {
   QuestionDisplay,
   AnimalCard,
+  PairsAnimalCard,
   SuccessOverlay,
   StartScreen,
   AnimalsListView,
@@ -37,6 +38,7 @@ import { ANIMALS } from "@/constants/animals";
 import { getAppStyles } from "@/styles/appStyles";
 // Custom hooks
 import { useGameLogic } from "@/hooks/useGameLogic";
+import { usePairsGameLogic } from "@/hooks/usePairsGameLogic";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { useLanguageInitialization } from "@/hooks/useLanguageInitialization";
 import { useMilestoneDetection } from "@/hooks/useMilestoneDetection";
@@ -142,33 +144,66 @@ export default function App() {
     enableFullScreen();
   }, []);
 
+  const gameLogic = useGameLogic(
+    language,
+    t,
+    gameMode &&
+      gameMode !== "animalPairs" &&
+      gameMode !== "showAll" &&
+      gameMode !== "secret"
+      ? gameMode
+      : "byName",
+    sessionScore,
+    setSessionScore
+  );
+
+  const pairsLogic = usePairsGameLogic(
+    language,
+    t,
+    sessionScore,
+    setSessionScore
+  );
+
+  // Destructure shared properties
   const {
-    shuffledAnimals,
-    currentAnimal,
     showSuccess,
-    score,
-    wrongTileId,
     gameStarted,
     isSoundEnabled,
-    isAnimalSoundPlaying,
     successScale,
     successOpacity,
     cardAnimations,
     questionAnimation,
     animalWiggles,
-    handleAnimalPress,
     startGame,
     toggleSound,
     resetGame,
-    replaySound,
     milestoneSound,
-  } = useGameLogic(
-    language,
-    t,
-    gameMode || "byName",
-    sessionScore,
-    setSessionScore
-  );
+  } = gameMode === "animalPairs" ? pairsLogic : gameLogic;
+
+  // Mode-specific properties
+  const shuffledAnimals =
+    gameMode === "animalPairs" ? [] : gameLogic.shuffledAnimals;
+  const pairAnimals = gameMode === "animalPairs" ? pairsLogic.pairAnimals : [];
+  const currentAnimal =
+    gameMode === "animalPairs" ? null : gameLogic.currentAnimal;
+  const score = gameMode === "animalPairs" ? 0 : gameLogic.score;
+  const wrongTileId = gameMode === "animalPairs" ? null : gameLogic.wrongTileId;
+  const isAnimalSoundPlaying =
+    gameMode === "animalPairs" ? false : gameLogic.isAnimalSoundPlaying;
+  const replaySound =
+    gameMode === "animalPairs" ? () => {} : gameLogic.replaySound;
+  const handleAnimalPress =
+    gameMode === "animalPairs"
+      ? pairsLogic.handleAnimalPress
+      : gameLogic.handleAnimalPress;
+  const firstSelection =
+    gameMode === "animalPairs" ? pairsLogic.firstSelection : null;
+  const secondSelection =
+    gameMode === "animalPairs" ? pairsLogic.secondSelection : null;
+  const matchedPairIds =
+    gameMode === "animalPairs" ? pairsLogic.matchedPairIds : [];
+  const wrongTileIndices =
+    gameMode === "animalPairs" ? pairsLogic.wrongTileIndices : [];
 
   // Milestone detection
   const {
@@ -542,21 +577,52 @@ export default function App() {
                       />
 
                       <View style={appStyles.gridContainer}>
-                        {shuffledAnimals.map((animal, index) => {
-                          const isWrong = wrongTileId === animal.id;
+                        {gameMode === "animalPairs"
+                          ? // Pairs mode - 6 tiles
+                            pairAnimals.map((animal, index) => {
+                              const isMatched = matchedPairIds.includes(
+                                animal.id
+                              );
+                              const isSelected =
+                                firstSelection?.tileIndex === index ||
+                                secondSelection?.tileIndex === index;
+                              const isWrong = wrongTileIndices.includes(index);
 
-                          return (
-                            <AnimalCard
-                              key={animal.id}
-                              animal={animal}
-                              isWrong={isWrong}
-                              wiggleAnimation={animalWiggles[index]}
-                              cardAnimation={cardAnimations[index]}
-                              translations={t}
-                              onPress={() => handleAnimalPress(animal)}
-                            />
-                          );
-                        })}
+                              return (
+                                <PairsAnimalCard
+                                  key={`${animal.id}-${index}`}
+                                  animal={animal}
+                                  tileIndex={index}
+                                  isMatched={isMatched}
+                                  isSelected={isSelected}
+                                  isWrong={isWrong}
+                                  wiggleAnimation={animalWiggles[index]}
+                                  cardAnimation={cardAnimations[index]}
+                                  cardAnimations={cardAnimations}
+                                  translations={t}
+                                  onPress={handleAnimalPress}
+                                  index={index}
+                                />
+                              );
+                            })
+                          : // Regular modes - 6 tiles
+                            shuffledAnimals.map((animal, index) => {
+                              const isWrong = wrongTileId === animal.id;
+
+                              return (
+                                <AnimalCard
+                                  key={animal.id}
+                                  animal={animal}
+                                  isWrong={isWrong}
+                                  wiggleAnimation={animalWiggles[index]}
+                                  cardAnimation={cardAnimations[index]}
+                                  translations={t}
+                                  onPress={() =>
+                                    handleAnimalPress(animal, index)
+                                  }
+                                />
+                              );
+                            })}
                       </View>
                     </ScrollView>
 

@@ -3,6 +3,7 @@ export { LanguageSwitcher } from "./LanguageSwitcher";
 export { LanguageDropdown } from "./LanguageDropdown";
 export { QuestionDisplay } from "./QuestionDisplay";
 export { AnimalCard } from "./AnimalCard";
+export { PairsAnimalCard } from "./PairsAnimalCard";
 export { SuccessOverlay } from "./SuccessOverlay";
 export { StartScreen } from "./StartScreen";
 export { SoundToggle } from "./SoundToggle";

@@ -44,6 +44,7 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
   const borderAnim2 = useRef(new Animated.Value(0)).current;
   const borderAnim3 = useRef(new Animated.Value(0)).current;
   const borderAnim4 = useRef(new Animated.Value(0)).current; // For secret button
+  const borderAnim5 = useRef(new Animated.Value(0)).current; // For animal pairs button
 
   useEffect(() => {
     // Create wiggle animation for each emoji
@@ -146,6 +147,7 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
     createBorderLoop(borderAnim2, Math.random() * 2000).start();
     createBorderLoop(borderAnim3, Math.random() * 2000).start();
     createBorderLoop(borderAnim4, Math.random() * 2000).start();
+    createBorderLoop(borderAnim5, Math.random() * 2000).start();
   }, [
     wiggle1,
     wiggle2,
@@ -156,6 +158,7 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
     borderAnim2,
     borderAnim3,
     borderAnim4,
+    borderAnim5,
   ]);
 
   return (
@@ -377,6 +380,31 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
                 <Text style={styles.modeDescription}>{t.secretDescription}</Text>
               </TouchableOpacity>
             </Animated.View>
+
+            <Animated.View
+              style={[
+                styles.buttonWrapper,
+                {
+                  borderColor: borderAnim5.interpolate({
+                    inputRange: [0, 0.33, 0.66, 1],
+                    outputRange: ["#E91E63", "#FF1744", "#F50057", "#E91E63"], // Pink colors
+                  }),
+                },
+              ]}
+            >
+              <TouchableOpacity
+                style={[styles.modeButton, styles.animalPairsButton]}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  onStart("animalPairs");
+                }}
+                activeOpacity={0.8}
+              >
+                <EmojiSvg emoji="🎯" style={styles.buttonEmoji} />
+                <Text style={styles.modeButtonText}>{t.animalPairs}</Text>
+                <Text style={styles.modeDescription}>{t.animalPairsDescription}</Text>
+              </TouchableOpacity>
+            </Animated.View>
           </View>
         </View>
       </ScrollView>
@@ -464,6 +492,9 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
     },
     secretButton: {
       backgroundColor: "#FF8C42", // Orange/mystery color
+    },
+    animalPairsButton: {
+      backgroundColor: "#E91E63", // Pink color for pairs mode
     },
     buttonEmoji: {
       fontSize: 40 * responsive.fontScale,

@@ -178,6 +178,22 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
               {translations.startScreen.showAll}
             </Text>
           </TouchableOpacity>
+
+          {/* Animal Pairs Button */}
+          <TouchableOpacity
+            style={[
+              styles.menuItemContent,
+              styles.gameModeButton,
+              currentGameMode === "animalPairs" && styles.activeGameMode,
+            ]}
+            onPress={() => handleModeSwitch("animalPairs")}
+            activeOpacity={0.7}
+          >
+            <EmojiSvg emoji="🎯" style={styles.menuItemEmoji} />
+            <Text style={styles.menuItemText}>
+              {translations.startScreen.animalPairs}
+            </Text>
+          </TouchableOpacity>
         </View>
 
         {/* Sound Toggle Section */}

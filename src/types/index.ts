@@ -9,7 +9,7 @@ import { Audio } from "expo-av";
 export type Language = "en" | "uk" | "ru";
 
 // Game mode type
-export type GameMode = "byName" | "bySound" | "showAll" | "secret";
+export type GameMode = "byName" | "bySound" | "showAll" | "secret" | "animalPairs";
 
 // Animal definition
 export interface Animal {
@@ -46,12 +46,15 @@ export interface ScreenTranslations {
   showAll: string; // "Show All" button
   secret: string; // "Secret Animal" button
   secretDescription: string; // "Discover a mystery animal!" description
+  animalPairs: string; // "Animal Pairs" button
+  animalPairsDescription: string; // "Find matching pairs!" description
 }
 
 export interface Translations {
   startScreen: ScreenTranslations;
   score: string;
   findThe: string;
+  findThePairs: string; // "Find the pairs!" for Animal Pairs mode
   greatJob: string;
   youFoundIt: string;
   startFromBeginning: string;
@@ -186,4 +189,30 @@ export interface UseGameLogicReturn {
   resetGame: () => Promise<void>;
   resetGameState: () => Promise<void>; // Reset game state without stopping background music
   replaySound: () => Promise<void>; // New function for By Sound mode
+}
+
+// Pairs game hook return type
+export interface UsePairsGameLogicReturn {
+  // State
+  pairAnimals: Animal[]; // 6 tiles (3 pairs)
+  firstSelection: { animal: Animal; tileIndex: number } | null;
+  secondSelection: { animal: Animal; tileIndex: number } | null;
+  matchedPairIds: number[];
+  wrongTileIndices: number[];
+  showSuccess: boolean;
+  gameStarted: boolean;
+  isSoundEnabled: boolean;
+  milestoneSound: Audio.Sound | null;
+  // Animation values
+  successScale: Animated.Value;
+  successOpacity: Animated.Value;
+  cardAnimations: Animated.Value[];
+  questionAnimation: Animated.Value;
+  animalWiggles: Animated.Value[];
+  // Functions
+  handleAnimalPress: (animal: Animal, tileIndex: number) => void;
+  startGame: () => Promise<void>;
+  toggleSound: () => void;
+  resetGame: () => Promise<void>;
+  resetGameState: () => Promise<void>;
 }

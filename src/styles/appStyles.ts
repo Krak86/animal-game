@@ -31,6 +31,14 @@ export const getAppStyles = (responsive: ResponsiveDimensions) =>
       fontFamily: FONTS.bold,
       color: COLORS.accent,
     },
+    gameModeText: {
+      fontSize: responsive.isLandscape
+        ? 12 * responsive.fontScale
+        : 14 * responsive.fontScale,
+      fontFamily: FONTS.medium,
+      color: COLORS.gray,
+      marginTop: responsive.spacing.xs / 2,
+    },
     questionContainer: {
       alignItems: "center",
       marginBottom: responsive.isLandscape

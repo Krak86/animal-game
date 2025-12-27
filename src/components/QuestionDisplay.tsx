@@ -62,9 +62,9 @@ export const QuestionDisplay: React.FC<Props> = ({
     }
   }, [isReplayingSound, speakingAnim]);
 
-  if (!currentAnimal) return null;
-
-  const animalName = translations.animals[currentAnimal.name];
+  const animalName = !currentAnimal
+    ? translations.animals[0]
+    : translations.animals[currentAnimal.name];
 
   return (
     <Animated.View
@@ -87,6 +87,12 @@ export const QuestionDisplay: React.FC<Props> = ({
         <View style={styles.byNameContainer}>
           <Text style={appStyles.questionText}>{translations.findThe} </Text>
           <Text style={appStyles.animalNameText}>{animalName}</Text>
+        </View>
+      ) : gameMode === "animalPairs" ? (
+        <View style={styles.byNameContainer}>
+          <Text style={appStyles.questionText}>
+            {translations.findThePairs}
+          </Text>
         </View>
       ) : (
         onReplaySound && (

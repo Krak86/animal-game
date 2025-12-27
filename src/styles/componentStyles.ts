@@ -268,8 +268,8 @@ export const getAnimalsListViewStyles = (responsive: ResponsiveDimensions) =>
     },
     scrollContent: {
       flexGrow: 1,
-      paddingHorizontal: responsive.spacing.sm,
-      paddingBottom: responsive.spacing.lg,
+      paddingHorizontal: 0,
+      paddingBottom: 0,
     },
     searchContainer: {
       flexDirection: "row",
