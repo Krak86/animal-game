@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-An interactive React Native educational game built with Expo where children can learn animal names and sounds in English, Ukrainian, and Russian. Features three distinct game modes (name recognition, sound identification, and exhibition browsing), drawer-based navigation, custom fonts, background music, and engaging animations. Includes image galleries, YouTube video integration, and Wikipedia links for comprehensive learning.
+An interactive React Native educational game built with Expo where children can learn animal names and sounds in English, Ukrainian, and Russian. Features four distinct game modes (name recognition, sound identification, memory matching pairs, and exhibition browsing), drawer-based navigation, custom fonts, background music, and engaging animations. Includes image galleries, YouTube video integration, and Wikipedia links for comprehensive learning.
 
 ## Tech Stack
 
@@ -37,7 +37,20 @@ An interactive React Native educational game built with Expo where children can 
    - Includes replay button to hear the sound again
    - Only animals with sound files are included
 
-3. **Exhibition Mode** (`showAll`):
+3. **Animal Pairs** (`animalPairs`):
+
+   - Memory matching game with 6 face-up tiles (3 pairs of animals)
+   - Players click two identical animal tiles sequentially
+   - First click selects (silent), second click checks for match
+   - Correct match: Success sound, tiles fade (opacity 0.3), score +1
+   - Wrong match: Error sound, red borders flash on both tiles
+   - All tiles visible from start (no flip animation)
+   - After all 3 pairs matched: Success overlay, then new round with different animals
+   - Matched pairs become non-interactive
+   - Same grid layout as By Name mode
+   - Visual feedback: Gold border for selected, red border for wrong, faded for matched
+
+4. **Exhibition Mode** (`showAll`):
    - Browse all 48 animals in a scrollable list
    - Search and filter animals by name
    - Tap any animal to view detailed information
@@ -116,8 +129,9 @@ Language switching is available on the start screen and during gameplay. All UI 
 │   │   ├── kid-366901.mp3           # Background music
 │   │   ├── success.mp3              # Success sound effect
 │   │   └── wrong.mp3                # Error sound effect
-│   ├── emojis/                      # SVG emoji files (70 files)
+│   ├── emojis/                      # SVG emoji files (71 files)
 │   │   ├── 1f415.svg                # Dog emoji (Twemoji)
+│   │   ├── 1f3af.svg                # Target emoji 🎯 (Twemoji)
 │   │   ├── donkey.svg               # Custom donkey emoji
 │   │   ├── goose.svg                # Custom goose emoji
 │   │   └── ...                      # All other animal and UI emojis
@@ -145,8 +159,9 @@ Language switching is available on the start screen and during gameplay. All UI 
 │   └── fonts/                       # Web-accessible fonts
 │
 ├── src/                             # Source code directory
-│   ├── components/                  # React components (17 files)
+│   ├── components/                  # React components (18 files)
 │   │   ├── AnimalCard.tsx           # Individual animal tile with wiggle animation
+│   │   ├── PairsAnimalCard.tsx      # Memory matching card (matched/selected/wrong states)
 │   │   ├── QuestionDisplay.tsx      # Shows question with name or sound replay
 │   │   ├── StartScreen.tsx          # Game mode selection screen with animations
 │   │   ├── SuccessOverlay.tsx       # Celebration overlay on correct answer
@@ -170,11 +185,12 @@ Language switching is available on the start screen and during gameplay. All UI 
 │   │   ├── audioFiles.ts            # Auto-generated TTS audio mappings (UK/RU)
 │   │   ├── sounds.ts                # Sound effect URLs (success, wrong)
 │   │   ├── fonts.ts                 # Font family constants
-│   │   ├── gameSettings.ts          # Game configuration (ANIMALS_PER_SCREEN = 6)
-│   │   └── emojiMap.ts              # Emoji to SVG file mappings
+│   │   ├── gameSettings.ts          # Game configuration (ANIMALS_PER_SCREEN = 6, PAIRS_PER_SCREEN = 3)
+│   │   └── emojiMap.ts              # Emoji to SVG file mappings (71 emojis including 🎯)
 │   │
-│   ├── hooks/                       # Custom React hooks (3 files)
+│   ├── hooks/                       # Custom React hooks (4 files)
 │   │   ├── useGameLogic.ts          # Core game state and logic management
+│   │   ├── usePairsGameLogic.ts     # Memory matching pairs game logic (353 lines)
 │   │   ├── useLanguageInitialization.ts  # Language detection & persistence
 │   │   └── useResponsiveDimensions.ts    # Screen size & orientation handling
 │   │
@@ -187,8 +203,8 @@ Language switching is available on the start screen and during gameplay. All UI 
 │   │   └── linking.ts               # External link handling (Wikipedia, etc.)
 │   │
 │   ├── styles/                      # Styling (3 files)
-│   │   ├── colors.ts                # Color palette definitions
-│   │   ├── appStyles.ts             # Container, scroll, grid layouts
+│   │   ├── colors.ts                # Color palette definitions (includes pink #E91E63)
+│   │   ├── appStyles.ts             # Container, scroll, grid layouts, gameModeText
 │   │   └── componentStyles.ts       # Component-specific styles with Montserrat fonts
 │   │
 │   └── types/                       # TypeScript type definitions (1 file)
@@ -206,7 +222,8 @@ Language switching is available on the start screen and during gameplay. All UI 
 ## Key Features
 
 - **48 Animals**: Comprehensive collection including farm animals, wild animals, birds, marine life, insects
-- **Three Game Modes**: Name recognition, sound identification, and exhibition browsing
+- **Four Game Modes**: Name recognition, sound identification, memory matching pairs, and exhibition browsing
+- **Memory Matching Game**: Animal Pairs mode with face-up tiles, sequential selection, and instant feedback
 - **Exhibition Mode**: Browse all animals with search/filter, detailed views, and galleries
 - **Drawer Navigation**: Easy access to game modes and settings via hamburger menu
 - **Image Galleries**: 6-7 Unsplash photos per animal with carousel and pinch-to-zoom
@@ -233,14 +250,21 @@ Language switching is available on the start screen and during gameplay. All UI 
 
 ## Game Flow
 
-1. **Start Screen**: Choose game mode (By Name, By Sound, or Exhibition) and language
+1. **Start Screen**: Choose game mode (By Name, By Sound, Animal Pairs, or Exhibition) and language
 2. **Game Play** (By Name/By Sound modes):
    - See/hear the question
    - Select from 6 animals displayed in a grid
    - Get instant feedback (success overlay or red border)
    - Score increments on correct answer
    - New question automatically loads
-3. **Exhibition Mode**:
+3. **Animal Pairs Mode**:
+   - See 6 face-up tiles (3 pairs of animals)
+   - Click first tile (silent selection, gold border)
+   - Click second tile (checks for match)
+   - Match: Success sound, tiles fade, score +1
+   - No match: Wrong sound, red borders flash
+   - After all 3 pairs matched: Success overlay, new round starts
+4. **Exhibition Mode**:
    - Browse all 48 animals in scrollable list
    - Search/filter by animal name
    - Tap animal to view detail screen
@@ -329,9 +353,11 @@ The app is automatically deployed to GitHub Pages via GitHub Actions:
 
 ### State Management
 
-- Centralized in `useGameLogic` custom hook
-- Manages game state, animations, audio, and user interactions
-- Exposes methods for starting game, handling presses, toggling sound
+- **By Name/By Sound modes**: `useGameLogic` custom hook
+- **Animal Pairs mode**: `usePairsGameLogic` custom hook with two-click selection pattern
+- Both hooks manage game state, animations, audio, and user interactions
+- Expose methods for starting game, handling presses, toggling sound
+- Conditional hook usage in App.tsx based on current game mode
 
 ### Type Safety
 
@@ -436,7 +462,116 @@ When adding new UI text:
 
 ## Recent Changes
 
-### UI/UX Improvements (Latest - December 2025)
+### Animal Pairs Memory Matching Game Mode (Latest - December 2025)
+
+Implemented a new "Animal Pairs" game mode - a memory matching game where players find matching pairs of animals by clicking identical tiles sequentially.
+
+**Game Mechanics**:
+- **6 face-up tiles** (3 pairs of animals) displayed in same grid layout as By Name mode
+- **Two-click selection pattern**: First click selects (silent), second click checks for match
+- **Visual feedback**: Gold border (#FFD700) for selected tiles, red border (#FF4757) for wrong matches
+- **Sound behavior**: Sounds play ONLY on pair completion (success/wrong), NOT on first click
+- **Matched pairs**: Fade to opacity 0.3, become non-interactive, wiggle animation stops
+- **Round completion**: After all 3 pairs matched, show success overlay and start new round with different animals
+- **Scoring**: +1 point per correctly matched pair added to global score
+
+**Implementation Details**:
+
+**New Files Created** (3 files):
+1. **`src/hooks/usePairsGameLogic.ts`** (353 lines):
+   - Core game logic hook following pattern from useGameLogic.ts
+   - State: `pairAnimals`, `firstSelection`, `secondSelection`, `matchedPairIds`, `wrongTileIndices`, `isProcessing`
+   - `handleAnimalPress`: Two-click pattern with match/mismatch detection
+   - `startNewRound`: Picks 3 random animals, duplicates each, shuffles to create 6 tiles
+   - Animation timing fix: Reset cardAnimations and animalWiggles to 0 before setting new animals
+   - Restart animations after 50ms delay to ensure proper timing between state updates
+   - Silent mode: No TTS or animal sounds, only match/mismatch feedback
+
+2. **`src/components/PairsAnimalCard.tsx`** (281 lines):
+   - Specialized card component for pairs mode based on AnimalCard.tsx
+   - Props: `isMatched`, `isSelected`, `isWrong` for state-specific styling
+   - Gold border for selected cards, red border for wrong matches
+   - Matched cards: opacity 0.3, animations stopped, non-interactive
+   - Uses `styles.wrapper` for consistent grid layout with regular mode
+   - No label text (just emoji display)
+
+3. **`assets/emojis/1f3af.svg`**:
+   - Target emoji 🎯 downloaded from Twemoji CDN
+   - Used for Animal Pairs mode button
+
+**Files Modified** (10 files):
+1. **`src/types/index.ts`**:
+   - Added `"animalPairs"` to `GameMode` union type
+   - Created `UsePairsGameLogicReturn` interface with wrongTileIndices property
+   - Added `animalPairs`, `animalPairsDescription`, `findThePairs` to translation interfaces
+
+2. **`src/styles/colors.ts`**:
+   - Added `pink: '#E91E63'` for Animal Pairs button
+
+3. **`src/constants/gameSettings.ts`**:
+   - Added `PAIRS_PER_SCREEN = 3` (changed from initial 6 pairs after user feedback)
+   - Added `TILES_PER_SCREEN = PAIRS_PER_SCREEN * 2` (6 tiles total)
+
+4. **`src/constants/translations.ts`**:
+   - Added translations for all 3 languages (en, uk, ru):
+     - `animalPairs`: "Animal Pairs" / "Пари тварин" / "Пары животных"
+     - `animalPairsDescription`: "Find matching pairs!" / "Знайди пари!" / "Найди пары!"
+     - `findThePairs`: "Find the pairs!" / "Знайди пари!" / "Найди пары!"
+
+5. **`src/constants/emojiMap.ts`**:
+   - Added `"🎯": require("@assets/emojis/1f3af.svg")` mapping
+   - Updated total emoji count from 70 to 71
+
+6. **`src/components/QuestionDisplay.tsx`**:
+   - Added conditional rendering for animalPairs mode
+   - Displays "Find the pairs!" instruction text
+
+7. **`src/components/StartScreen.tsx`**:
+   - Added `borderAnim5` animation value for pink button border animation
+   - Created pink 🎯 button with animated border cycling through pink shades
+   - Added `animalPairsButton` style with pink background (#E91E63)
+
+8. **`src/components/CustomDrawerContent.tsx`**:
+   - Added "Animal Pairs" option to drawer menu
+   - Positioned after "By Sound" button with 🎯 emoji
+
+9. **`src/styles/appStyles.ts`**:
+   - Added `gameModeText` style for displaying game mode name below score
+   - Responsive font sizing (12-14px) with gray color
+
+10. **`App.tsx`**:
+    - Imported `PairsAnimalCard` and `usePairsGameLogic`
+    - Conditional hook initialization: `useGameLogic` for byName/bySound, `usePairsGameLogic` for animalPairs
+    - Destructured shared properties from appropriate hook based on game mode
+    - Added game mode name display below score
+    - Conditional rendering: `PairsAnimalCard` for animalPairs mode, `AnimalCard` for other modes
+    - Unique keys for duplicate animals: `${animal.id}-${index}`
+    - Props passed: `isMatched`, `isSelected`, `isWrong` calculated from game state
+
+11. **`src/components/index.ts`**:
+    - Exported `PairsAnimalCard` component
+
+**Fixes Applied**:
+- **Empty screen bug**: Reset card animations to 0 before setting new animals, add 50ms delay before entrance animation
+- **Missing wiggles bug**: Reset wiggle animations to 0 and restart `startAnimalAnimations()` every round
+- **Layout consistency**: Added `styles.wrapper` to PairsAnimalCard for identical sizing with regular mode
+
+**User-Driven Refinements**:
+1. Reduced from 12 tiles (6 pairs) to 6 tiles (3 pairs) for better gameplay
+2. Downloaded 🎯 emoji SVG and added to emoji map
+3. Added red border feedback when wrong tiles selected using `wrongTileIndices` state
+4. Verified same grid layout as "by name" mode
+5. Added game mode name text below score display
+
+**Technical Architecture**:
+- **Two-click selection pattern**: Track first and second selections with both animal and tileIndex
+- **Unique tile identification**: Combine animal.id with index for React keys (`${animal.id}-${index}`)
+- **Animation arrays**: 6 Animated.Value arrays (matching TILES_PER_SCREEN)
+- **Processing state**: Prevents rapid clicks during match checking
+- **Sound timing**: Only play sounds in second selection branch when checking for match
+- **Animation lifecycle**: Reset → Set animals → Delay 50ms → Animate entrance + wiggles
+
+### UI/UX Improvements (December 2025)
 
 - **Full Screen Mode on Startup**: App now automatically enables full screen mode on Android when launched
   - Uses `expo-navigation-bar` to hide Android navigation bar on startup
