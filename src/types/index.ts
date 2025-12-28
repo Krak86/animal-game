@@ -9,7 +9,12 @@ import { Audio } from "expo-av";
 export type Language = "en" | "uk" | "ru";
 
 // Game mode type
-export type GameMode = "byName" | "bySound" | "showAll" | "secret" | "animalPairs";
+export type GameMode =
+  | "byName"
+  | "bySound"
+  | "showAll"
+  | "secret"
+  | "animalPairs";
 
 // Animal definition
 export interface Animal {
@@ -17,7 +22,7 @@ export interface Animal {
   name: string;
   emoji: string;
   image: any; // Local image require() result (React Native)
-  soundUrl: string | number; // Optional: animal sound (URL string or local require() number)
+  soundUrl?: string | number; // Optional: animal sound (URL string or local require() number)
   modes: GameMode[]; // Which modes this animal appears in
   // Optional fields for future exhibition features
   images: string[]; // Multiple images for gallery
@@ -147,6 +152,54 @@ export interface Translations {
     snakeDescription: string;
     ravenDescription: string;
     owlDescription: string;
+    alpacaDescription: string;
+    muleDescription: string;
+    ramDescription: string;
+    henDescription: string;
+    calfDescription: string;
+    foalDescription: string;
+    foxDescription: string;
+    deerDescription: string;
+    squirrelDescription: string;
+    hedgehogDescription: string;
+    otterDescription: string;
+    pandaDescription: string;
+    koalaDescription: string;
+    hippopotamusDescription: string;
+    rhinocerosDescription: string;
+    chimpanzeeDescription: string;
+    eagleDescription: string;
+    woodpeckerDescription: string;
+    seagullDescription: string;
+    crowDescription: string;
+    vultureDescription: string;
+    hummingbirdDescription: string;
+    ostrichDescription: string;
+    pelicanDescription: string;
+    walrusDescription: string;
+    seaLionDescription: string;
+    starfishDescription: string;
+    seahorseDescription: string;
+    jellyfishDescription: string;
+    clownfishDescription: string;
+    frogDescription: string;
+    toadDescription: string;
+    lizardDescription: string;
+    iguanaDescription: string;
+    salamanderDescription: string;
+    butterflyDescription: string;
+    grasshopperDescription: string;
+    dragonflyDescription: string;
+    spiderDescription: string;
+    mosquitoDescription: string;
+    mouseDescription: string;
+    slothDescription: string;
+    wormDescription: string;
+    flyDescription: string;
+    beetleDescription: string;
+    skunkDescription: string;
+    beaverDescription: string;
+    cockroachDescription: string;
   };
   animals: AnimalTranslations;
 }

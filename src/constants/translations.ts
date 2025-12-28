@@ -169,6 +169,102 @@ export const TRANSLATIONS: TranslationMap = {
         "Ravens are large, intelligent birds known for their problem-solving abilities and complex vocalizations. They are often associated with mythology and folklore. Ravens mate for life and can live many years.",
       owlDescription:
         "Owls are birds of prey with large eyes, excellent hearing, and silent flight. They are primarily nocturnal hunters with rotating heads that can turn almost 270 degrees. Owls are found on every continent except Antarctica.",
+      alpacaDescription:
+        "Alpacas are domesticated animals from South America, related to llamas. They have soft, luxurious fleece used to make warm clothing. Alpacas are gentle, intelligent animals that live in herds in mountainous regions.",
+      muleDescription:
+        "Mules are hybrid animals born from a male donkey and a female horse. They are known for being strong, patient, and sure-footed. Mules have been used for centuries to carry heavy loads in difficult terrain.",
+      ramDescription:
+        "Rams are adult male sheep with large, curved horns. They use their horns to compete with other males during mating season. Rams are strong animals that lead and protect their flock.",
+      henDescription:
+        "Hens are adult female chickens that lay eggs. They are farm birds that live in groups and communicate through various clucks and calls. Hens are caring mothers that protect and teach their chicks.",
+      calfDescription:
+        "A calf is a baby cow that drinks milk from its mother. Calves are playful and curious, learning from their mothers and other herd members. They grow quickly and can stand within hours of being born.",
+      foalDescription:
+        "A foal is a baby horse that can walk and run shortly after birth. Foals are playful and energetic, staying close to their mothers for protection. They learn important skills by playing with other young horses.",
+      foxDescription:
+        "Foxes are clever mammals with bushy tails and pointed ears. They are excellent hunters known for their intelligence and adaptability. Foxes live in forests, grasslands, and even cities around the world.",
+      deerDescription:
+        "Deer are graceful animals with long legs and many species have antlers. They are herbivores that eat plants, leaves, and grass. Deer are known for their speed and agility, and live in forests and meadows worldwide.",
+      squirrelDescription:
+        "Squirrels are small, agile rodents with bushy tails. They are excellent climbers that live in trees and gather nuts for winter. Squirrels are known for their quick movements and ability to leap between branches.",
+      hedgehogDescription:
+        "Hedgehogs are small mammals covered in sharp spines for protection. They curl into a ball when frightened, making them difficult to attack. Hedgehogs are nocturnal animals that eat insects, snails, and worms.",
+      otterDescription:
+        "Otters are playful aquatic mammals with waterproof fur. They are excellent swimmers that hunt for fish and shellfish. Otters use tools like rocks to crack open shells and are known for their playful behavior.",
+      pandaDescription:
+        "Giant pandas are large bears from China that eat mostly bamboo. They have distinctive black and white fur and are excellent climbers. Pandas are endangered animals that spend most of their day eating and resting.",
+      koalaDescription:
+        "Koalas are marsupials from Australia that live in eucalyptus trees. They sleep up to 20 hours a day and eat only eucalyptus leaves. Koalas carry their babies in a pouch, like kangaroos.",
+      hippopotamusDescription:
+        "Hippopotamuses are large, semi-aquatic mammals from Africa. They spend most of their day in water to keep cool. Despite their bulky appearance, hippos can run fast on land and are very protective of their territory.",
+      rhinocerosDescription:
+        "Rhinoceroses are large mammals with thick skin and one or two horns on their snout. They are herbivores that eat grass and leaves. Rhinos have poor eyesight but excellent hearing and smell.",
+      chimpanzeeDescription:
+        "Chimpanzees are intelligent apes that share 98% of their DNA with humans. They live in social groups and use tools to get food. Chimpanzees communicate through sounds, gestures, and facial expressions.",
+      eagleDescription:
+        "Eagles are large birds of prey with powerful talons and excellent eyesight. They can spot small animals from high in the sky. Eagles build large nests and are symbols of strength and freedom.",
+      woodpeckerDescription:
+        "Woodpeckers are birds with strong beaks that drill into tree bark. They search for insects living inside trees and create holes for nesting. Woodpeckers can peck up to 20 times per second without getting hurt.",
+      seagullDescription:
+        "Seagulls are coastal birds known for their loud calls and scavenging behavior. They have webbed feet and can drink both fresh and salt water. Seagulls are intelligent birds that often follow fishing boats.",
+      crowDescription:
+        "Crows are highly intelligent black birds that can solve complex problems. They use tools, recognize human faces, and can even hold grudges. Crows live in family groups and work together to find food.",
+      vultureDescription:
+        "Vultures are large scavenging birds with bald heads and sharp beaks. They clean the environment by eating dead animals. Vultures can soar high in the sky for hours, searching for food with their keen eyesight.",
+      hummingbirdDescription:
+        "Hummingbirds are tiny, colorful birds that can hover in mid-air. They flap their wings up to 80 times per second, creating a humming sound. Hummingbirds feed on flower nectar and have amazing flying skills.",
+      ostrichDescription:
+        "Ostriches are the world's largest birds, but they cannot fly. They have powerful legs that can run up to 70 km/h. Ostriches have large eyes and lay the biggest eggs of any bird species.",
+      pelicanDescription:
+        "Pelicans are large water birds with a distinctive pouch under their beak. They use this pouch to scoop up fish from the water. Pelicans often work together in groups to catch fish more efficiently.",
+      walrusDescription:
+        "Walruses are large marine mammals with long tusks and thick blubber. They live in Arctic waters and use their tusks to pull themselves onto ice. Walruses are social animals that gather in large groups.",
+      seaLionDescription:
+        "Sea lions are marine mammals known for their playful behavior and loud barking. They are excellent swimmers with flippers instead of legs. Sea lions are intelligent and can be trained to perform tricks.",
+      starfishDescription:
+        "Starfish, also called sea stars, are marine animals with five arms. They can regrow lost arms and move using tiny tube feet. Starfish live on the ocean floor and eat mollusks and other small sea creatures.",
+      seahorseDescription:
+        "Seahorses are small fish that swim upright and have a horse-like head. Male seahorses carry babies in a special pouch until they're ready to be born. They use their curled tail to anchor themselves to seaweed.",
+      jellyfishDescription:
+        "Jellyfish are ancient sea creatures with soft, transparent bodies and stinging tentacles. They drift through ocean currents and glow in the dark. Jellyfish have existed for over 500 million years.",
+      clownfishDescription:
+        "Clownfish are small, orange fish with white stripes that live in sea anemones. The anemone's stinging tentacles protect them from predators. Clownfish have a special mucus that prevents them from being stung.",
+      frogDescription:
+        "Frogs are amphibians that live both in water and on land. They catch insects with their long, sticky tongues. Frogs start life as tadpoles in water before growing legs and moving to land.",
+      toadDescription:
+        "Toads are amphibians similar to frogs but with dry, bumpy skin. They live mostly on land and are excellent pest controllers, eating many insects. Toads can live for many years and some species are quite large.",
+      lizardDescription:
+        "Lizards are reptiles with scaly skin, four legs, and most have long tails. They can often detach their tails to escape predators and grow new ones. Lizards live in warm climates around the world.",
+      iguanaDescription:
+        "Iguanas are large lizards with spines along their back. They are excellent swimmers and climbers that eat plants. Some iguanas can grow over 6 feet long including their tail.",
+      salamanderDescription:
+        "Salamanders are amphibians that look like lizards but have moist skin. They can regenerate lost limbs and tails. Most salamanders live in damp forests near streams and ponds.",
+      butterflyDescription:
+        "Butterflies are colorful insects with four large wings covered in tiny scales. They start life as caterpillars before transforming in a chrysalis. Butterflies feed on flower nectar and help pollinate plants.",
+      grasshopperDescription:
+        "Grasshoppers are jumping insects with powerful back legs. They make chirping sounds by rubbing their legs together. Grasshoppers eat plants and can leap up to 20 times their body length.",
+      dragonflyDescription:
+        "Dragonflies are ancient insects with four transparent wings and large eyes. They are skilled fliers that can hover, fly backwards, and catch prey mid-air. Dragonflies spend most of their life as aquatic nymphs.",
+      spiderDescription:
+        "Spiders are eight-legged arachnids that spin silk webs to catch prey. They inject venom to paralyze insects. Most spiders are harmless to humans and help control pest populations.",
+      mosquitoDescription:
+        "Mosquitoes are small flying insects known for their itchy bites. Only female mosquitoes bite to get blood for their eggs. Mosquitoes are found worldwide and are attracted to carbon dioxide and body heat.",
+      mouseDescription:
+        "Mice are small rodents with long tails and large ears. They are found almost everywhere in the world and are known for their ability to squeeze through tiny spaces. Mice are intelligent, social animals that communicate through squeaks and scents.",
+      slothDescription:
+        "Sloths are slow-moving mammals that live in trees in Central and South American rainforests. They sleep up to 20 hours a day and move so slowly that algae grows on their fur. Despite being slow, sloths are excellent swimmers.",
+      wormDescription:
+        "Worms are soft-bodied invertebrates that live in soil. Earthworms help improve soil quality by breaking down organic matter and creating tunnels that allow air and water to reach plant roots. They have no eyes or ears but can sense light and vibrations.",
+      flyDescription:
+        "Flies are common insects with large compound eyes and transparent wings. They can walk on ceilings and walls using sticky pads on their feet. Flies taste with their feet and can only eat liquids, using their sponge-like mouthparts.",
+      beetleDescription:
+        "Beetles are insects with hard wing covers that protect their flying wings underneath. They are the largest group of animals on Earth with over 400,000 species. Beetles can be found in almost every habitat and come in many colors and sizes.",
+      skunkDescription:
+        "Skunks are mammals famous for their black and white fur and their ability to spray a strong-smelling liquid when threatened. This spray can reach up to 10 feet and helps protect them from predators. Skunks are mostly nocturnal and eat both plants and small animals.",
+      beaverDescription:
+        "Beavers are large rodents known for building dams and lodges in rivers and streams. Their strong teeth can cut down trees, and their flat tails help them swim and signal danger by slapping the water. Beaver dams create wetlands that provide homes for many other animals.",
+      cockroachDescription:
+        "Cockroaches are ancient insects that have survived for millions of years. They are incredibly resilient and can live in almost any environment. Cockroaches are nocturnal and can run very fast. They have flat bodies that help them hide in tight spaces.",
     },
     animals: {
       Dog: "Dog",
@@ -227,10 +323,42 @@ export const TRANSLATIONS: TranslationMap = {
       Goat: "Goat",
       Bull: "Bull",
       Duck: "Duck",
-      Lamb: "Lamb",
       Snake: "Snake",
       Raven: "Raven",
       Owl: "Owl",
+      Ram: "Ram",
+      Hen: "Hen",
+      Fox: "Fox",
+      Squirrel: "Squirrel",
+      Hedgehog: "Hedgehog",
+      Otter: "Otter",
+      Panda: "Panda",
+      Koala: "Koala",
+      Hippopotamus: "Hippopotamus",
+      Rhinoceros: "Rhinoceros",
+      Chimpanzee: "Chimpanzee",
+      Eagle: "Eagle",
+      Woodpecker: "Woodpecker",
+      Seagull: "Seagull",
+      Ostrich: "Ostrich",
+      Pelican: "Pelican",
+      Starfish: "Starfish",
+      Seahorse: "Seahorse",
+      Jellyfish: "Jellyfish",
+      Clownfish: "Clownfish",
+      Frog: "Frog",
+      Butterfly: "Butterfly",
+      Grasshopper: "Grasshopper",
+      Spider: "Spider",
+      Mosquito: "Mosquito",
+      Mouse: "Mouse",
+      Sloth: "Sloth",
+      Worm: "Worm",
+      Fly: "Fly",
+      Beetle: "Beetle",
+      Skunk: "Skunk",
+      Beaver: "Beaver",
+      Cockroach: "Cockroach",
     },
   },
   uk: {
@@ -400,6 +528,102 @@ export const TRANSLATIONS: TranslationMap = {
         "Ворони — великі, розумні птахи, відомі своїми здібностями до розв'язання проблем та складною вокалізацією. Вони часто пов'язані з міфологією та фольклором. Ворони створюють пари на все життя і можуть жити багато років.",
       owlDescription:
         "Сови — хижі птахи з великими очима, чудовим слухом та безшумним польотом. Вони переважно нічні мисливці з обертовими головами, які можуть повертатися майже на 270 градусів. Сови живуть на всіх континентах, крім Антарктиди.",
+      alpacaDescription:
+        "Альпаки — одомашнені тварини з Південної Америки, споріднені з ламами. Вони мають м'яку, розкішну вовну, яку використовують для виготовлення теплого одягу. Альпаки — ніжні, розумні тварини, що живуть стадами в гірських регіонах.",
+      muleDescription:
+        "Мули — гібридні тварини, народжені від віслюка-самця та кобили. Вони відомі своєю силою, терпінням та впевненістю. Мулів століттями використовували для перенесення важких вантажів на складній місцевості.",
+      ramDescription:
+        "Барани — дорослі самці овець з великими вигнутими рогами. Вони використовують роги для змагання з іншими самцями в період розмноження. Барани — сильні тварини, що ведуть та захищають своє стадо.",
+      henDescription:
+        "Курки — дорослі самки курей, що несуть яйця. Це фермерські птахи, що живуть групами та спілкуються різними квоктаннями. Курки — турботливі матері, що захищають та навчають своїх курчат.",
+      calfDescription:
+        "Теля — дитинча корови, що п'є молоко від матері. Телята грайливі та допитливі, вчаться у своїх матерів та інших членів стада. Вони швидко ростуть та можуть стояти за кілька годин після народження.",
+      foalDescription:
+        "Лоша — дитинча коня, яке може ходити та бігати невдовзі після народження. Лошата грайливі та енергійні, залишаються близько до матері для захисту. Вони вивчають важливі навички, граючись з іншими молодими конями.",
+      foxDescription:
+        "Лисиці — хитрі ссавці з пухнастими хвостами та загостреними вухами. Вони чудові мисливці, відомі своєю кмітливістю та пристосовністю. Лисиці живуть в лісах, степах і навіть містах по всьому світу.",
+      deerDescription:
+        "Олені — граціозні тварини з довгими ногами, багато видів мають роги. Вони травоїдні, що харчуються рослинами, листям та травою. Олені відомі своєю швидкістю та спритністю, живуть в лісах та на луках по всьому світу.",
+      squirrelDescription:
+        "Білки — маленькі, спритні гризуни з пухнастими хвостами. Вони чудові верхолази, що живуть на деревах та збирають горіхи на зиму. Білки відомі своїми швидкими рухами та здатністю стрибати між гілками.",
+      hedgehogDescription:
+        "Їжаки — маленькі ссавці, вкриті гострими голками для захисту. Вони згортаються в клубок, коли злякані, що ускладнює напад на них. Їжаки — нічні тварини, що харчуються комахами, равликами та черв'яками.",
+      otterDescription:
+        "Видри — грайливі водні ссавці з водонепроникним хутром. Вони чудові плавці, що полюють на рибу та молюсків. Видри використовують інструменти, як-от камені, щоб розколювати мушлі, та відомі своєю грайливою поведінкою.",
+      pandaDescription:
+        "Велик панди — великі ведмеді з Китаю, що харчуються переважно бамбуком. Вони мають характерне чорно-біле хутро та чудово лазять по деревах. Панди — зникаючі тварини, що проводять більшу частину дня, їдячи та відпочиваючи.",
+      koalaDescription:
+        "Коали — сумчасті з Австралії, що живуть на евкаліптових деревах. Вони сплять до 20 годин на день та харчуються лише листям евкаліпта. Коали носять своїх малюків у сумці, як кенгуру.",
+      hippopotamusDescription:
+        "Гіпопотами — великі напівводні ссавці з Африки. Вони проводять більшу частину дня у воді, щоб залишатися прохолодними. Незважаючи на громіздкий вигляд, бегемоти можуть швидко бігати на суші та дуже захищають свою територію.",
+      rhinocerosDescription:
+        "Носороги — великі ссавці з товстою шкірою та одним або двома рогами на морді. Вони травоїдні, що харчуються травою та листям. Носороги мають поганий зір, але відмінний слух та нюх.",
+      chimpanzeeDescription:
+        "Шимпанзе — розумні мавпи, що поділяють 98% своєї ДНК з людьми. Вони живуть соціальними групами та використовують інструменти для добування їжі. Шимпанзе спілкуються за допомогою звуків, жестів та виразів обличчя.",
+      eagleDescription:
+        "Орли — великі хижі птахи з потужними пазурами та чудовим зором. Вони можуть помітити маленьких тварин з висоти в небі. Орли будують великі гнізда та є символами сили та свободи.",
+      woodpeckerDescription:
+        "Дятли — птахи з міцними дзьобами, що свердлять кору дерев. Вони шукають комах, що живуть всередині дерев, та створюють дупла для гніздування. Дятли можуть дзьобати до 20 разів на секунду без травм.",
+      seagullDescription:
+        "Мартини — прибережні птахи, відомі своїми гучними криками та поведінкою падальників. Вони мають перетинчасті лапи та можуть пити як прісну, так і солону воду. Мартини — розумні птахи, що часто слідують за рибальськими човнами.",
+      crowDescription:
+        "Ворони — високорозумні чорні птахи, що можуть вирішувати складні задачі. Вони використовують інструменти, розпізнають людські обличчя та навіть можуть тримати образи. Ворони живуть сімейними групами та працюють разом для пошуку їжі.",
+      vultureDescription:
+        "Грифи — великі птахи-падальники з лисими головами та гострими дзьобами. Вони очищають довкілля, харчуючись мертвими тваринами. Грифи можуть літати високо в небі годинами, шукаючи їжу своїм гострим зором.",
+      hummingbirdDescription:
+        "Колібрі — крихітні, барвисті птахи, що можуть зависати в повітрі. Вони махають крилами до 80 разів на секунду, створюючи дзижчання. Колібрі харчуються нектаром квітів та мають дивовижні здібності до польоту.",
+      ostrichDescription:
+        "Страуси — найбільші птахи у світі, але вони не можуть літати. Вони мають потужні ноги, що можуть бігти до 70 км/год. Страуси мають великі очі та несуть найбільші яйця серед усіх видів птахів.",
+      pelicanDescription:
+        "Пелікани — великі водні птахи з характерною сумкою під дзьобом. Вони використовують цю сумку, щоб виловлювати рибу з води. Пелікани часто працюють разом у групах, щоб ловити рибу ефективніше.",
+      walrusDescription:
+        "Моржі — великі морські ссавці з довгими іклами та товстим салом. Вони живуть у водах Арктики та використовують ікла, щоб витягуватися на лід. Моржі — соціальні тварини, що збираються великими групами.",
+      seaLionDescription:
+        "Морські леви — морські ссавці, відомі своєю грайливою поведінкою та гучним гавканням. Вони чудові плавці з ластами замість ніг. Морські леви розумні та їх можна навчити виконувати трюки.",
+      starfishDescription:
+        "Морські зірки — морські тварини з п'ятьма променями. Вони можуть відростити втрачені промені та рухаються за допомогою крихітних ніжок-трубочок. Морські зірки живуть на дні океану та харчуються молюсками й іншими дрібними морськими створіннями.",
+      seahorseDescription:
+        "Морські коники — маленькі риби, що плавають вертикально та мають голову, схожу на конячу. Самці морських коників носять малюків у спеціальній сумці, поки вони не будуть готові народитися. Вони використовують свій згорнутий хвіст, щоб прикріплюватися до водоростей.",
+      jellyfishDescription:
+        "Медузи — стародавні морські створіння з м'якими, прозорими тілами та жалючими щупальцями. Вони дрейфують океанськими течіями та світяться в темряві. Медузи існують понад 500 мільйонів років.",
+      clownfishDescription:
+        "Риби-клоуни — маленькі оранжеві риби з білими смугами, що живуть в морських анемонах. Жалючі щупальця анемона захищають їх від хижаків. Риби-клоуни мають спеціальну слиз, що запобігає ужаленню.",
+      frogDescription:
+        "Жаби — земноводні, що живуть як у воді, так і на суші. Вони ловлять комах своїми довгими липкими язиками. Жаби починають життя як пуголовки у воді, перш ніж виростити ноги та перейти на сушу.",
+      toadDescription:
+        "Ропухи — земноводні, схожі на жаб, але з сухою горбкуватою шкірою. Вони живуть переважно на суші та чудово контролюють шкідників, поїдаючи багато комах. Ропухи можуть жити багато років, а деякі види досить великі.",
+      lizardDescription:
+        "Ящірки — рептилії з лускатою шкірою, чотирма ногами та більшість мають довгі хвости. Вони часто можуть відкинути хвости, щоб втекти від хижаків, та виростити нові. Ящірки живуть у теплому кліматі по всьому світу.",
+      iguanaDescription:
+        "Ігуани — великі ящірки з шипами вздовж спини. Вони чудові плавці та верхолази, що харчуються рослинами. Деякі ігуани можуть виростати понад 6 футів завдовжки, включаючи хвіст.",
+      salamanderDescription:
+        "Саламандри — земноводні, схожі на ящірок, але з вологою шкірою. Вони можуть регенерувати втрачені кінцівки та хвости. Більшість саламандр живуть у вологих лісах біля струмків та ставків.",
+      butterflyDescription:
+        "Метелики — барвисті комахи з чотирма великими крилами, вкритими крихітними лусочками. Вони починають життя як гусениці перед перетворенням у лялечці. Метелики харчуються нектаром квітів та допомагають запилювати рослини.",
+      grasshopperDescription:
+        "Коники — стрибаючі комахи з потужними задніми ногами. Вони створюють цвіркаючі звуки, тертям ніг. Коники харчуються рослинами та можуть стрибати до 20 разів більше довжини свого тіла.",
+      dragonflyDescription:
+        "Бабки — стародавні комахи з чотирма прозорими крилами та великими очима. Вони вмілі льотуни, що можуть зависати, літати назад та ловити здобич у повітрі. Бабки проводять більшу частину життя як водні німфи.",
+      spiderDescription:
+        "Павуки — восьминогі павукоподібні, що плетуть шовкові павутини для ловлі здобичі. Вони вводять отруту, щоб паралізувати комах. Більшість павуків нешкідливі для людей та допомагають контролювати популяції шкідників.",
+      mosquitoDescription:
+        "Комарі — маленькі літаючі комахи, відомі своїми свербіючими укусами. Лише самки комарів кусають, щоб отримати кров для своїх яєць. Комарі зустрічаються по всьому світу та привертаються вуглекислим газом та теплом тіла.",
+      mouseDescription:
+        "Миші — маленькі гризуни з довгими хвостами та великими вухами. Вони зустрічаються майже скрізь у світі та відомі своєю здатністю протискатися через крихітні отвори. Миші — розумні, соціальні тварини, які спілкуються через писк та запахи.",
+      slothDescription:
+        "Лінивці — повільні ссавці, які живуть на деревах у тропічних лісах Центральної та Південної Америки. Вони сплять до 20 годин на день і рухаються так повільно, що на їхньому хутрі ростуть водорості. Незважаючи на повільність, лінивці чудово плавають.",
+      wormDescription:
+        "Хробаки — безхребетні з м'яким тілом, які живуть у ґрунті. Дощові черв'яки покращують якість ґрунту, розкладаючи органічну речовину та створюючи тунелі, які дозволяють повітрю та воді досягати коренів рослин. Вони не мають очей чи вух, але можуть відчувати світло та вібрації.",
+      flyDescription:
+        "Мухи — поширені комахи з великими складними очима та прозорими крилами. Вони можуть ходити по стелях та стінах, використовуючи липкі подушечки на лапках. Мухи відчувають смак лапками і можуть їсти лише рідини, використовуючи свій губчастий ротовий апарат.",
+      beetleDescription:
+        "Жуки — комахи з твердими надкрилами, які захищають літаючі крила знизу. Вони є найбільшою групою тварин на Землі з понад 400 000 видів. Жуків можна знайти майже в кожному середовищі існування, і вони бувають різних кольорів та розмірів.",
+      skunkDescription:
+        "Скунси — ссавці, відомі своїм чорно-білим хутром та здатністю розпилювати рідину з сильним запахом, коли їм загрожує небезпека. Цей спрей може досягати до 3 метрів і допомагає захиститися від хижаків. Скунси переважно нічні тварини та їдять як рослини, так і дрібних тварин.",
+      beaverDescription:
+        "Бобри — великі гризуни, відомі будівництвом дамб та хаток у річках та струмках. Їхні міцні зуби можуть рубати дерева, а плоскі хвости допомагають їм плавати та сигналізувати про небезпеку, б'ючи по воді. Дамби бобрів створюють водно-болотні угіддя, які забезпечують дім багатьом іншим тваринам.",
+      cockroachDescription:
+        "Таргани — стародавні комахи, які вижили протягом мільйонів років. Вони неймовірно витривалі та можуть жити майже в будь-якому середовищі. Таргани нічні тварини і можуть бігати дуже швидко. Вони мають плоскі тіла, які допомагають їм ховатися у вузьких місцях.",
     },
     animals: {
       Dog: "Пес",
@@ -458,10 +682,42 @@ export const TRANSLATIONS: TranslationMap = {
       Goat: "Коза",
       Bull: "Бик",
       Duck: "Качка",
-      Lamb: "Ягня",
       Snake: "Змія",
       Raven: "Ворона",
       Owl: "Сова",
+      Ram: "Баран",
+      Hen: "Курка",
+      Fox: "Лисиця",
+      Squirrel: "Білка",
+      Hedgehog: "Їжак",
+      Otter: "Видра",
+      Panda: "Панда",
+      Koala: "Коала",
+      Hippopotamus: "Гіпопотам",
+      Rhinoceros: "Носоріг",
+      Chimpanzee: "Шимпанзе",
+      Eagle: "Орел",
+      Woodpecker: "Дятел",
+      Seagull: "Мартин",
+      Ostrich: "Страус",
+      Pelican: "Пелікан",
+      Starfish: "Морська зірка",
+      Seahorse: "Морський коник",
+      Jellyfish: "Медуза",
+      Clownfish: "Риба-клоун",
+      Frog: "Жаба",
+      Butterfly: "Метелик",
+      Grasshopper: "Коник",
+      Spider: "Павук",
+      Mosquito: "Комар",
+      Mouse: "Миша",
+      Sloth: "Лінивець",
+      Worm: "Хробак",
+      Fly: "Муха",
+      Beetle: "Жук",
+      Skunk: "Скунс",
+      Beaver: "Бобер",
+      Cockroach: "Тарган",
     },
   },
   ru: {
@@ -631,6 +887,102 @@ export const TRANSLATIONS: TranslationMap = {
         "Вороны — крупные, умные птицы, известные своими способностями к решению проблем и сложной вокализацией. Они часто ассоциируются с мифологией и фольклором. Вороны создают пары на всю жизнь и могут жить много лет.",
       owlDescription:
         "Совы — хищные птицы с большими глазами, отличным слухом и бесшумным полетом. Они преимущественно ночные охотники с вращающимися головами, которые могут поворачиваться почти на 270 градусов. Совы обитают на всех континентах, кроме Антарктиды.",
+      alpacaDescription:
+        "Альпаки — одомашненные животные из Южной Америки, родственные ламам. У них мягкая роскошная шерсть, используемая для изготовления теплой одежды. Альпаки — нежные умные животные, живущие стадами в горных регионах.",
+      muleDescription:
+        "Мулы — гибридные животные, рожденные от осла-самца и кобылы. Они известны своей силой, терпением и уверенностью. Мулов веками использовали для перевозки тяжелых грузов по сложной местности.",
+      ramDescription:
+        "Бараны — взрослые самцы овец с большими изогнутыми рогами. Они используют рога для соревнования с другими самцами в период размножения. Бараны — сильные животные, которые ведут и защищают свое стадо.",
+      henDescription:
+        "Куры — взрослые самки кур, несущие яйца. Это фермерские птицы, живущие группами и общающиеся различными кудахтаньями. Куры — заботливые матери, защищающие и обучающие своих цыплят.",
+      calfDescription:
+        "Телёнок — детёныш коровы, пьющий молоко от матери. Телята игривы и любопытны, учатся у своих матерей и других членов стада. Они быстро растут и могут стоять через несколько часов после рождения.",
+      foalDescription:
+        "Жеребёнок — детёныш лошади, который может ходить и бегать вскоре после рождения. Жеребята игривы и энергичны, остаются рядом с матерью для защиты. Они изучают важные навыки, играя с другими молодыми лошадьми.",
+      foxDescription:
+        "Лисы — хитрые млекопитающие с пушистыми хвостами и заострёнными ушами. Они отличные охотники, известные своим умом и приспособляемостью. Лисы живут в лесах, степях и даже городах по всему миру.",
+      deerDescription:
+        "Олени — грациозные животные с длинными ногами, многие виды имеют рога. Они травоядные, питающиеся растениями, листьями и травой. Олени известны своей скоростью и ловкостью, живут в лесах и на лугах по всему миру.",
+      squirrelDescription:
+        "Белки — маленькие ловкие грызуны с пушистыми хвостами. Они отличные верхолазы, живущие на деревьях и собирающие орехи на зиму. Белки известны своими быстрыми движениями и способностью прыгать между ветками.",
+      hedgehogDescription:
+        "Ёжики — маленькие млекопитающие, покрытые острыми иглами для защиты. Они сворачиваются в клубок, когда напуганы, что затрудняет нападение на них. Ёжики — ночные животные, питающиеся насекомыми, улитками и червями.",
+      otterDescription:
+        "Выдры — игривые водные млекопитающие с водонепроницаемым мехом. Они отличные пловцы, охотящиеся на рыбу и моллюсков. Выдры используют инструменты, такие как камни, чтобы раскалывать раковины, и известны своим игривым поведением.",
+      pandaDescription:
+        "Большие панды — крупные медведи из Китая, питающиеся в основном бамбуком. У них характерный черно-белый мех и они отлично лазают по деревьям. Панды — исчезающие животные, проводящие большую часть дня за едой и отдыхом.",
+      koalaDescription:
+        "Коалы — сумчатые из Австралии, живущие на эвкалиптовых деревьях. Они спят до 20 часов в день и питаются только листьями эвкалипта. Коалы носят своих детенышей в сумке, как кенгуру.",
+      hippopotamusDescription:
+        "Бегемоты — крупные полуводные млекопитающие из Африки. Они проводят большую часть дня в воде, чтобы оставаться прохладными. Несмотря на громоздкий вид, бегемоты могут быстро бегать по суше и очень защищают свою территорию.",
+      rhinocerosDescription:
+        "Носороги — крупные млекопитающие с толстой кожей и одним или двумя рогами на морде. Они травоядные, питающиеся травой и листьями. Носороги имеют плохое зрение, но отличный слух и обоняние.",
+      chimpanzeeDescription:
+        "Шимпанзе — умные обезьяны, разделяющие 98% своей ДНК с людьми. Они живут социальными группами и используют инструменты для добычи пищи. Шимпанзе общаются с помощью звуков, жестов и выражений лица.",
+      eagleDescription:
+        "Орлы — крупные хищные птицы с мощными когтями и отличным зрением. Они могут заметить мелких животных с большой высоты в небе. Орлы строят большие гнезда и являются символами силы и свободы.",
+      woodpeckerDescription:
+        "Дятлы — птицы с крепкими клювами, которые сверлят кору деревьев. Они ищут насекомых, живущих внутри деревьев, и создают дупла для гнездования. Дятлы могут долбить до 20 раз в секунду без травм.",
+      seagullDescription:
+        "Чайки — прибрежные птицы, известные своими громкими криками и падальным поведением. У них перепончатые лапы и они могут пить как пресную, так и соленую воду. Чайки — умные птицы, часто следующие за рыбацкими лодками.",
+      crowDescription:
+        "Вороны — высокоинтеллектуальные черные птицы, способные решать сложные задачи. Они используют инструменты, распознают человеческие лица и даже могут держать обиды. Вороны живут семейными группами и работают вместе для поиска пищи.",
+      vultureDescription:
+        "Грифы — крупные падальщики с лысыми головами и острыми клювами. Они очищают окружающую среду, питаясь мертвыми животными. Грифы могут парить высоко в небе часами, ища пищу своим острым зрением.",
+      hummingbirdDescription:
+        "Колибри — крошечные разноцветные птицы, которые могут зависать в воздухе. Они машут крыльями до 80 раз в секунду, создавая жужжание. Колибри питаются нектаром цветов и обладают удивительными способностями к полету.",
+      ostrichDescription:
+        "Страусы — самые большие птицы в мире, но они не могут летать. У них мощные ноги, которые могут бегать до 70 км/ч. Страусы имеют большие глаза и несут самые большие яйца среди всех видов птиц.",
+      pelicanDescription:
+        "Пеликаны — крупные водоплавающие птицы с характерным мешком под клювом. Они используют этот мешок, чтобы вылавливать рыбу из воды. Пеликаны часто работают вместе группами, чтобы ловить рыбу эффективнее.",
+      walrusDescription:
+        "Моржи — крупные морские млекопитающие с длинными клыками и толстым салом. Они живут в водах Арктики и используют клыки, чтобы вытаскиваться на лёд. Моржи — социальные животные, собирающиеся большими группами.",
+      seaLionDescription:
+        "Морские львы — морские млекопитающие, известные своим игривым поведением и громким лаем. Они отличные пловцы с ластами вместо ног. Морские львы умны и их можно обучить выполнять трюки.",
+      starfishDescription:
+        "Морские звёзды — морские животные с пятью лучами. Они могут отрастить потерянные лучи и передвигаются с помощью крошечных ножек-трубочек. Морские звёзды живут на дне океана и питаются моллюсками и другими мелкими морскими существами.",
+      seahorseDescription:
+        "Морские коньки — маленькие рыбы, которые плавают вертикально и имеют голову, похожую на лошадиную. Самцы морских коньков вынашивают детёнышей в специальной сумке, пока они не готовы родиться. Они используют свой свёрнутый хвост, чтобы прикрепляться к водорослям.",
+      jellyfishDescription:
+        "Медузы — древние морские существа с мягкими прозрачными телами и жалящими щупальцами. Они дрейфуют по океанским течениям и светятся в темноте. Медузы существуют более 500 миллионов лет.",
+      clownfishDescription:
+        "Рыбы-клоуны — маленькие оранжевые рыбки с белыми полосами, живущие в морских анемонах. Жалящие щупальца анемона защищают их от хищников. Рыбы-клоуны имеют специальную слизь, которая предотвращает ужаливание.",
+      frogDescription:
+        "Лягушки — земноводные, живущие как в воде, так и на суше. Они ловят насекомых своими длинными липкими языками. Лягушки начинают жизнь как головастики в воде, прежде чем вырастить ноги и перейти на сушу.",
+      toadDescription:
+        "Жабы — земноводные, похожие на лягушек, но с сухой бугристой кожей. Они живут в основном на суше и отлично контролируют вредителей, поедая много насекомых. Жабы могут жить много лет, а некоторые виды довольно крупные.",
+      lizardDescription:
+        "Ящерицы — рептилии с чешуйчатой кожей, четырьмя ногами и большинство имеют длинные хвосты. Они часто могут отбросить хвосты, чтобы убежать от хищников, и вырастить новые. Ящерицы живут в теплом климате по всему миру.",
+      iguanaDescription:
+        "Игуаны — крупные ящерицы с шипами вдоль спины. Они отличные пловцы и верхолазы, питающиеся растениями. Некоторые игуаны могут вырастать более 6 футов в длину, включая хвост.",
+      salamanderDescription:
+        "Саламандры — земноводные, похожие на ящериц, но с влажной кожей. Они могут регенерировать потерянные конечности и хвосты. Большинство саламандр живут во влажных лесах у ручьев и прудов.",
+      butterflyDescription:
+        "Бабочки — красочные насекомые с четырьмя большими крыльями, покрытыми крошечными чешуйками. Они начинают жизнь как гусеницы перед преобразованием в куколке. Бабочки питаются нектаром цветов и помогают опылять растения.",
+      grasshopperDescription:
+        "Кузнечики — прыгающие насекомые с мощными задними ногами. Они издают стрекочущие звуки, потирая ноги. Кузнечики питаются растениями и могут прыгать до 20 раз больше длины своего тела.",
+      dragonflyDescription:
+        "Стрекозы — древние насекомые с четырьмя прозрачными крыльями и большими глазами. Они искусные летуны, которые могут зависать, летать назад и ловить добычу в воздухе. Стрекозы проводят большую часть жизни как водные нимфы.",
+      spiderDescription:
+        "Пауки — восьминогие паукообразные, которые плетут шёлковые паутины для ловли добычи. Они впрыскивают яд, чтобы парализовать насекомых. Большинство пауков безвредны для человека и помогают контролировать популяции вредителей.",
+      mosquitoDescription:
+        "Комары — маленькие летающие насекомые, известные своими зудящими укусами. Только самки комаров кусают, чтобы получить кровь для своих яиц. Комары встречаются по всему миру и привлекаются углекислым газом и теплом тела.",
+      mouseDescription:
+        "Мыши — маленькие грызуны с длинными хвостами и большими ушами. Они встречаются почти повсюду в мире и известны своей способностью протискиваться через крошечные отверстия. Мыши — умные, социальные животные, которые общаются через писк и запахи.",
+      slothDescription:
+        "Ленивцы — медленные млекопитающие, живущие на деревьях в тропических лесах Центральной и Южной Америки. Они спят до 20 часов в день и двигаются так медленно, что на их шерсти растут водоросли. Несмотря на медлительность, ленивцы отлично плавают.",
+      wormDescription:
+        "Черви — беспозвоночные с мягким телом, которые живут в почве. Дождевые черви улучшают качество почвы, разлагая органическое вещество и создавая туннели, которые позволяют воздуху и воде достигать корней растений. У них нет глаз или ушей, но они могут чувствовать свет и вибрации.",
+      flyDescription:
+        "Мухи — распространённые насекомые с большими сложными глазами и прозрачными крыльями. Они могут ходить по потолкам и стенам, используя липкие подушечки на лапках. Мухи чувствуют вкус лапками и могут есть только жидкости, используя свой губчатый ротовой аппарат.",
+      beetleDescription:
+        "Жуки — насекомые с твёрдыми надкрыльями, которые защищают летающие крылья снизу. Они являются самой большой группой животных на Земле с более чем 400 000 видов. Жуков можно найти почти в каждой среде обитания, и они бывают разных цветов и размеров.",
+      skunkDescription:
+        "Скунсы — млекопитающие, известные своим чёрно-белым мехом и способностью распылять жидкость с сильным запахом при угрозе. Этот спрей может достигать до 3 метров и помогает защититься от хищников. Скунсы преимущественно ночные животные и едят как растения, так и мелких животных.",
+      beaverDescription:
+        "Бобры — крупные грызуны, известные строительством плотин и хаток в реках и ручьях. Их крепкие зубы могут рубить деревья, а плоские хвосты помогают им плавать и сигнализировать об опасности, шлёпая по воде. Плотины бобров создают водно-болотные угодья, которые обеспечивают дом многим другим животным.",
+      cockroachDescription:
+        "Тараканы — древние насекомые, которые выжили на протяжении миллионов лет. Они невероятно выносливы и могут жить практически в любой среде. Тараканы ведут ночной образ жизни и могут бегать очень быстро. У них плоские тела, которые помогают им прятаться в узких местах.",
     },
     animals: {
       Dog: "Собака",
@@ -689,10 +1041,42 @@ export const TRANSLATIONS: TranslationMap = {
       Goat: "Коза",
       Bull: "Бык",
       Duck: "Утка",
-      Lamb: "Ягнёнок",
       Snake: "Змея",
       Raven: "Ворон",
       Owl: "Сова",
+      Ram: "Баран",
+      Hen: "Курица",
+      Fox: "Лиса",
+      Squirrel: "Белка",
+      Hedgehog: "Ёж",
+      Otter: "Выдра",
+      Panda: "Панда",
+      Koala: "Коала",
+      Hippopotamus: "Бегемот",
+      Rhinoceros: "Носорог",
+      Chimpanzee: "Шимпанзе",
+      Eagle: "Орёл",
+      Woodpecker: "Дятел",
+      Seagull: "Чайка",
+      Ostrich: "Страус",
+      Pelican: "Пеликан",
+      Starfish: "Морская звезда",
+      Seahorse: "Морской конёк",
+      Jellyfish: "Медуза",
+      Clownfish: "Рыба-клоун",
+      Frog: "Лягушка",
+      Butterfly: "Бабочка",
+      Grasshopper: "Кузнечик",
+      Spider: "Паук",
+      Mosquito: "Комар",
+      Mouse: "Мышь",
+      Sloth: "Ленивец",
+      Worm: "Червь",
+      Fly: "Муха",
+      Beetle: "Жук",
+      Skunk: "Скунс",
+      Beaver: "Бобр",
+      Cockroach: "Таракан",
     },
   },
 };

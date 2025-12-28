@@ -11,7 +11,7 @@ const path = require("path");
 const TWEMOJI_BASE_URL =
   "https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/svg/";
 
-// Emoji to codepoint mapping for all 71 emojis needed
+// Emoji to codepoint mapping for all emojis needed
 const EMOJI_CODEPOINTS = {
   // Animal emojis (60)
   "🐕": "1f415",
@@ -25,6 +25,7 @@ const EMOJI_CODEPOINTS = {
   "🐅": "1f405",
   "🐰": "1f430",
   "🐓": "1f413",
+  "🐔": "1f414",
   "🐄": "1f404",
   "🐴": "1f434",
   "🐦": "1f426",
@@ -74,6 +75,34 @@ const EMOJI_CODEPOINTS = {
   "🦅": "1f985",
   "🦉": "1f989",
   "🐦‍⬛": "1f426-200d-2b1b",
+  "🐏": "1f40f",
+  "🦊": "1f98a",
+  "🐿️": "1f43f",
+  "🦔": "1f994",
+  "🦦": "1f9a6",
+  "🐼": "1f43c",
+  "🐨": "1f428",
+  "🦛": "1f99b",
+  "🦏": "1f98f",
+  "🐵": "1f435",
+  "🪶": "1fab6",
+  "🕊️": "1f54a",
+  "⭐": "2b50",
+  "🪼": "1fabc",
+  "🐠": "1f420",
+  "🐸": "1f438",
+  "🦋": "1f98b",
+  "🦗": "1f997",
+  "🕷️": "1f577",
+  "🦟": "1f99f",
+  "🐭": "1f42d",
+  "🦥": "1f9a5",
+  "🪱": "1fab1",
+  "🪰": "1fab0",
+  "🪲": "1fab2",
+  "🦨": "1f9a8",
+  "🦫": "1f9ab",
+  "🪳": "1fab3",
 
   // UI emojis
   "🎉": "1f389",
@@ -92,6 +121,7 @@ const EMOJI_CODEPOINTS = {
   "◀": "25c0",
   "▶": "25b6",
   "📦": "1f4e6",
+  "🎯": "1f3af",
 };
 
 const OUTPUT_DIR = path.join(__dirname, "..", "assets", "emojis");

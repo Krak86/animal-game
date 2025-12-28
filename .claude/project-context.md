@@ -51,7 +51,7 @@ An interactive React Native educational game built with Expo where children can 
    - Visual feedback: Gold border for selected, red border for wrong, faded for matched
 
 4. **Exhibition Mode** (`showAll`):
-   - Browse all 48 animals in a scrollable list
+   - Browse all 86 animals in a scrollable list
    - Search and filter animals by name
    - Tap any animal to view detailed information
    - Animal detail view includes:
@@ -129,7 +129,7 @@ Language switching is available on the start screen and during gameplay. All UI 
 │   │   ├── kid-366901.mp3           # Background music
 │   │   ├── success.mp3              # Success sound effect
 │   │   └── wrong.mp3                # Error sound effect
-│   ├── emojis/                      # SVG emoji files (71 files)
+│   ├── emojis/                      # SVG emoji files (97 files)
 │   │   ├── 1f415.svg                # Dog emoji (Twemoji)
 │   │   ├── 1f3af.svg                # Target emoji 🎯 (Twemoji)
 │   │   ├── donkey.svg               # Custom donkey emoji
@@ -180,13 +180,13 @@ Language switching is available on the start screen and during gameplay. All UI 
 │   │   └── index.ts                 # Components barrel export
 │   │
 │   ├── constants/                   # App constants and data (7 files)
-│   │   ├── animals.ts               # 48 animals with images, videos, Wikipedia URLs (1,442 lines)
+│   │   ├── animals.ts               # 86 animals with images, videos, Wikipedia URLs, sounds
 │   │   ├── translations.ts          # Complete i18n for en/uk/ru (656 lines)
 │   │   ├── audioFiles.ts            # Auto-generated TTS audio mappings (UK/RU)
 │   │   ├── sounds.ts                # Sound effect URLs (success, wrong)
 │   │   ├── fonts.ts                 # Font family constants
 │   │   ├── gameSettings.ts          # Game configuration (ANIMALS_PER_SCREEN = 6, PAIRS_PER_SCREEN = 3)
-│   │   └── emojiMap.ts              # Emoji to SVG file mappings (71 emojis including 🎯)
+│   │   └── emojiMap.ts              # Emoji to SVG file mappings (97 emojis including 🎯)
 │   │
 │   ├── hooks/                       # Custom React hooks (4 files)
 │   │   ├── useGameLogic.ts          # Core game state and logic management
@@ -221,7 +221,7 @@ Language switching is available on the start screen and during gameplay. All UI 
 
 ## Key Features
 
-- **48 Animals**: Comprehensive collection including farm animals, wild animals, birds, marine life, insects
+- **86 Animals**: Comprehensive collection including farm animals, wild animals, birds, marine life, reptiles, amphibians, insects
 - **Four Game Modes**: Name recognition, sound identification, memory matching pairs, and exhibition browsing
 - **Memory Matching Game**: Animal Pairs mode with face-up tiles, sequential selection, and instant feedback
 - **Exhibition Mode**: Browse all animals with search/filter, detailed views, and galleries
@@ -265,7 +265,7 @@ Language switching is available on the start screen and during gameplay. All UI 
    - No match: Wrong sound, red borders flash
    - After all 3 pairs matched: Success overlay, new round starts
 4. **Exhibition Mode**:
-   - Browse all 48 animals in scrollable list
+   - Browse all 86 animals in scrollable list
    - Search/filter by animal name
    - Tap animal to view detail screen
    - Explore galleries, videos, and Wikipedia
@@ -276,7 +276,7 @@ Language switching is available on the start screen and during gameplay. All UI 
 
 Each animal in `src/constants/animals.ts` includes:
 
-- `id`: Unique identifier (1-48)
+- `id`: Unique identifier (1-86)
 - `name`: English name
 - `emoji`: Emoji representation (rendered as SVG via Twemoji)
 - `image`: Local background image URL from `assets/imgs/bg/`
@@ -417,15 +417,15 @@ The app is automatically deployed to GitHub Pages via GitHub Actions:
 
 ## Assets Requirements
 
-- **Animal sound files**: 48 MP3 files in `assets/music/animals/`
+- **Animal sound files**: 86 MP3 files in `assets/music/animals/`
 - **Background music**: Local file `kid-366901.mp3` in `assets/music/`
 - **Sound effects**: `success.mp3` and `wrong.mp3` in `assets/music/`
 - **Background images**: 10 JPG files (bg1.jpg - bg10.jpg) in `assets/imgs/bg/`
-- **Emoji SVGs**: 70 SVG files (60 Twemoji + 2 custom + 8 UI) in `assets/emojis/`
+- **Emoji SVGs**: 97 SVG files (86 animal Twemoji + 2 custom + 9 UI) in `assets/emojis/`
 - **Fonts**: 4 Montserrat `.ttf` files in `assets/fonts/`
 - **Icons**: PNG files (icon.png, adaptive-icon.png, splash-icon.png, favicon.png)
-- **Animal images**: ~336 Unsplash URLs (6-7 per animal, referenced in animals.ts)
-- **Animal videos**: ~144 YouTube URLs (3 per animal, referenced in animals.ts)
+- **Animal images**: ~602 Unsplash URLs (6-7 per animal, referenced in animals.ts)
+- **Animal videos**: ~258 YouTube URLs (3 per animal, referenced in animals.ts)
 
 ## Translation Guidelines
 
@@ -742,3 +742,66 @@ Implemented a new "Animal Pairs" game mode - a memory matching game where player
 - Custom emojis for newer Unicode characters
 - Centered positioning in cards
 - Better Android compatibility
+
+### Animal Collection Expansion (December 2025)
+
+**Added 8 New Animals** to expand the collection from 78 to 86 total animals:
+
+1. **Mouse 🐭** (ID 78)
+2. **Sloth 🦥** (ID 79)
+3. **Worm 🪱** (ID 80)
+4. **Fly 🪰** (ID 81)
+5. **Beetle 🪲** (ID 82)
+6. **Skunk 🦨** (ID 83)
+7. **Beaver 🦫** (ID 84)
+8. **Cockroach 🪳** (ID 85)
+
+**Implementation Details:**
+
+- **Emoji Assets**: Downloaded 8 new Twemoji SVG files and added to `assets/emojis/`
+- **Emoji Mapping**: Updated `src/constants/emojiMap.ts` to include all 8 new emojis (total: 97 emojis)
+- **Animal Data**: Added complete animal entries to `src/constants/animals.ts` with:
+  - Unique IDs (78-85)
+  - Background images from BG_IMAGES array
+  - Placeholder sound imports (empty strings for future audio files)
+  - Wikipedia URLs for all 3 languages (en, uk, ru)
+  - All game modes enabled: `["byName", "bySound", "showAll", "animalPairs"]`
+- **Translations**: Added names and descriptions in all 3 languages to `src/constants/translations.ts`:
+  - English names and comprehensive descriptions
+  - Ukrainian translations (Миша, Лінивець, Хробак, Муха, Жук, Скунс, Бобер, Таргани)
+  - Russian translations (Мышь, Ленивец, Червь, Муха, Жук, Скунс, Бобр, Таракан)
+- **Type Definitions**: Added description type keys to `src/types/index.ts` for TypeScript support
+
+**Download Script Updates:**
+- Updated `scripts/downloadTwemojiSvgs.js` to include all 8 new emoji codepoints
+- Script successfully downloaded all SVG files from Twemoji CDN
+
+### Sound Icon Display Logic (December 2025)
+
+**Updated AnimalDetailView Component** to show sound icons conditionally based on language:
+
+**For English (EN):**
+- **🔊 Pronunciation Icon**: Always shown when sound is enabled - displays/pronounces animal name via TTS
+- **🔉 Animal Sound Icon**: Only shown if `soundUrl` exists - plays the animal's natural sound
+
+**For Other Languages (UK, RU):**
+- **Both Icons**: Only shown if `soundUrl` exists (indicates pronunciation audio is available)
+- Assumes pronunciation sounds are only available for animals with natural sound files
+
+**Implementation** ([AnimalDetailView.tsx:264-275](src/components/AnimalDetailView.tsx#L264-L275)):
+```typescript
+const showTTSButton = language === "en"
+  ? isSoundEnabled
+  : isSoundEnabled && hasSoundUrl;
+
+const showSoundButton = isSoundEnabled && hasSoundUrl;
+
+const showPronunciationIcon = showTTSButton;
+const showAnimalSoundIcon = showSoundButton;
+```
+
+**Benefits:**
+- English users can always hear animal name pronunciation via TTS
+- Non-English users see icons only when actual sound files are available
+- Prevents confusion from non-functional buttons
+- Better UX for languages with limited audio coverage

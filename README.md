@@ -9,7 +9,7 @@ An interactive React Native educational game for children to learn animal names 
   - **By Sound**: Identify animals by their sounds
   - **Animal Pairs**: Memory matching game with face-up tiles
   - **Exhibition Mode**: Browse all animals with detailed information
-- 🦁 **48 Animals**: Comprehensive collection of farm animals, wild animals, birds, marine life, and insects
+- 🦁 **86 Animals**: Comprehensive collection of farm animals, wild animals, birds, marine life, reptiles, amphibians, and insects
 - 🖼️ **Image Galleries**: 6-7 high-quality Unsplash photos per animal with carousel and pinch-to-zoom
 - 🎬 **Video Galleries**: 3 YouTube videos per animal with integrated player
 - 📚 **Wikipedia Integration**: Language-specific Wikipedia links for in-depth learning
@@ -20,7 +20,7 @@ An interactive React Native educational game for children to learn animal names 
 - 🗣️ **Text-to-Speech**: Pronounces animal names in all three languages
 - 🎵 **Background Music**: Optional music with toggle control
 - 🎨 **Smooth Animations**: High-performance animations using React Native Reanimated
-- 🔊 **Animal Sounds**: Authentic MP3 audio files for all 48 animals
+- 🔊 **Animal Sounds**: Authentic MP3 audio files for all 86 animals
 - 📱 **Responsive Design**: Adaptive layouts for all screen sizes and orientations
 - ✅ **Visual Feedback**: Red borders for wrong answers, celebration overlay for correct ones
 - 📊 **Score Tracking**: Keep track of your progress during gameplay
@@ -61,11 +61,11 @@ An interactive React Native educational game for children to learn animal names 
 │   │   └── Montserrat-Bold.ttf
 │   ├── imgs/bg/                     # Background images (10 JPG files)
 │   ├── music/                       # Audio files
-│   │   ├── animals/                 # 48 animal sound MP3 files
+│   │   ├── animals/                 # 86 animal sound MP3 files
 │   │   ├── kid-366901.mp3           # Background music
 │   │   ├── success.mp3              # Success sound effect
 │   │   └── wrong.mp3                # Error sound effect
-│   ├── emojis/                      # SVG emoji files (71 files: 60 Twemoji + 2 custom + 9 UI)
+│   ├── emojis/                      # SVG emoji files (97 Twemoji SVGs for 86 animals and UI)
 │   ├── icon.png                     # App icon
 │   ├── splash-icon.png              # Splash screen
 │   ├── adaptive-icon.png            # Android adaptive icon
@@ -106,13 +106,13 @@ An interactive React Native educational game for children to learn animal names 
     │   └── index.ts                 # Components barrel export
     │
     ├── constants/                   # App constants and data (7 files)
-    │   ├── animals.ts               # 48 animals with images, videos, Wikipedia (1,442 lines)
+    │   ├── animals.ts               # 86 animals with images, videos, Wikipedia, sounds
     │   ├── translations.ts          # Complete i18n for en/uk/ru (656 lines)
     │   ├── audioFiles.ts            # Auto-generated TTS audio mappings (UK/RU)
     │   ├── sounds.ts                # Sound effect URLs
     │   ├── fonts.ts                 # Font family constants
     │   ├── gameSettings.ts          # Game configuration (ANIMALS_PER_SCREEN = 6, PAIRS_PER_SCREEN = 3)
-    │   └── emojiMap.ts              # Emoji to SVG file mappings (71 emojis including 🎯)
+    │   └── emojiMap.ts              # Emoji to SVG file mappings (97 emojis including 🎯)
     │
     ├── hooks/                       # Custom React hooks (4 files)
     │   ├── useGameLogic.ts          # Core game state and logic management
@@ -185,7 +185,7 @@ The app will load fonts on first launch before displaying the splash screen.
 
 #### Exhibition Mode Components
 
-- **AnimalsListView.tsx**: Browse all 48 animals with search and filter functionality
+- **AnimalsListView.tsx**: Browse all 100 animals with search and filter functionality
 - **AnimalDetailView.tsx**: Full-screen detailed animal information view
 - **ImageGalleryModal.tsx**: Image carousel with swipe navigation and pinch-to-zoom
 - **VideoGalleryModal.tsx**: YouTube video player modal
@@ -203,13 +203,13 @@ The app will load fonts on first launch before displaying the splash screen.
 
 ### Constants (`src/constants/`)
 
-- **animals.ts**: 48 animals with images (Unsplash), videos (YouTube), Wikipedia URLs, sounds, and descriptions (1,442 lines)
+- **animals.ts**: 86 animals with images (Unsplash), videos (YouTube), Wikipedia URLs, sounds, and descriptions
 - **translations.ts**: Complete English, Ukrainian, and Russian translations including animal descriptions (656 lines)
 - **audioFiles.ts**: Auto-generated TTS audio mappings for Ukrainian and Russian
 - **sounds.ts**: Sound effect URLs for success and error feedback
 - **fonts.ts**: Montserrat font family constants
 - **gameSettings.ts**: Game configuration (ANIMALS_PER_SCREEN = 6, PAIRS_PER_SCREEN = 3)
-- **emojiMap.ts**: Mapping of emoji characters to SVG file paths (71 emojis including 🎯)
+- **emojiMap.ts**: Mapping of emoji characters to SVG file paths (97 emojis including 🎯)
 
 ### Hooks (`src/hooks/`)
 
@@ -423,7 +423,7 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
 2. Player taps the animal that makes that sound
 3. Replay button available to hear sound again
 4. Same visual feedback as "By Name" mode
-5. All 48 animals include sound files
+5. All 86 animals include sound files
 
 ### Animal Pairs Mode
 
@@ -443,7 +443,7 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
 
 ### Exhibition Mode
 
-1. Browse all 48 animals in a scrollable grid
+1. Browse all 86 animals in a scrollable grid
 2. Search and filter animals by name in current language
 3. Tap any animal card to view detailed information
 4. Animal detail view includes:
