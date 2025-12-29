@@ -42,8 +42,8 @@ export const usePairsGameLogic = (
   sessionScore: number,
   onScoreChange: (newScore: number) => void
 ): UsePairsGameLogicReturn => {
-  // Get animals for byName mode (all animals suitable for name matching)
-  const modeAnimals = useMemo(() => getAnimalsByMode("byName"), []);
+  // Get animals for animalPairs mode (only animals configured for pairs game)
+  const modeAnimals = useMemo(() => getAnimalsByMode("animalPairs"), []);
 
   const [pairAnimals, setPairAnimals] = useState<Animal[]>([]);
   const [firstSelection, setFirstSelection] = useState<{

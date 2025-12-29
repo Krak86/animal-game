@@ -33,7 +33,7 @@ import {
 } from "@/components";
 // Constants
 import { TRANSLATIONS } from "@/constants/translations";
-import { ANIMALS } from "@/constants/animals";
+import { getAnimalsByMode } from "@/constants/animals";
 // Styles
 import { getAppStyles } from "@/styles/appStyles";
 // Custom hooks
@@ -295,11 +295,13 @@ export default function App() {
 
   const handleStartGame = (mode: GameMode): void => {
     if (mode === "secret") {
-      // Secret mode - pick random animal and show detail view directly
-      const randomIndex = Math.floor(Math.random() * ANIMALS.length);
-      const randomAnimal = ANIMALS[randomIndex];
+      // Secret mode - pick random animal from animals configured for secret mode
+      const secretAnimals = getAnimalsByMode("secret");
+      const randomIndex = Math.floor(Math.random() * secretAnimals.length);
+      const randomAnimal = secretAnimals[randomIndex];
 
       setSelectedAnimal(randomAnimal);
+      // Set index based on the filtered secret animals list
       setCurrentAnimalIndex(randomIndex);
       setShowAnimalDetail(true);
       setGameMode(mode);
@@ -333,8 +335,9 @@ export default function App() {
     setListScrollIndex(scrollIndex);
     setLastSearchText(searchText);
 
-    // Find the animal's index in the full ANIMALS list
-    const animalIndex = ANIMALS.findIndex((a) => a.id === animal.id);
+    // Find the animal's index in the filtered showAll animals list
+    const showAllAnimals = getAnimalsByMode("showAll");
+    const animalIndex = showAllAnimals.findIndex((a) => a.id === animal.id);
     setCurrentAnimalIndex(animalIndex >= 0 ? animalIndex : 0);
 
     setSelectedAnimal(animal);
@@ -526,7 +529,7 @@ export default function App() {
                   showAnimalDetail ? (
                     <AnimalDetailView
                       animal={selectedAnimal!}
-                      animals={ANIMALS}
+                      animals={getAnimalsByMode(gameMode)}
                       currentIndex={currentAnimalIndex}
                       onAnimalChange={handleAnimalChange}
                       translations={t}
@@ -537,7 +540,7 @@ export default function App() {
                     />
                   ) : (
                     <AnimalsListView
-                      animals={ANIMALS}
+                      animals={getAnimalsByMode("showAll")}
                       translations={t}
                       onAnimalPress={handleAnimalSelect}
                       isSoundEnabled={isSoundEnabled}

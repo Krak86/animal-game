@@ -117,7 +117,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐕",
     image: BG_IMAGES[0], // bg1
     soundUrl: dogSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "dogDescription",
     images: [
       "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&q=80",
@@ -146,7 +146,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐈",
     image: BG_IMAGES[1], // bg2
     soundUrl: catSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "catDescription",
     images: [
       "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&q=80",
@@ -173,7 +173,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦁",
     image: BG_IMAGES[2], // bg3
     soundUrl: lionSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "lionDescription",
     images: [
       "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=800&q=80",
@@ -196,7 +196,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐘",
     image: BG_IMAGES[3], // bg4
     soundUrl: elephantSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "elephantDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661810056990-57be781caa2d?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -219,7 +219,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦒",
     image: BG_IMAGES[4], // bg5
     soundUrl: giraffeSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "giraffeDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661813434310-98cca4c9135e?q=80&w=1734&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -242,7 +242,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐒",
     image: BG_IMAGES[5], // bg6
     soundUrl: monkeySound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "monkeyDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664299631876-f143dc691c4d?q=80&w=794&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -265,7 +265,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐧",
     image: BG_IMAGES[6], // bg7
     soundUrl: penguinSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "penguinDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661816797370-928a8749043c?q=80&w=1146&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -288,7 +288,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦓",
     image: BG_IMAGES[7], // bg8
     soundUrl: zebraSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "zebraDescription",
     images: [
       "https://images.unsplash.com/photo-1526319238109-524eecb9b913?q=80&w=1648&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -311,7 +311,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐅",
     image: BG_IMAGES[8], // bg9
     soundUrl: tigerSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "tigerDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661847643150-4e06569d2ec1?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -334,7 +334,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐰",
     image: BG_IMAGES[9], // bg10
     soundUrl: rabbitSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "rabbitDescription",
     images: [
       "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -357,7 +357,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐓",
     image: BG_IMAGES[0], // bg1
     soundUrl: roosterSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "roosterDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664303893633-1544fcd8baed?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -380,7 +380,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐄",
     image: BG_IMAGES[1], // bg2
     soundUrl: cowSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "cowDescription",
     images: [
       "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?q=80&w=976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -403,7 +403,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐴",
     image: BG_IMAGES[2], // bg3
     soundUrl: horseSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "horseDescription",
     images: [
       "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -426,7 +426,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐦",
     image: BG_IMAGES[3], // bg4
     soundUrl: birdSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "birdDescription",
     images: [
       "https://images.unsplash.com/photo-1486365227551-f3f90034a57c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -449,7 +449,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐺",
     image: BG_IMAGES[4], // bg5
     soundUrl: wolfSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "wolfDescription",
     images: [
       "https://images.unsplash.com/photo-1588167056547-c183313da47c?q=80&w=1062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -472,7 +472,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🪿",
     image: BG_IMAGES[5], // bg6
     soundUrl: gooseSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "gooseDescription",
     images: [
       "https://images.unsplash.com/photo-1564851375740-1052e619dcbc?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -495,7 +495,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🫏",
     image: BG_IMAGES[6], // bg7
     soundUrl: donkeySound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "donkeyDescription",
     images: [
       "https://images.unsplash.com/photo-1568495732369-3a3f5b5290dd?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -518,7 +518,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐻",
     image: BG_IMAGES[7], // bg8
     soundUrl: bearSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "bearDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661849977833-c18cd1c7e295?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -541,7 +541,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦈",
     image: BG_IMAGES[8], // bg9
     soundUrl: sharkSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "sharkDescription",
     images: [
       "https://images.unsplash.com/photo-1560275619-4662e36fa65c?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -564,7 +564,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐢",
     image: BG_IMAGES[9], // bg10
     soundUrl: turtleSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "turtleDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1675432656807-216d786dd468?q=80&w=780&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -587,7 +587,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐙",
     image: BG_IMAGES[0], // bg1
     soundUrl: octopusSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "octopusDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1723733104322-827186b5eb9e?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -610,7 +610,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦀",
     image: BG_IMAGES[1], // bg2
     soundUrl: crabSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "crabDescription",
     images: [
       "https://images.unsplash.com/photo-1553659971-f01207815844?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -633,7 +633,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐋",
     image: BG_IMAGES[2], // bg3
     soundUrl: whaleSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "whaleDescription",
     images: [
       "https://images.unsplash.com/photo-1568430462989-44163eb1752f?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -656,7 +656,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐬",
     image: BG_IMAGES[3], // bg4
     soundUrl: dolphinSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "dolphinDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1724654643848-ab19f6ec1c79?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -679,7 +679,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐌",
     image: BG_IMAGES[4], // bg5
     soundUrl: snailSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "snailDescription",
     images: [
       "https://images.unsplash.com/photo-1533177243638-dd485701f717?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -702,7 +702,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐜",
     image: BG_IMAGES[5], // bg6
     soundUrl: antSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "antDescription",
     images: [
       "https://images.unsplash.com/photo-1588470045344-4393b295297c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -725,7 +725,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐞",
     image: BG_IMAGES[6], // bg7
     soundUrl: ladybugSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "ladybugDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1723013532532-964a36800dcf?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -748,7 +748,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐊",
     image: BG_IMAGES[7], // bg8
     soundUrl: crocodileSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "crocodileDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664302983066-8ea0ffd6af05?q=80&w=818&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -771,7 +771,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦇",
     image: BG_IMAGES[8], // bg9
     soundUrl: batSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "batDescription",
     images: [
       "https://images.unsplash.com/photo-1629100393327-a3a1550354fd?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -794,7 +794,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦜",
     image: BG_IMAGES[9], // bg10
     soundUrl: parrotSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "parrotDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1673454201378-3867e051dca7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -817,7 +817,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦌",
     image: BG_IMAGES[0], // bg1
     soundUrl: mooseSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "mooseDescription",
     images: [
       "https://images.unsplash.com/photo-1549471013-3364d7220b75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -840,7 +840,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦙",
     image: BG_IMAGES[1], // bg2
     soundUrl: llamaSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "llamaDescription",
     images: [
       "https://images.unsplash.com/photo-1589182337358-2cb63099350c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -863,7 +863,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐃",
     image: BG_IMAGES[2], // bg3
     soundUrl: buffaloSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "buffaloDescription",
     images: [
       "https://images.unsplash.com/photo-1603696861627-db79cf52fecb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -886,7 +886,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦃",
     image: BG_IMAGES[3], // bg4
     soundUrl: turkeySound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "turkeyDescription",
     images: [
       "https://images.unsplash.com/photo-1610847188112-fda7a87b39a3?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -909,7 +909,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦚",
     image: BG_IMAGES[4], // bg5
     soundUrl: peacockSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "peacockDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1694270553677-22680efa4d56?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -932,7 +932,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦢",
     image: BG_IMAGES[5], // bg6
     soundUrl: swanSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "swanDescription",
     images: [
       "https://images.unsplash.com/photo-1588485256313-f021c74731f1?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -955,7 +955,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐝",
     image: BG_IMAGES[6], // bg7
     soundUrl: beeSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "beeDescription",
     images: [
       "https://images.unsplash.com/photo-1568526381923-caf3fd520382?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -978,7 +978,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐛",
     image: BG_IMAGES[7], // bg8
     soundUrl: caterpillarSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "caterpillarDescription",
     images: [
       "https://images.unsplash.com/photo-1598431429388-c561cb614d2d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1001,7 +1001,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦂",
     image: BG_IMAGES[8], // bg9
     soundUrl: scorpionSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "scorpionDescription",
     images: [
       "https://images.unsplash.com/photo-1618479995657-6e2fbb7d5480?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1024,7 +1024,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦞",
     image: BG_IMAGES[9], // bg10
     soundUrl: lobsterSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "lobsterDescription",
     images: [
       "https://images.unsplash.com/photo-1655697253644-63c270874bb7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1047,7 +1047,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦭",
     image: BG_IMAGES[0], // bg1
     soundUrl: sealSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "sealDescription",
     images: [
       "https://images.unsplash.com/photo-1565413294262-fa587c396965?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1070,7 +1070,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦝",
     image: BG_IMAGES[1], // bg2
     soundUrl: raccoonSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "raccoonDescription",
     images: [
       "https://images.unsplash.com/photo-1497752531616-c3afd9760a11?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1093,7 +1093,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦡",
     image: BG_IMAGES[2], // bg3
     soundUrl: badgerSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "badgerDescription",
     images: [
       "https://images.unsplash.com/photo-1563016115-85abfc230672?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1116,7 +1116,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐗",
     image: BG_IMAGES[3], // bg4
     soundUrl: boarSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "boarDescription",
     images: [
       "https://images.unsplash.com/photo-1545426908-a67f44ed0291?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1139,7 +1139,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐪",
     image: BG_IMAGES[4], // bg5
     soundUrl: camelSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "camelDescription",
     images: [
       "https://images.unsplash.com/photo-1598113972215-96c018fb1a0b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1162,7 +1162,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦎",
     image: BG_IMAGES[5], // bg6
     soundUrl: chameleonSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "chameleonDescription",
     images: [
       "https://images.unsplash.com/photo-1617540021016-72023b487e99?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1185,7 +1185,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦩",
     image: BG_IMAGES[6], // bg7
     soundUrl: flamingoSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "flamingoDescription",
     images: [
       "https://images.unsplash.com/photo-1543260775-945c562403b3?q=80&w=728&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1208,7 +1208,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦍",
     image: BG_IMAGES[7], // bg8
     soundUrl: gorillaSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "gorillaDescription",
     images: [
       "https://images.unsplash.com/photo-1581281863883-2469417a1668?q=80&w=902&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1231,7 +1231,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦘",
     image: BG_IMAGES[8], // bg9
     soundUrl: kangarooSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "kangarooDescription",
     images: [
       "https://images.unsplash.com/photo-1575699914911-0027c7b95fb6?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1254,7 +1254,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐆",
     image: BG_IMAGES[9], // bg10
     soundUrl: leopardSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "leopardDescription",
     images: [
       "https://images.unsplash.com/photo-1544985361-b420d7a77043?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1277,7 +1277,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐑",
     image: BG_IMAGES[0], // bg1
     soundUrl: sheepSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "sheepDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1666777246850-e18916172de7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1300,7 +1300,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐥",
     image: BG_IMAGES[1], // bg2
     soundUrl: chickenSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "chickenDescription",
     images: [
       "https://images.unsplash.com/photo-1612170153139-6f881ff067e0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1323,7 +1323,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐖",
     image: BG_IMAGES[2], // bg3
     soundUrl: pigSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "pigDescription",
     images: [
       "https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1346,7 +1346,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐐",
     image: BG_IMAGES[3], // bg4
     soundUrl: goatSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "goatDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664304299664-a8e2e2f80290?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1369,7 +1369,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐂",
     image: BG_IMAGES[4], // bg5
     soundUrl: bullSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "bullDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661835557655-99a912d26132?q=80&w=748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1392,7 +1392,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦆",
     image: BG_IMAGES[5], // bg6
     soundUrl: duckSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "duckDescription",
     images: [
       "https://images.unsplash.com/photo-1465153690352-10c1b29577f8?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1415,7 +1415,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐍",
     image: BG_IMAGES[1], // bg2
     soundUrl: snakeSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "snakeDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661897154120-5b27cd6a0bd5?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1438,7 +1438,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐦‍⬛",
     image: BG_IMAGES[2], // bg3
     soundUrl: ravenSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "ravenDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1673491310188-13caeef2c5cd?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1461,7 +1461,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦉",
     image: BG_IMAGES[3], // bg4
     soundUrl: owlSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "owlDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664304409780-6d31241e9058?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1483,7 +1483,7 @@ export const ANIMALS: Animal[] = [
     name: "Ram",
     emoji: "🐏",
     image: BG_IMAGES[4],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "ramDescription",
     images: [],
     videos: [],
@@ -1499,7 +1499,7 @@ export const ANIMALS: Animal[] = [
     name: "Fox",
     emoji: "🦊",
     image: BG_IMAGES[6],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "foxDescription",
     images: [],
     videos: [],
@@ -1515,7 +1515,7 @@ export const ANIMALS: Animal[] = [
     name: "Squirrel",
     emoji: "🐿️",
     image: BG_IMAGES[7],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "squirrelDescription",
     images: [],
     videos: [],
@@ -1531,7 +1531,7 @@ export const ANIMALS: Animal[] = [
     name: "Hedgehog",
     emoji: "🦔",
     image: BG_IMAGES[8],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "hedgehogDescription",
     images: [],
     videos: [],
@@ -1547,7 +1547,7 @@ export const ANIMALS: Animal[] = [
     name: "Otter",
     emoji: "🦦",
     image: BG_IMAGES[9],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "otterDescription",
     images: [],
     videos: [],
@@ -1563,7 +1563,7 @@ export const ANIMALS: Animal[] = [
     name: "Panda",
     emoji: "🐼",
     image: BG_IMAGES[0],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "pandaDescription",
     images: [],
     videos: [],
@@ -1579,7 +1579,7 @@ export const ANIMALS: Animal[] = [
     name: "Koala",
     emoji: "🐨",
     image: BG_IMAGES[1],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "koalaDescription",
     images: [],
     videos: [],
@@ -1595,7 +1595,7 @@ export const ANIMALS: Animal[] = [
     name: "Hippopotamus",
     emoji: "🦛",
     image: BG_IMAGES[2],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "hippopotamusDescription",
     images: [],
     videos: [],
@@ -1611,7 +1611,7 @@ export const ANIMALS: Animal[] = [
     name: "Rhinoceros",
     emoji: "🦏",
     image: BG_IMAGES[3],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "rhinocerosDescription",
     images: [],
     videos: [],
@@ -1627,7 +1627,7 @@ export const ANIMALS: Animal[] = [
     name: "Eagle",
     emoji: "🦅",
     image: BG_IMAGES[5],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "eagleDescription",
     images: [],
     videos: [],
@@ -1643,7 +1643,7 @@ export const ANIMALS: Animal[] = [
     name: "Seagull",
     emoji: "🕊️",
     image: BG_IMAGES[7],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "seagullDescription",
     images: [],
     videos: [],
@@ -1659,7 +1659,7 @@ export const ANIMALS: Animal[] = [
     name: "Jellyfish",
     emoji: "🪼",
     image: BG_IMAGES[2],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "jellyfishDescription",
     images: [],
     videos: [],
@@ -1675,7 +1675,7 @@ export const ANIMALS: Animal[] = [
     name: "Clownfish",
     emoji: "🐠",
     image: BG_IMAGES[3],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "clownfishDescription",
     images: [],
     videos: [],
@@ -1691,7 +1691,7 @@ export const ANIMALS: Animal[] = [
     name: "Frog",
     emoji: "🐸",
     image: BG_IMAGES[4],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "frogDescription",
     images: [],
     videos: [],
@@ -1707,7 +1707,7 @@ export const ANIMALS: Animal[] = [
     name: "Butterfly",
     emoji: "🦋",
     image: BG_IMAGES[5],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "butterflyDescription",
     images: [],
     videos: [],
@@ -1723,7 +1723,7 @@ export const ANIMALS: Animal[] = [
     name: "Grasshopper",
     emoji: "🦗",
     image: BG_IMAGES[6],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "grasshopperDescription",
     images: [],
     videos: [],
@@ -1739,7 +1739,7 @@ export const ANIMALS: Animal[] = [
     name: "Spider",
     emoji: "🕷️",
     image: BG_IMAGES[7],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "spiderDescription",
     images: [],
     videos: [],
@@ -1755,7 +1755,7 @@ export const ANIMALS: Animal[] = [
     name: "Mosquito",
     emoji: "🦟",
     image: BG_IMAGES[8],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "mosquitoDescription",
     images: [],
     videos: [],
@@ -1771,7 +1771,7 @@ export const ANIMALS: Animal[] = [
     name: "Mouse",
     emoji: "🐭",
     image: BG_IMAGES[9],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "mouseDescription",
     images: [],
     videos: [],
@@ -1787,7 +1787,7 @@ export const ANIMALS: Animal[] = [
     name: "Sloth",
     emoji: "🦥",
     image: BG_IMAGES[0],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "slothDescription",
     images: [],
     videos: [],
@@ -1803,7 +1803,7 @@ export const ANIMALS: Animal[] = [
     name: "Worm",
     emoji: "🪱",
     image: BG_IMAGES[1],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "wormDescription",
     images: [],
     videos: [],
@@ -1819,7 +1819,7 @@ export const ANIMALS: Animal[] = [
     name: "Fly",
     emoji: "🪰",
     image: BG_IMAGES[2],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "flyDescription",
     images: [],
     videos: [],
@@ -1835,7 +1835,7 @@ export const ANIMALS: Animal[] = [
     name: "Beetle",
     emoji: "🪲",
     image: BG_IMAGES[3],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "beetleDescription",
     images: [],
     videos: [],
@@ -1851,7 +1851,7 @@ export const ANIMALS: Animal[] = [
     name: "Skunk",
     emoji: "🦨",
     image: BG_IMAGES[4],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "skunkDescription",
     images: [],
     videos: [],
@@ -1867,7 +1867,7 @@ export const ANIMALS: Animal[] = [
     name: "Beaver",
     emoji: "🦫",
     image: BG_IMAGES[5],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "beaverDescription",
     images: [],
     videos: [],
@@ -1883,7 +1883,7 @@ export const ANIMALS: Animal[] = [
     name: "Cockroach",
     emoji: "🪳",
     image: BG_IMAGES[6],
-    modes: ["byName", "showAll", "animalPairs"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "cockroachDescription",
     images: [],
     videos: [],
