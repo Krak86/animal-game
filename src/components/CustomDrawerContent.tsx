@@ -163,22 +163,6 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
             </Text>
           </TouchableOpacity>
 
-          {/* Show All Button */}
-          <TouchableOpacity
-            style={[
-              styles.menuItemContent,
-              styles.gameModeButton,
-              currentGameMode === "showAll" && styles.activeGameMode,
-            ]}
-            onPress={() => handleModeSwitch("showAll")}
-            activeOpacity={0.7}
-          >
-            <EmojiSvg emoji="🖼️" style={styles.menuItemEmoji} />
-            <Text style={styles.menuItemText}>
-              {translations.startScreen.showAll}
-            </Text>
-          </TouchableOpacity>
-
           {/* Animal Pairs Button */}
           <TouchableOpacity
             style={[
@@ -192,6 +176,22 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
             <EmojiSvg emoji="🎯" style={styles.menuItemEmoji} />
             <Text style={styles.menuItemText}>
               {translations.startScreen.animalPairs}
+            </Text>
+          </TouchableOpacity>
+
+          {/* Show All Button */}
+          <TouchableOpacity
+            style={[
+              styles.menuItemContent,
+              styles.gameModeButton,
+              currentGameMode === "showAll" && styles.activeGameMode,
+            ]}
+            onPress={() => handleModeSwitch("showAll")}
+            activeOpacity={0.7}
+          >
+            <EmojiSvg emoji="🖼️" style={styles.menuItemEmoji} />
+            <Text style={styles.menuItemText}>
+              {translations.startScreen.showAll}
             </Text>
           </TouchableOpacity>
         </View>

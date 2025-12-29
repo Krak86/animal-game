@@ -317,30 +317,6 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
               style={[
                 styles.buttonWrapper,
                 {
-                  borderColor: borderAnim3.interpolate({
-                    inputRange: [0, 0.33, 0.66, 1],
-                    outputRange: ["#9B59B6", "#9B59B6", "#E91E63", "#9B59B6"],
-                  }),
-                },
-              ]}
-            >
-              <TouchableOpacity
-                style={[styles.modeButton, styles.showAllButton]}
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  onStart("showAll");
-                }}
-                activeOpacity={0.8}
-              >
-                <EmojiSvg emoji="🖼️" style={styles.buttonEmoji} />
-                <Text style={styles.modeButtonText}>{t.showAll}</Text>
-              </TouchableOpacity>
-            </Animated.View>
-
-            <Animated.View
-              style={[
-                styles.buttonWrapper,
-                {
                   borderColor: borderAnim4.interpolate({
                     inputRange: [0, 0.33, 0.66, 1],
                     outputRange: ["#FF6B35", "#FFA500", "#FFD700", "#FF6B35"], // Orange to gold
@@ -403,6 +379,30 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
                 <EmojiSvg emoji="🎯" style={styles.buttonEmoji} />
                 <Text style={styles.modeButtonText}>{t.animalPairs}</Text>
                 <Text style={styles.modeDescription}>{t.animalPairsDescription}</Text>
+              </TouchableOpacity>
+            </Animated.View>
+
+            <Animated.View
+              style={[
+                styles.buttonWrapper,
+                {
+                  borderColor: borderAnim3.interpolate({
+                    inputRange: [0, 0.33, 0.66, 1],
+                    outputRange: ["#9B59B6", "#9B59B6", "#E91E63", "#9B59B6"],
+                  }),
+                },
+              ]}
+            >
+              <TouchableOpacity
+                style={[styles.modeButton, styles.showAllButton]}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  onStart("showAll");
+                }}
+                activeOpacity={0.8}
+              >
+                <EmojiSvg emoji="🖼️" style={styles.buttonEmoji} />
+                <Text style={styles.modeButtonText}>{t.showAll}</Text>
               </TouchableOpacity>
             </Animated.View>
           </View>
