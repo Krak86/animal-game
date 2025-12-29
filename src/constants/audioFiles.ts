@@ -231,10 +231,6 @@ export const PRERECORDED_ANIMAL_AUDIO: Record<string, Record<"uk" | "ru", any>> 
     uk: require("@assets/audio/animals/uk/duck.mp3"),
     ru: require("@assets/audio/animals/ru/duck.mp3"),
   },
-  Lamb: {
-    uk: require("@assets/audio/animals/uk/lamb.mp3"),
-    ru: require("@assets/audio/animals/ru/lamb.mp3"),
-  },
   Snake: {
     uk: require("@assets/audio/animals/uk/snake.mp3"),
     ru: require("@assets/audio/animals/ru/snake.mp3"),
@@ -246,6 +242,138 @@ export const PRERECORDED_ANIMAL_AUDIO: Record<string, Record<"uk" | "ru", any>> 
   Owl: {
     uk: require("@assets/audio/animals/uk/owl.mp3"),
     ru: require("@assets/audio/animals/ru/owl.mp3"),
+  },
+  Ram: {
+    uk: require("@assets/audio/animals/uk/ram.mp3"),
+    ru: require("@assets/audio/animals/ru/ram.mp3"),
+  },
+  Hen: {
+    uk: require("@assets/audio/animals/uk/hen.mp3"),
+    ru: require("@assets/audio/animals/ru/hen.mp3"),
+  },
+  Fox: {
+    uk: require("@assets/audio/animals/uk/fox.mp3"),
+    ru: require("@assets/audio/animals/ru/fox.mp3"),
+  },
+  Squirrel: {
+    uk: require("@assets/audio/animals/uk/squirrel.mp3"),
+    ru: require("@assets/audio/animals/ru/squirrel.mp3"),
+  },
+  Hedgehog: {
+    uk: require("@assets/audio/animals/uk/hedgehog.mp3"),
+    ru: require("@assets/audio/animals/ru/hedgehog.mp3"),
+  },
+  Otter: {
+    uk: require("@assets/audio/animals/uk/otter.mp3"),
+    ru: require("@assets/audio/animals/ru/otter.mp3"),
+  },
+  Panda: {
+    uk: require("@assets/audio/animals/uk/panda.mp3"),
+    ru: require("@assets/audio/animals/ru/panda.mp3"),
+  },
+  Koala: {
+    uk: require("@assets/audio/animals/uk/koala.mp3"),
+    ru: require("@assets/audio/animals/ru/koala.mp3"),
+  },
+  Hippopotamus: {
+    uk: require("@assets/audio/animals/uk/hippopotamus.mp3"),
+    ru: require("@assets/audio/animals/ru/hippopotamus.mp3"),
+  },
+  Rhinoceros: {
+    uk: require("@assets/audio/animals/uk/rhinoceros.mp3"),
+    ru: require("@assets/audio/animals/ru/rhinoceros.mp3"),
+  },
+  Chimpanzee: {
+    uk: require("@assets/audio/animals/uk/chimpanzee.mp3"),
+    ru: require("@assets/audio/animals/ru/chimpanzee.mp3"),
+  },
+  Eagle: {
+    uk: require("@assets/audio/animals/uk/eagle.mp3"),
+    ru: require("@assets/audio/animals/ru/eagle.mp3"),
+  },
+  Woodpecker: {
+    uk: require("@assets/audio/animals/uk/woodpecker.mp3"),
+    ru: require("@assets/audio/animals/ru/woodpecker.mp3"),
+  },
+  Seagull: {
+    uk: require("@assets/audio/animals/uk/seagull.mp3"),
+    ru: require("@assets/audio/animals/ru/seagull.mp3"),
+  },
+  Ostrich: {
+    uk: require("@assets/audio/animals/uk/ostrich.mp3"),
+    ru: require("@assets/audio/animals/ru/ostrich.mp3"),
+  },
+  Pelican: {
+    uk: require("@assets/audio/animals/uk/pelican.mp3"),
+    ru: require("@assets/audio/animals/ru/pelican.mp3"),
+  },
+  Starfish: {
+    uk: require("@assets/audio/animals/uk/starfish.mp3"),
+    ru: require("@assets/audio/animals/ru/starfish.mp3"),
+  },
+  Seahorse: {
+    uk: require("@assets/audio/animals/uk/seahorse.mp3"),
+    ru: require("@assets/audio/animals/ru/seahorse.mp3"),
+  },
+  Jellyfish: {
+    uk: require("@assets/audio/animals/uk/jellyfish.mp3"),
+    ru: require("@assets/audio/animals/ru/jellyfish.mp3"),
+  },
+  Clownfish: {
+    uk: require("@assets/audio/animals/uk/clownfish.mp3"),
+    ru: require("@assets/audio/animals/ru/clownfish.mp3"),
+  },
+  Frog: {
+    uk: require("@assets/audio/animals/uk/frog.mp3"),
+    ru: require("@assets/audio/animals/ru/frog.mp3"),
+  },
+  Butterfly: {
+    uk: require("@assets/audio/animals/uk/butterfly.mp3"),
+    ru: require("@assets/audio/animals/ru/butterfly.mp3"),
+  },
+  Grasshopper: {
+    uk: require("@assets/audio/animals/uk/grasshopper.mp3"),
+    ru: require("@assets/audio/animals/ru/grasshopper.mp3"),
+  },
+  Spider: {
+    uk: require("@assets/audio/animals/uk/spider.mp3"),
+    ru: require("@assets/audio/animals/ru/spider.mp3"),
+  },
+  Mosquito: {
+    uk: require("@assets/audio/animals/uk/mosquito.mp3"),
+    ru: require("@assets/audio/animals/ru/mosquito.mp3"),
+  },
+  Mouse: {
+    uk: require("@assets/audio/animals/uk/mouse.mp3"),
+    ru: require("@assets/audio/animals/ru/mouse.mp3"),
+  },
+  Sloth: {
+    uk: require("@assets/audio/animals/uk/sloth.mp3"),
+    ru: require("@assets/audio/animals/ru/sloth.mp3"),
+  },
+  Worm: {
+    uk: require("@assets/audio/animals/uk/worm.mp3"),
+    ru: require("@assets/audio/animals/ru/worm.mp3"),
+  },
+  Fly: {
+    uk: require("@assets/audio/animals/uk/fly.mp3"),
+    ru: require("@assets/audio/animals/ru/fly.mp3"),
+  },
+  Beetle: {
+    uk: require("@assets/audio/animals/uk/beetle.mp3"),
+    ru: require("@assets/audio/animals/ru/beetle.mp3"),
+  },
+  Skunk: {
+    uk: require("@assets/audio/animals/uk/skunk.mp3"),
+    ru: require("@assets/audio/animals/ru/skunk.mp3"),
+  },
+  Beaver: {
+    uk: require("@assets/audio/animals/uk/beaver.mp3"),
+    ru: require("@assets/audio/animals/ru/beaver.mp3"),
+  },
+  Cockroach: {
+    uk: require("@assets/audio/animals/uk/cockroach.mp3"),
+    ru: require("@assets/audio/animals/ru/cockroach.mp3"),
   },
 };
 

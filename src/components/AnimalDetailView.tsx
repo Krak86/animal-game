@@ -21,6 +21,7 @@ import { EmojiSvg } from "@/components/EmojiSvg";
 import { ImageGalleryModal } from "@/components/ImageGalleryModal";
 import { VideoGalleryModal } from "@/components/VideoGalleryModal";
 import { Model3DModal } from "@/components/Model3DModal";
+import { PRERECORDED_ANIMAL_AUDIO, hasPrerecordedAudio } from "@/constants/audioFiles";
 
 interface AnimalDetailViewProps {
   animal: Animal;
@@ -261,11 +262,17 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
 
   const hasSoundUrl = !!animal.soundUrl;
 
+  // Check if prerecorded pronunciation audio exists for this animal in the current language
+  const hasPrerecordedPronunciation =
+    hasPrerecordedAudio(language) &&
+    PRERECORDED_ANIMAL_AUDIO[animal.name] &&
+    language in PRERECORDED_ANIMAL_AUDIO[animal.name];
+
   // For English: always show pronunciation icon (🔊), show sound icon (🔉) only if soundUrl exists
-  // For other languages: only show both icons if soundUrl exists
+  // For UK/RU languages: show pronunciation icon if prerecorded audio exists
   const showTTSButton = language === "en"
     ? isSoundEnabled
-    : isSoundEnabled && hasSoundUrl;
+    : isSoundEnabled && hasPrerecordedPronunciation;
 
   const showSoundButton = isSoundEnabled && hasSoundUrl;
 

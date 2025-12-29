@@ -33,7 +33,10 @@ import {
   logAvailableVoices,
   playPrerecordedAudio,
 } from "@/utils/speech";
-import { PRERECORDED_UI_AUDIO, hasPrerecordedAudio } from "@/constants/audioFiles";
+import {
+  PRERECORDED_UI_AUDIO,
+  hasPrerecordedAudio,
+} from "@/constants/audioFiles";
 import {
   Animal,
   Language,
@@ -199,25 +202,52 @@ export const useGameLogic = (
         } else if (gameMode === "bySound") {
           // First speak "Who says so?", then play animal sound
           // Use prerecorded audio for UK/RU
-          if (hasPrerecordedAudio(language) && PRERECORDED_UI_AUDIO.whoSaysThis[language]) {
-            playPrerecordedAudio(
-              PRERECORDED_UI_AUDIO.whoSaysThis[language],
-              backgroundMusic.current,
-              async () => {
-                // After speaking, play the animal sound
-                if (targetAnimal.soundUrl) {
-                  try {
-                    setIsAnimalSoundPlaying(true);
-                    await playAnimalSound(
-                      targetAnimal.soundUrl,
-                      backgroundMusic.current
-                    );
-                  } finally {
-                    setIsAnimalSoundPlaying(false);
+          if (hasPrerecordedAudio(language)) {
+            // Narrow language to only ones with prerecorded audio
+            const preLang = language as "uk" | "ru";
+            const whoSaysAudio = PRERECORDED_UI_AUDIO.whoSaysThis[preLang];
+
+            if (whoSaysAudio) {
+              playPrerecordedAudio(
+                whoSaysAudio,
+                backgroundMusic.current,
+                async () => {
+                  // After speaking, play the animal sound
+                  if (targetAnimal.soundUrl) {
+                    try {
+                      setIsAnimalSoundPlaying(true);
+                      await playAnimalSound(
+                        targetAnimal.soundUrl,
+                        backgroundMusic.current
+                      );
+                    } finally {
+                      setIsAnimalSoundPlaying(false);
+                    }
                   }
                 }
-              }
-            );
+              );
+            } else {
+              // Fall back to live TTS for English
+              speakText(
+                translations.whoSaysThis,
+                language,
+                backgroundMusic.current,
+                async () => {
+                  // After speaking, play the animal sound
+                  if (targetAnimal.soundUrl) {
+                    try {
+                      setIsAnimalSoundPlaying(true);
+                      await playAnimalSound(
+                        targetAnimal.soundUrl,
+                        backgroundMusic.current
+                      );
+                    } finally {
+                      setIsAnimalSoundPlaying(false);
+                    }
+                  }
+                }
+              );
+            }
           } else {
             // Fall back to live TTS for English
             speakText(
