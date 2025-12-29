@@ -521,40 +521,42 @@ export default function App() {
                 {/* Show HamburgerButton on all screens */}
                 <HamburgerButton />
 
-                {!gameStarted &&
-                gameMode !== "showAll" &&
-                gameMode !== "secret" ? (
-                  <StartScreen onStart={handleStartGame} translations={t} />
-                ) : gameMode === "showAll" || gameMode === "secret" ? (
-                  showAnimalDetail ? (
-                    <AnimalDetailView
-                      animal={selectedAnimal!}
-                      animals={getAnimalsByMode(gameMode)}
-                      currentIndex={currentAnimalIndex}
-                      onAnimalChange={handleAnimalChange}
-                      translations={t}
-                      onBackPress={handleBackToList}
-                      isSoundEnabled={isSoundEnabled}
-                      backgroundMusic={exhibitionBackgroundMusic.current}
-                      language={language}
-                    />
+                {/* Content wrapper with max-width */}
+                <View style={appStyles.contentWrapper}>
+                  {!gameStarted &&
+                  gameMode !== "showAll" &&
+                  gameMode !== "secret" ? (
+                    <StartScreen onStart={handleStartGame} translations={t} />
+                  ) : gameMode === "showAll" || gameMode === "secret" ? (
+                    showAnimalDetail ? (
+                      <AnimalDetailView
+                        animal={selectedAnimal!}
+                        animals={getAnimalsByMode(gameMode)}
+                        currentIndex={currentAnimalIndex}
+                        onAnimalChange={handleAnimalChange}
+                        translations={t}
+                        onBackPress={handleBackToList}
+                        isSoundEnabled={isSoundEnabled}
+                        backgroundMusic={exhibitionBackgroundMusic.current}
+                        language={language}
+                      />
+                    ) : (
+                      <AnimalsListView
+                        animals={getAnimalsByMode("showAll")}
+                        translations={t}
+                        onAnimalPress={handleAnimalSelect}
+                        isSoundEnabled={isSoundEnabled}
+                        scrollToIndex={listScrollIndex}
+                        onScrollIndexChange={setListScrollIndex}
+                        onSearchChange={handleSearchChange}
+                      />
+                    )
                   ) : (
-                    <AnimalsListView
-                      animals={getAnimalsByMode("showAll")}
-                      translations={t}
-                      onAnimalPress={handleAnimalSelect}
-                      isSoundEnabled={isSoundEnabled}
-                      scrollToIndex={listScrollIndex}
-                      onScrollIndexChange={setListScrollIndex}
-                      onSearchChange={handleSearchChange}
-                    />
-                  )
-                ) : (
-                  <>
-                    <ScrollView
-                      contentContainerStyle={appStyles.scrollContent}
-                      showsVerticalScrollIndicator={false}
-                    >
+                    <>
+                      <ScrollView
+                        contentContainerStyle={appStyles.scrollContent}
+                        showsVerticalScrollIndicator={false}
+                      >
                       <Animated.View
                         style={[
                           appStyles.scoreContainer,
@@ -629,14 +631,15 @@ export default function App() {
                       </View>
                     </ScrollView>
 
-                    <SuccessOverlay
-                      visible={showSuccess}
-                      translations={t}
-                      successScale={successScale}
-                      successOpacity={successOpacity}
-                    />
-                  </>
-                )}
+                      <SuccessOverlay
+                        visible={showSuccess}
+                        translations={t}
+                        successScale={successScale}
+                        successOpacity={successOpacity}
+                      />
+                    </>
+                  )}
+                </View>
               </View>
             )}
           </Drawer.Screen>

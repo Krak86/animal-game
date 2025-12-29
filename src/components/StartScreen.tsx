@@ -412,8 +412,11 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
   );
 };
 
-const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
-  StyleSheet.create({
+const getStartScreenStyles = (responsive: ResponsiveDimensions) => {
+  // Compact mode for narrow screens (< 386px)
+  const isCompact = responsive.width < 386;
+
+  return StyleSheet.create({
     outerContainer: {
       flex: 1,
     },
@@ -456,20 +459,20 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
     },
     buttonRow: {
       flexDirection: "row",
-      gap: responsive.spacing.md,
+      gap: isCompact ? responsive.spacing.sm : responsive.spacing.md,
       justifyContent: "center",
       flexWrap: "wrap",
     },
     buttonWrapper: {
-      borderRadius: 20,
+      borderRadius: isCompact ? 15 : 20,
       borderWidth: 2,
       borderColor: COLORS.primary,
-      width: 160, // Fixed width for all tiles
+      width: isCompact ? "100%" : 160, // Full width in compact mode
       overflow: "hidden", // Important: clips content to border radius
     },
     modeButton: {
-      paddingHorizontal: 20,
-      paddingVertical: 16,
+      paddingHorizontal: isCompact ? 15 : 20,
+      paddingVertical: isCompact ? 12 : 16,
       shadowColor: COLORS.black,
       shadowOffset: { width: 0, height: 5 },
       shadowOpacity: 0.3,
@@ -477,9 +480,11 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
       elevation: 5,
       flex: 1, // Fill all available space in wrapper
       width: "100%", // Fill the wrapper width
-      minHeight: 120, // Ensure minimum height for consistency
+      minHeight: isCompact ? 60 : 120, // Shorter height in compact mode
+      flexDirection: isCompact ? "row" : "column", // Row layout in compact mode
       alignItems: "center",
-      justifyContent: "center",
+      justifyContent: isCompact ? "flex-start" : "center",
+      gap: isCompact ? responsive.spacing.sm : 0,
     },
     byNameButton: {
       backgroundColor: COLORS.primary,
@@ -497,20 +502,22 @@ const getStartScreenStyles = (responsive: ResponsiveDimensions) =>
       backgroundColor: "#E91E63", // Pink color for pairs mode
     },
     buttonEmoji: {
-      fontSize: 40 * responsive.fontScale,
-      marginBottom: responsive.spacing.xs,
+      fontSize: isCompact ? 28 * responsive.fontScale : 40 * responsive.fontScale,
+      marginBottom: isCompact ? 0 : responsive.spacing.xs,
     },
     modeButtonText: {
-      fontSize: 18 * responsive.fontScale,
+      fontSize: isCompact ? 16 * responsive.fontScale : 18 * responsive.fontScale,
       fontFamily: FONTS.bold,
       color: COLORS.white,
-      textAlign: "center",
+      textAlign: isCompact ? "left" : "center",
+      flex: isCompact ? 1 : undefined,
     },
     modeDescription: {
-      fontSize: 12 * responsive.fontScale,
+      fontSize: isCompact ? 11 * responsive.fontScale : 12 * responsive.fontScale,
       fontFamily: FONTS.regular,
       color: COLORS.white,
-      textAlign: "center",
+      textAlign: isCompact ? "left" : "center",
       opacity: 0.9,
     },
   });
+};

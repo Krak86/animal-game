@@ -10,6 +10,12 @@ export const getAppStyles = (responsive: ResponsiveDimensions) =>
       flex: 1,
       backgroundColor: COLORS.background,
     },
+    contentWrapper: {
+      flex: 1,
+      maxWidth: 1440,
+      width: "100%",
+      alignSelf: "center",
+    },
     scrollContent: {
       paddingTop: responsive.isLandscape
         ? responsive.spacing.sm
