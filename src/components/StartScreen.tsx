@@ -13,7 +13,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { COLORS } from "@/styles/colors";
 import { FONTS } from "@/constants/fonts";
-import { HamburgerButton } from "@/components/HamburgerButton";
 import {
   useResponsiveDimensions,
   ResponsiveDimensions,
@@ -163,7 +162,6 @@ export const StartScreen: React.FC<Props> = ({ onStart, translations }) => {
 
   return (
     <View style={styles.outerContainer}>
-      <HamburgerButton />
       <ScrollView
         contentContainerStyle={[
           styles.scrollContent,
