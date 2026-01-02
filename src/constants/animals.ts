@@ -77,33 +77,32 @@ const lobsterSound = require("@assets/music/animals/Lobster.mp3");
 const scorpionSound = require("@assets/music/animals/Scorpion.mp3");
 const snailSound = require("@assets/music/animals/Snail.mp3");
 const antSound = require("@assets/music/animals/Ant.mp3");
-
-const ramSound = ""; // require("@assets/music/animals/Ram.mp3");
-const foxSound = ""; // require("@assets/music/animals/Fox.mp3");
-const squirrelSound = ""; // require("@assets/music/animals/Squirrel.mp3");
-const hedgehogSound = ""; // require("@assets/music/animals/Hedgehog.mp3");
-const otterSound = ""; // require("@assets/music/animals/Otter.mp3");
-const pandaSound = ""; // require("@assets/music/animals/Panda.mp3");
-const koalaSound = ""; // require("@assets/music/animals/Koala.mp3");
-const hippopotamusSound = ""; // require("@assets/music/animals/Hippopotamus.mp3");
-const rhinocerosSound = ""; // require("@assets/music/animals/Rhinoceros.mp3");
-const eagleSound = ""; // require("@assets/music/animals/Eagle.mp3");
-const seagullSound = ""; // require("@assets/music/animals/Seagull.mp3");
-const jellyfishSound = ""; // require("@assets/music/animals/Jellyfish.mp3");
-const clownfishSound = ""; // require("@assets/music/animals/Clownfish.mp3");
-const frogSound = ""; // require("@assets/music/animals/Frog.mp3");
-const butterflySound = ""; // require("@assets/music/animals/Butterfly.mp3");
-const grasshopperSound = ""; // require("@assets/music/animals/Grasshopper.mp3");
-const spiderSound = ""; // require("@assets/music/animals/Spider.mp3");
-const mosquitoSound = ""; // require("@assets/music/animals/Mosquito.mp3");
-const mouseSound = ""; // require("@assets/music/animals/Mouse.mp3");
-const slothSound = ""; // require("@assets/music/animals/Sloth.mp3");
-const wormSound = ""; // require("@assets/music/animals/Worm.mp3");
-const flySound = ""; // require("@assets/music/animals/Fly.mp3");
-const beetleSound = ""; // require("@assets/music/animals/Beetle.mp3");
-const skunkSound = ""; // require("@assets/music/animals/Skunk.mp3");
-const beaverSound = ""; // require("@assets/music/animals/Beaver.mp3");
-const cockroachSound = ""; // require("@assets/music/animals/Cockroach.mp3");
+const ramSound = require("@assets/music/animals/Ram.mp3");
+const foxSound = require("@assets/music/animals/Fox.mp3");
+const squirrelSound = require("@assets/music/animals/Squirrel.mp3");
+const hedgehogSound = require("@assets/music/animals/Hedgehog.mp3");
+const otterSound = require("@assets/music/animals/Otter.mp3");
+const pandaSound = require("@assets/music/animals/Panda.mp3");
+const koalaSound = require("@assets/music/animals/Koala.mp3");
+const hippopotamusSound = require("@assets/music/animals/Hippopotamus.mp3");
+const rhinocerosSound = require("@assets/music/animals/Rhinoceros.mp3");
+const eagleSound = require("@assets/music/animals/Eagle.mp3");
+const seagullSound = require("@assets/music/animals/Seagull.mp3");
+const jellyfishSound = require("@assets/music/animals/Jellyfish.mp3");
+const clownfishSound = require("@assets/music/animals/Clownfish.mp3");
+const frogSound = require("@assets/music/animals/Frog.mp3");
+const butterflySound = require("@assets/music/animals/Butterfly.mp3");
+const grasshopperSound = require("@assets/music/animals/Grasshopper.mp3");
+const spiderSound = require("@assets/music/animals/Spider.mp3");
+const mosquitoSound = require("@assets/music/animals/Mosquito.mp3");
+const mouseSound = require("@assets/music/animals/Mouse.mp3");
+const slothSound = require("@assets/music/animals/Sloth.mp3");
+const wormSound = require("@assets/music/animals/Worm.mp3");
+const flySound = require("@assets/music/animals/Fly.mp3");
+const beetleSound = require("@assets/music/animals/Beetle.mp3");
+const skunkSound = require("@assets/music/animals/Skunk.mp3");
+const beaverSound = require("@assets/music/animals/Beaver.mp3");
+const cockroachSound = require("@assets/music/animals/Cockroach.mp3");
 
 // animal 3d models
 // const catGlb = require("@assets/glb/Cat.glb");
@@ -541,7 +540,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦈",
     image: BG_IMAGES[8], // bg9
     soundUrl: sharkSound,
-    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "sharkDescription",
     images: [
       "https://images.unsplash.com/photo-1560275619-4662e36fa65c?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -587,7 +586,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐙",
     image: BG_IMAGES[0], // bg1
     soundUrl: octopusSound,
-    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "octopusDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1723733104322-827186b5eb9e?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -610,7 +609,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦀",
     image: BG_IMAGES[1], // bg2
     soundUrl: crabSound,
-    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "crabDescription",
     images: [
       "https://images.unsplash.com/photo-1553659971-f01207815844?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -679,7 +678,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐌",
     image: BG_IMAGES[4], // bg5
     soundUrl: snailSound,
-    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "snailDescription",
     images: [
       "https://images.unsplash.com/photo-1533177243638-dd485701f717?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -702,7 +701,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐜",
     image: BG_IMAGES[5], // bg6
     soundUrl: antSound,
-    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "antDescription",
     images: [
       "https://images.unsplash.com/photo-1588470045344-4393b295297c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -978,7 +977,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐛",
     image: BG_IMAGES[7], // bg8
     soundUrl: caterpillarSound,
-    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "caterpillarDescription",
     images: [
       "https://images.unsplash.com/photo-1598431429388-c561cb614d2d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1001,7 +1000,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦂",
     image: BG_IMAGES[8], // bg9
     soundUrl: scorpionSound,
-    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "scorpionDescription",
     images: [
       "https://images.unsplash.com/photo-1618479995657-6e2fbb7d5480?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1024,7 +1023,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦞",
     image: BG_IMAGES[9], // bg10
     soundUrl: lobsterSound,
-    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "lobsterDescription",
     images: [
       "https://images.unsplash.com/photo-1655697253644-63c270874bb7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1162,7 +1161,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦎",
     image: BG_IMAGES[5], // bg6
     soundUrl: chameleonSound,
-    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "chameleonDescription",
     images: [
       "https://images.unsplash.com/photo-1617540021016-72023b487e99?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1231,7 +1230,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦘",
     image: BG_IMAGES[8], // bg9
     soundUrl: kangarooSound,
-    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "kangarooDescription",
     images: [
       "https://images.unsplash.com/photo-1575699914911-0027c7b95fb6?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1483,7 +1482,8 @@ export const ANIMALS: Animal[] = [
     name: "Ram",
     emoji: "🐏",
     image: BG_IMAGES[4],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: ramSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "ramDescription",
     images: [],
     videos: [],
@@ -1499,7 +1499,8 @@ export const ANIMALS: Animal[] = [
     name: "Fox",
     emoji: "🦊",
     image: BG_IMAGES[6],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: foxSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "foxDescription",
     images: [],
     videos: [],
@@ -1515,7 +1516,8 @@ export const ANIMALS: Animal[] = [
     name: "Squirrel",
     emoji: "🐿️",
     image: BG_IMAGES[7],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: squirrelSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "squirrelDescription",
     images: [],
     videos: [],
@@ -1531,7 +1533,8 @@ export const ANIMALS: Animal[] = [
     name: "Hedgehog",
     emoji: "🦔",
     image: BG_IMAGES[8],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: hedgehogSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "hedgehogDescription",
     images: [],
     videos: [],
@@ -1547,7 +1550,8 @@ export const ANIMALS: Animal[] = [
     name: "Otter",
     emoji: "🦦",
     image: BG_IMAGES[9],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: otterSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "otterDescription",
     images: [],
     videos: [],
@@ -1563,7 +1567,8 @@ export const ANIMALS: Animal[] = [
     name: "Panda",
     emoji: "🐼",
     image: BG_IMAGES[0],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: pandaSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "pandaDescription",
     images: [],
     videos: [],
@@ -1579,7 +1584,8 @@ export const ANIMALS: Animal[] = [
     name: "Koala",
     emoji: "🐨",
     image: BG_IMAGES[1],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: koalaSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "koalaDescription",
     images: [],
     videos: [],
@@ -1595,7 +1601,8 @@ export const ANIMALS: Animal[] = [
     name: "Hippopotamus",
     emoji: "🦛",
     image: BG_IMAGES[2],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: hippopotamusSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "hippopotamusDescription",
     images: [],
     videos: [],
@@ -1611,7 +1618,8 @@ export const ANIMALS: Animal[] = [
     name: "Rhinoceros",
     emoji: "🦏",
     image: BG_IMAGES[3],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: rhinocerosSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "rhinocerosDescription",
     images: [],
     videos: [],
@@ -1627,7 +1635,8 @@ export const ANIMALS: Animal[] = [
     name: "Eagle",
     emoji: "🦅",
     image: BG_IMAGES[5],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: eagleSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "eagleDescription",
     images: [],
     videos: [],
@@ -1643,7 +1652,8 @@ export const ANIMALS: Animal[] = [
     name: "Seagull",
     emoji: "🕊️",
     image: BG_IMAGES[7],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: seagullSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "seagullDescription",
     images: [],
     videos: [],
@@ -1659,6 +1669,7 @@ export const ANIMALS: Animal[] = [
     name: "Jellyfish",
     emoji: "🪼",
     image: BG_IMAGES[2],
+    soundUrl: jellyfishSound,
     modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "jellyfishDescription",
     images: [],
@@ -1675,6 +1686,7 @@ export const ANIMALS: Animal[] = [
     name: "Clownfish",
     emoji: "🐠",
     image: BG_IMAGES[3],
+    soundUrl: clownfishSound,
     modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "clownfishDescription",
     images: [],
@@ -1691,7 +1703,8 @@ export const ANIMALS: Animal[] = [
     name: "Frog",
     emoji: "🐸",
     image: BG_IMAGES[4],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: frogSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "frogDescription",
     images: [],
     videos: [],
@@ -1707,7 +1720,8 @@ export const ANIMALS: Animal[] = [
     name: "Butterfly",
     emoji: "🦋",
     image: BG_IMAGES[5],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: butterflySound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "butterflyDescription",
     images: [],
     videos: [],
@@ -1723,7 +1737,8 @@ export const ANIMALS: Animal[] = [
     name: "Grasshopper",
     emoji: "🦗",
     image: BG_IMAGES[6],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: grasshopperSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "grasshopperDescription",
     images: [],
     videos: [],
@@ -1739,6 +1754,7 @@ export const ANIMALS: Animal[] = [
     name: "Spider",
     emoji: "🕷️",
     image: BG_IMAGES[7],
+    soundUrl: spiderSound,
     modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "spiderDescription",
     images: [],
@@ -1755,7 +1771,8 @@ export const ANIMALS: Animal[] = [
     name: "Mosquito",
     emoji: "🦟",
     image: BG_IMAGES[8],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: mosquitoSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "mosquitoDescription",
     images: [],
     videos: [],
@@ -1771,7 +1788,8 @@ export const ANIMALS: Animal[] = [
     name: "Mouse",
     emoji: "🐭",
     image: BG_IMAGES[9],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: mouseSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "mouseDescription",
     images: [],
     videos: [],
@@ -1787,7 +1805,8 @@ export const ANIMALS: Animal[] = [
     name: "Sloth",
     emoji: "🦥",
     image: BG_IMAGES[0],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: slothSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "slothDescription",
     images: [],
     videos: [],
@@ -1803,6 +1822,7 @@ export const ANIMALS: Animal[] = [
     name: "Worm",
     emoji: "🪱",
     image: BG_IMAGES[1],
+    soundUrl: wormSound,
     modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "wormDescription",
     images: [],
@@ -1819,7 +1839,8 @@ export const ANIMALS: Animal[] = [
     name: "Fly",
     emoji: "🪰",
     image: BG_IMAGES[2],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: flySound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "flyDescription",
     images: [],
     videos: [],
@@ -1835,7 +1856,8 @@ export const ANIMALS: Animal[] = [
     name: "Beetle",
     emoji: "🪲",
     image: BG_IMAGES[3],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: beetleSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "beetleDescription",
     images: [],
     videos: [],
@@ -1851,7 +1873,8 @@ export const ANIMALS: Animal[] = [
     name: "Skunk",
     emoji: "🦨",
     image: BG_IMAGES[4],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: skunkSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "skunkDescription",
     images: [],
     videos: [],
@@ -1867,7 +1890,8 @@ export const ANIMALS: Animal[] = [
     name: "Beaver",
     emoji: "🦫",
     image: BG_IMAGES[5],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: beaverSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "beaverDescription",
     images: [],
     videos: [],
@@ -1883,7 +1907,8 @@ export const ANIMALS: Animal[] = [
     name: "Cockroach",
     emoji: "🪳",
     image: BG_IMAGES[6],
-    modes: ["byName", "showAll", "animalPairs", "secret"],
+    soundUrl: cockroachSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "cockroachDescription",
     images: [],
     videos: [],
