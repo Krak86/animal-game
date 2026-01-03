@@ -110,7 +110,7 @@ const PrivacyPolicyEN: React.FC<{ openLink: (url: string) => void }> = ({
         Privacy Policy for Animal Explorer 🐕🐈🦁
       </Text>
 
-      <Text style={styles.subtitle}>Effective Date: December 22, 2025</Text>
+      <Text style={styles.subtitle}>Effective Date: January 3, 2026</Text>
       <Text style={styles.subtitle}>Contact: rukrak86@gmail.com</Text>
 
       <Text style={styles.heading}>Introduction</Text>
@@ -264,7 +264,7 @@ const PrivacyPolicyUK: React.FC<{ openLink: (url: string) => void }> = ({
       </Text>
 
       <Text style={styles.subtitle}>
-        Дата набуття чинності: 22 грудня 2025 року
+        Дата набуття чинності: 3 січня 2026 року
       </Text>
       <Text style={styles.subtitle}>Контакт: rukrak86@gmail.com</Text>
 
@@ -425,7 +425,7 @@ const PrivacyPolicyRU: React.FC<{ openLink: (url: string) => void }> = ({
       </Text>
 
       <Text style={styles.subtitle}>
-        Дата вступления в силу: 22 декабря 2025 года
+        Дата вступления в силу: 3 января 2026 года
       </Text>
       <Text style={styles.subtitle}>Контакт: rukrak86@gmail.com</Text>
 
