@@ -668,7 +668,7 @@ export const TRANSLATIONS: TranslationMap = {
       Lobster: "Омар",
       Seal: "Тюлень",
       Raccoon: "Єнот",
-      Badger: "Барсук",
+      Badger: "Борсук",
       Boar: "Кабан",
       Camel: "Верблюд",
       Chameleon: "Хамелеон",

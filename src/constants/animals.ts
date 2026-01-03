@@ -1105,7 +1105,7 @@ export const ANIMALS: Animal[] = [
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Badger",
-      uk: "https://uk.wikipedia.org/wiki/Барсук",
+      uk: "https://uk.wikipedia.org/wiki/Борсук",
       ru: "https://ru.wikipedia.org/wiki/Барсук",
     },
   },
