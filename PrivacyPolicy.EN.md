@@ -1,6 +1,6 @@
 # Privacy Policy for Animal Explorer 🐕🐈🦁
 
-**Effective Date:** December 22, 2025  
+**Effective Date:** January 3, 2026  
 **Contact:** rukrak86@gmail.com
 
 ---
