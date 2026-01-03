@@ -163,6 +163,10 @@ export const useGameLogic = (
     setWrongTileId(null);
     setIsAnimalSoundPlaying(false);
 
+    // Reset card and wiggle animations before setting new animals
+    cardAnimations.forEach((anim) => anim.setValue(0));
+    animalWiggles.forEach((wiggle) => wiggle.setValue(0));
+
     // Pick target animal first
     const targetAnimal = getRandomItem(modeAnimals);
     setCurrentAnimal(targetAnimal);
@@ -180,7 +184,11 @@ export const useGameLogic = (
 
     // Then do animations
     animateQuestionHide(questionAnimation, () => {
-      animateCardsEntrance(cardAnimations);
+      // Wait for state to update before animating (fixes web animation issue)
+      setTimeout(() => {
+        animateCardsEntrance(cardAnimations);
+        startAnimalAnimations(); // Restart wiggle animations for new round
+      }, 50);
       animateQuestionShow(questionAnimation);
 
       // Mode-specific behavior after animations start (if sound is enabled)
