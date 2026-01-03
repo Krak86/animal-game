@@ -28,9 +28,15 @@ import {
 import {
   speakQuestion,
   speakText,
+  speakAnimalName,
   stopSpeech,
   logAvailableVoices,
+  playPrerecordedAudio,
 } from "@/utils/speech";
+import {
+  PRERECORDED_UI_AUDIO,
+  hasPrerecordedAudio,
+} from "@/constants/audioFiles";
 import {
   Animal,
   Language,
@@ -157,6 +163,10 @@ export const useGameLogic = (
     setWrongTileId(null);
     setIsAnimalSoundPlaying(false);
 
+    // Reset card and wiggle animations before setting new animals
+    cardAnimations.forEach((anim) => anim.setValue(0));
+    animalWiggles.forEach((wiggle) => wiggle.setValue(0));
+
     // Pick target animal first
     const targetAnimal = getRandomItem(modeAnimals);
     setCurrentAnimal(targetAnimal);
@@ -174,7 +184,11 @@ export const useGameLogic = (
 
     // Then do animations
     animateQuestionHide(questionAnimation, () => {
-      animateCardsEntrance(cardAnimations);
+      // Wait for state to update before animating (fixes web animation issue)
+      setTimeout(() => {
+        animateCardsEntrance(cardAnimations);
+        startAnimalAnimations(); // Restart wiggle animations for new round
+      }, 50);
       animateQuestionShow(questionAnimation);
 
       // Mode-specific behavior after animations start (if sound is enabled)
@@ -186,34 +200,84 @@ export const useGameLogic = (
       ) {
         if (gameMode === "byName") {
           // Speak "Find the [animal name]"
-          const animalName = translations.animals[targetAnimal.name];
+          // Pass English animal name - speakQuestion will handle prerecorded audio
           speakQuestion(
             translations.findThe,
-            animalName,
+            targetAnimal.name,
             language,
             backgroundMusic.current
           );
         } else if (gameMode === "bySound") {
           // First speak "Who says so?", then play animal sound
-          speakText(
-            translations.whoSaysThis,
-            language,
-            backgroundMusic.current,
-            async () => {
-              // After speaking, play the animal sound
-              if (targetAnimal.soundUrl) {
-                try {
-                  setIsAnimalSoundPlaying(true);
-                  await playAnimalSound(
-                    targetAnimal.soundUrl,
-                    backgroundMusic.current
-                  );
-                } finally {
-                  setIsAnimalSoundPlaying(false);
+          // Use prerecorded audio for UK/RU
+          if (hasPrerecordedAudio(language)) {
+            // Narrow language to only ones with prerecorded audio
+            const preLang = language as "uk" | "ru";
+            const whoSaysAudio = PRERECORDED_UI_AUDIO.whoSaysThis[preLang];
+
+            if (whoSaysAudio) {
+              playPrerecordedAudio(
+                whoSaysAudio,
+                backgroundMusic.current,
+                async () => {
+                  // After speaking, play the animal sound
+                  if (targetAnimal.soundUrl) {
+                    try {
+                      setIsAnimalSoundPlaying(true);
+                      await playAnimalSound(
+                        targetAnimal.soundUrl,
+                        backgroundMusic.current
+                      );
+                    } finally {
+                      setIsAnimalSoundPlaying(false);
+                    }
+                  }
+                }
+              );
+            } else {
+              // Fall back to live TTS for English
+              speakText(
+                translations.whoSaysThis,
+                language,
+                backgroundMusic.current,
+                async () => {
+                  // After speaking, play the animal sound
+                  if (targetAnimal.soundUrl) {
+                    try {
+                      setIsAnimalSoundPlaying(true);
+                      await playAnimalSound(
+                        targetAnimal.soundUrl,
+                        backgroundMusic.current
+                      );
+                    } finally {
+                      setIsAnimalSoundPlaying(false);
+                    }
+                  }
+                }
+              );
+            }
+          } else {
+            // Fall back to live TTS for English
+            speakText(
+              translations.whoSaysThis,
+              language,
+              backgroundMusic.current,
+              async () => {
+                // After speaking, play the animal sound
+                if (targetAnimal.soundUrl) {
+                  try {
+                    setIsAnimalSoundPlaying(true);
+                    await playAnimalSound(
+                      targetAnimal.soundUrl,
+                      backgroundMusic.current
+                    );
+                  } finally {
+                    setIsAnimalSoundPlaying(false);
+                  }
                 }
               }
-            }
-          );
+            );
+          }
         }
       }
     });
@@ -222,8 +286,8 @@ export const useGameLogic = (
   const handleAnimalPress = (animal: Animal): void => {
     // Speak the animal name when clicked (if sound is enabled)
     if (isSoundEnabled && backgroundMusic.current && translations) {
-      const animalName = translations.animals[animal.name];
-      speakQuestion("", animalName, language, backgroundMusic.current);
+      // Use new speakAnimalName function to play prerecorded audio for UK/RU
+      speakAnimalName(animal.name, language, backgroundMusic.current, () => {});
     }
 
     if (animal.id === currentAnimal?.id) {

@@ -6,6 +6,7 @@ export const COLORS = {
   secondary: '#FFE66D',
   accent: '#FF6B6B',
   error: '#FF4757',
+  pink: '#E91E63', // For Animal Pairs mode
   white: '#fff',
   dark: '#333',
   gray: '#666',

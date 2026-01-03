@@ -5,12 +5,14 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { useEffect, useRef } from "react";
 
 import { getAppStyles } from "@/styles/appStyles";
 import { COLORS } from "@/styles/colors";
 import { FONTS } from "@/constants/fonts";
 import { Animal, Translations, GameMode } from "@/types";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
+import { EmojiSvg } from "@/components/EmojiSvg";
 
 interface Props {
   currentAnimal: Animal | null;
@@ -33,9 +35,36 @@ export const QuestionDisplay: React.FC<Props> = ({
   const appStyles = getAppStyles(responsive);
   const styles = getQuestionDisplayStyles(responsive);
 
-  if (!currentAnimal) return null;
+  // Animation for speaking/playing sound effect
+  const speakingAnim = useRef(new Animated.Value(1)).current;
 
-  const animalName = translations.animals[currentAnimal.name];
+  // Pulse animation when sound is playing
+  useEffect(() => {
+    if (isReplayingSound) {
+      const pulse = Animated.loop(
+        Animated.sequence([
+          Animated.timing(speakingAnim, {
+            toValue: 1.4,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+          Animated.timing(speakingAnim, {
+            toValue: 1,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+        ])
+      );
+      pulse.start();
+      return () => pulse.stop();
+    } else {
+      speakingAnim.setValue(1);
+    }
+  }, [isReplayingSound, speakingAnim]);
+
+  const animalName = !currentAnimal
+    ? translations.animals[0]
+    : translations.animals[currentAnimal.name];
 
   return (
     <Animated.View
@@ -59,10 +88,22 @@ export const QuestionDisplay: React.FC<Props> = ({
           <Text style={appStyles.questionText}>{translations.findThe} </Text>
           <Text style={appStyles.animalNameText}>{animalName}</Text>
         </View>
+      ) : gameMode === "animalPairs" ? (
+        <View style={styles.byNameContainer}>
+          <Text style={appStyles.questionText}>
+            {translations.findThePairs}
+          </Text>
+        </View>
       ) : (
-        <View style={styles.soundModeContainer}>
-          <Text style={appStyles.questionText}>{translations.whoSaysThis}</Text>
-          {onReplaySound && (
+        onReplaySound && (
+          <View style={styles.soundModeContainer}>
+            <Animated.View
+              style={{
+                transform: [{ scale: speakingAnim }],
+              }}
+            >
+              <EmojiSvg emoji="🔊" style={styles.soundIcon} />
+            </Animated.View>
             <TouchableOpacity
               style={[
                 styles.replayButton,
@@ -78,11 +119,11 @@ export const QuestionDisplay: React.FC<Props> = ({
                   isReplayingSound && styles.replayButtonTextDisabled,
                 ]}
               >
-                {translations.replaySound}
+                {translations.whoSaysThis}
               </Text>
             </TouchableOpacity>
-          )}
-        </View>
+          </View>
+        )
       )}
     </Animated.View>
   );
@@ -97,10 +138,15 @@ const getQuestionDisplayStyles = (responsive: any) =>
       alignItems: "center",
     },
     soundModeContainer: {
+      flexDirection: "row",
       alignItems: "center",
-      gap: responsive.isLandscape
-        ? responsive.spacing.sm
-        : responsive.spacing.md,
+      justifyContent: "center",
+      gap: responsive.spacing.sm,
+    },
+    soundIcon: {
+      fontSize: responsive.isLandscape
+        ? 24 * responsive.fontScale
+        : 32 * responsive.fontScale,
     },
     replayButton: {
       backgroundColor: COLORS.accent,
@@ -108,14 +154,16 @@ const getQuestionDisplayStyles = (responsive: any) =>
         ? 15 * responsive.fontScale
         : 20 * responsive.fontScale,
       paddingVertical: responsive.isLandscape
-        ? 8 * responsive.fontScale
-        : 10 * responsive.fontScale,
+        ? 10 * responsive.fontScale
+        : 12 * responsive.fontScale,
       borderRadius: 15,
       shadowColor: COLORS.black,
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.2,
       shadowRadius: 4,
       elevation: 3,
+      alignItems: "center",
+      gap: responsive.spacing.xs,
     },
     replayButtonText: {
       fontSize: responsive.isLandscape

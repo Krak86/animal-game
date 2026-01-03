@@ -1,14 +1,15 @@
 # Animal Explorer 🐕🐈🦁
 
-An interactive React Native educational game for children to learn animal names and sounds in three languages (English, Ukrainian, Russian). Features three distinct game modes including an exhibition mode for browsing all animals. Built with TypeScript, Expo, drawer navigation, and featuring image galleries, YouTube videos, Wikipedia integration, custom fonts, background music, and engaging animations.
+An interactive React Native educational game for children to learn animal names and sounds in three languages (English, Ukrainian, Russian). Features four distinct game modes including memory matching pairs and an exhibition mode for browsing all animals. Built with TypeScript, Expo, drawer navigation, and featuring image galleries, YouTube videos, Wikipedia integration, custom fonts, background music, and engaging animations.
 
 ## Features
 
-- 🎮 **Three Game Modes**:
+- 🎮 **Four Game Modes**:
   - **By Name**: Match animal names to images
   - **By Sound**: Identify animals by their sounds
+  - **Animal Pairs**: Memory matching game with face-up tiles
   - **Exhibition Mode**: Browse all animals with detailed information
-- 🦁 **48 Animals**: Comprehensive collection of farm animals, wild animals, birds, marine life, and insects
+- 🦁 **86 Animals**: Comprehensive collection of farm animals, wild animals, birds, marine life, reptiles, amphibians, and insects
 - 🖼️ **Image Galleries**: 6-7 high-quality Unsplash photos per animal with carousel and pinch-to-zoom
 - 🎬 **Video Galleries**: 3 YouTube videos per animal with integrated player
 - 📚 **Wikipedia Integration**: Language-specific Wikipedia links for in-depth learning
@@ -19,7 +20,7 @@ An interactive React Native educational game for children to learn animal names 
 - 🗣️ **Text-to-Speech**: Pronounces animal names in all three languages
 - 🎵 **Background Music**: Optional music with toggle control
 - 🎨 **Smooth Animations**: High-performance animations using React Native Reanimated
-- 🔊 **Animal Sounds**: Authentic MP3 audio files for all 48 animals
+- 🔊 **Animal Sounds**: Authentic MP3 audio files for all 86 animals
 - 📱 **Responsive Design**: Adaptive layouts for all screen sizes and orientations
 - ✅ **Visual Feedback**: Red borders for wrong answers, celebration overlay for correct ones
 - 📊 **Score Tracking**: Keep track of your progress during gameplay
@@ -27,6 +28,9 @@ An interactive React Native educational game for children to learn animal names 
 - 🎭 **SVG Emoji Rendering**: Consistent cross-platform emoji appearance using Twemoji
 - 💾 **Language Persistence**: Automatic language detection with AsyncStorage
 - 🏠 **Reset Functionality**: Return to start screen anytime
+- 📱 **Full Screen Mode**: Automatic full screen on Android startup for immersive experience
+- 🚪 **Exit App Button**: Easy app termination with confirmation dialog
+- ⚡ **FlashList Performance**: Lightning-fast scrolling in Exhibition mode
 
 ## Project Structure
 
@@ -44,6 +48,10 @@ An interactive React Native educational game for children to learn animal names 
 ├── docker-compose.yml               # Docker compose configuration
 ├── declarations.d.ts                # TypeScript declarations for SVG imports
 ├── README.md                        # This file
+├── PrivacyPolicy.EN.md              # Privacy policy (English)
+├── PrivacyPolicy.UK.md              # Privacy policy (Ukrainian)
+├── PrivacyPolicy.RU.md              # Privacy policy (Russian)
+├── DOCKER_SETUP.md                  # Docker setup documentation
 │
 ├── assets/                          # Static assets
 │   ├── fonts/                       # Montserrat font family (4 .ttf files)
@@ -53,22 +61,33 @@ An interactive React Native educational game for children to learn animal names 
 │   │   └── Montserrat-Bold.ttf
 │   ├── imgs/bg/                     # Background images (10 JPG files)
 │   ├── music/                       # Audio files
-│   │   ├── animals/                 # 48 animal sound MP3 files
+│   │   ├── animals/                 # 86 animal sound MP3 files
 │   │   ├── kid-366901.mp3           # Background music
 │   │   ├── success.mp3              # Success sound effect
 │   │   └── wrong.mp3                # Error sound effect
-│   ├── emojis/                      # SVG emoji files (70 files: 60 Twemoji + 2 custom + 8 UI)
+│   ├── emojis/                      # SVG emoji files (97 Twemoji SVGs for 86 animals and UI)
 │   ├── icon.png                     # App icon
 │   ├── splash-icon.png              # Splash screen
 │   ├── adaptive-icon.png            # Android adaptive icon
 │   └── favicon.png                  # Web favicon
 │
 ├── scripts/                         # Build and setup scripts
-│   └── downloadTwemojiSvgs.js       # Download Twemoji SVG assets
+│   ├── downloadTwemojiSvgs.js       # Download Twemoji SVG assets
+│   ├── downloadAnimalSounds.js      # Download animal sound files
+│   └── fix-base-path.js             # Post-build script for GitHub Pages deployment
+│
+├── .github/                         # GitHub Actions workflows
+│   └── workflows/
+│       └── deploy-gh-pages.yml      # Automated GitHub Pages deployment
+│
+├── dist/                            # Web build output (generated by expo export)
+├── public/                          # Web public assets
+│   └── fonts/                       # Web-accessible fonts
 │
 └── src/                             # Source code
-    ├── components/                  # React components (17 files)
+    ├── components/                  # React components (18 files)
     │   ├── AnimalCard.tsx           # Individual animal tile with wiggle animation
+    │   ├── PairsAnimalCard.tsx      # Memory matching card (matched/selected/wrong states)
     │   ├── QuestionDisplay.tsx      # Question display with name or sound replay
     │   ├── StartScreen.tsx          # Game mode selection screen
     │   ├── SuccessOverlay.tsx       # Celebration overlay on correct answer
@@ -86,16 +105,18 @@ An interactive React Native educational game for children to learn animal names 
     │   ├── EmojiSvg.tsx             # SVG emoji rendering component
     │   └── index.ts                 # Components barrel export
     │
-    ├── constants/                   # App constants and data (6 files)
-    │   ├── animals.ts               # 48 animals with images, videos, Wikipedia (1,442 lines)
+    ├── constants/                   # App constants and data (7 files)
+    │   ├── animals.ts               # 86 animals with images, videos, Wikipedia, sounds
     │   ├── translations.ts          # Complete i18n for en/uk/ru (656 lines)
+    │   ├── audioFiles.ts            # Auto-generated TTS audio mappings (UK/RU)
     │   ├── sounds.ts                # Sound effect URLs
     │   ├── fonts.ts                 # Font family constants
-    │   ├── gameSettings.ts          # Game configuration (ANIMALS_PER_SCREEN = 6)
-    │   └── emojiMap.ts              # Emoji to SVG file mappings
+    │   ├── gameSettings.ts          # Game configuration (ANIMALS_PER_SCREEN = 6, PAIRS_PER_SCREEN = 3)
+    │   └── emojiMap.ts              # Emoji to SVG file mappings (97 emojis including 🎯)
     │
-    ├── hooks/                       # Custom React hooks (3 files)
+    ├── hooks/                       # Custom React hooks (4 files)
     │   ├── useGameLogic.ts          # Core game state and logic management
+    │   ├── usePairsGameLogic.ts     # Memory matching pairs game logic (353 lines)
     │   ├── useLanguageInitialization.ts  # Language detection & persistence
     │   └── useResponsiveDimensions.ts    # Screen size & orientation handling
     │
@@ -108,8 +129,8 @@ An interactive React Native educational game for children to learn animal names 
     │   └── linking.ts               # External link handling (Wikipedia, etc.)
     │
     ├── styles/                      # Styling (3 files)
-    │   ├── colors.ts                # Color palette definitions
-    │   ├── appStyles.ts             # Container, scroll, grid layouts
+    │   ├── colors.ts                # Color palette definitions (includes pink #E91E63)
+    │   ├── appStyles.ts             # Container, scroll, grid layouts, gameModeText
     │   └── componentStyles.ts       # Component-specific styles
     │
     └── types/                       # TypeScript type definitions (1 file)
@@ -157,13 +178,14 @@ The app will load fonts on first launch before displaying the splash screen.
 #### Game Components
 
 - **AnimalCard.tsx**: Displays individual animal with wiggle animation and emoji
+- **PairsAnimalCard.tsx**: Memory matching card with matched/selected/wrong states, gold/red borders
 - **QuestionDisplay.tsx**: Shows animal name or sound replay button
 - **StartScreen.tsx**: Game mode selection screen with animations
 - **SuccessOverlay.tsx**: Full-screen celebration overlay on correct answer
 
 #### Exhibition Mode Components
 
-- **AnimalsListView.tsx**: Browse all 48 animals with search and filter functionality
+- **AnimalsListView.tsx**: Browse all 100 animals with search and filter functionality
 - **AnimalDetailView.tsx**: Full-screen detailed animal information view
 - **ImageGalleryModal.tsx**: Image carousel with swipe navigation and pinch-to-zoom
 - **VideoGalleryModal.tsx**: YouTube video player modal
@@ -181,16 +203,18 @@ The app will load fonts on first launch before displaying the splash screen.
 
 ### Constants (`src/constants/`)
 
-- **animals.ts**: 48 animals with images (Unsplash), videos (YouTube), Wikipedia URLs, sounds, and descriptions (1,442 lines)
+- **animals.ts**: 86 animals with images (Unsplash), videos (YouTube), Wikipedia URLs, sounds, and descriptions
 - **translations.ts**: Complete English, Ukrainian, and Russian translations including animal descriptions (656 lines)
+- **audioFiles.ts**: Auto-generated TTS audio mappings for Ukrainian and Russian
 - **sounds.ts**: Sound effect URLs for success and error feedback
 - **fonts.ts**: Montserrat font family constants
-- **gameSettings.ts**: Game configuration (ANIMALS_PER_SCREEN = 6)
-- **emojiMap.ts**: Mapping of emoji characters to SVG file paths (70 emojis)
+- **gameSettings.ts**: Game configuration (ANIMALS_PER_SCREEN = 6, PAIRS_PER_SCREEN = 3)
+- **emojiMap.ts**: Mapping of emoji characters to SVG file paths (97 emojis including 🎯)
 
 ### Hooks (`src/hooks/`)
 
-- **useGameLogic.ts**: Core custom hook managing all game state, logic, animations, and audio
+- **useGameLogic.ts**: Core custom hook managing all game state, logic, animations, and audio for By Name/By Sound modes
+- **usePairsGameLogic.ts**: Memory matching pairs game logic with two-click selection pattern (353 lines)
 - **useLanguageInitialization.ts**: Language detection from device settings and AsyncStorage persistence
 - **useResponsiveDimensions.ts**: Screen size and orientation handling for responsive layouts
 
@@ -316,7 +340,7 @@ The app uses SVG versions of emojis (from Twitter's Twemoji library) for consist
 
 The `scripts/downloadTwemojiSvgs.js` script:
 
-- Downloads 68 Twemoji SVG files (60 animal emojis + 8 UI emojis)
+- Downloads 71 Twemoji SVG files (60 animal emojis + 9 UI emojis + 🎯 target)
 - Saves them to `assets/emojis/` directory
 - Skips files that already exist (safe to re-run)
 - Shows progress and summary of downloads
@@ -339,7 +363,7 @@ node scripts/downloadTwemojiSvgs.js
 #### Expected Output
 
 ```
-Starting download of 68 Twemoji SVG files...
+Starting download of 71 Twemoji SVG files...
 
 ✓ Downloaded 🐕 (1f415.svg)
 ✓ Downloaded 🐈 (1f408.svg)
@@ -399,11 +423,27 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
 2. Player taps the animal that makes that sound
 3. Replay button available to hear sound again
 4. Same visual feedback as "By Name" mode
-5. All 48 animals include sound files
+5. All 86 animals include sound files
+
+### Animal Pairs Mode
+
+1. 6 face-up tiles displayed (3 pairs of animals) in same grid layout as other modes
+2. Player clicks first tile (silent selection with gold border highlight)
+3. Player clicks second tile (checks for match)
+4. **Match**: Success sound plays, tiles fade to opacity 0.3, score +1
+5. **No match**: Wrong sound plays, red borders flash on both tiles
+6. Matched pairs become non-interactive and greyed out
+7. After all 3 pairs matched: Success overlay appears, then new round starts with different animals
+8. **Visual feedback**:
+   - Gold border (#FFD700) for selected tiles
+   - Red border (#FF4757) for wrong matches
+   - Faded (opacity 0.3) for matched pairs
+9. **Sound behavior**: Sounds play ONLY on pair completion (match/mismatch), NOT on first click
+10. No TTS or animal sounds - only match/mismatch feedback
 
 ### Exhibition Mode
 
-1. Browse all 48 animals in a scrollable grid
+1. Browse all 86 animals in a scrollable grid
 2. Search and filter animals by name in current language
 3. Tap any animal card to view detailed information
 4. Animal detail view includes:
@@ -422,14 +462,16 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
 
 ## Technologies
 
-- **React Native 0.81.5** with **Expo ~54.0.29**
+- **React Native 0.81.5** with **Expo ~54.0.30**
 - **TypeScript 5.9.3** for type safety
 - **@react-navigation/drawer** (v7.x) and **@react-navigation/native** (v7.x) for drawer navigation system
-- **react-native-reanimated** (v3.x) for high-performance animations
+- **@shopify/flash-list** (v2.0.2) for high-performance list rendering in Exhibition mode
+- **react-native-reanimated** (v4.1.1) for high-performance animations
 - **react-native-reanimated-carousel** for image gallery carousel
 - **expo-av** for audio playback and background music
 - **expo-speech** for text-to-speech in all three languages
 - **expo-font** for custom Montserrat typography
+- **expo-navigation-bar** for full screen mode control on Android
 - **@react-native-async-storage** for language persistence
 - **react-native-svg** (v15.12.1) for SVG rendering
 - **react-native-svg-transformer** for importing SVG as React components
@@ -517,6 +559,29 @@ eas build --platform ios --profile production
 eas submit -p ios --profile production
 ```
 
+### Web (GitHub Pages)
+
+The app is deployed to GitHub Pages automatically via GitHub Actions:
+
+```bash
+# Build for web locally
+npm run build:web
+
+# Preview locally
+npm run open:web
+```
+
+**GitHub Pages Deployment:**
+- Push to `web` branch to trigger automatic deployment
+- The app deploys to: `https://krak86.github.io/animal-game/`
+- Uses post-build script to add `<base href="/animal-game/">` tag for correct asset paths
+- Configured with `expo.web.output: "single"` for single-page app export
+
+**Configuration Files:**
+- `.github/workflows/deploy-gh-pages.yml` - GitHub Actions workflow
+- `scripts/fix-base-path.js` - Adds base tag to index.html after build
+- `app.json` - Expo web configuration with `"output": "single"`
+
 ## Key Implementation Details
 
 ### Font Loading Flow
@@ -535,11 +600,50 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
 
 ### TTS (Text-to-Speech) System
 
-- **Language support**: English (en-GB) and Ukrainian (uk-UA)
-- **Voice detection**: Checks for available TTS voices on device
+**Hybrid Approach:**
+- **English**: Live TTS using expo-speech (device-dependent, en-GB voice)
+- **Ukrainian & Russian**: Pre-recorded high-quality MP3 files (Piper TTS, female voice)
+- **Fallback**: If prerecorded files missing, falls back to live TTS
+
+**Implementation:**
+- **Prerecorded Audio**: 120 MP3 files (58 animals × 2 languages + 2 UI phrases × 2 languages)
+  - Generated using Piper TTS neural engine
+  - Ukrainian: `uk_UA-lada-medium` model (female voice)
+  - Russian: `ru_RU-dmitri-medium` model
+  - Format: 16kbps MP3, mono, 44.1kHz (~6MB total)
+- **Voice detection**: Checks for available TTS voices on device (for English fallback)
 - **Error handling**: Gracefully handles unsupported languages (critical for Android)
 - **Callback reliability**: Ensures game flow continues even when TTS fails
-- **bySound mode**: Animal sounds play regardless of TTS availability on device
+- **Audio ducking**: Background music volume reduces to 5% during speech playback
+- **bySound mode**: Animal sounds play regardless of TTS availability
+
+**Generating Audio Files:**
+
+To regenerate or update prerecorded audio files:
+
+```bash
+# 1. Build and start TTS generator (first time only)
+cd scripts/tts-generator
+docker-compose build  # Downloads Piper models (~5 min)
+docker-compose up -d
+
+# 2. Generate audio files
+cd ../..  # Return to project root
+node scripts/generateTTSAudio.js
+
+# 3. Files saved to:
+#    - assets/audio/animals/uk/*.mp3 (58 Ukrainian animal names)
+#    - assets/audio/animals/ru/*.mp3 (58 Russian animal names)
+#    - assets/audio/ui/uk/*.mp3 (2 UI phrases)
+#    - assets/audio/ui/ru/*.mp3 (2 UI phrases)
+#    - src/constants/audioFiles.ts (auto-generated mappings)
+```
+
+**Technical Details:**
+- TTS Engine: Piper TTS (lightweight neural TTS, runs in Docker)
+- Generation time: ~10-15 minutes for all 120 files
+- Disk space: ~100MB Docker models + ~6MB audio files
+- Quality: Clear pronunciation suitable for children's educational content
 
 ### Emoji Rendering (SVG-Based System)
 
@@ -552,9 +656,9 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
   - Handles module default exports from svg-transformer
   - Centers SVG in View wrapper with explicit opacity
 
-- **Twemoji Integration**: 68 SVG files from Twitter's Twemoji library
+- **Twemoji Integration**: 71 SVG files from Twitter's Twemoji library
 
-  - 60 animal emojis + 8 UI emojis
+  - 60 animal emojis + 9 UI emojis (including 🎯 target for Animal Pairs mode)
   - Downloaded via `scripts/downloadTwemojiSvgs.js`
   - Consistent appearance across iOS, Android, and Web
   - Perfect scaling (vector graphics)
@@ -583,12 +687,22 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
 
 ### State Management Pattern
 
-All game logic centralized in `useGameLogic` custom hook:
+Game logic centralized in specialized custom hooks:
 
+**By Name/By Sound modes** - `useGameLogic` hook:
 - Game state (score, current animal, animations)
 - Audio control (music, sounds, text-to-speech)
 - User interactions (animal selection, mode switching)
 - Visual feedback (success overlay, error borders)
+
+**Animal Pairs mode** - `usePairsGameLogic` hook:
+- Two-click selection pattern (first/second selection with tileIndex)
+- Pair matching logic with matchedPairIds tracking
+- Animation lifecycle (reset → set animals → delay → animate)
+- Visual feedback (gold/red borders, faded matched pairs)
+- Sound timing (only on pair completion, not first click)
+
+Both hooks share the same interface for core properties (animations, sound control, game flow) enabling conditional usage in [App.tsx](App.tsx)
 
 ### Language Switching UX
 

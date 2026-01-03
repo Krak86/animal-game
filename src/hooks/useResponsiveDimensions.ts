@@ -1,4 +1,4 @@
-import { useWindowDimensions } from 'react-native';
+import { useWindowDimensions } from "react-native";
 
 export interface ResponsiveDimensions {
   width: number;
@@ -30,22 +30,25 @@ export const useResponsiveDimensions = (): ResponsiveDimensions => {
   const isPortrait = height > width;
   const isLandscape = width > height;
 
-  // Determine number of columns based on orientation and screen width
+  // Effective content width (limited by max-width: 1440px)
+  const effectiveWidth = Math.min(width, 1440);
+
+  // Determine number of columns based on orientation and effective content width
+  // Maximum 3 columns to maintain better visibility
   const columnCount = (() => {
     if (isPortrait) {
-      return width < 360 ? 2 : 3; // 2 columns for very small screens, 3 for normal
+      return effectiveWidth < 500 ? 2 : 3; // 2 columns for very small screens, 3 for normal
     } else {
-      // Landscape mode
-      if (width < 600) return 3;      // Small phones in landscape
-      if (width < 900) return 4;      // Larger phones/small tablets
-      return 5;                        // Tablets in landscape
+      // Landscape mode - capped at 3 columns maximum
+      if (effectiveWidth < 600) return 3; // Small phones in landscape
+      return 3; // All other landscape screens (max 3 columns)
     }
   })();
 
-  // Calculate card size based on available space
+  // Calculate card size based on available space (using effective width)
   const totalHorizontalPadding = HORIZONTAL_PADDING * 2;
   const totalGaps = CARD_GAP * (columnCount - 1);
-  const availableWidth = width - totalHorizontalPadding - totalGaps;
+  const availableWidth = effectiveWidth - totalHorizontalPadding - totalGaps;
   const cardSize = Math.floor(availableWidth / columnCount);
 
   // Font scaling based on screen width (relative to base width)

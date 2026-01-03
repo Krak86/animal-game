@@ -14,13 +14,14 @@ import * as Haptics from "expo-haptics";
 import { getAnimalDetailViewStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Animal, Language, Translations } from "@/types";
-import { speakText, stopSpeech } from "@/utils/speech";
+import { speakAnimalName, stopSpeech } from "@/utils/speech";
 import { playAnimalSound, stopAnimalSound } from "@/utils/audio";
 import { openLinkDirect, openExternalLink } from "@/utils/linking";
 import { EmojiSvg } from "@/components/EmojiSvg";
 import { ImageGalleryModal } from "@/components/ImageGalleryModal";
 import { VideoGalleryModal } from "@/components/VideoGalleryModal";
 import { Model3DModal } from "@/components/Model3DModal";
+import { PRERECORDED_ANIMAL_AUDIO, hasPrerecordedAudio } from "@/constants/audioFiles";
 
 interface AnimalDetailViewProps {
   animal: Animal;
@@ -227,9 +228,8 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
     if (!isSoundEnabled) return;
 
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    const animalName = translations.animals[animal.name];
-    // Default to English for TTS
-    speakText(animalName, "en", backgroundMusic, () => {});
+    // Use speakAnimalName to support prerecorded audio for UK/RU
+    speakAnimalName(animal.name, language, backgroundMusic, () => {});
   };
 
   const handlePlaySound = async () => {
@@ -259,8 +259,27 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   };
 
   const animalName = translations.animals[animal.name];
-  const showTTSButton = isSoundEnabled;
-  const showSoundButton = animal.soundUrl && isSoundEnabled;
+
+  const hasSoundUrl = !!animal.soundUrl;
+
+  // Check if prerecorded pronunciation audio exists for this animal in the current language
+  const hasPrerecordedPronunciation =
+    hasPrerecordedAudio(language) &&
+    PRERECORDED_ANIMAL_AUDIO[animal.name] &&
+    language in PRERECORDED_ANIMAL_AUDIO[animal.name];
+
+  // For English: always show pronunciation icon (🔊), show sound icon (🔉) only if soundUrl exists
+  // For UK/RU languages: show pronunciation icon if prerecorded audio exists
+  const showTTSButton = language === "en"
+    ? isSoundEnabled
+    : isSoundEnabled && hasPrerecordedPronunciation;
+
+  const showSoundButton = isSoundEnabled && hasSoundUrl;
+
+  // Show pronunciation icon (🔊) based on showTTSButton
+  // Show animal sound icon (🔉) based on showSoundButton
+  const showPronunciationIcon = showTTSButton;
+  const showAnimalSoundIcon = showSoundButton;
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -344,22 +363,24 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                     <EmojiSvg emoji="💬" style={{ fontSize: 30 }} />
                   </Animated.View>
                 )}
-                <Animated.View
-                  pointerEvents="none"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "-20%",
-                    transform: [
-                      { translateX: -10 },
-                      { translateY: -10 },
-                      { scale: soundIconAnim },
-                    ],
-                    opacity: 0.7,
-                  }}
-                >
-                  <EmojiSvg emoji="🔉" style={{ fontSize: 20 }} />
-                </Animated.View>
+                {showAnimalSoundIcon && (
+                  <Animated.View
+                    pointerEvents="none"
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "-20%",
+                      transform: [
+                        { translateX: -10 },
+                        { translateY: -10 },
+                        { scale: soundIconAnim },
+                      ],
+                      opacity: 0.7,
+                    }}
+                  >
+                    <EmojiSvg emoji="🔉" style={{ fontSize: 20 }} />
+                  </Animated.View>
+                )}
               </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -370,22 +391,24 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
             >
               <View style={{ position: "relative" }}>
                 <Text style={styles.animalName}>{animalName}</Text>
-                <Animated.View
-                  pointerEvents="none"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "-20%",
-                    transform: [
-                      { translateX: -10 },
-                      { translateY: -10 },
-                      { scale: speakIconAnim },
-                    ],
-                    opacity: 0.7,
-                  }}
-                >
-                  <EmojiSvg emoji="🔊" style={{ fontSize: 20 }} />
-                </Animated.View>
+                {showPronunciationIcon && (
+                  <Animated.View
+                    pointerEvents="none"
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "-20%",
+                      transform: [
+                        { translateX: -10 },
+                        { translateY: -10 },
+                        { scale: speakIconAnim },
+                      ],
+                      opacity: 0.7,
+                    }}
+                  >
+                    <EmojiSvg emoji="🔊" style={{ fontSize: 20 }} />
+                  </Animated.View>
+                )}
               </View>
             </TouchableOpacity>
 

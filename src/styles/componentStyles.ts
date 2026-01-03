@@ -79,7 +79,7 @@ export const getAnimalCardStyles = (responsive: ResponsiveDimensions) => {
       position: "relative",
     },
     emojiImage: {
-      fontSize: Math.round(imageSize * 0.47), // Proportional to image size (converted to size by EmojiSvg)
+      fontSize: Math.round(imageSize * 0.7), // Proportional to image size (converted to size by EmojiSvg)
       zIndex: 2,
       opacity: 1,
     },
@@ -268,8 +268,8 @@ export const getAnimalsListViewStyles = (responsive: ResponsiveDimensions) =>
     },
     scrollContent: {
       flexGrow: 1,
-      paddingHorizontal: responsive.spacing.sm,
-      paddingBottom: responsive.spacing.lg,
+      paddingHorizontal: 0,
+      paddingBottom: 0,
     },
     searchContainer: {
       flexDirection: "row",

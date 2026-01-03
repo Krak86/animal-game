@@ -9,7 +9,12 @@ import { Audio } from "expo-av";
 export type Language = "en" | "uk" | "ru";
 
 // Game mode type
-export type GameMode = "byName" | "bySound" | "showAll" | "secret";
+export type GameMode =
+  | "byName"
+  | "bySound"
+  | "showAll"
+  | "secret"
+  | "animalPairs";
 
 // Animal definition
 export interface Animal {
@@ -17,7 +22,7 @@ export interface Animal {
   name: string;
   emoji: string;
   image: any; // Local image require() result (React Native)
-  soundUrl: string | number; // Optional: animal sound (URL string or local require() number)
+  soundUrl?: string | number; // Optional: animal sound (URL string or local require() number)
   modes: GameMode[]; // Which modes this animal appears in
   // Optional fields for future exhibition features
   images: string[]; // Multiple images for gallery
@@ -46,12 +51,15 @@ export interface ScreenTranslations {
   showAll: string; // "Show All" button
   secret: string; // "Secret Animal" button
   secretDescription: string; // "Discover a mystery animal!" description
+  animalPairs: string; // "Animal Pairs" button
+  animalPairsDescription: string; // "Find matching pairs!" description
 }
 
 export interface Translations {
   startScreen: ScreenTranslations;
   score: string;
   findThe: string;
+  findThePairs: string; // "Find the pairs!" for Animal Pairs mode
   greatJob: string;
   youFoundIt: string;
   startFromBeginning: string;
@@ -144,6 +152,54 @@ export interface Translations {
     snakeDescription: string;
     ravenDescription: string;
     owlDescription: string;
+    alpacaDescription: string;
+    muleDescription: string;
+    ramDescription: string;
+    henDescription: string;
+    calfDescription: string;
+    foalDescription: string;
+    foxDescription: string;
+    deerDescription: string;
+    squirrelDescription: string;
+    hedgehogDescription: string;
+    otterDescription: string;
+    pandaDescription: string;
+    koalaDescription: string;
+    hippopotamusDescription: string;
+    rhinocerosDescription: string;
+    chimpanzeeDescription: string;
+    eagleDescription: string;
+    woodpeckerDescription: string;
+    seagullDescription: string;
+    crowDescription: string;
+    vultureDescription: string;
+    hummingbirdDescription: string;
+    ostrichDescription: string;
+    pelicanDescription: string;
+    walrusDescription: string;
+    seaLionDescription: string;
+    starfishDescription: string;
+    seahorseDescription: string;
+    jellyfishDescription: string;
+    clownfishDescription: string;
+    frogDescription: string;
+    toadDescription: string;
+    lizardDescription: string;
+    iguanaDescription: string;
+    salamanderDescription: string;
+    butterflyDescription: string;
+    grasshopperDescription: string;
+    dragonflyDescription: string;
+    spiderDescription: string;
+    mosquitoDescription: string;
+    mouseDescription: string;
+    slothDescription: string;
+    wormDescription: string;
+    flyDescription: string;
+    beetleDescription: string;
+    skunkDescription: string;
+    beaverDescription: string;
+    cockroachDescription: string;
   };
   animals: AnimalTranslations;
 }
@@ -186,4 +242,30 @@ export interface UseGameLogicReturn {
   resetGame: () => Promise<void>;
   resetGameState: () => Promise<void>; // Reset game state without stopping background music
   replaySound: () => Promise<void>; // New function for By Sound mode
+}
+
+// Pairs game hook return type
+export interface UsePairsGameLogicReturn {
+  // State
+  pairAnimals: Animal[]; // 6 tiles (3 pairs)
+  firstSelection: { animal: Animal; tileIndex: number } | null;
+  secondSelection: { animal: Animal; tileIndex: number } | null;
+  matchedPairIds: number[];
+  wrongTileIndices: number[];
+  showSuccess: boolean;
+  gameStarted: boolean;
+  isSoundEnabled: boolean;
+  milestoneSound: Audio.Sound | null;
+  // Animation values
+  successScale: Animated.Value;
+  successOpacity: Animated.Value;
+  cardAnimations: Animated.Value[];
+  questionAnimation: Animated.Value;
+  animalWiggles: Animated.Value[];
+  // Functions
+  handleAnimalPress: (animal: Animal, tileIndex: number) => void;
+  startGame: () => Promise<void>;
+  toggleSound: () => void;
+  resetGame: () => Promise<void>;
+  resetGameState: () => Promise<void>;
 }

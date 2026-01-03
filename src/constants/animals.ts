@@ -77,6 +77,32 @@ const lobsterSound = require("@assets/music/animals/Lobster.mp3");
 const scorpionSound = require("@assets/music/animals/Scorpion.mp3");
 const snailSound = require("@assets/music/animals/Snail.mp3");
 const antSound = require("@assets/music/animals/Ant.mp3");
+const ramSound = require("@assets/music/animals/Ram.mp3");
+const foxSound = require("@assets/music/animals/Fox.mp3");
+const squirrelSound = require("@assets/music/animals/Squirrel.mp3");
+const hedgehogSound = require("@assets/music/animals/Hedgehog.mp3");
+const otterSound = require("@assets/music/animals/Otter.mp3");
+const pandaSound = require("@assets/music/animals/Panda.mp3");
+const koalaSound = require("@assets/music/animals/Koala.mp3");
+const hippopotamusSound = require("@assets/music/animals/Hippopotamus.mp3");
+const rhinocerosSound = require("@assets/music/animals/Rhinoceros.mp3");
+const eagleSound = require("@assets/music/animals/Eagle.mp3");
+const seagullSound = require("@assets/music/animals/Seagull.mp3");
+const jellyfishSound = require("@assets/music/animals/Jellyfish.mp3");
+const clownfishSound = require("@assets/music/animals/Clownfish.mp3");
+const frogSound = require("@assets/music/animals/Frog.mp3");
+const butterflySound = require("@assets/music/animals/Butterfly.mp3");
+const grasshopperSound = require("@assets/music/animals/Grasshopper.mp3");
+const spiderSound = require("@assets/music/animals/Spider.mp3");
+const mosquitoSound = require("@assets/music/animals/Mosquito.mp3");
+const mouseSound = require("@assets/music/animals/Mouse.mp3");
+const slothSound = require("@assets/music/animals/Sloth.mp3");
+const wormSound = require("@assets/music/animals/Worm.mp3");
+const flySound = require("@assets/music/animals/Fly.mp3");
+const beetleSound = require("@assets/music/animals/Beetle.mp3");
+const skunkSound = require("@assets/music/animals/Skunk.mp3");
+const beaverSound = require("@assets/music/animals/Beaver.mp3");
+const cockroachSound = require("@assets/music/animals/Cockroach.mp3");
 
 // animal 3d models
 // const catGlb = require("@assets/glb/Cat.glb");
@@ -90,7 +116,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐕",
     image: BG_IMAGES[0], // bg1
     soundUrl: dogSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "dogDescription",
     images: [
       "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&q=80",
@@ -119,7 +145,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐈",
     image: BG_IMAGES[1], // bg2
     soundUrl: catSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "catDescription",
     images: [
       "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&q=80",
@@ -146,7 +172,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦁",
     image: BG_IMAGES[2], // bg3
     soundUrl: lionSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "lionDescription",
     images: [
       "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=800&q=80",
@@ -169,7 +195,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐘",
     image: BG_IMAGES[3], // bg4
     soundUrl: elephantSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "elephantDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661810056990-57be781caa2d?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -192,7 +218,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦒",
     image: BG_IMAGES[4], // bg5
     soundUrl: giraffeSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "giraffeDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661813434310-98cca4c9135e?q=80&w=1734&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -215,7 +241,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐒",
     image: BG_IMAGES[5], // bg6
     soundUrl: monkeySound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "monkeyDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664299631876-f143dc691c4d?q=80&w=794&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -238,7 +264,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐧",
     image: BG_IMAGES[6], // bg7
     soundUrl: penguinSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "penguinDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661816797370-928a8749043c?q=80&w=1146&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -261,7 +287,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦓",
     image: BG_IMAGES[7], // bg8
     soundUrl: zebraSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "zebraDescription",
     images: [
       "https://images.unsplash.com/photo-1526319238109-524eecb9b913?q=80&w=1648&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -284,7 +310,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐅",
     image: BG_IMAGES[8], // bg9
     soundUrl: tigerSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "tigerDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661847643150-4e06569d2ec1?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -307,7 +333,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐰",
     image: BG_IMAGES[9], // bg10
     soundUrl: rabbitSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "rabbitDescription",
     images: [
       "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -330,7 +356,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐓",
     image: BG_IMAGES[0], // bg1
     soundUrl: roosterSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "roosterDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664303893633-1544fcd8baed?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -353,7 +379,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐄",
     image: BG_IMAGES[1], // bg2
     soundUrl: cowSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "cowDescription",
     images: [
       "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?q=80&w=976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -376,7 +402,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐴",
     image: BG_IMAGES[2], // bg3
     soundUrl: horseSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "horseDescription",
     images: [
       "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -399,7 +425,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐦",
     image: BG_IMAGES[3], // bg4
     soundUrl: birdSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "birdDescription",
     images: [
       "https://images.unsplash.com/photo-1486365227551-f3f90034a57c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -422,7 +448,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐺",
     image: BG_IMAGES[4], // bg5
     soundUrl: wolfSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "wolfDescription",
     images: [
       "https://images.unsplash.com/photo-1588167056547-c183313da47c?q=80&w=1062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -445,7 +471,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🪿",
     image: BG_IMAGES[5], // bg6
     soundUrl: gooseSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "gooseDescription",
     images: [
       "https://images.unsplash.com/photo-1564851375740-1052e619dcbc?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -468,7 +494,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🫏",
     image: BG_IMAGES[6], // bg7
     soundUrl: donkeySound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "donkeyDescription",
     images: [
       "https://images.unsplash.com/photo-1568495732369-3a3f5b5290dd?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -491,7 +517,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐻",
     image: BG_IMAGES[7], // bg8
     soundUrl: bearSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "bearDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661849977833-c18cd1c7e295?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -514,7 +540,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦈",
     image: BG_IMAGES[8], // bg9
     soundUrl: sharkSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "sharkDescription",
     images: [
       "https://images.unsplash.com/photo-1560275619-4662e36fa65c?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -537,7 +563,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐢",
     image: BG_IMAGES[9], // bg10
     soundUrl: turtleSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "turtleDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1675432656807-216d786dd468?q=80&w=780&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -560,7 +586,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐙",
     image: BG_IMAGES[0], // bg1
     soundUrl: octopusSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "octopusDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1723733104322-827186b5eb9e?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -583,7 +609,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦀",
     image: BG_IMAGES[1], // bg2
     soundUrl: crabSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "crabDescription",
     images: [
       "https://images.unsplash.com/photo-1553659971-f01207815844?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -606,7 +632,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐋",
     image: BG_IMAGES[2], // bg3
     soundUrl: whaleSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "whaleDescription",
     images: [
       "https://images.unsplash.com/photo-1568430462989-44163eb1752f?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -629,7 +655,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐬",
     image: BG_IMAGES[3], // bg4
     soundUrl: dolphinSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "dolphinDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1724654643848-ab19f6ec1c79?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -652,7 +678,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐌",
     image: BG_IMAGES[4], // bg5
     soundUrl: snailSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "snailDescription",
     images: [
       "https://images.unsplash.com/photo-1533177243638-dd485701f717?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -675,7 +701,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐜",
     image: BG_IMAGES[5], // bg6
     soundUrl: antSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "antDescription",
     images: [
       "https://images.unsplash.com/photo-1588470045344-4393b295297c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -698,7 +724,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐞",
     image: BG_IMAGES[6], // bg7
     soundUrl: ladybugSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "ladybugDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1723013532532-964a36800dcf?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -721,7 +747,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐊",
     image: BG_IMAGES[7], // bg8
     soundUrl: crocodileSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "crocodileDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664302983066-8ea0ffd6af05?q=80&w=818&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -744,7 +770,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦇",
     image: BG_IMAGES[8], // bg9
     soundUrl: batSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "batDescription",
     images: [
       "https://images.unsplash.com/photo-1629100393327-a3a1550354fd?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -767,7 +793,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦜",
     image: BG_IMAGES[9], // bg10
     soundUrl: parrotSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "parrotDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1673454201378-3867e051dca7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -790,7 +816,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦌",
     image: BG_IMAGES[0], // bg1
     soundUrl: mooseSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "mooseDescription",
     images: [
       "https://images.unsplash.com/photo-1549471013-3364d7220b75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -813,7 +839,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦙",
     image: BG_IMAGES[1], // bg2
     soundUrl: llamaSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "llamaDescription",
     images: [
       "https://images.unsplash.com/photo-1589182337358-2cb63099350c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -836,7 +862,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐃",
     image: BG_IMAGES[2], // bg3
     soundUrl: buffaloSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "buffaloDescription",
     images: [
       "https://images.unsplash.com/photo-1603696861627-db79cf52fecb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -859,7 +885,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦃",
     image: BG_IMAGES[3], // bg4
     soundUrl: turkeySound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "turkeyDescription",
     images: [
       "https://images.unsplash.com/photo-1610847188112-fda7a87b39a3?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -882,7 +908,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦚",
     image: BG_IMAGES[4], // bg5
     soundUrl: peacockSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "peacockDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1694270553677-22680efa4d56?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -905,7 +931,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦢",
     image: BG_IMAGES[5], // bg6
     soundUrl: swanSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "swanDescription",
     images: [
       "https://images.unsplash.com/photo-1588485256313-f021c74731f1?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -928,7 +954,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐝",
     image: BG_IMAGES[6], // bg7
     soundUrl: beeSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "beeDescription",
     images: [
       "https://images.unsplash.com/photo-1568526381923-caf3fd520382?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -951,7 +977,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐛",
     image: BG_IMAGES[7], // bg8
     soundUrl: caterpillarSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "caterpillarDescription",
     images: [
       "https://images.unsplash.com/photo-1598431429388-c561cb614d2d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -974,7 +1000,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦂",
     image: BG_IMAGES[8], // bg9
     soundUrl: scorpionSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "scorpionDescription",
     images: [
       "https://images.unsplash.com/photo-1618479995657-6e2fbb7d5480?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -997,7 +1023,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦞",
     image: BG_IMAGES[9], // bg10
     soundUrl: lobsterSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "lobsterDescription",
     images: [
       "https://images.unsplash.com/photo-1655697253644-63c270874bb7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1020,7 +1046,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦭",
     image: BG_IMAGES[0], // bg1
     soundUrl: sealSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "sealDescription",
     images: [
       "https://images.unsplash.com/photo-1565413294262-fa587c396965?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1043,7 +1069,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦝",
     image: BG_IMAGES[1], // bg2
     soundUrl: raccoonSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "raccoonDescription",
     images: [
       "https://images.unsplash.com/photo-1497752531616-c3afd9760a11?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1066,7 +1092,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦡",
     image: BG_IMAGES[2], // bg3
     soundUrl: badgerSound,
-    modes: ["byName", "showAll", "bySound"],
+    modes: ["byName", "showAll", "bySound", "animalPairs", "secret"],
     description: "badgerDescription",
     images: [
       "https://images.unsplash.com/photo-1563016115-85abfc230672?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1089,7 +1115,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐗",
     image: BG_IMAGES[3], // bg4
     soundUrl: boarSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "boarDescription",
     images: [
       "https://images.unsplash.com/photo-1545426908-a67f44ed0291?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1112,7 +1138,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐪",
     image: BG_IMAGES[4], // bg5
     soundUrl: camelSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "camelDescription",
     images: [
       "https://images.unsplash.com/photo-1598113972215-96c018fb1a0b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1135,7 +1161,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦎",
     image: BG_IMAGES[5], // bg6
     soundUrl: chameleonSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "chameleonDescription",
     images: [
       "https://images.unsplash.com/photo-1617540021016-72023b487e99?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1158,7 +1184,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦩",
     image: BG_IMAGES[6], // bg7
     soundUrl: flamingoSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "flamingoDescription",
     images: [
       "https://images.unsplash.com/photo-1543260775-945c562403b3?q=80&w=728&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1181,7 +1207,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦍",
     image: BG_IMAGES[7], // bg8
     soundUrl: gorillaSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "gorillaDescription",
     images: [
       "https://images.unsplash.com/photo-1581281863883-2469417a1668?q=80&w=902&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1204,7 +1230,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦘",
     image: BG_IMAGES[8], // bg9
     soundUrl: kangarooSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "showAll", "animalPairs", "secret"],
     description: "kangarooDescription",
     images: [
       "https://images.unsplash.com/photo-1575699914911-0027c7b95fb6?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1227,7 +1253,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐆",
     image: BG_IMAGES[9], // bg10
     soundUrl: leopardSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "leopardDescription",
     images: [
       "https://images.unsplash.com/photo-1544985361-b420d7a77043?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1250,7 +1276,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐑",
     image: BG_IMAGES[0], // bg1
     soundUrl: sheepSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "sheepDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1666777246850-e18916172de7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1273,7 +1299,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐥",
     image: BG_IMAGES[1], // bg2
     soundUrl: chickenSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "chickenDescription",
     images: [
       "https://images.unsplash.com/photo-1612170153139-6f881ff067e0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1296,7 +1322,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐖",
     image: BG_IMAGES[2], // bg3
     soundUrl: pigSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "pigDescription",
     images: [
       "https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1319,7 +1345,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐐",
     image: BG_IMAGES[3], // bg4
     soundUrl: goatSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "goatDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664304299664-a8e2e2f80290?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1342,7 +1368,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐂",
     image: BG_IMAGES[4], // bg5
     soundUrl: bullSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "bullDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661835557655-99a912d26132?q=80&w=748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1365,7 +1391,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦆",
     image: BG_IMAGES[5], // bg6
     soundUrl: duckSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "duckDescription",
     images: [
       "https://images.unsplash.com/photo-1465153690352-10c1b29577f8?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1388,7 +1414,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🐍",
     image: BG_IMAGES[1], // bg2
     soundUrl: snakeSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "snakeDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1661897154120-5b27cd6a0bd5?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1408,10 +1434,10 @@ export const ANIMALS: Animal[] = [
   {
     id: 58,
     name: "Raven",
-    emoji: "🦅",
+    emoji: "🐦‍⬛",
     image: BG_IMAGES[2], // bg3
     soundUrl: ravenSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "ravenDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1673491310188-13caeef2c5cd?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1434,7 +1460,7 @@ export const ANIMALS: Animal[] = [
     emoji: "🦉",
     image: BG_IMAGES[3], // bg4
     soundUrl: owlSound,
-    modes: ["byName", "bySound", "showAll"],
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
     description: "owlDescription",
     images: [
       "https://plus.unsplash.com/premium_photo-1664304409780-6d31241e9058?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1449,6 +1475,604 @@ export const ANIMALS: Animal[] = [
       en: "https://en.wikipedia.org/wiki/Owl",
       uk: "https://uk.wikipedia.org/wiki/Сова",
       ru: "https://ru.wikipedia.org/wiki/Сова",
+    },
+  },
+  {
+    id: 60,
+    name: "Ram",
+    emoji: "🐏",
+    image: BG_IMAGES[4],
+    soundUrl: ramSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "ramDescription",
+    images: [
+      "https://images.unsplash.com/photo-1517217759187-c28c5cbb51e3?q=80&w=1748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1664304299664-a8e2e2f80290?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1490739043913-239b6cdf4084?q=80&w=1839&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1561049958-dfec7585efeb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1507668534048-612633783b70?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=V__T34iqNOA"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Ram_(sheep)",
+      uk: "https://uk.wikipedia.org/wiki/Баран",
+      ru: "https://ru.wikipedia.org/wiki/Баран",
+    },
+  },
+  {
+    id: 61,
+    name: "Fox",
+    emoji: "🦊",
+    image: BG_IMAGES[6],
+    soundUrl: foxSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "foxDescription",
+    images: [
+      "https://images.unsplash.com/photo-1644125003076-ce465d331769?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1474511320723-9a56873867b5?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1557008075-7f2c5efa4cfd?q=80&w=794&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1516934024742-b461fba47600?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1621206593424-6e4e8f6336e9?q=80&w=868&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=D2SoGHFM18I"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Fox",
+      uk: "https://uk.wikipedia.org/wiki/Лисиця",
+      ru: "https://ru.wikipedia.org/wiki/Лисица",
+    },
+  },
+  {
+    id: 62,
+    name: "Squirrel",
+    emoji: "🐿️",
+    image: BG_IMAGES[7],
+    soundUrl: squirrelSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "squirrelDescription",
+    images: [
+      "https://images.unsplash.com/photo-1533651180995-3b8dcd33e834?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1590079015089-875baa76cc8d?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1507666405895-422eee7d517f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1542382689-217623cad37c?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1470130623320-9583a8d06241?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=xrjBD-PpecM"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Squirrel",
+      uk: "https://uk.wikipedia.org/wiki/Білка",
+      ru: "https://ru.wikipedia.org/wiki/Белка",
+    },
+  },
+  {
+    id: 63,
+    name: "Hedgehog",
+    emoji: "🦔",
+    image: BG_IMAGES[8],
+    soundUrl: hedgehogSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "hedgehogDescription",
+    images: [
+      "https://plus.unsplash.com/premium_photo-1723874396899-681323b389e1?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1568431477192-52bb13a55088?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1605369179729-4036b4d829cb?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1605369179814-cfc635981c03?q=80&w=1676&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1594546927369-f4f587649acc?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=LHXwo16i5mA"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Hedgehog",
+      uk: "https://uk.wikipedia.org/wiki/Їжак",
+      ru: "https://ru.wikipedia.org/wiki/Ёж",
+    },
+  },
+  {
+    id: 64,
+    name: "Otter",
+    emoji: "🦦",
+    image: BG_IMAGES[9],
+    soundUrl: otterSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "otterDescription",
+    images: [
+      "https://images.unsplash.com/photo-1633967920376-33b2d94f091f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1720198270654-dbe3ca4b838f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1595854443827-9d1a1ae30f0d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1632755588732-6797a85f6d4b?q=80&w=1034&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1553112295-4e7646a96859?q=80&w=1524&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=SIWbjgPYcJY"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Otter",
+      uk: "https://uk.wikipedia.org/wiki/Видра",
+      ru: "https://ru.wikipedia.org/wiki/Выдра",
+    },
+  },
+  {
+    id: 65,
+    name: "Panda",
+    emoji: "🐼",
+    image: BG_IMAGES[0],
+    soundUrl: pandaSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "pandaDescription",
+    images: [
+      "https://images.unsplash.com/photo-1597953601374-1ff2d5640c85?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1625859043880-56acbcb6a6ac?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1560343787-b90cb337028e?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1570288685369-f7305163d0e3?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=dqT-UlYlg1s"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Giant_panda",
+      uk: "https://uk.wikipedia.org/wiki/Велика_панда",
+      ru: "https://ru.wikipedia.org/wiki/Большая_панда",
+    },
+  },
+  {
+    id: 66,
+    name: "Koala",
+    emoji: "🐨",
+    image: BG_IMAGES[1],
+    soundUrl: koalaSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "koalaDescription",
+    images: [
+      "https://images.unsplash.com/photo-1579972383667-4894c883d674?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1459262838948-3e2de6c1ec80?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1579649554660-463ed1d72831?q=80&w=778&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1591083896596-6b9f15f05a71?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1519562990232-845beca99938?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=oI3ADcDH0Uc"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Koala",
+      uk: "https://uk.wikipedia.org/wiki/Коала",
+      ru: "https://ru.wikipedia.org/wiki/Коала",
+    },
+  },
+  {
+    id: 67,
+    name: "Hippopotamus",
+    emoji: "🦛",
+    image: BG_IMAGES[2],
+    soundUrl: hippopotamusSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "hippopotamusDescription",
+    images: [
+      "https://images.unsplash.com/photo-1608573755719-bf29c3a964c9?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1619535211143-8e209a7b662c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1499842340257-55ccb7a02645?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1562426772-f7b1d159764b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1712642421888-b3de5073231f?q=80&w=1804&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=hGpItpIlLkc"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Hippopotamus",
+      uk: "https://uk.wikipedia.org/wiki/Бегемот",
+      ru: "https://ru.wikipedia.org/wiki/Бегемот",
+    },
+  },
+  {
+    id: 68,
+    name: "Rhinoceros",
+    emoji: "🦏",
+    image: BG_IMAGES[3],
+    soundUrl: rhinocerosSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "rhinocerosDescription",
+    images: [
+      "https://images.unsplash.com/photo-1598894000396-bc30e0996899?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1624098826104-6c617638c794?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1672586658825-e653341241fc?q=80&w=708&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1661849675370-3852cfa61f1a?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/flagged/photo-1557650454-65194af63bf9?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=NOgl1nW0NtA"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Rhinoceros",
+      uk: "https://uk.wikipedia.org/wiki/Носоріг",
+      ru: "https://ru.wikipedia.org/wiki/Носорог",
+    },
+  },
+  {
+    id: 69,
+    name: "Eagle",
+    emoji: "🦅",
+    image: BG_IMAGES[5],
+    soundUrl: eagleSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "eagleDescription",
+    images: [
+      "https://images.unsplash.com/photo-1531884070720-875c7622d4c6?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1557401622-cfc0aa5d146c?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1515865644861-8bedc4fb8344?q=80&w=896&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1628703117067-fb7c9c20946e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=2P0VCMYZenw"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Eagle",
+      uk: "https://uk.wikipedia.org/wiki/Орел",
+      ru: "https://ru.wikipedia.org/wiki/Орёл",
+    },
+  },
+  {
+    id: 70,
+    name: "Seagull",
+    emoji: "🕊️",
+    image: BG_IMAGES[7],
+    soundUrl: seagullSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "seagullDescription",
+    images: [
+      "https://images.unsplash.com/photo-1567413010197-7b436a170e8d?q=80&w=1828&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/reserve/u3x7cekkS16ajjtJcb5L_DSC_5869.jpg?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1675403509143-8e567e28f1ea?q=80&w=770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1574105079640-5b3ebd6fb7a5?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1617706146619-7f6fb9b79ff3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=sr7G3E_aTsE"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Gull",
+      uk: "https://uk.wikipedia.org/wiki/Мартинові",
+      ru: "https://ru.wikipedia.org/wiki/Чайка",
+    },
+  },
+  {
+    id: 71,
+    name: "Jellyfish",
+    emoji: "🪼",
+    image: BG_IMAGES[2],
+    soundUrl: jellyfishSound,
+    modes: ["byName", "showAll", "animalPairs", "secret"],
+    description: "jellyfishDescription",
+    images: [
+      "https://images.unsplash.com/photo-1495012379376-194a416fcc5f?q=80&w=850&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1508311603478-ce574376c3cf?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1508625935447-e0ebc2cdf6bf?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1684992858411-3e3ddf37c4c9?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1543007168-5fa9b3c5f5fb?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=9z8ujpPgUjI"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Jellyfish",
+      uk: "https://uk.wikipedia.org/wiki/Медуза",
+      ru: "https://ru.wikipedia.org/wiki/Медуза",
+    },
+  },
+  {
+    id: 72,
+    name: "Clownfish",
+    emoji: "🐠",
+    image: BG_IMAGES[3],
+    soundUrl: clownfishSound,
+    modes: ["byName", "showAll", "animalPairs", "secret"],
+    description: "clownfishDescription",
+    images: [
+      "https://images.unsplash.com/photo-1535591273668-578e31182c4f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1595503240812-7286dafaddc1?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1656410454147-9ec7b1262942?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1679510995006-d3eac6669c82?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1722482312877-dda06fc3c23d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=rn6R4ncd2OU"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Amphiprioninae",
+      uk: "https://uk.wikipedia.org/wiki/Риба-клоун",
+      ru: "https://ru.wikipedia.org/wiki/Амфиприоны",
+    },
+  },
+  {
+    id: 73,
+    name: "Frog",
+    emoji: "🐸",
+    image: BG_IMAGES[4],
+    soundUrl: frogSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "frogDescription",
+    images: [
+      "https://images.unsplash.com/photo-1496070242169-b672c576566b?q=80&w=1486&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1559253664-ca249d4608c6?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1545006398-2cf47cd87b90?q=80&w=730&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1598537179958-687e6cc625fb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1518737496070-5bab26f59b3f?q=80&w=1224&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=z20WyucV9hk"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Frog",
+      uk: "https://uk.wikipedia.org/wiki/Жаба",
+      ru: "https://ru.wikipedia.org/wiki/Лягушка",
+    },
+  },
+  {
+    id: 74,
+    name: "Butterfly",
+    emoji: "🦋",
+    image: BG_IMAGES[5],
+    soundUrl: butterflySound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "butterflyDescription",
+    images: [
+      "https://images.unsplash.com/photo-1560263816-d704d83cce0f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1599631438215-75bc2640feb8?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1533048324814-79b0a31982f1?q=80&w=936&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1564514476902-542f8c30121e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1678483692858-d9ca6e9c67f9?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=kVm5k99PnBk"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Butterfly",
+      uk: "https://uk.wikipedia.org/wiki/Метелик",
+      ru: "https://ru.wikipedia.org/wiki/Бабочка",
+    },
+  },
+  {
+    id: 75,
+    name: "Grasshopper",
+    emoji: "🦗",
+    image: BG_IMAGES[6],
+    soundUrl: grasshopperSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "grasshopperDescription",
+    images: [
+      "https://images.unsplash.com/photo-1509967733342-437077d8e41a?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1585385697895-ec4603b691cf?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1620191309281-ef74ff4d6ede?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1546032571-e11bc2607b92?q=80&w=1710&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1722925460512-8d7abeba8ab5?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=YBt6s7CHFQA"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Grasshopper",
+      uk: "https://uk.wikipedia.org/wiki/Коник_(комаха)",
+      ru: "https://ru.wikipedia.org/wiki/Кузнечик",
+    },
+  },
+  {
+    id: 76,
+    name: "Spider",
+    emoji: "🕷️",
+    image: BG_IMAGES[7],
+    soundUrl: spiderSound,
+    modes: ["byName", "showAll", "animalPairs", "secret"],
+    description: "spiderDescription",
+    images: [
+      "https://images.unsplash.com/photo-1659639620341-8f3a5134e8c5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1728056952132-9c0f9a58b7f7?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1687358645329-b757762de781?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1599049883502-2067f1d23ac4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1565752886107-78e1cb83a562?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=uHyYtcMZYGs"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Spider",
+      uk: "https://uk.wikipedia.org/wiki/Павуки",
+      ru: "https://ru.wikipedia.org/wiki/Паук",
+    },
+  },
+  {
+    id: 77,
+    name: "Mosquito",
+    emoji: "🦟",
+    image: BG_IMAGES[8],
+    soundUrl: mosquitoSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "mosquitoDescription",
+    images: [
+      "https://images.unsplash.com/photo-1707943768453-7850f916ebde?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1698566445612-b6e552371334?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1647071106724-3b5efb6a22f1?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1635496471665-4e67e0e87399?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1707943768493-70241590b0e1?q=80&w=1492&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=sjV0JpIAH78"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Mosquito",
+      uk: "https://uk.wikipedia.org/wiki/Комар",
+      ru: "https://ru.wikipedia.org/wiki/Комар",
+    },
+  },
+  {
+    id: 78,
+    name: "Mouse",
+    emoji: "🐭",
+    image: BG_IMAGES[9],
+    soundUrl: mouseSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "mouseDescription",
+    images: [
+      "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1624116518496-993146f67f4a?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1606118858477-9a8f9dfb257a?q=80&w=1562&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1581270023016-1b7ea9be8fad?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1626456246585-13acf937be12?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=l70UhhNalqA"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Mouse",
+      uk: "https://uk.wikipedia.org/wiki/Миша",
+      ru: "https://ru.wikipedia.org/wiki/Мышь",
+    },
+  },
+  {
+    id: 79,
+    name: "Sloth",
+    emoji: "🦥",
+    image: BG_IMAGES[0],
+    soundUrl: slothSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "slothDescription",
+    images: [
+      "https://images.unsplash.com/photo-1509243271451-2b84555736ad?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1718122259770-ebbe7d7f9f7f?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1604165645922-eb8fdc7d84ee?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1449027627419-e46b1154169d?q=80&w=770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1728847267854-7c7c9f95a281?q=80&w=970&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=DpV4k3Edr-I"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Sloth",
+      uk: "https://uk.wikipedia.org/wiki/Лінивець",
+      ru: "https://ru.wikipedia.org/wiki/Ленивец",
+    },
+  },
+  {
+    id: 80,
+    name: "Worm",
+    emoji: "🪱",
+    image: BG_IMAGES[1],
+    soundUrl: wormSound,
+    modes: ["byName", "showAll", "animalPairs", "secret"],
+    description: "wormDescription",
+    images: [
+      "https://images.unsplash.com/photo-1708191225844-44ba7ab8b71f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1580974563942-76580268810f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1589064388904-d2c95a4d0e76?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1612960841830-7958134b3655?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1664304479796-f8518e45409d?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=c9Gx1-xRXuM"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Worm",
+      uk: "https://uk.wikipedia.org/wiki/Черв%27як",
+      ru: "https://ru.wikipedia.org/wiki/Червь",
+    },
+  },
+  {
+    id: 81,
+    name: "Fly",
+    emoji: "🪰",
+    image: BG_IMAGES[2],
+    soundUrl: flySound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "flyDescription",
+    images: [
+      "https://images.unsplash.com/photo-1596296455028-bb216ae02ff7?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1568689341045-c58407fee7a8?q=80&w=1594&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1641736277334-334d815db8c3?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1516793985388-6155f13d54ee?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1665658962855-8f72cf18e80f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=jBPFCvEhv9Y"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Fly",
+      uk: "https://uk.wikipedia.org/wiki/Муха",
+      ru: "https://ru.wikipedia.org/wiki/Муха",
+    },
+  },
+  {
+    id: 82,
+    name: "Beetle",
+    emoji: "🪲",
+    image: BG_IMAGES[3],
+    soundUrl: beetleSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "beetleDescription",
+    images: [
+      "https://images.unsplash.com/photo-1581859680484-a9fb0180a858?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1518737743670-3f217c4def4a?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1511954766786-1f88f53fb528?q=80&w=1851&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1557052426-3f754e02f5a9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1591893008814-a8e12aa1f379?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=EjvLOAIxbNQ"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Beetle",
+      uk: "https://uk.wikipedia.org/wiki/Жук",
+      ru: "https://ru.wikipedia.org/wiki/Жесткокрылые",
+    },
+  },
+  {
+    id: 83,
+    name: "Skunk",
+    emoji: "🦨",
+    image: BG_IMAGES[4],
+    soundUrl: skunkSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "skunkDescription",
+    images: [
+      "https://images.unsplash.com/photo-1561493642-645a773b12a5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1561493642-b808bc5a81de?q=80&w=1748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1561493668-add2554f719b?q=80&w=1863&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1561493668-d4a914593d45?q=80&w=2194&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1716506514654-17ad836775ab?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=6kKP6p_HAK4"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Skunk",
+      uk: "https://uk.wikipedia.org/wiki/Скунс",
+      ru: "https://ru.wikipedia.org/wiki/Скунсовые",
+    },
+  },
+  {
+    id: 84,
+    name: "Beaver",
+    emoji: "🦫",
+    image: BG_IMAGES[5],
+    soundUrl: beaverSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "beaverDescription",
+    images: [
+      "https://images.unsplash.com/photo-1608030742786-d613a3c99936?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1600899742232-7d2c89b2d85c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1620193826616-e826ac2c33da?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1586439587716-1cc4c88ce130?q=80&w=1450&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1727883760212-655dc564a99c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=eAPqQFWEoKg"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Beaver",
+      uk: "https://uk.wikipedia.org/wiki/Бобер",
+      ru: "https://ru.wikipedia.org/wiki/Бобр",
+    },
+  },
+  {
+    id: 85,
+    name: "Cockroach",
+    emoji: "🪳",
+    image: BG_IMAGES[6],
+    soundUrl: cockroachSound,
+    modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
+    description: "cockroachDescription",
+    images: [
+      "https://images.unsplash.com/photo-1727198634627-645ef5356455?q=80&w=1450&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1657785006298-c747b0b88a8f?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1723455871512-b0273a3b0349?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1707093981828-e0ff92ec9797?q=80&w=2673&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1764886773965-1f3b3a008632?q=80&w=1819&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    videos: ["https://www.youtube.com/watch?v=Pby_XgXF0EI"],
+    glbUrl: "",
+    wikipediaUrls: {
+      en: "https://en.wikipedia.org/wiki/Cockroach",
+      uk: "https://uk.wikipedia.org/wiki/Таргани",
+      ru: "https://ru.wikipedia.org/wiki/Таракановые",
     },
   },
 ];

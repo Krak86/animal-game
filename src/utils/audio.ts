@@ -255,7 +255,8 @@ export const playAnimalSound = async (
     }
 
     // Load and play animal sound at maximum volume
-    const { sound } = await Audio.Sound.createAsync(soundUrl, {
+    const source = typeof soundUrl === 'string' ? { uri: soundUrl } : soundUrl;
+    const { sound } = await Audio.Sound.createAsync(source, {
       volume: ANIMAL_SOUND_VOLUME,
     });
 
