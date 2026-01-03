@@ -28,7 +28,22 @@
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro",
-      "output": "single"
+      "output": "single",
+      "meta": {
+        "title": "Animal Explorer - Educational Game for Kids",
+        "description": "An interactive educational game for children to learn animal names and sounds in English, Ukrainian, and Russian. Features fun game modes including find by name, find by sound, and memory pairs.",
+        "keywords": "educational game, children, kids, animals, learning, sounds, multilingual, English, Ukrainian, Russian, memory game",
+        "author": "Animal Explorer Team",
+        "og:title": "Animal Explorer - Educational Game for Kids",
+        "og:description": "Learn animal names and sounds in three languages through fun interactive games. Perfect for children's education!",
+        "og:image": "./assets/og-image.png",
+        "og:type": "website",
+        "og:site_name": "Animal Explorer",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Animal Explorer - Educational Game for Kids",
+        "twitter:description": "Learn animal names and sounds in three languages through fun interactive games. Perfect for children's education!",
+        "twitter:image": "./assets/og-image.png"
+      }
     },
     "extra": {
       "eas": {

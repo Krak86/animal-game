@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(docker-compose up:*)",
-      "Bash(node scripts/generateTTSAudio.js:*)"
+      "Bash(node scripts/generateTTSAudio.js:*)",
+      "Bash(test:*)",
+      "Bash(npm run build:web:*)"
     ]
   }
 }
