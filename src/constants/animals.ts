@@ -1772,7 +1772,7 @@ export const ANIMALS: Animal[] = [
     glbUrl: "",
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Amphiprioninae",
-      uk: "https://uk.wikipedia.org/wiki/Амфіпріони",
+      uk: "https://uk.wikipedia.org/wiki/Риба-клоун",
       ru: "https://ru.wikipedia.org/wiki/Амфиприоны",
     },
   },
