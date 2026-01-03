@@ -90,6 +90,25 @@ console.log('✓ Converted /_expo/ to _expo/ and /favicon to favicon');
 
 fs.writeFileSync(indexPath, html, 'utf8');
 
+// Fix asset paths in JavaScript bundle
+console.log('\nFixing asset paths in JavaScript bundle...');
+const distDir = path.join(__dirname, '..', 'dist');
+const jsFiles = fs.readdirSync(path.join(distDir, '_expo', 'static', 'js', 'web'), { recursive: false });
+
+jsFiles.forEach(file => {
+  if (file.endsWith('.js')) {
+    const jsPath = path.join(distDir, '_expo', 'static', 'js', 'web', file);
+    let jsContent = fs.readFileSync(jsPath, 'utf8');
+
+    // Replace absolute asset paths with base-path-aware paths
+    // /assets/ -> {basePath}assets/
+    jsContent = jsContent.replace(/["']\/assets\//g, `"${basePath}assets/`);
+
+    fs.writeFileSync(jsPath, jsContent, 'utf8');
+    console.log(`✓ Fixed asset paths in ${file}`);
+  }
+});
+
 // Copy OG image to dist folder
 console.log('\nCopying OG image to dist folder...');
 const ogImageSrc = path.join(__dirname, '..', 'assets', 'og-image.png');

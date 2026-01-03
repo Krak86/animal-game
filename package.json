@@ -20,7 +20,7 @@
     "build:android:debug": "cd android && ./gradlew assembleDebug",
     "build:android:release": "cd android && ./gradlew assembleRelease",
     "build:android:clean": "cd android && ./gradlew clean",
-    "build:web": "expo export --platform web && node scripts/fix-base-path.js",
+    "build:web": "node scripts/build-web.js",
     "open:web": "http-server dist -p 8080 -o"
   },
   "dependencies": {
