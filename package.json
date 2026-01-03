@@ -3,6 +3,7 @@
   "description": "An interactive React Native educational game for children to learn animal names and sounds in three languages (English, Ukrainian, Russian). Features three distinct game modes including an exhibition mode for browsing all animals. Built with TypeScript, Expo, drawer navigation, and featuring image galleries, YouTube videos, Wikipedia integration, custom fonts, background music, and engaging animations.",
   "version": "1.0.0",
   "main": "index.ts",
+  "homepage": "/animal-game/",
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",

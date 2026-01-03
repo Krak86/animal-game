@@ -2,19 +2,39 @@ const fs = require('fs');
 const path = require('path');
 
 const indexPath = path.join(__dirname, '..', 'dist', 'index.html');
-const basePath = process.env.BASE_PATH || '/animal-game/';
+const packageJsonPath = path.join(__dirname, '..', 'package.json');
 
-console.log('Fixing base path in index.html...');
+// Read base path from package.json homepage field, or env var, or default
+let basePath = '/animal-game/';
+try {
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+  basePath = packageJson.homepage || basePath;
+} catch (error) {
+  console.warn('Could not read package.json, using default base path');
+}
+
+// Allow environment variable to override
+basePath = process.env.BASE_PATH || basePath;
+
+console.log(`Fixing base path in index.html (using: ${basePath})...`);
 
 let html = fs.readFileSync(indexPath, 'utf8');
 
-// Add base tag if it doesn't exist
-if (!html.includes('<base')) {
+// Add or uncomment base tag
+if (html.includes('<!-- <base href=')) {
+  // Uncomment if it was commented out
+  html = html.replace('<!-- <base href=', '<base href=');
+  html = html.replace('<!-- Disabled for local file:// support -->', '');
+  console.log(`✓ Uncommented <base href="${basePath}"> in index.html`);
+} else if (!html.includes('<base')) {
+  // Add if it doesn't exist
   html = html.replace(
     '<head>',
     `<head>\n    <base href="${basePath}">`
   );
   console.log(`✓ Added <base href="${basePath}"> to index.html`);
+} else {
+  console.log('Base tag already exists, keeping it...');
 }
 
 // Add OG meta tags if they don't exist
@@ -61,6 +81,12 @@ if (!html.includes('og:title')) {
 } else {
   console.log('OG meta tags already exist, skipping...');
 }
+
+// Convert absolute script paths to relative (for GitHub Pages subdirectory deployment)
+console.log('\nConverting absolute paths to relative...');
+html = html.replace(/src="\/_expo\//g, 'src="_expo/');
+html = html.replace(/href="\/favicon/g, 'href="favicon');
+console.log('✓ Converted /_expo/ to _expo/ and /favicon to favicon');
 
 fs.writeFileSync(indexPath, html, 'utf8');
 
