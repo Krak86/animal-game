@@ -84,6 +84,9 @@ export const usePairsGameLogic = (
   const milestoneSound = useRef<Audio.Sound | null>(null);
   const backgroundMusic = useRef<Audio.Sound | null>(null);
 
+  // Processing timeout ref to allow cancelling when starting new selection
+  const processingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
     loadGameSounds();
 
@@ -162,13 +165,31 @@ export const usePairsGameLogic = (
   };
 
   const handleAnimalPress = (animal: Animal, tileIndex: number): void => {
-    // Prevent interaction if processing or already matched
-    if (isProcessing || matchedPairIds.includes(animal.id)) {
+    // Prevent interaction with already matched tiles
+    if (matchedPairIds.includes(animal.id)) {
       return;
     }
 
     // Haptic feedback for selection
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+    // If we're currently processing a pair, allow starting a new selection immediately
+    if (isProcessing) {
+      // Clear the existing timeout to prevent it from clearing our new selection
+      if (processingTimeoutRef.current) {
+        clearTimeout(processingTimeoutRef.current);
+        processingTimeoutRef.current = null;
+      }
+
+      // Reset processing state immediately
+      setIsProcessing(false);
+      setSecondSelection(null);
+      setWrongTileIndices([]);
+
+      // Start new selection
+      setFirstSelection({ animal, tileIndex });
+      return;
+    }
 
     if (!firstSelection) {
       // First click - just select, NO sound
@@ -194,10 +215,11 @@ export const usePairsGameLogic = (
         onScoreChange(sessionScore + 1);
 
         // Reset selections after short delay
-        setTimeout(() => {
+        processingTimeoutRef.current = setTimeout(() => {
           setFirstSelection(null);
           setSecondSelection(null);
           setIsProcessing(false);
+          processingTimeoutRef.current = null;
 
           // Check if all pairs matched (3 pairs = game complete)
           if (matchedPairIds.length + 1 === 3) {
@@ -216,11 +238,12 @@ export const usePairsGameLogic = (
         setWrongTileIndices([firstSelection.tileIndex, tileIndex]);
 
         // Reset after longer delay to show wrong selection
-        setTimeout(() => {
+        processingTimeoutRef.current = setTimeout(() => {
           setFirstSelection(null);
           setSecondSelection(null);
           setWrongTileIndices([]);
           setIsProcessing(false);
+          processingTimeoutRef.current = null;
         }, 800);
       }
     }
