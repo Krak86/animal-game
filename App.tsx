@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import * as NavigationBar from "expo-navigation-bar";
 import * as Haptics from "expo-haptics";
+import { useKeepAwake } from "expo-keep-awake";
 import { useState, useEffect, useRef, useCallback } from "react";
 import {
   View,
@@ -67,6 +68,10 @@ type RootDrawerParamList = {
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 export default function App() {
+  // Keep screen awake on native devices (Android/iOS)
+  // On web, this hook is a no-op
+  useKeepAwake();
+
   const {
     language,
     isLoading: isLanguageLoading,
