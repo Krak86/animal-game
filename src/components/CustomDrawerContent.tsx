@@ -353,6 +353,8 @@ const getDrawerStyles = (responsive: ResponsiveDimensions) =>
     },
     gameModeButton: {
       paddingVertical: 10,
+      elevation: 0,
+      shadowOpacity: 0,
     },
     activeGameMode: {
       backgroundColor: COLORS.primary,
