@@ -55,6 +55,8 @@ import { Audio } from "expo-av";
 import { animateMilestoneScore } from "@/utils/animations";
 // Types
 import { GameMode, Animal } from "@/types";
+// Contexts
+import { NetworkProvider } from "@/contexts/NetworkContext";
 
 // Keep splash screen visible while loading fonts
 SplashScreen.preventAutoHideAsync();
@@ -495,8 +497,9 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
+    <NetworkProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>
         <Drawer.Navigator
           drawerContent={(props) => (
             <CustomDrawerContent
@@ -671,5 +674,6 @@ export default function App() {
         </Drawer.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
+    </NetworkProvider>
   );
 }

@@ -91,6 +91,10 @@ export interface Translations {
   continue: string; // "Continue" button
   exitApp: string; // "Exit Game" alert title
   exitAppMessage: string; // "Are you sure you want to exit?" message
+  offlineBannerTitle: string; // "No Internet Connection" offline banner title
+  offlineBannerMessage: string; // "Some content may be unavailable" offline banner message
+  requiresInternet: string; // "Requires internet" hint for disabled buttons
+  cachedContent: string; // "Cached" indicator for cached content
   error: string; // "Error" alert title
   browserNotInstalledError: string; // Browser not installed error message
   animalDescriptions: {

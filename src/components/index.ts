@@ -20,3 +20,4 @@ export { EmojiSvg } from "./EmojiSvg";
 export { FontTestComponent } from "./FontTestComponent";
 export { AnimatedBackground } from "./AnimatedBackground";
 export { PrivacyPolicyModal } from "./PrivacyPolicyModal";
+export { OfflineBanner } from "./OfflineBanner";

@@ -48,6 +48,10 @@ export const TRANSLATIONS: TranslationMap = {
     continue: "Continue",
     exitApp: "Exit Game",
     exitAppMessage: "Are you sure you want to exit?",
+    offlineBannerTitle: "No Internet Connection",
+    offlineBannerMessage: "Some content may be unavailable",
+    requiresInternet: "Requires internet",
+    cachedContent: "Cached",
     error: "Error",
     browserNotInstalledError:
       "Failed to open link: {error}\n\nPlease ensure you have a web browser installed on your device.",
@@ -408,6 +412,10 @@ export const TRANSLATIONS: TranslationMap = {
     continue: "Продовжити",
     exitApp: "Вийти з гри",
     exitAppMessage: "Ви впевнені, що хочете вийти?",
+    offlineBannerTitle: "Немає підключення до Інтернету",
+    offlineBannerMessage: "Деякий вміст може бути недоступний",
+    requiresInternet: "Потрібен інтернет",
+    cachedContent: "Кешовано",
     error: "Помилка",
     browserNotInstalledError:
       "Не вдалося відкрити посилання: {error}\n\nБудь ласка, переконайтеся, що у вас встановлено веб-браузер.",
@@ -768,6 +776,10 @@ export const TRANSLATIONS: TranslationMap = {
     continue: "Продолжить",
     exitApp: "Выйти из игры",
     exitAppMessage: "Вы уверены, что хотите выйти?",
+    offlineBannerTitle: "Нет подключения к Интернету",
+    offlineBannerMessage: "Некоторый контент может быть недоступен",
+    requiresInternet: "Требуется интернет",
+    cachedContent: "Кешировано",
     error: "Ошибка",
     browserNotInstalledError:
       "Не удалось открыть ссылку: {error}\n\nПожалуйста, убедитесь, что у вас установлен веб-браузер.",
