@@ -1,4 +1,12 @@
-import { View, Text, TouchableOpacity, StyleSheet, Alert, BackHandler, Platform } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  BackHandler,
+  Platform,
+} from "react-native";
 import {
   DrawerContentScrollView,
   DrawerContentComponentProps,
@@ -8,6 +16,7 @@ import { useState } from "react";
 import * as Haptics from "expo-haptics";
 
 import { SoundToggle } from "./SoundToggle";
+import { MusicToggle } from "./MusicToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { EmojiSvg } from "./EmojiSvg";
 import { PrivacyPolicyModal } from "./PrivacyPolicyModal";
@@ -22,6 +31,8 @@ import { Language, Translations, GameMode } from "@/types";
 interface CustomDrawerProps extends DrawerContentComponentProps {
   isSoundEnabled: boolean;
   onToggleSound: () => void;
+  isMusicEnabled: boolean;
+  onToggleMusic: () => void;
   language: Language;
   onLanguageChange: (lang: Language) => void;
   onHomePress: () => Promise<void>;
@@ -35,6 +46,8 @@ interface CustomDrawerProps extends DrawerContentComponentProps {
 export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
   isSoundEnabled,
   onToggleSound,
+  isMusicEnabled,
+  onToggleMusic,
   language,
   onLanguageChange,
   onHomePress,
@@ -196,15 +209,30 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
           </TouchableOpacity>
         </View>
 
-        {/* Sound Toggle Section */}
+        {/* Sound and Music Toggle Section */}
         <View style={styles.menuItem}>
-          <Text style={styles.sectionLabel}>{translations.sound}</Text>
-          <View style={styles.soundToggleContainer}>
-            <SoundToggle
-              isSoundEnabled={isSoundEnabled}
-              onToggle={onToggleSound}
-              variant="inline"
-            />
+          <View style={styles.toggleRow}>
+            <View style={styles.toggleGroup}>
+              <Text style={styles.sectionLabel}>{translations.sound}</Text>
+              <View style={styles.soundToggleContainer}>
+                <SoundToggle
+                  isSoundEnabled={isSoundEnabled}
+                  onToggle={onToggleSound}
+                  variant="inline"
+                />
+              </View>
+            </View>
+            <View style={styles.toggleGroup}>
+              <Text style={styles.sectionLabel}>{translations.music}</Text>
+              <View style={styles.soundToggleContainer}>
+                <MusicToggle
+                  isMusicEnabled={isMusicEnabled}
+                  onToggle={onToggleMusic}
+                  variant="inline"
+                  isDisabled={!isSoundEnabled}
+                />
+              </View>
+            </View>
           </View>
         </View>
 
@@ -218,7 +246,7 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
         </View>
 
         {/* Full Screen Toggle Section */}
-        {Platform.OS !== 'web' && (
+        {Platform.OS !== "web" && (
           <View style={styles.menuItem}>
             <TouchableOpacity
               style={[
@@ -255,7 +283,7 @@ export const CustomDrawerContent: React.FC<CustomDrawerProps> = ({
         </View>
 
         {/* Exit App Button */}
-        {Platform.OS !== 'web' && (
+        {Platform.OS !== "web" && (
           <View style={styles.menuItem}>
             <TouchableOpacity
               style={[styles.menuItemContent, styles.exitButton]}
@@ -342,6 +370,15 @@ const getDrawerStyles = (responsive: ResponsiveDimensions) =>
       marginBottom: responsive.spacing.sm,
     },
     soundToggleContainer: {
+      alignItems: "flex-start",
+    },
+    toggleRow: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      gap: responsive.spacing.md,
+    },
+    toggleGroup: {
+      flex: 1,
       alignItems: "flex-start",
     },
     gameModeSection: {

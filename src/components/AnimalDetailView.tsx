@@ -21,7 +21,9 @@ import { EmojiSvg } from "@/components/EmojiSvg";
 import { ImageGalleryModal } from "@/components/ImageGalleryModal";
 import { VideoGalleryModal } from "@/components/VideoGalleryModal";
 import { Model3DModal } from "@/components/Model3DModal";
+import { OfflineBanner } from "@/components/OfflineBanner";
 import { PRERECORDED_ANIMAL_AUDIO, hasPrerecordedAudio } from "@/constants/audioFiles";
+import { useNetwork } from "@/contexts/NetworkContext";
 
 interface AnimalDetailViewProps {
   animal: Animal;
@@ -49,6 +51,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
   const responsive = useResponsiveDimensions();
   const styles = getAnimalDetailViewStyles(responsive);
   const insets = useSafeAreaInsets();
+  const { isConnected } = useNetwork();
 
   const [isPlayingSound, setIsPlayingSound] = useState(false);
   const [showImageGallery, setShowImageGallery] = useState(false);
@@ -310,6 +313,9 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
         style={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
       >
+        {/* OFFLINE BANNER */}
+        {!isConnected && <OfflineBanner />}
+
         {/* TOP SECTION - Existing content (emoji, name, TTS/voice buttons) */}
         <Animated.View
           style={{
@@ -446,9 +452,13 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
           <View style={styles.mediaButtonsContainer}>
             {animal.images && animal.images.length > 0 ? (
               <TouchableOpacity
-                style={styles.mediaButton}
+                style={[
+                  styles.mediaButton,
+                  !isConnected && styles.mediaButtonDisabled,
+                ]}
                 onPress={() => setShowImageGallery(true)}
-                activeOpacity={0.7}
+                disabled={!isConnected}
+                activeOpacity={!isConnected ? 1 : 0.7}
               >
                 <View
                   style={{
@@ -457,19 +467,36 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                     gap: 8,
                   }}
                 >
-                  <EmojiSvg emoji="🖼️" style={{ fontSize: 20 }} />
-                  <Text style={styles.mediaButtonText}>
+                  <EmojiSvg
+                    emoji="🖼️"
+                    style={{ fontSize: 20, opacity: !isConnected ? 0.5 : 1 }}
+                  />
+                  <Text
+                    style={[
+                      styles.mediaButtonText,
+                      !isConnected && styles.mediaButtonTextDisabled,
+                    ]}
+                  >
                     {translations.viewImages}
                   </Text>
                 </View>
+                {!isConnected && (
+                  <Text style={styles.offlineHint}>
+                    📡 {translations.requiresInternet}
+                  </Text>
+                )}
               </TouchableOpacity>
             ) : null}
 
             {animal.videos && animal.videos.length > 0 ? (
               <TouchableOpacity
-                style={styles.mediaButton}
+                style={[
+                  styles.mediaButton,
+                  !isConnected && styles.mediaButtonDisabled,
+                ]}
                 onPress={() => setShowVideoGallery(true)}
-                activeOpacity={0.7}
+                disabled={!isConnected}
+                activeOpacity={!isConnected ? 1 : 0.7}
               >
                 <View
                   style={{
@@ -478,11 +505,24 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                     gap: 8,
                   }}
                 >
-                  <EmojiSvg emoji="🎥" style={{ fontSize: 20 }} />
-                  <Text style={styles.mediaButtonText}>
+                  <EmojiSvg
+                    emoji="🎥"
+                    style={{ fontSize: 20, opacity: !isConnected ? 0.5 : 1 }}
+                  />
+                  <Text
+                    style={[
+                      styles.mediaButtonText,
+                      !isConnected && styles.mediaButtonTextDisabled,
+                    ]}
+                  >
                     {translations.viewVideos}
                   </Text>
                 </View>
+                {!isConnected && (
+                  <Text style={styles.offlineHint}>
+                    📡 {translations.requiresInternet}
+                  </Text>
+                )}
               </TouchableOpacity>
             ) : null}
 
@@ -509,7 +549,10 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
 
             {animal.wikipediaUrls ? (
               <TouchableOpacity
-                style={styles.mediaButton}
+                style={[
+                  styles.mediaButton,
+                  !isConnected && styles.mediaButtonDisabled,
+                ]}
                 onPress={() => {
                   // Get language-specific URL with fallback chain
                   const url =
@@ -526,7 +569,8 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                     }
                   }
                 }}
-                activeOpacity={0.7}
+                disabled={!isConnected}
+                activeOpacity={!isConnected ? 1 : 0.7}
               >
                 <View
                   style={{
@@ -535,11 +579,24 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
                     gap: 8,
                   }}
                 >
-                  <EmojiSvg emoji="🌐" style={{ fontSize: 20 }} />
-                  <Text style={styles.mediaButtonText}>
+                  <EmojiSvg
+                    emoji="🌐"
+                    style={{ fontSize: 20, opacity: !isConnected ? 0.5 : 1 }}
+                  />
+                  <Text
+                    style={[
+                      styles.mediaButtonText,
+                      !isConnected && styles.mediaButtonTextDisabled,
+                    ]}
+                  >
                     {translations.viewWikipedia}
                   </Text>
                 </View>
+                {!isConnected && (
+                  <Text style={styles.offlineHint}>
+                    📡 {translations.requiresInternet}
+                  </Text>
+                )}
               </TouchableOpacity>
             ) : null}
           </View>

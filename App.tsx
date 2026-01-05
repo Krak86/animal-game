@@ -55,6 +55,8 @@ import { Audio } from "expo-av";
 import { animateMilestoneScore } from "@/utils/animations";
 // Types
 import { GameMode, Animal } from "@/types";
+// Contexts
+import { NetworkProvider } from "@/contexts/NetworkContext";
 
 // Keep splash screen visible while loading fonts
 SplashScreen.preventAutoHideAsync();
@@ -83,6 +85,8 @@ export default function App() {
   const [currentAnimalIndex, setCurrentAnimalIndex] = useState<number>(0);
   const [showAnimalDetail, setShowAnimalDetail] = useState<boolean>(false);
   const [isFullScreen, setIsFullScreen] = useState<boolean>(true);
+  const [isSoundEnabled, setIsSoundEnabled] = useState<boolean>(true);
+  const [isMusicEnabled, setIsMusicEnabled] = useState<boolean>(true);
   const [listScrollIndex, setListScrollIndex] = useState<number>(0);
   const [lastSearchText, setLastSearchText] = useState<string>("");
   const [sessionScore, setSessionScore] = useState<number>(0);
@@ -159,28 +163,30 @@ export default function App() {
       ? gameMode
       : "byName",
     sessionScore,
-    setSessionScore
+    setSessionScore,
+    isSoundEnabled,
+    isMusicEnabled
   );
 
   const pairsLogic = usePairsGameLogic(
     language,
     t,
     sessionScore,
-    setSessionScore
+    setSessionScore,
+    isSoundEnabled,
+    isMusicEnabled
   );
 
   // Destructure shared properties
   const {
     showSuccess,
     gameStarted,
-    isSoundEnabled,
     successScale,
     successOpacity,
     cardAnimations,
     questionAnimation,
     animalWiggles,
     startGame,
-    toggleSound,
     resetGame,
     milestoneSound,
   } = gameMode === "animalPairs" ? pairsLogic : gameLogic;
@@ -230,8 +236,8 @@ export default function App() {
   useEffect(() => {
     const loadExhibitionMusic = async () => {
       if (gameMode === "showAll" || gameMode === "secret") {
-        // Load and start background music for exhibition mode and secret mode
-        const music = await loadBackgroundMusic(isSoundEnabled);
+        // Load background music for exhibition mode - respect toggle states
+        const music = await loadBackgroundMusic(isSoundEnabled && isMusicEnabled);
         exhibitionBackgroundMusic.current = music;
       } else {
         // Stop and unload music when leaving exhibition/secret mode
@@ -250,18 +256,18 @@ export default function App() {
         exhibitionBackgroundMusic.current.unloadAsync();
       }
     };
-  }, [gameMode, isSoundEnabled]);
+  }, [gameMode, isSoundEnabled, isMusicEnabled]);
 
-  // Handle sound toggle for exhibition mode and secret mode
+  // Control exhibition mode music based on BOTH sound and music toggles
   useEffect(() => {
     if (gameMode === "showAll" || gameMode === "secret") {
-      if (isSoundEnabled) {
+      if (isSoundEnabled && isMusicEnabled) {
         resumeBackgroundMusic(exhibitionBackgroundMusic.current);
       } else {
         pauseBackgroundMusic(exhibitionBackgroundMusic.current);
       }
     }
-  }, [isSoundEnabled, gameMode]);
+  }, [isSoundEnabled, isMusicEnabled, gameMode]);
 
   // Celebrate milestone achievements
   useEffect(() => {
@@ -477,20 +483,31 @@ export default function App() {
     }
   };
 
+  const handleToggleSound = (): void => {
+    setIsSoundEnabled(!isSoundEnabled);
+  };
+
+  const handleToggleMusic = (): void => {
+    setIsMusicEnabled(!isMusicEnabled);
+  };
+
   // Don't render app until fonts and language are loaded
   if ((!fontsLoaded && !fontError) || isLanguageLoading) {
     return null;
   }
 
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
+    <NetworkProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>
         <Drawer.Navigator
           drawerContent={(props) => (
             <CustomDrawerContent
               {...props}
               isSoundEnabled={isSoundEnabled}
-              onToggleSound={toggleSound}
+              onToggleSound={handleToggleSound}
+              isMusicEnabled={isMusicEnabled}
+              onToggleMusic={handleToggleMusic}
               language={language}
               onLanguageChange={setLanguage}
               onHomePress={handleResetGame}
@@ -562,79 +579,80 @@ export default function App() {
                         contentContainerStyle={appStyles.scrollContent}
                         showsVerticalScrollIndicator={false}
                       >
-                      <Animated.View
-                        style={[
-                          appStyles.scoreContainer,
-                          {
-                            transform: [{ scale: milestoneScale }],
-                          },
-                        ]}
-                      >
-                        <Text style={appStyles.scoreText}>
-                          {t.score}: {sessionScore}
-                        </Text>
-                      </Animated.View>
+                        <Animated.View
+                          style={[
+                            appStyles.scoreContainer,
+                            {
+                              transform: [{ scale: milestoneScale }],
+                            },
+                          ]}
+                        >
+                          <Text style={appStyles.scoreText}>
+                            {t.score}: {sessionScore}
+                          </Text>
+                        </Animated.View>
 
-                      <QuestionDisplay
-                        currentAnimal={currentAnimal}
-                        translations={t}
-                        questionAnimation={questionAnimation}
-                        gameMode={gameMode || "byName"}
-                        onReplaySound={
-                          gameMode === "bySound" ? replaySound : undefined
-                        }
-                        isReplayingSound={isAnimalSoundPlaying}
-                      />
+                        <QuestionDisplay
+                          currentAnimal={currentAnimal}
+                          translations={t}
+                          questionAnimation={questionAnimation}
+                          gameMode={gameMode || "byName"}
+                          onReplaySound={
+                            gameMode === "bySound" ? replaySound : undefined
+                          }
+                          isReplayingSound={isAnimalSoundPlaying}
+                        />
 
-                      <View style={appStyles.gridContainer}>
-                        {gameMode === "animalPairs"
-                          ? // Pairs mode - 6 tiles
-                            pairAnimals.map((animal, index) => {
-                              const isMatched = matchedPairIds.includes(
-                                animal.id
-                              );
-                              const isSelected =
-                                firstSelection?.tileIndex === index ||
-                                secondSelection?.tileIndex === index;
-                              const isWrong = wrongTileIndices.includes(index);
+                        <View style={appStyles.gridContainer}>
+                          {gameMode === "animalPairs"
+                            ? // Pairs mode - 6 tiles
+                              pairAnimals.map((animal, index) => {
+                                const isMatched = matchedPairIds.includes(
+                                  animal.id
+                                );
+                                const isSelected =
+                                  firstSelection?.tileIndex === index ||
+                                  secondSelection?.tileIndex === index;
+                                const isWrong =
+                                  wrongTileIndices.includes(index);
 
-                              return (
-                                <PairsAnimalCard
-                                  key={`${animal.id}-${index}`}
-                                  animal={animal}
-                                  tileIndex={index}
-                                  isMatched={isMatched}
-                                  isSelected={isSelected}
-                                  isWrong={isWrong}
-                                  wiggleAnimation={animalWiggles[index]}
-                                  cardAnimation={cardAnimations[index]}
-                                  cardAnimations={cardAnimations}
-                                  translations={t}
-                                  onPress={handleAnimalPress}
-                                  index={index}
-                                />
-                              );
-                            })
-                          : // Regular modes - 6 tiles
-                            shuffledAnimals.map((animal, index) => {
-                              const isWrong = wrongTileId === animal.id;
+                                return (
+                                  <PairsAnimalCard
+                                    key={`${animal.id}-${index}`}
+                                    animal={animal}
+                                    tileIndex={index}
+                                    isMatched={isMatched}
+                                    isSelected={isSelected}
+                                    isWrong={isWrong}
+                                    wiggleAnimation={animalWiggles[index]}
+                                    cardAnimation={cardAnimations[index]}
+                                    cardAnimations={cardAnimations}
+                                    translations={t}
+                                    onPress={handleAnimalPress}
+                                    index={index}
+                                  />
+                                );
+                              })
+                            : // Regular modes - 6 tiles
+                              shuffledAnimals.map((animal, index) => {
+                                const isWrong = wrongTileId === animal.id;
 
-                              return (
-                                <AnimalCard
-                                  key={animal.id}
-                                  animal={animal}
-                                  isWrong={isWrong}
-                                  wiggleAnimation={animalWiggles[index]}
-                                  cardAnimation={cardAnimations[index]}
-                                  translations={t}
-                                  onPress={() =>
-                                    handleAnimalPress(animal, index)
-                                  }
-                                />
-                              );
-                            })}
-                      </View>
-                    </ScrollView>
+                                return (
+                                  <AnimalCard
+                                    key={animal.id}
+                                    animal={animal}
+                                    isWrong={isWrong}
+                                    wiggleAnimation={animalWiggles[index]}
+                                    cardAnimation={cardAnimations[index]}
+                                    translations={t}
+                                    onPress={() =>
+                                      handleAnimalPress(animal, index)
+                                    }
+                                  />
+                                );
+                              })}
+                        </View>
+                      </ScrollView>
 
                       <SuccessOverlay
                         visible={showSuccess}
@@ -656,5 +674,6 @@ export default function App() {
         </Drawer.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
+    </NetworkProvider>
   );
 }

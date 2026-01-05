@@ -459,6 +459,22 @@ export const getAnimalDetailViewStyles = (responsive: ResponsiveDimensions) =>
       fontFamily: FONTS.semiBold,
       color: COLORS.white,
     },
+    mediaButtonDisabled: {
+      backgroundColor: COLORS.lightGray,
+      opacity: 0.6,
+      shadowOpacity: 0.05,
+      elevation: 0,
+    },
+    mediaButtonTextDisabled: {
+      color: COLORS.gray,
+      opacity: 0.7,
+    },
+    offlineHint: {
+      fontSize: 11 * responsive.fontScale,
+      color: COLORS.gray,
+      fontStyle: 'italic' as const,
+      marginTop: 4,
+    },
     swipeIndicator: {
       position: "absolute",
       top: "50%",
