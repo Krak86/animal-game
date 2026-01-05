@@ -73,6 +73,7 @@ export interface Translations {
   noResults: string; // "No animals found" message
   menu: string; // "Menu" drawer header
   sound: string; // "Sound" drawer section label
+  music: string; // "Music" drawer section label
   language: string; // "Language" drawer section label
   gameMode: string; // "Game Mode" drawer section label
   enterFullScreen: string; // "Enter Full Screen" button text
@@ -225,7 +226,6 @@ export interface UseGameLogicReturn {
   score: number;
   wrongTileId: number | null;
   gameStarted: boolean;
-  isSoundEnabled: boolean;
   isAnimalSoundPlaying: boolean;
   gameMode: GameMode;
   milestoneSound: Audio.Sound | null;
@@ -238,7 +238,6 @@ export interface UseGameLogicReturn {
   // Functions
   handleAnimalPress: (animal: Animal) => void;
   startGame: () => Promise<void>;
-  toggleSound: () => void;
   resetGame: () => Promise<void>;
   resetGameState: () => Promise<void>; // Reset game state without stopping background music
   replaySound: () => Promise<void>; // New function for By Sound mode
@@ -254,7 +253,6 @@ export interface UsePairsGameLogicReturn {
   wrongTileIndices: number[];
   showSuccess: boolean;
   gameStarted: boolean;
-  isSoundEnabled: boolean;
   milestoneSound: Audio.Sound | null;
   // Animation values
   successScale: Animated.Value;
@@ -265,7 +263,6 @@ export interface UsePairsGameLogicReturn {
   // Functions
   handleAnimalPress: (animal: Animal, tileIndex: number) => void;
   startGame: () => Promise<void>;
-  toggleSound: () => void;
   resetGame: () => Promise<void>;
   resetGameState: () => Promise<void>;
 }

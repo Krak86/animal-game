@@ -7,6 +7,7 @@ export { PairsAnimalCard } from "./PairsAnimalCard";
 export { SuccessOverlay } from "./SuccessOverlay";
 export { StartScreen } from "./StartScreen";
 export { SoundToggle } from "./SoundToggle";
+export { MusicToggle } from "./MusicToggle";
 export { AnimalsListView } from "./AnimalsListView";
 export { AnimalDetailView } from "./AnimalDetailView";
 export { CustomDrawerContent } from "./CustomDrawerContent";

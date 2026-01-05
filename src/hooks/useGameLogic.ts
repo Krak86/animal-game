@@ -56,7 +56,9 @@ export const useGameLogic = (
   translations: Translations,
   gameMode: GameMode,
   sessionScore: number,
-  onScoreChange: (newScore: number) => void
+  onScoreChange: (newScore: number) => void,
+  isSoundEnabled: boolean,
+  isMusicEnabled: boolean
 ): UseGameLogicReturn => {
   // Filter animals based on game mode
   const modeAnimals = useMemo(() => getAnimalsByMode(gameMode), [gameMode]);
@@ -66,7 +68,6 @@ export const useGameLogic = (
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [wrongTileId, setWrongTileId] = useState<number | null>(null);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
-  const [isSoundEnabled, setIsSoundEnabled] = useState<boolean>(true);
   const [isAnimalSoundPlaying, setIsAnimalSoundPlaying] =
     useState<boolean>(false);
 
@@ -108,6 +109,24 @@ export const useGameLogic = (
     };
   }, []);
 
+  // Watch for music toggle changes
+  useEffect(() => {
+    if (!backgroundMusic.current) return;
+
+    // Master switch: if sound is OFF, music is ignored
+    if (!isSoundEnabled) {
+      pauseBackgroundMusic(backgroundMusic.current);
+      return;
+    }
+
+    // Sound is ON, respect music toggle
+    if (isMusicEnabled) {
+      resumeBackgroundMusic(backgroundMusic.current);
+    } else {
+      pauseBackgroundMusic(backgroundMusic.current);
+    }
+  }, [isMusicEnabled, isSoundEnabled, gameStarted]);
+
   const loadGameSounds = async (): Promise<void> => {
     // Preload sound effects (but don't play them yet)
     const sounds = await loadSounds();
@@ -118,12 +137,10 @@ export const useGameLogic = (
 
   const startGame = async (): Promise<void> => {
     if (!gameStarted) {
-      setGameStarted(true);
-
       // Debug: Log available voices for troubleshooting
       logAvailableVoices();
 
-      // Load background music
+      // Load background music FIRST
       backgroundMusic.current = await loadBackgroundMusic(isSoundEnabled);
 
       // If sound is disabled, pause music immediately
@@ -144,6 +161,9 @@ export const useGameLogic = (
           console.warn("Error checking background music status:", error);
         }
       }
+
+      // NOW set gameStarted to trigger useEffect with music already loaded
+      setGameStarted(true);
 
       startNewRound();
       startAnimalAnimations();
@@ -328,22 +348,6 @@ export const useGameLogic = (
     }, 2000);
   };
 
-  const toggleSound = (): void => {
-    const newSoundState = !isSoundEnabled;
-    setIsSoundEnabled(newSoundState);
-
-    if (backgroundMusic.current) {
-      if (newSoundState) {
-        // Sound is now enabled, resume music
-        resumeBackgroundMusic(backgroundMusic.current);
-      } else {
-        // Sound is now disabled, stop all sounds
-        pauseBackgroundMusic(backgroundMusic.current);
-        stopSpeech();
-        stopAnimalSound(backgroundMusic.current);
-      }
-    }
-  };
 
   const resetGame = async (): Promise<void> => {
     // Stop any ongoing speech
@@ -413,8 +417,8 @@ export const useGameLogic = (
           successScale.setValue(0);
           successOpacity.setValue(0);
 
-          // Resume background music after success animation (only if sound is enabled)
-          if (isSoundEnabled) {
+          // Resume background music after success animation (check BOTH flags)
+          if (isSoundEnabled && isMusicEnabled) {
             resumeBackgroundMusic(backgroundMusic.current);
           }
 
@@ -451,7 +455,6 @@ export const useGameLogic = (
     score: sessionScore,
     wrongTileId,
     gameStarted,
-    isSoundEnabled,
     isAnimalSoundPlaying,
     gameMode,
     milestoneSound: milestoneSound.current,
@@ -464,7 +467,6 @@ export const useGameLogic = (
     // Functions
     handleAnimalPress,
     startGame,
-    toggleSound,
     resetGame,
     resetGameState,
     replaySound,
