@@ -11,6 +11,8 @@ import {
 import { getLanguageDropdownStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { Language } from "@/types";
+import { useHoverEffect } from "@/hooks/useHoverEffect";
+import { COLORS } from "@/styles/colors";
 
 interface Props {
   language: Language;
@@ -31,6 +33,23 @@ export const LanguageDropdown: React.FC<Props> = ({
   const styles = getLanguageDropdownStyles(responsive);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  // Hover effects
+  const hoverSelected = useHoverEffect({
+    baseColor: COLORS.primaryLight,
+  });
+
+  const hoverOption0 = useHoverEffect({
+    baseColor: LANGUAGE_OPTIONS[0].value === language ? COLORS.primaryLight : COLORS.white,
+  });
+
+  const hoverOption1 = useHoverEffect({
+    baseColor: LANGUAGE_OPTIONS[1].value === language ? COLORS.primaryLight : COLORS.white,
+  });
+
+  const hoverOption2 = useHoverEffect({
+    baseColor: LANGUAGE_OPTIONS[2].value === language ? COLORS.primaryLight : COLORS.white,
+  });
   const [buttonLayout, setButtonLayout] = useState({
     x: 0,
     y: 0,
@@ -108,22 +127,25 @@ export const LanguageDropdown: React.FC<Props> = ({
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.selectedButton}
-        onPress={toggleDropdown}
-        onLayout={onButtonLayout}
-        activeOpacity={0.7}
-      >
-        <Text style={styles.selectedText}>{currentLanguageLabel}</Text>
-        <Animated.Text
-          style={[
-            styles.arrowIcon,
-            { transform: [{ rotate: arrowRotationDeg }] },
-          ]}
+      <Animated.View style={[styles.selectedButton, { backgroundColor: hoverSelected.backgroundColor }, hoverSelected.cursorStyle]}>
+        <TouchableOpacity
+          style={styles.selectedButtonInner}
+          onPress={toggleDropdown}
+          onLayout={onButtonLayout}
+          activeOpacity={0.7}
+          {...hoverSelected.handlers}
         >
-          ▼
-        </Animated.Text>
-      </TouchableOpacity>
+          <Text style={styles.selectedText}>{currentLanguageLabel}</Text>
+          <Animated.Text
+            style={[
+              styles.arrowIcon,
+              { transform: [{ rotate: arrowRotationDeg }] },
+            ]}
+          >
+            ▼
+          </Animated.Text>
+        </TouchableOpacity>
+      </Animated.View>
 
       <Modal
         visible={isOpen}
@@ -151,27 +173,35 @@ export const LanguageDropdown: React.FC<Props> = ({
                 {LANGUAGE_OPTIONS.map((option, index) => {
                   const isActive = option.value === language;
                   const isLast = index === LANGUAGE_OPTIONS.length - 1;
+                  const hoverOption = index === 0 ? hoverOption0 : index === 1 ? hoverOption1 : hoverOption2;
 
                   return (
-                    <TouchableOpacity
+                    <Animated.View
                       key={option.value}
                       style={[
                         styles.optionButton,
                         isLast && styles.optionButtonLast,
                         isActive && styles.optionButtonActive,
+                        { backgroundColor: hoverOption.backgroundColor },
+                        hoverOption.cursorStyle,
                       ]}
-                      onPress={() => handleLanguageSelect(option.value)}
-                      activeOpacity={0.7}
                     >
-                      <Text
-                        style={[
-                          styles.optionText,
-                          isActive && styles.optionTextActive,
-                        ]}
+                      <TouchableOpacity
+                        style={styles.optionButtonInner}
+                        onPress={() => handleLanguageSelect(option.value)}
+                        activeOpacity={0.7}
+                        {...hoverOption.handlers}
                       >
-                        {option.label}
-                      </Text>
-                    </TouchableOpacity>
+                        <Text
+                          style={[
+                            styles.optionText,
+                            isActive && styles.optionTextActive,
+                          ]}
+                        >
+                          {option.label}
+                        </Text>
+                      </TouchableOpacity>
+                    </Animated.View>
                   );
                 })}
               </Animated.View>

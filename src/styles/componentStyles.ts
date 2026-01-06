@@ -18,7 +18,6 @@ export const getLanguageSwitcherStyles = (responsive: ResponsiveDimensions) =>
       paddingHorizontal: 15,
       paddingVertical: 8,
       borderRadius: 20,
-      backgroundColor: COLORS.white,
       borderWidth: 2,
       borderColor: COLORS.lightGray,
       shadowColor: COLORS.black,
@@ -29,7 +28,10 @@ export const getLanguageSwitcherStyles = (responsive: ResponsiveDimensions) =>
     },
     buttonActive: {
       borderColor: COLORS.primary,
-      backgroundColor: COLORS.primaryLight,
+    },
+    buttonInner: {
+      flexDirection: "row",
+      alignItems: "center",
     },
     languageText: {
       fontSize: 13 * responsive.fontScale,
@@ -113,7 +115,6 @@ export const getLanguageDropdownStyles = (responsive: ResponsiveDimensions) =>
       paddingHorizontal: 15,
       paddingVertical: 8,
       borderRadius: 20,
-      backgroundColor: COLORS.primaryLight,
       borderWidth: 2,
       borderColor: COLORS.primary,
       shadowColor: COLORS.black,
@@ -123,6 +124,13 @@ export const getLanguageDropdownStyles = (responsive: ResponsiveDimensions) =>
       elevation: 2,
       minWidth: 80,
       justifyContent: "space-between",
+      gap: 8,
+    },
+    selectedButtonInner: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      flex: 1,
       gap: 8,
     },
     selectedText: {
@@ -162,7 +170,9 @@ export const getLanguageDropdownStyles = (responsive: ResponsiveDimensions) =>
       borderBottomWidth: 0,
     },
     optionButtonActive: {
-      backgroundColor: COLORS.primaryLight,
+    },
+    optionButtonInner: {
+      width: "100%",
     },
     optionText: {
       fontSize: 13 * responsive.fontScale,

@@ -1,20 +1,34 @@
-import { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { EmojiSvg } from '@/components/EmojiSvg';
-import { COLORS } from '@/styles/colors';
-import { useResponsiveDimensions } from '@/hooks/useResponsiveDimensions';
+import { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Animated,
+} from "react-native";
+import { EmojiSvg } from "@/components/EmojiSvg";
+import { COLORS } from "@/styles/colors";
+import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
+import { useHoverEffect } from "@/hooks/useHoverEffect";
+import { Translations } from "@/types";
 
 interface OfflineBannerProps {
-  message?: string;
-  subMessage?: string;
+  translations?: Translations;
 }
 
 export const OfflineBanner: React.FC<OfflineBannerProps> = ({
-  message = "No Internet Connection",
-  subMessage = "Some content may be unavailable",
+  translations,
 }) => {
+  const message = translations?.offlineBannerTitle;
+  const subMessage = translations?.offlineBannerMessage;
   const [isDismissed, setIsDismissed] = useState(false);
   const responsive = useResponsiveDimensions();
+
+  const hoverClose = useHoverEffect({
+    baseColor: "transparent",
+    hoverColor: "rgba(0, 0, 0, 0.1)",
+    duration: 150,
+  });
 
   if (isDismissed) {
     return null;
@@ -28,13 +42,21 @@ export const OfflineBanner: React.FC<OfflineBannerProps> = ({
           <Text style={styles.title}>{message}</Text>
           <Text style={styles.subtitle}>{subMessage}</Text>
         </View>
-        <TouchableOpacity
-          style={styles.closeButton}
-          onPress={() => setIsDismissed(true)}
-          activeOpacity={0.7}
+        <Animated.View
+          style={[
+            { backgroundColor: hoverClose.backgroundColor },
+            hoverClose.cursorStyle,
+          ]}
         >
-          <Text style={styles.closeText}>✕</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() => setIsDismissed(true)}
+            activeOpacity={0.7}
+            {...hoverClose.handlers}
+          >
+            <Text style={styles.closeText}>✕</Text>
+          </TouchableOpacity>
+        </Animated.View>
       </View>
     </View>
   );
@@ -42,13 +64,13 @@ export const OfflineBanner: React.FC<OfflineBannerProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFC107', // Amber warning color
+    backgroundColor: "#FFC107", // Amber warning color
     borderRadius: 8,
     marginBottom: 12,
   },
   contentContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   icon: {
     fontSize: 24,
@@ -59,7 +81,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
     color: COLORS.black,
     marginBottom: 2,
   },
@@ -75,6 +97,6 @@ const styles = StyleSheet.create({
   closeText: {
     fontSize: 20,
     color: COLORS.black,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });
