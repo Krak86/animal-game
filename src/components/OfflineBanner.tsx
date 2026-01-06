@@ -1,19 +1,26 @@
-import { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
-import { EmojiSvg } from '@/components/EmojiSvg';
-import { COLORS } from '@/styles/colors';
-import { useResponsiveDimensions } from '@/hooks/useResponsiveDimensions';
-import { useHoverEffect } from '@/hooks/useHoverEffect';
+import { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Animated,
+} from "react-native";
+import { EmojiSvg } from "@/components/EmojiSvg";
+import { COLORS } from "@/styles/colors";
+import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
+import { useHoverEffect } from "@/hooks/useHoverEffect";
+import { Translations } from "@/types";
 
 interface OfflineBannerProps {
-  message?: string;
-  subMessage?: string;
+  translations?: Translations;
 }
 
 export const OfflineBanner: React.FC<OfflineBannerProps> = ({
-  message = "No Internet Connection",
-  subMessage = "Some content may be unavailable",
+  translations,
 }) => {
+  const message = translations?.offlineBannerTitle;
+  const subMessage = translations?.offlineBannerMessage;
   const [isDismissed, setIsDismissed] = useState(false);
   const responsive = useResponsiveDimensions();
 
@@ -35,7 +42,12 @@ export const OfflineBanner: React.FC<OfflineBannerProps> = ({
           <Text style={styles.title}>{message}</Text>
           <Text style={styles.subtitle}>{subMessage}</Text>
         </View>
-        <Animated.View style={[{ backgroundColor: hoverClose.backgroundColor }, hoverClose.cursorStyle]}>
+        <Animated.View
+          style={[
+            { backgroundColor: hoverClose.backgroundColor },
+            hoverClose.cursorStyle,
+          ]}
+        >
           <TouchableOpacity
             style={styles.closeButton}
             onPress={() => setIsDismissed(true)}
@@ -52,13 +64,13 @@ export const OfflineBanner: React.FC<OfflineBannerProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFC107', // Amber warning color
+    backgroundColor: "#FFC107", // Amber warning color
     borderRadius: 8,
     marginBottom: 12,
   },
   contentContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   icon: {
     fontSize: 24,
@@ -69,7 +81,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
     color: COLORS.black,
     marginBottom: 2,
   },
@@ -85,6 +97,6 @@ const styles = StyleSheet.create({
   closeText: {
     fontSize: 20,
     color: COLORS.black,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });

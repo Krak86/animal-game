@@ -314,7 +314,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
         showsVerticalScrollIndicator={false}
       >
         {/* OFFLINE BANNER */}
-        {!isConnected && <OfflineBanner />}
+        {!isConnected && <OfflineBanner translations={translations} />}
 
         {/* TOP SECTION - Existing content (emoji, name, TTS/voice buttons) */}
         <Animated.View
