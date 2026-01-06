@@ -78,7 +78,7 @@ export const EMOJI_SVG_MAP: Record<string, any> = {
   "🦏": require("@assets/emojis/1f98f.svg"),
   "🐵": require("@assets/emojis/1f435.svg"),
   "🪶": require("@assets/emojis/1fab6.svg"),
-  "🕊️": require("@assets/emojis/1f54a.svg"),
+  "🕊️": require("@assets/emojis/Vanellus.svg"),
   "⭐": require("@assets/emojis/2b50.svg"),
   "🪼": require("@assets/emojis/1fabc.svg"),
   "🐠": require("@assets/emojis/1f420.svg"),

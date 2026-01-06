@@ -87,7 +87,7 @@ const koalaSound = require("@assets/music/animals/Koala.mp3");
 const hippopotamusSound = require("@assets/music/animals/Hippopotamus.mp3");
 const rhinocerosSound = require("@assets/music/animals/Rhinoceros.mp3");
 const eagleSound = require("@assets/music/animals/Eagle.mp3");
-const seagullSound = require("@assets/music/animals/Seagull.mp3");
+const vanellusSound = require("@assets/music/animals/Seagull.mp3");
 const jellyfishSound = require("@assets/music/animals/Jellyfish.mp3");
 const clownfishSound = require("@assets/music/animals/Clownfish.mp3");
 const frogSound = require("@assets/music/animals/Frog.mp3");
@@ -1709,12 +1709,12 @@ export const ANIMALS: Animal[] = [
   },
   {
     id: 70,
-    name: "Seagull",
+    name: "Vanellus",
     emoji: "🕊️",
     image: BG_IMAGES[7],
-    soundUrl: seagullSound,
+    soundUrl: vanellusSound,
     modes: ["byName", "bySound", "showAll", "animalPairs", "secret"],
-    description: "seagullDescription",
+    description: "vanellusDescription",
     images: [
       "https://images.unsplash.com/photo-1567413010197-7b436a170e8d?q=80&w=1828&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/reserve/u3x7cekkS16ajjtJcb5L_DSC_5869.jpg?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -1725,8 +1725,8 @@ export const ANIMALS: Animal[] = [
     videos: ["https://www.youtube.com/watch?v=sr7G3E_aTsE"],
     glbUrl: "",
     wikipediaUrls: {
-      en: "https://en.wikipedia.org/wiki/Gull",
-      uk: "https://uk.wikipedia.org/wiki/Мартинові",
+      en: "https://en.wikipedia.org/wiki/Vanellus",
+      uk: "https://uk.wikipedia.org/wiki/Чайка",
       ru: "https://ru.wikipedia.org/wiki/Чайка",
     },
   },
