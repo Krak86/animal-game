@@ -505,6 +505,10 @@ ISC
 
 ## Building and Deployment
 
+# EAS web site
+
+https://docs.expo.dev/submit/android
+
 ### Development Build
 
 ```bash
@@ -589,12 +593,14 @@ npm run open:web
 ```
 
 **GitHub Pages Deployment:**
+
 - Push to `web` branch to trigger automatic deployment
 - The app deploys to: `https://krak86.github.io/animal-game/`
 - Uses post-build script to add `<base href="/animal-game/">` tag for correct asset paths
 - Configured with `expo.web.output: "single"` for single-page app export
 
 **Configuration Files:**
+
 - `.github/workflows/deploy-gh-pages.yml` - GitHub Actions workflow
 - `scripts/fix-base-path.js` - Adds base tag to index.html after build
 - `app.json` - Expo web configuration with `"output": "single"`
@@ -618,11 +624,13 @@ The app uses expo-splash-screen to keep the splash screen visible until Montserr
 ### TTS (Text-to-Speech) System
 
 **Hybrid Approach:**
+
 - **English**: Live TTS using expo-speech (device-dependent, en-GB voice)
 - **Ukrainian & Russian**: Pre-recorded high-quality MP3 files (Piper TTS, female voice)
 - **Fallback**: If prerecorded files missing, falls back to live TTS
 
 **Implementation:**
+
 - **Prerecorded Audio**: 120 MP3 files (58 animals × 2 languages + 2 UI phrases × 2 languages)
   - Generated using Piper TTS neural engine
   - Ukrainian: `uk_UA-lada-medium` model (female voice)
@@ -657,6 +665,7 @@ node scripts/generateTTSAudio.js
 ```
 
 **Technical Details:**
+
 - TTS Engine: Piper TTS (lightweight neural TTS, runs in Docker)
 - Generation time: ~10-15 minutes for all 120 files
 - Disk space: ~100MB Docker models + ~6MB audio files
@@ -707,12 +716,14 @@ node scripts/generateTTSAudio.js
 Game logic centralized in specialized custom hooks:
 
 **By Name/By Sound modes** - `useGameLogic` hook:
+
 - Game state (score, current animal, animations)
 - Audio control (music, sounds, text-to-speech)
 - User interactions (animal selection, mode switching)
 - Visual feedback (success overlay, error borders)
 
 **Animal Pairs mode** - `usePairsGameLogic` hook:
+
 - Two-click selection pattern (first/second selection with tileIndex)
 - Pair matching logic with matchedPairIds tracking
 - Animation lifecycle (reset → set animals → delay → animate)

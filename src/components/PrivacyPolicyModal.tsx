@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Linking,
+  Animated,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { COLORS } from "@/styles/colors";
@@ -16,6 +17,7 @@ import {
   useResponsiveDimensions,
   ResponsiveDimensions,
 } from "@/hooks/useResponsiveDimensions";
+import { useHoverEffect } from "@/hooks/useHoverEffect";
 
 interface PrivacyPolicyModalProps {
   visible: boolean;
@@ -31,6 +33,10 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
   const insets = useSafeAreaInsets();
   const responsive = useResponsiveDimensions();
   const styles = getStyles(responsive);
+
+  const hoverClose = useHoverEffect({
+    baseColor: COLORS.lightGray,
+  });
 
   const openLink = async (url: string) => {
     try {
@@ -76,13 +82,16 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.headerTitle}>{getTitle()}</Text>
-          <TouchableOpacity
-            style={styles.closeButton}
-            onPress={onClose}
-            activeOpacity={0.7}
-          >
-            <Text style={styles.closeButtonText}>✕</Text>
-          </TouchableOpacity>
+          <Animated.View style={[styles.closeButton, { backgroundColor: hoverClose.backgroundColor }, hoverClose.cursorStyle]}>
+            <TouchableOpacity
+              style={styles.closeButtonInner}
+              onPress={onClose}
+              activeOpacity={0.7}
+              {...hoverClose.handlers}
+            >
+              <Text style={styles.closeButtonText}>✕</Text>
+            </TouchableOpacity>
+          </Animated.View>
         </View>
 
         {/* Content */}
@@ -103,6 +112,12 @@ const PrivacyPolicyEN: React.FC<{ openLink: (url: string) => void }> = ({
 }) => {
   const responsive = useResponsiveDimensions();
   const styles = getContentStyles(responsive);
+
+  const hoverLink = useHoverEffect({
+    baseColor: "transparent",
+    hoverColor: "rgba(0, 0, 0, 0.05)",
+    duration: 100,
+  });
 
   return (
     <View style={styles.content}>
@@ -183,32 +198,44 @@ const PrivacyPolicyEN: React.FC<{ openLink: (url: string) => void }> = ({
         Each of these services has its own privacy practices. Please review
         their policies:
       </Text>
-      <TouchableOpacity
-        onPress={() => openLink("https://policies.google.com/privacy")}
-      >
-        <Text style={styles.link}>• YouTube Privacy Policy</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => openLink("https://unsplash.com/privacy")}
-      >
-        <Text style={styles.link}>• Unsplash Privacy Policy</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() =>
-          openLink("https://foundation.wikimedia.org/wiki/Privacy_policy")
-        }
-      >
-        <Text style={styles.link}>• Wikipedia Privacy Policy</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() =>
-          openLink(
-            "https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
-          )
-        }
-      >
-        <Text style={styles.link}>• GitHub Privacy Statement</Text>
-      </TouchableOpacity>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() => openLink("https://policies.google.com/privacy")}
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• YouTube Privacy Policy</Text>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() => openLink("https://unsplash.com/privacy")}
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Unsplash Privacy Policy</Text>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() =>
+            openLink("https://foundation.wikimedia.org/wiki/Privacy_policy")
+          }
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Wikipedia Privacy Policy</Text>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() =>
+            openLink(
+              "https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+            )
+          }
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• GitHub Privacy Statement</Text>
+        </TouchableOpacity>
+      </Animated.View>
 
       <Text style={styles.heading}>Children's Use</Text>
       <Text style={styles.paragraph}>
@@ -256,6 +283,12 @@ const PrivacyPolicyUK: React.FC<{ openLink: (url: string) => void }> = ({
 }) => {
   const responsive = useResponsiveDimensions();
   const styles = getContentStyles(responsive);
+
+  const hoverLink = useHoverEffect({
+    baseColor: "transparent",
+    hoverColor: "rgba(0, 0, 0, 0.05)",
+    duration: 100,
+  });
 
   return (
     <View style={styles.content}>
@@ -343,32 +376,44 @@ const PrivacyPolicyUK: React.FC<{ openLink: (url: string) => void }> = ({
         Кожен із цих сервісів має власні практики конфіденційності. Будь ласка,
         ознайомтеся з їхніми політиками:
       </Text>
-      <TouchableOpacity
-        onPress={() => openLink("https://policies.google.com/privacy")}
-      >
-        <Text style={styles.link}>• Політика конфіденційності YouTube</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => openLink("https://unsplash.com/privacy")}
-      >
-        <Text style={styles.link}>• Політика конфіденційності Unsplash</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() =>
-          openLink("https://foundation.wikimedia.org/wiki/Privacy_policy")
-        }
-      >
-        <Text style={styles.link}>• Політика конфіденційності Wikipedia</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() =>
-          openLink(
-            "https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
-          )
-        }
-      >
-        <Text style={styles.link}>• Політика конфіденційності GitHub</Text>
-      </TouchableOpacity>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() => openLink("https://policies.google.com/privacy")}
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Політика конфіденційності YouTube</Text>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() => openLink("https://unsplash.com/privacy")}
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Політика конфіденційності Unsplash</Text>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() =>
+            openLink("https://foundation.wikimedia.org/wiki/Privacy_policy")
+          }
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Політика конфіденційності Wikipedia</Text>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() =>
+            openLink(
+              "https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+            )
+          }
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Політика конфіденційності GitHub</Text>
+        </TouchableOpacity>
+      </Animated.View>
 
       <Text style={styles.heading}>Використання дітьми</Text>
       <Text style={styles.paragraph}>
@@ -417,6 +462,12 @@ const PrivacyPolicyRU: React.FC<{ openLink: (url: string) => void }> = ({
 }) => {
   const responsive = useResponsiveDimensions();
   const styles = getContentStyles(responsive);
+
+  const hoverLink = useHoverEffect({
+    baseColor: "transparent",
+    hoverColor: "rgba(0, 0, 0, 0.05)",
+    duration: 100,
+  });
 
   return (
     <View style={styles.content}>
@@ -505,32 +556,44 @@ const PrivacyPolicyRU: React.FC<{ openLink: (url: string) => void }> = ({
         Каждый из этих сервисов имеет свои собственные практики
         конфиденциальности. Пожалуйста, ознакомьтесь с их политиками:
       </Text>
-      <TouchableOpacity
-        onPress={() => openLink("https://policies.google.com/privacy")}
-      >
-        <Text style={styles.link}>• Политика конфиденциальности YouTube</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => openLink("https://unsplash.com/privacy")}
-      >
-        <Text style={styles.link}>• Политика конфиденциальности Unsplash</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() =>
-          openLink("https://foundation.wikimedia.org/wiki/Privacy_policy")
-        }
-      >
-        <Text style={styles.link}>• Политика конфиденциальности Wikipedia</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() =>
-          openLink(
-            "https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
-          )
-        }
-      >
-        <Text style={styles.link}>• Политика конфиденциальности GitHub</Text>
-      </TouchableOpacity>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() => openLink("https://policies.google.com/privacy")}
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Политика конфиденциальности YouTube</Text>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() => openLink("https://unsplash.com/privacy")}
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Политика конфиденциальности Unsplash</Text>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() =>
+            openLink("https://foundation.wikimedia.org/wiki/Privacy_policy")
+          }
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Политика конфиденциальности Wikipedia</Text>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[{ backgroundColor: hoverLink.backgroundColor }, hoverLink.cursorStyle]}>
+        <TouchableOpacity
+          onPress={() =>
+            openLink(
+              "https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+            )
+          }
+          {...hoverLink.handlers}
+        >
+          <Text style={styles.link}>• Политика конфиденциальности GitHub</Text>
+        </TouchableOpacity>
+      </Animated.View>
 
       <Text style={styles.heading}>Использование детьми</Text>
       <Text style={styles.paragraph}>
@@ -599,7 +662,10 @@ const getStyles = (responsive: ResponsiveDimensions) =>
       width: 36,
       height: 36,
       borderRadius: 18,
-      backgroundColor: COLORS.lightGray,
+    },
+    closeButtonInner: {
+      width: "100%",
+      height: "100%",
       justifyContent: "center",
       alignItems: "center",
     },
