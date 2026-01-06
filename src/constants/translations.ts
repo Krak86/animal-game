@@ -662,7 +662,7 @@ export const TRANSLATIONS: TranslationMap = {
       Dolphin: "Дельфін",
       Snail: "Равлик",
       Ant: "Мураха",
-      Ladybug: "Божа корівка",
+      Ladybug: "Сонечка",
       Crocodile: "Крокодил",
       Bat: "Кажан",
       Parrot: "Папуга",
