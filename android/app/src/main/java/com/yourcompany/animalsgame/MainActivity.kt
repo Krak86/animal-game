@@ -3,6 +3,7 @@ import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
@@ -21,6 +22,16 @@ class MainActivity : ReactActivity() {
     SplashScreenManager.registerOnActivity(this)
     // @generated end expo-splashscreen
     super.onCreate(null)
+
+    // Explicitly allow screenshots on all devices
+    // This ensures screenshots work on Edge 50 Fusion and other Android 14+ devices
+    window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+  }
+
+  override fun onResume() {
+    super.onResume()
+    // Ensure screenshots remain enabled even if system tries to re-enable protection
+    window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
   }
 
   /**
