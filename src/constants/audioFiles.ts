@@ -6,7 +6,10 @@ import { Language } from "@/types";
 /**
  * Prerecorded animal audio file mappings for Ukrainian and Russian
  */
-export const PRERECORDED_ANIMAL_AUDIO: Record<string, Record<"uk" | "ru", any>> = {
+export const PRERECORDED_ANIMAL_AUDIO: Record<
+  string,
+  Record<"uk" | "ru", any>
+> = {
   Dog: {
     uk: require("@assets/audio/animals/uk/dog.mp3"),
     ru: require("@assets/audio/animals/ru/dog.mp3"),
@@ -295,7 +298,7 @@ export const PRERECORDED_ANIMAL_AUDIO: Record<string, Record<"uk" | "ru", any>> 
     uk: require("@assets/audio/animals/uk/woodpecker.mp3"),
     ru: require("@assets/audio/animals/ru/woodpecker.mp3"),
   },
-  Seagull: {
+  Vanellus: {
     uk: require("@assets/audio/animals/uk/seagull.mp3"),
     ru: require("@assets/audio/animals/ru/seagull.mp3"),
   },
@@ -380,7 +383,10 @@ export const PRERECORDED_ANIMAL_AUDIO: Record<string, Record<"uk" | "ru", any>> 
 /**
  * Prerecorded UI phrase audio file mappings
  */
-export const PRERECORDED_UI_AUDIO: Record<"findThe" | "whoSaysThis", Record<"uk" | "ru", any>> = {
+export const PRERECORDED_UI_AUDIO: Record<
+  "findThe" | "whoSaysThis",
+  Record<"uk" | "ru", any>
+> = {
   findThe: {
     uk: require("@assets/audio/ui/uk/findthe.mp3"),
     ru: require("@assets/audio/ui/ru/findthe.mp3"),

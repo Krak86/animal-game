@@ -125,7 +125,7 @@ export const VideoGalleryModal: React.FC<VideoGalleryModalProps> = ({
                     }
                   }}
                   webViewProps={{
-                    androidLayerType: "hardware",
+                    androidLayerType: "software",
                   }}
                 />
               </View>

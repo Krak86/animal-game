@@ -210,8 +210,8 @@ export const TRANSLATIONS: TranslationMap = {
         "Eagles are large birds of prey with powerful talons and excellent eyesight. They can spot small animals from high in the sky. Eagles build large nests and are symbols of strength and freedom.",
       woodpeckerDescription:
         "Woodpeckers are birds with strong beaks that drill into tree bark. They search for insects living inside trees and create holes for nesting. Woodpeckers can peck up to 20 times per second without getting hurt.",
-      seagullDescription:
-        "Seagulls are coastal birds known for their loud calls and scavenging behavior. They have webbed feet and can drink both fresh and salt water. Seagulls are intelligent birds that often follow fishing boats.",
+      vanellusDescription:
+        "Vanellus are medium-sized birds with long legs and sharp beaks. They often inhabit open fields and wetlands. Known for their loud calls and distinctive flight patterns, Vanellus are skilled hunters of insects and small invertebrates.",
       crowDescription:
         "Crows are highly intelligent black birds that can solve complex problems. They use tools, recognize human faces, and can even hold grudges. Crows live in family groups and work together to find food.",
       vultureDescription:
@@ -344,7 +344,7 @@ export const TRANSLATIONS: TranslationMap = {
       Chimpanzee: "Chimpanzee",
       Eagle: "Eagle",
       Woodpecker: "Woodpecker",
-      Seagull: "Seagull",
+      Vanellus: "Vanellus",
       Ostrich: "Ostrich",
       Pelican: "Pelican",
       Starfish: "Starfish",
@@ -574,8 +574,8 @@ export const TRANSLATIONS: TranslationMap = {
         "Орли — великі хижі птахи з потужними пазурами та чудовим зором. Вони можуть помітити маленьких тварин з висоти в небі. Орли будують великі гнізда та є символами сили та свободи.",
       woodpeckerDescription:
         "Дятли — птахи з міцними дзьобами, що свердлять кору дерев. Вони шукають комах, що живуть всередині дерев, та створюють дупла для гніздування. Дятли можуть дзьобати до 20 разів на секунду без травм.",
-      seagullDescription:
-        "Мартини — прибережні птахи, відомі своїми гучними криками та поведінкою падальників. Вони мають перетинчасті лапи та можуть пити як прісну, так і солону воду. Мартини — розумні птахи, що часто слідують за рибальськими човнами.",
+      vanellusDescription:
+        "Чайки - птахи середнього розміру з довгими ногами та гострими дзьобами. Вони часто живуть на відкритих місцевостях, таких як поля та узбережжя. Чайки відомі своєю гучною поведінкою та здатністю захищати свої гнізда від хижаків.",
       crowDescription:
         "Ворони — високорозумні чорні птахи, що можуть вирішувати складні задачі. Вони використовують інструменти, розпізнають людські обличчя та навіть можуть тримати образи. Ворони живуть сімейними групами та працюють разом для пошуку їжі.",
       vultureDescription:
@@ -662,7 +662,7 @@ export const TRANSLATIONS: TranslationMap = {
       Dolphin: "Дельфін",
       Snail: "Равлик",
       Ant: "Мураха",
-      Ladybug: "Божа корівка",
+      Ladybug: "Сонечка",
       Crocodile: "Крокодил",
       Bat: "Кажан",
       Parrot: "Папуга",
@@ -708,7 +708,7 @@ export const TRANSLATIONS: TranslationMap = {
       Chimpanzee: "Шимпанзе",
       Eagle: "Орел",
       Woodpecker: "Дятел",
-      Seagull: "Мартин",
+      Vanellus: "Чайка",
       Ostrich: "Страус",
       Pelican: "Пелікан",
       Starfish: "Морська зірка",
@@ -938,7 +938,7 @@ export const TRANSLATIONS: TranslationMap = {
         "Орлы — крупные хищные птицы с мощными когтями и отличным зрением. Они могут заметить мелких животных с большой высоты в небе. Орлы строят большие гнезда и являются символами силы и свободы.",
       woodpeckerDescription:
         "Дятлы — птицы с крепкими клювами, которые сверлят кору деревьев. Они ищут насекомых, живущих внутри деревьев, и создают дупла для гнездования. Дятлы могут долбить до 20 раз в секунду без травм.",
-      seagullDescription:
+      vanellusDescription:
         "Чайки — прибрежные птицы, известные своими громкими криками и падальным поведением. У них перепончатые лапы и они могут пить как пресную, так и соленую воду. Чайки — умные птицы, часто следующие за рыбацкими лодками.",
       crowDescription:
         "Вороны — высокоинтеллектуальные черные птицы, способные решать сложные задачи. Они используют инструменты, распознают человеческие лица и даже могут держать обиды. Вороны живут семейными группами и работают вместе для поиска пищи.",
@@ -1072,7 +1072,7 @@ export const TRANSLATIONS: TranslationMap = {
       Chimpanzee: "Шимпанзе",
       Eagle: "Орёл",
       Woodpecker: "Дятел",
-      Seagull: "Чайка",
+      Vanellus: "Чайка",
       Ostrich: "Страус",
       Pelican: "Пеликан",
       Starfish: "Морская звезда",

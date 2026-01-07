@@ -175,7 +175,7 @@ export interface Translations {
     chimpanzeeDescription: string;
     eagleDescription: string;
     woodpeckerDescription: string;
-    seagullDescription: string;
+    vanellusDescription: string;
     crowDescription: string;
     vultureDescription: string;
     hummingbirdDescription: string;
