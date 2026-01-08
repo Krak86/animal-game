@@ -299,7 +299,7 @@ export const PRERECORDED_ANIMAL_AUDIO: Record<
     ru: require("@assets/audio/animals/ru/woodpecker.mp3"),
   },
   Vanellus: {
-    uk: require("@assets/audio/animals/uk/seagull.mp3"),
+    uk: require("@assets/audio/animals/ru/seagull.mp3"),
     ru: require("@assets/audio/animals/ru/seagull.mp3"),
   },
   Ostrich: {
