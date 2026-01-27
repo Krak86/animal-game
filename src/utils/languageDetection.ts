@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Language } from "@/types";
 
 const LANGUAGE_STORAGE_KEY = "@animals_game:language";
-const DEFAULT_LANGUAGE: Language = "uk";
+const DEFAULT_LANGUAGE: Language = "en";
 
 const LOCALE_MAP: Record<string, Language> = {
   en: "en",

@@ -15,12 +15,12 @@ interface UseLanguageInitializationReturn {
  * Fallback priority:
  * 1. User's saved preference (AsyncStorage)
  * 2. Device locale (expo-localization)
- * 3. Default fallback ("uk")
+ * 3. Default fallback ("en")
  *
  * @returns Object with language, isLoading state, and setLanguage function
  */
 export function useLanguageInitialization(): UseLanguageInitializationReturn {
-  const [language, setLanguageState] = useState<Language>("uk");
+  const [language, setLanguageState] = useState<Language>("en");
   const [isLoading, setIsLoading] = useState(true);
 
   // Initialize language on mount
@@ -32,7 +32,7 @@ export function useLanguageInitialization(): UseLanguageInitializationReturn {
       } catch (error) {
         console.error("Error initializing language:", error);
         // Use default on error
-        setLanguageState("uk");
+        setLanguageState("en");
       } finally {
         setIsLoading(false);
       }
