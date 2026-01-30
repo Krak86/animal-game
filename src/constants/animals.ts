@@ -132,7 +132,7 @@ export const ANIMALS: Animal[] = [
       "https://www.youtube.com/watch?v=MPV2METPeJU",
       "https://www.youtube.com/watch?v=Ip_uVTWfXyI",
     ],
-    glbUrl: "",
+    glbUrl: require("@assets/models/dog.glb"),
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Dog",
       uk: "https://uk.wikipedia.org/wiki/Собака",
@@ -159,7 +159,7 @@ export const ANIMALS: Animal[] = [
       "https://www.youtube.com/watch?v=17f_81LcnKM",
       "https://www.youtube.com/watch?v=qeUM1WDoOGY",
     ],
-    glbUrl: "",
+    glbUrl: require("@assets/models/cat.glb"),
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Cat",
       uk: "https://uk.wikipedia.org/wiki/Кіт",
@@ -182,7 +182,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1554990772-0bea55d510d5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     videos: ["https://www.youtube.com/watch?v=OMkEVX23BdM"],
-    glbUrl: "",
+    glbUrl: require("@assets/models/orange_tabby_cat.glb"),
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Lion",
       uk: "https://uk.wikipedia.org/wiki/Лев",
@@ -205,7 +205,7 @@ export const ANIMALS: Animal[] = [
       "https://images.unsplash.com/photo-1575187105891-be9b5d30cecd?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     videos: ["https://www.youtube.com/watch?v=Aw6GkiCvcWs"],
-    glbUrl: "",
+    glbUrl: require("@assets/models/bee.glb"),
     wikipediaUrls: {
       en: "https://en.wikipedia.org/wiki/Elephant",
       uk: "https://uk.wikipedia.org/wiki/Слон",

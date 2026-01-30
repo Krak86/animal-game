@@ -1,6 +1,6 @@
 import React from "react";
-import { Modal, View, TouchableOpacity, Text } from "react-native";
-
+import { Modal, View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { Animal3DViewer } from "./Animal3DViewer";
 import { getModel3DModalStyles } from "@/styles/componentStyles";
 import { useResponsiveDimensions } from "@/hooks/useResponsiveDimensions";
 import { EmojiSvg } from "@/components/EmojiSvg";
@@ -18,7 +18,6 @@ export const Model3DModal: React.FC<Model3DModalProps> = ({
   visible,
   glbUrl,
   onClose,
-  animalName,
   translations,
 }) => {
   const responsive = useResponsiveDimensions();
@@ -33,25 +32,40 @@ export const Model3DModal: React.FC<Model3DModalProps> = ({
       statusBarTranslucent
     >
       <View style={styles.modalOverlay}>
-        {/* Close button */}
         <TouchableOpacity
-          style={styles.closeButton}
+          style={[styles.closeButton, { zIndex: 10 }]}
           onPress={onClose}
           activeOpacity={0.7}
         >
           <EmojiSvg emoji="✕" style={styles.closeButtonText} />
         </TouchableOpacity>
 
-        {/* Coming Soon content */}
-        <View style={styles.contentContainer}>
-          <EmojiSvg emoji="🎮" style={styles.emoji} />
-          <Text style={styles.comingSoonText}>
-            {translations.view3DModel}
-            {"\n"}
-            {translations.comingSoon}!
-          </Text>
+        <View style={localStyles.container}>
+          {glbUrl ? (
+            <Animal3DViewer source={glbUrl} backgroundColor="rgba(0,0,0,0.8)" />
+          ) : (
+            <View style={styles.contentContainer}>
+              <EmojiSvg emoji="🎮" style={styles.emoji} />
+              <Text style={styles.comingSoonText}>
+                {translations.view3DModel}
+                {"\n"}
+                {translations.comingSoon}!
+              </Text>
+            </View>
+          )}
         </View>
       </View>
     </Modal>
   );
 };
+
+const localStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "transparent",
+  },
+});
